@@ -1,42 +1,43 @@
 "use client";
 
-import Link from "next/link";
-import AppShell from "@/components/AppShell";
+import { useEffect } from "react";
+import { createClient } from "@supabase/supabase-js";
 
-export default function HomePage() {
-  return (
-    <AppShell title="Release Core">
-      <div className="max-w-3xl mx-auto rounded-3xl border border-neutral-200 bg-white p-10 shadow-sm">
-        <h1 className="text-4xl font-semibold tracking-tight text-neutral-900 mb-4">
-          Release Core Method
-        </h1>
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
 
-        <p className="text-lg text-neutral-600 mb-5">
-          A guided system to uncover emotional and nervous system patterns stored in your body.
-          Identify the root cause, release it, and reset your system back to safety.
-        </p>
+export default function Home() {
+  useEffect(() => {
+    const checkUser = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
 
-        <p className="text-lg text-neutral-600 mb-8">
-          This method helps you understand why you feel stuck in fight, flight, freeze, or fawn,
-          and gives you a step-by-step process to shift it.
-        </p>
+      // 🚫 NOT logged in → go to login
+      if (!user) {
+        window.location.href = "/login";
+        return;
+      }
 
-        <div className="flex flex-wrap gap-4">
-          <Link
-            href="/login"
-            className="inline-flex items-center rounded-xl bg-emerald-700 px-5 py-3 text-white font-medium transition hover:bg-emerald-800"
-          >
-            Get Started
-          </Link>
+      // ✅ Logged in → check payment
+      const { data: profile } = await supabase
+        .from("profiles")
+        .select("paid")
+        .eq("user_id", user.id)
+        .single();
 
-          <Link
-            href="/signup"
-            className="inline-flex items-center rounded-xl border border-neutral-300 px-5 py-3 text-neutral-900 font-medium transition hover:bg-neutral-50"
-          >
-            Create Account
-          </Link>
-        </div>
-      </div>
-    </AppShell>
-  );
+      // ❌ Not paid → Stripe
+      if (!profile?.paid) {
+        window.location.href = "https://buy.stripe.com/your-link";
+        return;
+      }
+
+      // ✅ Paid → dashboard
+      window.location.href = "/dashboard";
+    };
+
+    checkUser();
+  }, []);
+
+  return <p>Loading...</p>;
 }
