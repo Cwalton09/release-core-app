@@ -1,13 +1,51 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import AppShell from "@/components/AppShell";
 import { useRouter } from "next/navigation";
+import { supabase } from "@/lib/supabase";
 
 export default function DisclaimerPage() {
   const router = useRouter();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const checkAccess = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      // Not logged in → send to login
+      if (!user) {
+        router.push("/login");
+        return;
+      }
+
+      // Check if paid
+      const { data: profile } = await supabase
+        .from("profiles")
+        .select("paid")
+        .eq("id", user.id)
+        .single();
+
+      if (!profile?.paid) {
+        // Not paid → send to homepage (or Stripe)
+        router.push("/");
+        return;
+      }
+
+      setLoading(false);
+    };
+
+    checkAccess();
+  }, [router]);
+
+  if (loading) {
+    return <div className="p-10 text-center">Loading...</div>;
+  }
 
   const handleAccept = () => {
-    router.push("/signup");
+    router.push("/start-session"); // 👈 next step in your flow
   };
 
   return (
@@ -24,12 +62,10 @@ export default function DisclaimerPage() {
 
           <p>
             The Release Core Method is not a substitute for medical advice, diagnosis, or treatment.
-            It does not diagnose or treat any physical or mental health condition.
           </p>
 
           <p>
-            All insights, prompts, and guidance provided within this app are for educational and
-            informational purposes only.
+            All insights, prompts, and guidance provided are for educational purposes only.
           </p>
 
           <p>
@@ -37,8 +73,7 @@ export default function DisclaimerPage() {
           </p>
 
           <p>
-            If you are experiencing severe emotional distress, physical symptoms, or medical concerns,
-            please consult a licensed healthcare provider.
+            If you are experiencing distress, please consult a licensed provider.
           </p>
         </div>
 
@@ -55,17 +90,11 @@ export default function DisclaimerPage() {
           </p>
 
           <div className="flex flex-wrap gap-4 text-sm text-slate-600">
-            <a
-              href="/privacy-policy"
-              className="underline underline-offset-2"
-            >
+            <a href="/privacy-policy" className="underline underline-offset-2">
               View Privacy Policy
             </a>
 
-            <a
-              href="/terms-of-use"
-              className="underline underline-offset-2"
-            >
+            <a href="/terms-of-use" className="underline underline-offset-2">
               Terms of Use
             </a>
           </div>

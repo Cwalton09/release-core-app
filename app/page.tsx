@@ -1,7 +1,14 @@
+"use client";
 
 import AppShell from "@/components/AppShell";
 
+const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/5kQ3cvaczg6H6tpgYsbII01";
+
 export default function HomePage() {
+  const handleGetStarted = () => {
+    window.location.href = STRIPE_PAYMENT_LINK;
+  };
+
   return (
     <AppShell title="Release Core">
       <div className="max-w-3xl mx-auto rounded-3xl border border-neutral-200 bg-white p-10 shadow-sm">
@@ -20,12 +27,13 @@ export default function HomePage() {
         </p>
 
         <div className="flex flex-wrap gap-4">
-          <a
-            href="/disclaimer"
-            className="inline-flex items-center rounded-xl bg-emerald-700 px-5 py-3 text-white font-medium hover:bg-emerald-800 transition"
+          <button
+            type="button"
+            onClick={handleGetStarted}
+            className="inline-flex items-center rounded-xl bg-emerald-700 px-5 py-3 text-white font-medium transition"
           >
             Get Started
-          </a>
+          </button>
         </div>
       </div>
     </AppShell>
