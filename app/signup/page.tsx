@@ -2,40 +2,63 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import AppShell from "@/components/AppShell";
 import { supabase } from "@/lib/supabase";
 
 const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/5kQ3cvaczg6H6tpgYsbII01";
 
 export default function SignupPage() {
+  const router = useRouter();
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setMessage("");
+    setErrorMessage("");
 
-    const { error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        data: {
-          full_name: fullName,
+    try {
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+      });
+
+      if (error) {
+        setErrorMessage(error.message);
+        return;
+      }
+
+      const user = data.user;
+      if (!user) {
+        setErrorMessage("No user returned from signup.");
+        return;
+      }
+
+      const { error: profileError } = await supabase.from("profiles").upsert(
+        {
+          user_id: user.id,
+          display_name: fullName,
+          paid: false,
         },
-      },
-    });
+        { onConflict: "user_id" }
+      );
 
-    if (error) {
-      setMessage(error.message);
+      if (profileError) {
+        setErrorMessage(profileError.message);
+        return;
+      }
+
+      window.location.href = STRIPE_PAYMENT_LINK;
+    } catch (err) {
+      setErrorMessage("Something went wrong during signup.");
+      console.error(err);
+    } finally {
       setLoading(false);
-      return;
     }
-
-    window.location.href = STRIPE_PAYMENT_LINK;
   };
 
   return (
@@ -49,14 +72,13 @@ export default function SignupPage() {
           Create your account to begin your Release Core session flow.
         </p>
 
-        <form onSubmit={handleSignup} className="space-y-4">
+        <form className="space-y-4" onSubmit={handleSignup}>
           <input
             type="text"
             placeholder="Full name"
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
             className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none"
-            required
           />
 
           <input
@@ -65,7 +87,6 @@ export default function SignupPage() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none"
-            required
           />
 
           <input
@@ -74,11 +95,10 @@ export default function SignupPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none"
-            required
           />
 
-          {message ? (
-            <p className="text-sm text-red-600">{message}</p>
+          {errorMessage ? (
+            <p className="text-sm text-red-600">{errorMessage}</p>
           ) : null}
 
           <button

@@ -2,34 +2,64 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import AppShell from "@/components/AppShell";
 import { supabase } from "@/lib/supabase";
 
 const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/5kQ3cvaczg6H6tpgYsbII01";
 
 export default function LoginPage() {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setMessage("");
+    setErrorMessage("");
 
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
 
-    if (error) {
-      setMessage(error.message);
+      if (error) {
+        setErrorMessage(error.message);
+        return;
+      }
+
+      const user = data.user;
+      if (!user) {
+        setErrorMessage("No user returned from login.");
+        return;
+      }
+
+      const { data: profile, error: profileError } = await supabase
+        .from("profiles")
+        .select("paid")
+        .eq("user_id", user.id)
+        .maybeSingle();
+
+      if (profileError) {
+        setErrorMessage(profileError.message);
+        return;
+      }
+
+      if (profile?.paid) {
+        router.push("/dashboard");
+        return;
+      }
+
+      window.location.href = STRIPE_PAYMENT_LINK;
+    } catch (err) {
+      setErrorMessage("Something went wrong during login.");
+      console.error(err);
+    } finally {
       setLoading(false);
-      return;
     }
-
-    window.location.href = STRIPE_PAYMENT_LINK;
   };
 
   return (
@@ -44,7 +74,6 @@ export default function LoginPage() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           className="w-full rounded-xl border border-calm-200 px-4 py-2.5 text-sm outline-none ring-calm-500 focus:ring"
-          required
         />
 
         <input
@@ -53,11 +82,10 @@ export default function LoginPage() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           className="w-full rounded-xl border border-calm-200 px-4 py-2.5 text-sm outline-none ring-calm-500 focus:ring"
-          required
         />
 
-        {message ? (
-          <p className="text-sm text-red-600">{message}</p>
+        {errorMessage ? (
+          <p className="text-sm text-red-600">{errorMessage}</p>
         ) : null}
 
         <button

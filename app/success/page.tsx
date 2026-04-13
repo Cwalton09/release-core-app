@@ -9,36 +9,24 @@ export default function SuccessPage() {
 
   useEffect(() => {
     const markUserPaid = async () => {
-      try {
-        const {
-          data: { user },
-          error: userError,
-        } = await supabase.auth.getUser();
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
 
-        if (userError || !user) {
-          router.push("/login");
-          return;
-        }
-
-        const { error: profileError } = await supabase.from("profiles").upsert(
-          {
-            user_id: user.id,
-            paid: true,
-          },
-          {
-            onConflict: "user_id",
-          }
-        );
-
-        if (profileError) {
-          console.error("Error updating profile:", profileError);
-        }
-
-        router.push("/disclaimer");
-      } catch (error) {
-        console.error("Unexpected success page error:", error);
-        router.push("/login");
+      if (!user) {
+        router.replace("/login");
+        return;
       }
+
+      await supabase.from("profiles").upsert(
+        {
+          user_id: user.id,
+          paid: true,
+        },
+        { onConflict: "user_id" }
+      );
+
+      router.replace("/dashboard");
     };
 
     markUserPaid();
