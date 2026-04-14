@@ -10,14 +10,17 @@ export default function Dashboard() {
   const [checkingAccess, setCheckingAccess] = useState(true);
 
   useEffect(() => {
+    let mounted = true;
+
     const checkAccess = async () => {
       const {
-        data: { user },
-      } = await supabase.auth.getUser();
+        data: { session },
+      } = await supabase.auth.getSession();
 
-      // Not logged in → send to login
+      const user = session?.user;
+
       if (!user) {
-        router.replace("/login");
+        if (mounted) router.replace("/login");
         return;
       }
 
@@ -27,19 +30,31 @@ export default function Dashboard() {
         .eq("user_id", user.id)
         .single();
 
-      // Not paid → send to Stripe
       if (error || !profile?.paid) {
-        window.location.href =
-          "https://buy.stripe.com/5kQ3cvaczg6H6tpgYsbII01";
+        window.location.href = "https://buy.stripe.com/5kQ3cvaczg6H6tpgYsbII01";
         return;
       }
 
       const saved = localStorage.getItem("release-core-disclaimer-accepted");
-      setAccepted(saved === "true");
-      setCheckingAccess(false);
+
+      if (mounted) {
+        setAccepted(saved === "true");
+        setCheckingAccess(false);
+      }
     };
 
     checkAccess();
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange(() => {
+      checkAccess();
+    });
+
+    return () => {
+      mounted = false;
+      subscription.unsubscribe();
+    };
   }, [router]);
 
   const handleAccept = () => {
@@ -48,7 +63,7 @@ export default function Dashboard() {
   };
 
   if (checkingAccess || accepted === null) {
-    return null;
+    return <p className="p-6 text-center">Loading...</p>;
   }
 
   return (
