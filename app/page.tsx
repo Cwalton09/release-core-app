@@ -1,43 +1,30 @@
-"use client";
-
-import { useEffect } from "react";
-import { createClient } from "@supabase/supabase-js";
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+import Link from "next/link";
+import AppShell from "@/components/AppShell";
 
 export default function Home() {
-  useEffect(() => {
-    const checkUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
+  return (
+    <AppShell title="Welcome to Release Core">
+      <div className="space-y-6 text-center">
+        <p className="text-slate-600">
+          Begin your Release Core session flow.
+        </p>
 
-      // 🚫 NOT logged in → go to login
-      if (!user) {
-        window.location.href = "/login";
-        return;
-      }
+        <div className="flex flex-col gap-3">
+          <Link
+            href="/signup"
+            className="w-full rounded-xl bg-emerald-700 px-5 py-3 text-white font-medium hover:bg-emerald-800 transition"
+          >
+            Create Account
+          </Link>
 
-      // ✅ Logged in → check payment
-      const { data: profile } = await supabase
-        .from("profiles")
-        .select("paid")
-        .eq("user_id", user.id)
-        .single();
-
-      // ❌ Not paid → Stripe
-      if (!profile?.paid) {
-        window.location.href = "https://buy.stripe.com/5kQ3cvaczg6H6tpgYsbII01";
-        return;
-      }
-
-      // ✅ Paid → dashboard
-      window.location.href = "/dashboard";
-    };
-
-    checkUser();
-  }, []);
-
-  return <p>Loading...</p>;
+          <Link
+            href="/login"
+            className="w-full rounded-xl border border-slate-300 px-5 py-3 font-medium text-slate-800 hover:bg-gray-100 transition"
+          >
+            Log In
+          </Link>
+        </div>
+      </div>
+    </AppShell>
+  );
 }
