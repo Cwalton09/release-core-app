@@ -22,7 +22,7 @@ export default function LoginPage() {
 
     try {
       const { data, error } = await supabase.auth.signInWithPassword({
-        email,
+        email: email.trim().toLowerCase(),
         password,
       });
 
@@ -49,14 +49,16 @@ export default function LoginPage() {
       }
 
       if (profile?.paid) {
-        router.push("/dashboard");
+        await supabase.auth.getSession();
+        router.replace("/dashboard");
+        router.refresh();
         return;
       }
 
       window.location.href = STRIPE_PAYMENT_LINK;
     } catch (err) {
-      setErrorMessage("Something went wrong during login.");
       console.error(err);
+      setErrorMessage("Something went wrong during login.");
     } finally {
       setLoading(false);
     }
@@ -71,17 +73,19 @@ export default function LoginPage() {
         <input
           type="email"
           placeholder="Email"
+          autoComplete="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full rounded-xl border border-calm-200 px-4 py-2.5 text-sm outline-none ring-calm-500 focus:ring"
+          className="w-full rounded-xl border border-calm-200 px-4 py-3 text-base outline-none ring-calm-500 focus:ring"
         />
 
         <input
           type="password"
           placeholder="Password"
+          autoComplete="current-password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full rounded-xl border border-calm-200 px-4 py-2.5 text-sm outline-none ring-calm-500 focus:ring"
+          className="w-full rounded-xl border border-calm-200 px-4 py-3 text-base outline-none ring-calm-500 focus:ring"
         />
 
         {errorMessage ? (
@@ -91,7 +95,7 @@ export default function LoginPage() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full rounded-xl bg-calm-600 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-calm-700 disabled:opacity-60"
+          className="w-full rounded-xl bg-calm-600 px-4 py-3 text-base font-medium text-white transition hover:bg-calm-700 disabled:opacity-60"
         >
           {loading ? "Logging in..." : "Log in"}
         </button>
