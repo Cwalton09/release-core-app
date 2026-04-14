@@ -28,7 +28,7 @@ export default function Home() {
 
       // ❌ Not paid → Stripe
       if (!profile?.paid) {
-        window.location.href = "https://buy.stripe.com/your-link";
+        window.location.href = "https://buy.stripe.com/5kQ3cvaczg6H6tpgYsbII01";
         return;
       }
 
