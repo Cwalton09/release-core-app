@@ -110,8 +110,7 @@ const reframeMap: Record<string, Reframe> = {
       "It is safe to put some of this down.",
       "I am supported now.",
     ],
-    bodyMessage:
-      "Your body can let go of what it has been overholding.",
+    bodyMessage: "Your body can let go of what it has been overholding.",
   },
   "I cannot let go": {
     releaseIntro:
@@ -121,8 +120,7 @@ const reframeMap: Record<string, Reframe> = {
       "My body can release at its own pace.",
       "I can soften and still be safe.",
     ],
-    bodyMessage:
-      "Your body can begin to loosen its grip without losing safety.",
+    bodyMessage: "Your body can begin to loosen its grip without losing safety.",
   },
   "It is all on me": {
     releaseIntro:
@@ -132,8 +130,7 @@ const reframeMap: Record<string, Reframe> = {
       "I am allowed to receive support.",
       "I do not have to carry this alone.",
     ],
-    bodyMessage:
-      "Your body can release the pressure of over-responsibility.",
+    bodyMessage: "Your body can release the pressure of over-responsibility.",
   },
   "Something bad will happen": {
     releaseIntro:
@@ -165,8 +162,7 @@ const reframeMap: Record<string, Reframe> = {
       "It is safe for me to soften.",
       "My body can release the need to overhold.",
     ],
-    bodyMessage:
-      "Your body is allowed to soften without falling apart.",
+    bodyMessage: "Your body is allowed to soften without falling apart.",
   },
   "I am responsible for everyone": {
     releaseIntro:
@@ -176,8 +172,7 @@ const reframeMap: Record<string, Reframe> = {
       "I can release what is not mine.",
       "My body is allowed to rest.",
     ],
-    bodyMessage:
-      "Your body can set down what it has been overcarrying.",
+    bodyMessage: "Your body can set down what it has been overcarrying.",
   },
   "I do not belong": {
     releaseIntro:
@@ -208,97 +203,124 @@ export default function RegulationPage() {
 
   const selectedCore = searchParams.getAll("core");
   const selectedPatterns = searchParams.getAll("pattern");
+  const unmetNeeds = searchParams.getAll("unmet");
+  const ownWords = searchParams.get("ownWords") ?? "";
   const emotionsParam = searchParams.get("emotions") ?? "";
   const agesParam = searchParams.get("ages") ?? "";
 
   const selectedEmotions = emotionsParam
-    ? emotionsParam.split(",").map((item) => item.trim()).filter(Boolean)
+    ? emotionsParam.split(",").map((e) => e.trim()).filter(Boolean)
     : [];
 
   const selectedAges = agesParam
-    ? agesParam.split(",").map((item) => item.trim()).filter(Boolean)
+    ? agesParam.split(",").map((a) => a.trim()).filter(Boolean)
     : [];
 
   const tailored = useMemo(() => {
     const matched = selectedCore.map(
       (belief) => reframeMap[belief] ?? fallbackReframe
     );
-
     const releaseIntro =
       matched[0]?.releaseIntro ?? fallbackReframe.releaseIntro;
-
     const supportiveTruths = Array.from(
       new Set(matched.flatMap((item) => item.supportiveTruths))
     ).slice(0, 6);
-
     const bodyMessages = Array.from(
       new Set(matched.map((item) => item.bodyMessage))
     );
-
-    return {
-      releaseIntro,
-      supportiveTruths,
-      bodyMessages,
-    };
+    return { releaseIntro, supportiveTruths, bodyMessages };
   }, [selectedCore]);
 
   const installBeliefsHref = useMemo(() => {
     const params = new URLSearchParams();
-
     if (emotionsParam) params.set("emotions", emotionsParam);
     if (agesParam) params.set("ages", agesParam);
-
-    selectedPatterns.forEach((pattern) => params.append("pattern", pattern));
-    selectedCore.forEach((belief) => params.append("core", belief));
-
+    selectedPatterns.forEach((p) => params.append("pattern", p));
+    selectedCore.forEach((b) => params.append("core", b));
+    unmetNeeds.forEach((n) => params.append("unmet", n));
     return `/install-beliefs?${params.toString()}`;
-  }, [emotionsParam, agesParam, selectedPatterns, selectedCore]);
+  }, [emotionsParam, agesParam, selectedPatterns, selectedCore, unmetNeeds]);
 
   return (
     <AppShell title="Release and Reprogram">
       <div className="space-y-6">
+
+        {/* Step 1 — Thank the body */}
         <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm space-y-4">
           <h2 className="text-lg font-semibold text-slate-900">
-            Let this land in your body
+            Step 1 — Honor your body
           </h2>
+          <p className="text-sm leading-7 text-slate-700">
+            Before anything else, take a moment to thank your body.
+          </p>
+          <p className="text-sm leading-7 text-slate-700">
+            Every emotion, belief, and pattern you just uncovered was your nervous system doing its best to keep you safe. It was not broken. It was not wrong. It was protecting you with everything it had at the time.
+          </p>
+          {selectedEmotions.length > 0 && (
+            <p className="text-sm leading-7 text-slate-700">
+              Feeling <span className="font-medium">{selectedEmotions.join(", ")}</span> made sense. Your body learned that these responses were necessary to survive what was happening.
+            </p>
+          )}
+          {selectedPatterns.length > 0 && (
+            <div className="rounded-xl bg-slate-50 p-4 text-sm leading-7 text-slate-700 space-y-1">
+              <p className="font-medium text-slate-900 mb-1">Patterns your body used to protect you:</p>
+              {selectedPatterns.map((pattern) => (
+                <p key={pattern}>• {pattern}</p>
+              ))}
+            </div>
+          )}
+          <p className="text-sm leading-7 text-slate-700 italic">
+            "Thank you, body, for protecting me. You did the best you could with what you had. I see you. I honor you."
+          </p>
+        </div>
 
+        {/* Step 2 — Acknowledge the unmet need */}
+        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm space-y-4">
+          <h2 className="text-lg font-semibold text-slate-900">
+            Step 2 — Acknowledge what that part of you needed
+          </h2>
+          <p className="text-sm leading-7 text-slate-700">
+            {selectedAges.length > 0
+              ? `At ${selectedAges.join(", ")}, there was a part of you that needed something it did not receive.`
+              : "There was a part of you that needed something it did not receive."}
+          </p>
+          {unmetNeeds.length > 0 && (
+            <div className="rounded-xl bg-emerald-50 border border-emerald-200 p-4 text-sm leading-7 text-slate-700 space-y-1">
+              <p className="font-medium text-slate-900 mb-1">What that part of you needed:</p>
+              {unmetNeeds.map((need) => (
+                <p key={need}>• {need}</p>
+              ))}
+            </div>
+          )}
+          {ownWords && (
+            <p className="text-sm leading-7 text-slate-600 italic">
+              "{ownWords}"
+            </p>
+          )}
+          <p className="text-sm leading-7 text-slate-700">
+            That need was real. That younger part of you was not wrong for having it. It makes complete sense that your body held on — because no one told it that it was okay to let go.
+          </p>
+          <p className="text-sm leading-7 text-slate-700 italic">
+            "I see what you needed. I am sorry you did not get it then. You are allowed to receive it now."
+          </p>
+        </div>
+
+        {/* Step 3 — Supportive truths */}
+        <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-6 shadow-sm space-y-4">
+          <h2 className="text-lg font-semibold text-slate-900">
+            Step 3 — Let these truths land
+          </h2>
+          <p className="text-sm leading-7 text-slate-700">
+            Read each of these slowly. Let them move through your body, not just your mind. Breathe between each one.
+          </p>
           <p className="text-sm leading-7 text-slate-700">
             {tailored.releaseIntro}
           </p>
-
-          {selectedEmotions.length > 0 && (
-            <p className="text-sm leading-7 text-slate-700">
-              It makes sense that your body felt{" "}
-              <span className="font-medium">
-                {selectedEmotions.join(", ")}
-              </span>
-              .
-            </p>
-          )}
-
-          {selectedAges.length > 0 && (
-            <p className="text-sm leading-7 text-slate-700">
-              It may also make sense that this connects to{" "}
-              <span className="font-medium">
-                {selectedAges.join(", ")}
-              </span>
-              .
-            </p>
-          )}
-
-          {selectedPatterns.length > 0 && (
-            <div className="rounded-xl bg-slate-50 p-4 text-sm leading-7 text-slate-700">
-              <p className="font-medium text-slate-900 mb-2">
-                Patterns your body may have been protecting through
-              </p>
-              <div className="space-y-2">
-                {selectedPatterns.map((pattern) => (
-                  <p key={pattern}>• {pattern}</p>
-                ))}
-              </div>
-            </div>
-          )}
-
+          <div className="space-y-2 text-sm leading-7 text-slate-700">
+            {tailored.supportiveTruths.map((truth) => (
+              <p key={truth}>• {truth}</p>
+            ))}
+          </div>
           {tailored.bodyMessages.map((msg, i) => (
             <p key={i} className="text-sm leading-7 text-slate-700">
               {msg}
@@ -306,72 +328,79 @@ export default function RegulationPage() {
           ))}
         </div>
 
-        <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-6 shadow-sm space-y-4">
-          <h2 className="text-lg font-semibold text-slate-900">
-            Let these truths land in your body
-          </h2>
-
-          <div className="space-y-3 text-sm leading-7 text-slate-700">
-            {tailored.supportiveTruths.map((truth) => (
-              <p key={truth}>• {truth}</p>
-            ))}
-          </div>
-        </div>
-
-        <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-6 shadow-sm space-y-4">
-          <h2 className="text-lg font-semibold text-slate-900">
-            Bring your body back to today
-          </h2>
-
-          <p className="text-sm leading-7 text-slate-700">
-            Take 3 deep breaths. Let your shoulders drop. Unclench your jaw.
-            If it feels right, shake out your arms, legs, chest, and whole body
-            for 20 to 30 seconds so the energy can keep moving out.
-          </p>
-        </div>
-
+        {/* Step 4 — Physical release */}
         <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm space-y-4">
           <h2 className="text-lg font-semibold text-slate-900">
-            Check back in with your body
+            Step 4 — Release it from your body
           </h2>
-
           <p className="text-sm leading-7 text-slate-700">
-            Go back to the sensation you noticed at the beginning. The shape,
-            color, size, or texture.
+            Check in right now. Did you notice any of the following during this session?
           </p>
-
+          <div className="rounded-xl bg-slate-50 p-4 text-sm leading-7 text-slate-700 space-y-1">
+            <p>• Crying or watery eyes</p>
+            <p>• Yawning or deep sighing</p>
+            <p>• Goosebumps or chills</p>
+            <p>• A shift, softening, or movement in the body sensation</p>
+            <p>• Tingling, warmth, or a sense of something lifting</p>
+          </div>
           <p className="text-sm leading-7 text-slate-700">
-            Has it shifted at all, even slightly?
+            If yes — that is your nervous system releasing. Honor it. Stay with it. Let it move through completely.
           </p>
-
           <p className="text-sm leading-7 text-slate-700">
-            If yes, that means your body has already started releasing.
+            If you did not feel a natural release yet, that is okay. Your body may need a little help moving the energy out. Animals in the wild shake their entire body after a stressful event — and this is exactly what your nervous system needs to do too.
           </p>
-
-          <p className="text-sm leading-7 text-slate-700">
-            If not, that is okay. It may mean there are more layers to uncover.
+          <div className="rounded-xl bg-emerald-50 border border-emerald-200 p-4 text-sm leading-7 text-slate-700 space-y-2">
+            <p className="font-semibold text-emerald-800">Shaking release — do this now:</p>
+            <p>1. Stand up if you can, or stay seated if needed.</p>
+            <p>2. Start shaking your hands and arms loosely — like you are flicking water off your fingertips.</p>
+            <p>3. Let the shaking move up into your shoulders, chest, and torso.</p>
+            <p>4. If it feels right, let your legs and whole body join in.</p>
+            <p>5. Shake for 20 to 30 seconds — or longer if it feels good.</p>
+            <p>6. When you stop, stand still. Take 3 slow deep breaths. Notice what shifted.</p>
+          </div>
+          <p className="text-sm leading-7 text-slate-700 italic">
+            This is not a technique. This is biology. You are giving your nervous system permission to complete what it started.
           </p>
         </div>
 
+        {/* Step 5 — Check back in */}
         <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm space-y-4">
           <h2 className="text-lg font-semibold text-slate-900">
-            Ready for the next step?
+            Step 5 — Check back in with your body
           </h2>
-
           <p className="text-sm leading-7 text-slate-700">
-            Now that your body has started to come out of the old pattern,
-            let’s help it receive what is true now.
+            Go back to the sensation you noticed at the very beginning of this session — the shape, color, size, or texture you found in your body.
           </p>
-
-          <div className="flex gap-3">
-            <Link
-              href={installBeliefsHref}
-              className="inline-flex rounded-xl bg-emerald-700 px-5 py-3 text-white hover:bg-emerald-800"
-            >
-              Install new beliefs
-            </Link>
-          </div>
+          <p className="text-sm leading-7 text-slate-700">
+            Has it shifted at all, even slightly? Has the color changed, the size shrunk, the texture softened, or the location moved?
+          </p>
+          <p className="text-sm leading-7 text-slate-700">
+            If yes — your body has already begun to release. That is real. That matters.
+          </p>
+          <p className="text-sm leading-7 text-slate-700">
+            If it has not shifted yet, that is okay too. Some patterns have many layers. You have already done something important today just by seeing it clearly.
+          </p>
         </div>
+
+        {/* Step 6 — Move to install */}
+        <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-6 shadow-sm space-y-4">
+          <h2 className="text-lg font-semibold text-slate-900">
+            Step 6 — Install what is true now
+          </h2>
+          <p className="text-sm leading-7 text-slate-700">
+            Your body has done the hard work. It has been seen, honored, and given permission to release. Now it is ready to receive something new.
+          </p>
+          <p className="text-sm leading-7 text-slate-700">
+            The next step is installing the new beliefs that are actually true for you today — so your nervous system has something real to anchor into.
+          </p>
+          <Link
+            href={installBeliefsHref}
+            className="inline-flex rounded-xl bg-emerald-700 px-5 py-3 text-white hover:bg-emerald-800 transition"
+          >
+            Continue to install new beliefs
+          </Link>
+        </div>
+
       </div>
     </AppShell>
   );

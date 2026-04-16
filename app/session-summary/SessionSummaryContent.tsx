@@ -5,324 +5,200 @@ import { useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import AppShell from "@/components/AppShell";
 
-type NightScript = {
-  reflection: string;
-  thankYou: string;
-  newBeliefs: string[];
-};
-
-const scriptMap: Record<string, NightScript> = {
-  "I am not safe": {
-    reflection:
-      "Tonight, your body may still be unwinding from the belief that it had to stay alert, guarded, or braced in order to protect you.",
-    thankYou:
-      "Thank you, body, for protecting me the best way you knew how when safety did not feel certain.",
-    newBeliefs: [
-      "I am safe now.",
-      "It is safe for me to soften.",
-      "My body does not have to stay on guard like that anymore.",
-      "I can rest and still be safe.",
-      "I can let go while I sleep.",
-    ],
-  },
-  "I am alone": {
-    reflection:
-      "Tonight, your body may still be unwinding from the belief that it had to carry everything alone.",
-    thankYou:
-      "Thank you, body, for holding so much when it felt like everything was on me.",
-    newBeliefs: [
-      "I am not alone now.",
-      "I am supported.",
-      "It is safe for me to receive support.",
-      "I do not have to carry everything alone anymore.",
-      "My body can soften while I rest.",
-    ],
-  },
-  "I am not enough": {
-    reflection:
-      "Tonight, your body may still be unwinding from the pressure of believing you were not enough.",
-    thankYou:
-      "Thank you, body, for trying to protect me from rejection, shame, or not feeling enough.",
-    newBeliefs: [
-      "I am enough as I am.",
-      "I do not have to prove my worth.",
-      "I am safe even when I rest.",
-      "My body can let go of pressure now.",
-      "I can sleep without holding that belief anymore.",
-    ],
-  },
-  "I am not supported": {
-    reflection:
-      "Tonight, your body may still be unwinding from the belief that support was not available and that it had to overhold everything alone.",
-    thankYou:
-      "Thank you, body, for trying to protect me when support did not feel available.",
-    newBeliefs: [
-      "I am supported now.",
-      "It is safe for me to receive help.",
-      "I do not have to hold everything together alone anymore.",
-      "I can relax and still be okay.",
-      "My body does not have to protect me like that anymore.",
-    ],
-  },
-  "I do not matter": {
-    reflection:
-      "Tonight, your body may still be unwinding from the belief that your needs, feelings, or presence did not matter.",
-    thankYou:
-      "Thank you, body, for protecting me when it did not feel safe to fully exist or take up space.",
-    newBeliefs: [
-      "I matter.",
-      "My body matters.",
-      "My needs matter.",
-      "It is safe for me to exist fully.",
-      "My body can rest without disappearing.",
-    ],
-  },
-  "My needs do not matter": {
-    reflection:
-      "Tonight, your body may still be unwinding from the habit of pushing your needs down in order to stay safe, connected, or accepted.",
-    thankYou:
-      "Thank you, body, for helping me survive when it did not feel safe to have needs.",
-    newBeliefs: [
-      "My needs matter now.",
-      "It is safe for me to have needs.",
-      "It is safe for me to receive.",
-      "My body does not have to suppress itself anymore.",
-      "I can rest and let my body be supported.",
-    ],
-  },
-  "I have to stay in control": {
-    reflection:
-      "Tonight, your body may still be unwinding from the belief that staying in control was the only way to stay safe.",
-    thankYou:
-      "Thank you, body, for trying to keep me safe by staying tight, vigilant, and in control.",
-    newBeliefs: [
-      "I do not have to control everything to be safe.",
-      "It is safe for me to soften.",
-      "It is safe for me to let go a little more now.",
-      "I can relax and still be okay.",
-      "My body can rest without gripping.",
-    ],
-  },
-  "I have to hold everything together": {
-    reflection:
-      "Tonight, your body may still be unwinding from the pressure of believing everything depended on you.",
-    thankYou:
-      "Thank you, body, for holding so much when it felt like everything had to stay together.",
-    newBeliefs: [
-      "I do not have to hold everything together anymore.",
-      "It is safe to put some of this down.",
-      "I am supported.",
-      "My body can soften now.",
-      "I can sleep without carrying all of this.",
-    ],
-  },
-  "I cannot let go": {
-    reflection:
-      "Tonight, your body may still be unwinding from the belief that letting go was not safe.",
-    thankYou:
-      "Thank you, body, for protecting me by holding on when letting go once felt dangerous.",
-    newBeliefs: [
-      "It is safe for me to let go now.",
-      "My body can release at its own pace.",
-      "I can soften and still be safe.",
-      "I am supported now.",
-      "My body can let go while I sleep.",
-    ],
-  },
-  "It is all on me": {
-    reflection:
-      "Tonight, your body may still be unwinding from the weight of over-responsibility and the belief that everything depended on you.",
-    thankYou:
-      "Thank you, body, for carrying so much when it felt like it was all on me.",
-    newBeliefs: [
-      "It is not all on me anymore.",
-      "I am allowed to receive support.",
-      "I do not have to carry this alone.",
-      "I can soften and still be okay.",
-      "My body can rest now.",
-    ],
-  },
-  "Something bad will happen": {
-    reflection:
-      "Tonight, your body may still be unwinding from the expectation that danger was always about to happen.",
-    thankYou:
-      "Thank you, body, for trying to protect me by staying alert and preparing ahead.",
-    newBeliefs: [
-      "I am safe in this moment.",
-      "My body does not have to keep anticipating danger.",
-      "I can come back to what is true now.",
-      "It is safe for me to rest.",
-      "My body can soften while I sleep.",
-    ],
-  },
-  "I will lose everything": {
-    reflection:
-      "Tonight, your body may still be unwinding from the fear that everything could fall apart or be taken away.",
-    thankYou:
-      "Thank you, body, for trying to protect me from loss, collapse, or things falling apart.",
-    newBeliefs: [
-      "I am here now.",
-      "I do not have to live inside that fear anymore.",
-      "My body can release the expectation of loss.",
-      "It is safe for me to soften.",
-      "I can rest without preparing for everything to fall apart.",
-    ],
-  },
-  "I have to stay strong": {
-    reflection:
-      "Tonight, your body may still be unwinding from the belief that softness was not safe and that holding it all in was the only way to survive.",
-    thankYou:
-      "Thank you, body, for helping me hold it together when softness did not feel safe.",
-    newBeliefs: [
-      "I do not have to stay hard to stay safe.",
-      "It is safe for me to soften.",
-      "My body can release the need to overhold.",
-      "I can rest without bracing.",
-      "Softness is safe now.",
-    ],
-  },
-  "I am responsible for everyone": {
-    reflection:
-      "Tonight, your body may still be unwinding from carrying responsibility that was never fully yours.",
-    thankYou:
-      "Thank you, body, for trying to protect everyone when it felt like it all depended on you.",
-    newBeliefs: [
-      "I am not responsible for carrying everyone.",
-      "I can release what is not mine.",
-      "My body is allowed to rest.",
-      "I do not have to overcarry anymore.",
-      "I can sleep without holding that weight.",
-    ],
-  },
-  "I do not belong": {
-    reflection:
-      "Tonight, your body may still be unwinding from the belief that belonging was uncertain, conditional, or unsafe.",
-    thankYou:
-      "Thank you, body, for protecting me when belonging did not feel steady or safe.",
-    newBeliefs: [
-      "I belong here now.",
-      "I do not have to earn belonging.",
-      "My body is allowed to take up space.",
-      "It is safe for me to be here.",
-      "I can rest without bracing against rejection.",
-    ],
-  },
-  "I am not wanted": {
-    reflection:
-      "Tonight, your body may still be unwinding from the pain of feeling unwanted, excluded, or not chosen.",
-    thankYou:
-      "Thank you, body, for protecting me when being seen or wanted did not feel certain.",
-    newBeliefs: [
-      "I am wanted.",
-      "I am allowed to be here.",
-      "My body does not have to hide anymore.",
-      "It is safe for me to be seen.",
-      "I can rest while feeling safe and wanted.",
-    ],
-  },
-};
-
-const fallbackScript: NightScript = {
-  reflection:
-    "Tonight, your body may still be unwinding from the pattern it brought forward today. That is okay. Your body is already beginning to integrate what it no longer needs to hold in the same way.",
-  thankYou:
-    "Thank you, body, for protecting me the best way you knew how during that time.",
-  newBeliefs: [
+const beliefFlipMap: Record<string, string[]> = {
+  "I am not safe": [
     "I am safe now.",
+    "It is safe for me to soften.",
+    "I can rest and still be safe.",
+    "I can let go while I sleep.",
+    "My body does not have to stay on guard anymore.",
+  ],
+  "I am alone": [
     "I am not alone.",
     "I am supported.",
+    "It is safe for me to receive support.",
+    "I do not have to carry everything alone anymore.",
+    "I can rest and feel held.",
+  ],
+  "I am not enough": [
+    "I am enough as I am.",
+    "I do not have to prove my worth.",
+    "I am safe even when I rest.",
+    "I can sleep without holding that pressure anymore.",
+  ],
+  "I am not supported": [
+    "I am supported now.",
+    "It is safe for me to receive help.",
+    "I do not have to hold everything alone anymore.",
     "I can relax and still be okay.",
-    "My body does not have to protect me like that anymore.",
+  ],
+  "I have to stay in control": [
+    "I do not have to control everything to be safe.",
+    "It is safe for me to soften.",
+    "I can relax and still be okay.",
+    "I can sleep without gripping.",
+  ],
+  "I have to handle everything myself": [
+    "I am allowed to ask for help.",
+    "I do not have to do this alone.",
+    "It is safe to receive support.",
+  ],
+  "Something will go wrong": [
+    "I am safe in this moment.",
+    "I do not have to brace for what has not happened.",
+    "I can rest in what is true right now.",
+  ],
+  "I cannot relax": [
+    "It is safe for me to rest.",
+    "I am allowed to soften.",
+    "Relaxing does not mean losing control.",
+  ],
+  "I will lose everything": [
+    "I am here now.",
+    "I do not have to live inside that fear anymore.",
+    "I can sleep without preparing for everything to fall apart.",
+  ],
+  "I am not important": [
+    "I am important.",
+    "I matter.",
+    "It is safe for me to take up space.",
+  ],
+  "I do not matter": [
+    "I matter.",
+    "My body matters.",
+    "My needs matter.",
+    "It is safe for me to exist fully.",
+  ],
+  "My needs do not matter": [
+    "My needs matter now.",
+    "It is safe for me to have needs.",
+    "It is safe for me to receive.",
+    "I can rest and let my body be supported.",
+  ],
+  "I have to stay strong": [
+    "I do not have to stay hard to stay safe.",
+    "It is safe for me to soften.",
+    "Softness is not weakness.",
+    "I am allowed to rest.",
+  ],
+  "I am responsible for everyone": [
+    "I am not responsible for carrying everyone.",
+    "I can release what is not mine.",
+    "I am allowed to rest.",
+    "I can sleep without holding that weight.",
+  ],
+  "It is not safe to let go": [
+    "It is safe for me to let go now.",
+    "I can soften and still be safe.",
+    "I can let go while I sleep.",
   ],
 };
+
+const fallbackBeliefs = [
+  "I am safe now.",
+  "I am not alone.",
+  "I am supported.",
+  "I can relax and still be okay.",
+  "I can let go and still be safe.",
+  "My body does not have to protect me like that anymore.",
+];
 
 export default function SessionSummaryPage() {
   const searchParams = useSearchParams();
 
   const selectedCore = searchParams.getAll("core");
   const selectedPatterns = searchParams.getAll("pattern");
-
+  const unmetNeeds = searchParams.getAll("unmet");
+  const ownWords = searchParams.get("ownWords") ?? "";
   const emotionsParam = searchParams.get("emotions") ?? "";
   const agesParam = searchParams.get("ages") ?? "";
   const bodyArea = searchParams.get("area");
+  const whoParam = searchParams.get("who") ?? "";
 
   const selectedEmotions = emotionsParam
-    ? emotionsParam.split(",").map((item) => item.trim()).filter(Boolean)
+    ? emotionsParam.split(",").map((e) => e.trim()).filter(Boolean)
     : [];
 
   const selectedAges = agesParam
-    ? agesParam.split(",").map((item) => item.trim()).filter(Boolean)
+    ? agesParam.split(",").map((a) => a.trim()).filter(Boolean)
     : [];
+
+  const selectedWho = whoParam
+    ? whoParam.split(",").map((w) => w.trim()).filter(Boolean)
+    : [];
+
+  const nightlyBeliefs = useMemo(() => {
+    const matched = selectedCore.flatMap(
+      (belief) => beliefFlipMap[belief] ?? []
+    );
+    const unique = Array.from(new Set(matched));
+    return unique.length > 0 ? unique : fallbackBeliefs;
+  }, [selectedCore]);
 
   const summaryText = useMemo(() => {
     if (selectedCore.length === 0) {
       return "Your body may have released a layer today. Even if you do not have every answer yet, awareness is already a shift.";
     }
-
     if (selectedCore.length === 1) {
-      return `Today your body brought forward this core belief: ${selectedCore[0]}. This pattern may have once helped protect you, even if it no longer reflects where you are now.`;
+      return `Today your body brought forward the belief "${selectedCore[0]}." This pattern may have once helped protect you, even if it no longer reflects where you are now.`;
     }
-
-    return `Today your body brought forward these core beliefs: ${selectedCore.join(
-      ", "
-    )}. These patterns may have once helped protect you, even if they no longer reflect where you are now.`;
-  }, [selectedCore]);
-
-  const nightly = useMemo(() => {
-    const matched = selectedCore.map(
-      (belief) => scriptMap[belief] ?? fallbackScript
-    );
-
-    const reflection = matched[0]?.reflection ?? fallbackScript.reflection;
-    const thankYou = matched[0]?.thankYou ?? fallbackScript.thankYou;
-
-    const newBeliefs = Array.from(
-      new Set(matched.flatMap((item) => item.newBeliefs))
-    );
-
-    return {
-      reflection,
-      thankYou,
-      newBeliefs: newBeliefs.length > 0 ? newBeliefs : fallbackScript.newBeliefs,
-    };
+    return `Today your body brought forward these beliefs: ${selectedCore.join(", ")}. These patterns may have once helped protect you, even if they no longer reflect where you are now.`;
   }, [selectedCore]);
 
   const bodyPlacementText = bodyArea?.trim()
-    ? `As you get into bed tonight, place your hand gently on your ${bodyArea.trim()}.`
-    : "As you get into bed tonight, place one hand on your chest and one hand on your belly.";
+    ? `Place your hand gently on your ${bodyArea.trim()}.`
+    : "Place one hand on your chest and one hand on your belly.";
+
+  const ageText = selectedAges.length > 0 ? selectedAges.join(", ") : "a younger age";
+  const whoText = selectedWho.length > 0 ? selectedWho.join(", ") : "someone in your life";
+  const emotionText = selectedEmotions.length > 0 ? selectedEmotions.join(", ") : "what came up today";
 
   return (
     <AppShell title="Session Summary">
       <div className="space-y-6">
-        <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+
+        {/* What came up */}
+        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm space-y-4">
           <h2 className="text-lg font-semibold text-slate-900">
             What came up in this session
           </h2>
-
-          <p className="mt-3 text-sm leading-7 text-slate-700">
-            {summaryText}
-          </p>
+          <p className="text-sm leading-7 text-slate-700">{summaryText}</p>
 
           {selectedEmotions.length > 0 && (
-            <p className="mt-3 text-sm leading-7 text-slate-700">
-              Your body also brought forward these emotions:{" "}
-              {selectedEmotions.join(", ")}.
+            <p className="text-sm leading-7 text-slate-700">
+              Your body brought forward these emotions: <span className="font-medium">{selectedEmotions.join(", ")}</span>.
             </p>
           )}
 
           {selectedAges.length > 0 && (
-            <p className="mt-3 text-sm leading-7 text-slate-700">
-              This may connect to experiences around{" "}
-              {selectedAges.join(", ")}.
+            <p className="text-sm leading-7 text-slate-700">
+              This connected to experiences around <span className="font-medium">{selectedAges.join(", ")}</span>.
             </p>
           )}
 
+          {selectedWho.length > 0 && (
+            <p className="text-sm leading-7 text-slate-700">
+              The event involved: <span className="font-medium">{selectedWho.join(", ")}</span>.
+            </p>
+          )}
+
+          {unmetNeeds.length > 0 && (
+            <div className="rounded-xl bg-emerald-50 border border-emerald-200 p-4 text-sm leading-7 text-slate-700 space-y-1">
+              <p className="font-medium text-slate-900 mb-1">What your body needed and did not get:</p>
+              {unmetNeeds.map((need) => (
+                <p key={need}>• {need}</p>
+              ))}
+            </div>
+          )}
+
+          {ownWords && (
+            <p className="text-sm leading-7 text-slate-600 italic">"{ownWords}"</p>
+          )}
+
           {selectedPatterns.length > 0 && (
-            <div className="mt-4 rounded-xl bg-slate-50 p-4 text-sm leading-7 text-slate-700">
-              <p className="font-medium text-slate-900 mb-2">
-                Deeper patterns your body may have been protecting through
-              </p>
-              <div className="space-y-2">
+            <div className="rounded-xl bg-slate-50 p-4 text-sm leading-7 text-slate-700">
+              <p className="font-medium text-slate-900 mb-2">Patterns your body was protecting through:</p>
+              <div className="space-y-1">
                 {selectedPatterns.map((pattern) => (
                   <p key={pattern}>• {pattern}</p>
                 ))}
@@ -331,7 +207,7 @@ export default function SessionSummaryPage() {
           )}
 
           {selectedCore.length > 0 && (
-            <div className="mt-4 flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2">
               {selectedCore.map((belief) => (
                 <span
                   key={belief}
@@ -344,137 +220,168 @@ export default function SessionSummaryPage() {
           )}
         </div>
 
-        <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-5 text-sm leading-7 text-slate-700">
-          <p className="font-medium text-slate-900">What to do next</p>
-
-          <div className="mt-3 space-y-3">
+        {/* Right now */}
+        <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-6 shadow-sm space-y-3">
+          <h2 className="text-lg font-semibold text-slate-900">Right now</h2>
+          <div className="text-sm leading-7 text-slate-700 space-y-2">
             <p>Drink some water.</p>
-            <p>Let your body settle before trying to force another answer.</p>
-            <p>Notice if the sensation in your body feels different now.</p>
+            <p>Let your body settle before moving into anything else.</p>
+            <p>Notice if the sensation in your body feels different than when you started.</p>
             <p>Rest if your system feels like it wants time to integrate.</p>
+            <p>You do not have to figure anything out right now. Your body is already working.</p>
           </div>
         </div>
 
+        {/* Nighttime script intro */}
         <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm space-y-4">
-          <h2 className="text-xl font-semibold text-slate-900">
-            Nighttime integration script
+          <h2 className="text-lg font-semibold text-slate-900">
+            🌙 Your nighttime integration script
           </h2>
-
-          <div className="space-y-3 text-sm leading-7 text-slate-700">
-            <p>{nightly.reflection}</p>
-
-            {selectedEmotions.length > 0 && (
-              <p>
-                It makes sense that your body felt {selectedEmotions.join(", ")}.
-              </p>
-            )}
-
-            {selectedAges.length > 0 && (
-              <p>
-                This may connect to experiences around {selectedAges.join(", ")}.
-              </p>
-            )}
-
-            {selectedPatterns.length > 0 && (
-              <p>
-                Your body may have adapted through patterns like{" "}
-                {selectedPatterns.join(", ")}.
-              </p>
-            )}
-
-            <p>{nightly.thankYou}</p>
-
+          <div className="text-sm leading-7 text-slate-700 space-y-3">
+            <p className="font-medium text-slate-900">When to use this:</p>
             <p>
-              It makes sense that your body felt what it felt and believed what it
-              believed at that time. But you are not there anymore.
+              Read this script tonight as you are lying in bed with the lights off or dimmed, right as you are beginning to drift toward sleep. Do not read it earlier in the day — the timing matters.
             </p>
-
+            <p className="font-medium text-slate-900">Why it works:</p>
             <p>
-              Your body does not have to keep protecting you in that same way now.
+              In the moments just before you fall asleep, your brain shifts from its active waking state into a deeply receptive state called the hypnagogic state. In this window, your conscious mind begins to quiet and your subconscious mind becomes wide open. New beliefs, truths, and feelings can move in without being filtered, analyzed, or blocked. This is the same reason that what you think and feel right before sleep often shapes how you feel when you wake up. We are using that window intentionally — to let what your body uncovered today complete its work while you rest.
+            </p>
+            <p>
+              Read slowly. Breathe between each line. Let the words move through your body, not just your mind.
+            </p>
+          </div>
+        </div>
+
+        {/* The script */}
+        <div className="rounded-2xl border border-slate-300 bg-slate-50 p-6 shadow-sm space-y-6 text-sm leading-7 text-slate-700">
+
+          {/* Settle */}
+          <div className="space-y-3">
+            <p className="text-xs uppercase tracking-widest text-slate-400">Begin here</p>
+            <p>I find a comfortable position. I let my hands rest somewhere soft. I take one slow breath and simply notice that I am here.</p>
+            <p>Something in me did important work today. I am ready to let it settle.</p>
+          </div>
+
+          <hr className="border-slate-200" />
+
+          {/* Breath */}
+          <div className="space-y-3">
+            <p className="text-xs uppercase tracking-widest text-slate-400">Settle my body</p>
+            <p>I breathe in slowly for 4 counts. I hold gently for 4. I breathe out for 6.</p>
+            <p>I do this three times. With each exhale, I let my body know — the danger is not here tonight. I am safe right now.</p>
+          </div>
+
+          <hr className="border-slate-200" />
+
+          {/* Acknowledge */}
+          <div className="space-y-3">
+            <p className="text-xs uppercase tracking-widest text-slate-400">Acknowledge what was</p>
+            <p>
+              Today my body brought forward something that has been stored for a long time. Around {ageText}, something happened that involved {whoText}. My body felt {emotionText}. And from that, it formed a belief that made complete sense at the time.
+            </p>
+            <p>
+              That belief kept me going. It protected me. It was not wrong — it was the only thing that made sense then.
             </p>
           </div>
 
-          <div className="rounded-xl bg-slate-50 p-4 text-sm leading-7 text-slate-700">
-            <p>{bodyPlacementText}</p>
-            <p className="mt-2">
-              Let your body feel your presence, your support, and your safety.
-            </p>
-          </div>
+          <hr className="border-slate-200" />
 
-          <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-5 text-sm leading-7 text-slate-700">
-            <p className="font-medium text-slate-900">Let your body soften</p>
-
-            <div className="mt-3 space-y-2">
-              <p>My body, you can let go now.</p>
-              {bodyArea?.trim() ? (
-                <p>{bodyArea.trim()}, you do not have to hold this anymore.</p>
-              ) : (
-                <p>This part of my body, you do not have to hold this anymore.</p>
-              )}
-              <p>You do not have to brace.</p>
-              <p>You do not have to stay tight.</p>
-              <p>It is safe to soften.</p>
-              <p>It is safe to release.</p>
+          {/* To the younger self */}
+          <div className="space-y-3">
+            <p className="text-xs uppercase tracking-widest text-slate-400">To the younger part of me</p>
+            <div className="border-l-2 border-rose-300 pl-5 space-y-2 italic text-slate-600">
+              <p>I see you. I see how hard that was.</p>
+              <p>You were so young, and what you carried was so large.</p>
+              <p>You did not have the words for what you were feeling. You just felt it — in your body, in your chest, in the way everything felt uncertain.</p>
+              <p>You survived something hard. And you have been carrying it ever since.</p>
+              <p>I am sorry no one came to tell you that you were going to be okay. I am here now. And I am telling you — you are okay.</p>
             </div>
           </div>
 
-          <div className="rounded-xl bg-white border border-slate-200 p-4 text-sm leading-7 text-slate-700">
-            <p className="font-medium text-slate-900">Breath and let go</p>
+          <hr className="border-slate-200" />
 
-            <div className="mt-3 space-y-2">
-              <p>Inhale slowly.</p>
-              <p>Exhale and let your body drop.</p>
-              <p>Again, inhale.</p>
-              <p>Exhale, soften deeper.</p>
-              <p>Let your body feel supported.</p>
-            </div>
-          </div>
-
-          <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-5 text-sm leading-7 text-slate-700">
-            <p className="font-medium text-slate-900">
-              Install new beliefs while you sleep
-            </p>
-
-            <div className="mt-3 space-y-2">
-              {nightly.newBeliefs.map((belief) => (
-                <p key={belief}>{belief}</p>
+          {/* Truth */}
+          <div className="space-y-3">
+            <p className="text-xs uppercase tracking-widest text-slate-400">The truth my nervous system is ready to hear</p>
+            <p>The beliefs I formed then — they lived in my body because no one came to correct them. Tonight, I correct them. Gently. Slowly.</p>
+            <div className="space-y-3">
+              {nightlyBeliefs.map((belief) => (
+                <div key={belief} className="border-l-2 border-emerald-400 pl-5 italic text-slate-600">
+                  <p>{belief}</p>
+                </div>
               ))}
             </div>
           </div>
 
-          <div className="rounded-xl bg-slate-50 p-4 text-sm leading-7 text-slate-700">
+          <hr className="border-slate-200" />
+
+          {/* Letter to the body */}
+          <div className="space-y-3">
+            <p className="text-xs uppercase tracking-widest text-slate-400">A letter to my body</p>
             <p>
-              As you fall asleep tonight, let your body keep integrating what it
-              uncovered today.
+              Dear body — you have been on high alert for a long time. You learned to scan for danger because once, danger was real. You learned to brace, to hold, to stay ready. That was your gift to me, and I am grateful.
             </p>
-            <p className="mt-2">
-              It does not have to force anything. It can simply soften, receive,
-              and let the new beliefs settle in while you rest.
+            <p>
+              But tonight, I want to give you something back — permission to rest. You have done enough. You kept me going then. You keep me going now. You do not have to keep watch tonight.
+            </p>
+            <p>{bodyPlacementText}</p>
+            <p>
+              I let my body feel my own presence, my support, my safety. I breathe into wherever I feel tension and I simply say — you can soften now. You are allowed.
             </p>
           </div>
+
+          <hr className="border-slate-200" />
+
+          {/* As I drift */}
+          <div className="space-y-3">
+            <p className="text-xs uppercase tracking-widest text-slate-400">As I drift toward sleep</p>
+            <p>
+              I place my hand on my heart. I feel it beating — steady, faithful, mine. It has beaten through every hard night. It is beating now.
+            </p>
+            <p>
+              If fears come tonight, I can say to them quietly — I hear you. But we are safe right now. You can rest.
+            </p>
+            <p>
+              I am allowed to sleep. I am allowed to let tonight be easy. I am allowed to wake up tomorrow and still be okay.
+            </p>
+          </div>
+
+          <hr className="border-slate-200" />
+
+          {/* Final beliefs */}
+          <div className="space-y-4 text-center">
+            <p className="text-xs uppercase tracking-widest text-slate-400">I carry these into sleep</p>
+            <div className="space-y-2">
+              {nightlyBeliefs.map((belief) => (
+                <p key={belief} className="text-base font-medium text-slate-800">
+                  {belief}
+                </p>
+              ))}
+            </div>
+            <p className="text-slate-500 text-sm mt-4">Goodnight. 🌙</p>
+          </div>
+
         </div>
 
-        <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm space-y-4">
-          <h2 className="text-lg font-semibold text-slate-900">
-            Continue when you are ready
-          </h2>
-
+        {/* Continue */}
+        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm space-y-4">
+          <h2 className="text-lg font-semibold text-slate-900">Continue when you are ready</h2>
           <div className="flex flex-wrap gap-3">
             <Link
               href="/body-awareness"
-              className="inline-flex rounded-xl border border-slate-300 bg-white px-5 py-3 text-slate-800 hover:border-emerald-400"
+              className="inline-flex rounded-xl border border-slate-300 bg-white px-5 py-3 text-slate-800 hover:border-emerald-400 transition"
             >
               Start another session
             </Link>
-
             <Link
               href="/"
-              className="inline-flex rounded-xl bg-emerald-700 px-5 py-3 text-white hover:bg-emerald-800"
+              className="inline-flex rounded-xl bg-emerald-700 px-5 py-3 text-white hover:bg-emerald-800 transition"
             >
               Back to home
             </Link>
           </div>
         </div>
+
       </div>
     </AppShell>
   );
