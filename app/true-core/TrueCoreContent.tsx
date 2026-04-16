@@ -1,30 +1,32 @@
 "use client";
-
 import { useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import AppShell from "@/components/AppShell";
 
-const trueCoreOptions = [
-  "I am not safe",
-  "I am alone",
-  "I am not enough",
-  "I am not supported",
-  "I do not matter",
-  "My needs do not matter",
-  "I have to stay in control",
-  "I have to hold everything together",
-  "I cannot let go",
-  "It is all on me",
-  "Something bad will happen",
-  "I will lose everything",
-  "I have to stay strong",
-  "I am responsible for everyone",
-  "I do not belong",
-  "I am not wanted",
+const unmetNeeds = [
+  "To feel safe",
+  "To be seen",
+  "To be heard",
+  "To be held",
+  "To be loved without conditions",
+  "To know I was enough",
+  "To not be alone in it",
+  "To be protected",
+  "To be chosen",
+  "To be allowed to rest",
+  "To know my needs mattered",
+  "To be told it was not my fault",
+  "To be comforted",
+  "To feel like I belonged",
+  "To have someone show up for me",
+  "To be allowed to feel without being shut down",
+  "To know I was not a burden",
+  "To feel like I was wanted",
 ];
 
 export default function TrueCorePage() {
-  const [selectedCore, setSelectedCore] = useState<string[]>([]);
+  const [selectedNeeds, setSelectedNeeds] = useState<string[]>([]);
+  const [ownWords, setOwnWords] = useState("");
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -32,48 +34,43 @@ export default function TrueCorePage() {
   const ages = searchParams.get("ages") ?? "";
   const patterns = searchParams.getAll("pattern");
 
-  const toggleCore = (belief: string) => {
-    setSelectedCore((current) =>
-      current.includes(belief)
-        ? current.filter((item) => item !== belief)
-        : [...current, belief]
+  const toggleNeed = (need: string) => {
+    setSelectedNeeds((current) =>
+      current.includes(need)
+        ? current.filter((item) => item !== need)
+        : [...current, need]
     );
   };
 
   const continueHref = useMemo(() => {
     const params = new URLSearchParams();
-
-    if (emotions) {
-      params.set("emotions", emotions);
-    }
-
-    if (ages) {
-      params.set("ages", ages);
-    }
-
+    if (emotions) params.set("emotions", emotions);
+    if (ages) params.set("ages", ages);
     patterns.forEach((pattern) => params.append("pattern", pattern));
-    selectedCore.forEach((belief) => params.append("core", belief));
-
+    selectedNeeds.forEach((need) => params.append("unmet", need));
+    if (ownWords) params.set("ownWords", ownWords);
     return `/regulation?${params.toString()}`;
-  }, [selectedCore, emotions, ages, patterns]);
+  }, [selectedNeeds, ownWords, emotions, ages, patterns]);
 
   return (
-    <AppShell title="What is the true core underneath this?">
+    <AppShell title="What did your body need that it didn't get?">
       <div className="space-y-6">
-        <p className="text-sm leading-7 text-slate-700">
-          Let your body guide you again. Choose the deepest beliefs that feel
-          most true underneath the patterns you just uncovered.
-        </p>
+
+        <div className="rounded-2xl bg-emerald-50 border border-emerald-200 p-4 space-y-2 text-sm text-slate-700 leading-7">
+          <p className="font-semibold text-emerald-800">This is the heart of it.</p>
+          <p>
+            Underneath every belief and every pattern is a need that went unmet. Use your <span className="font-semibold">sway test</span> to find what your body was really longing for at that age. What did that younger part of you need that it didn't receive?
+          </p>
+        </div>
 
         <div className="space-y-3">
-          {trueCoreOptions.map((belief) => {
-            const isSelected = selectedCore.includes(belief);
-
+          {unmetNeeds.map((need) => {
+            const isSelected = selectedNeeds.includes(need);
             return (
               <button
-                key={belief}
+                key={need}
                 type="button"
-                onClick={() => toggleCore(belief)}
+                onClick={() => toggleNeed(need)}
                 className={`w-full rounded-2xl border px-4 py-3 text-left transition ${
                   isSelected
                     ? "border-emerald-700 bg-emerald-700 text-white"
@@ -90,19 +87,32 @@ export default function TrueCorePage() {
                   >
                     ✓
                   </div>
-                  <span>{belief}</span>
+                  <span>{need}</span>
                 </div>
               </button>
             );
           })}
         </div>
 
+        <div>
+          <label className="block text-sm font-semibold text-neutral-800 mb-2">
+            In your own words — what did that part of you need? (optional)
+          </label>
+          <textarea
+            value={ownWords}
+            onChange={(e) => setOwnWords(e.target.value)}
+            placeholder="e.g. I just needed someone to tell me it was going to be okay..."
+            rows={3}
+            className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-400"
+          />
+        </div>
+
         <button
           type="button"
           onClick={() => router.push(continueHref)}
-          disabled={selectedCore.length === 0}
+          disabled={selectedNeeds.length === 0}
           className={`inline-flex rounded-xl px-5 py-3 text-white ${
-            selectedCore.length > 0
+            selectedNeeds.length > 0
               ? "bg-emerald-700 hover:bg-emerald-800"
               : "cursor-not-allowed bg-slate-400"
           }`}

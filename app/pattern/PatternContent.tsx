@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
@@ -67,29 +66,27 @@ export default function PatternPage() {
 
   const buildHref = () => {
     const params = new URLSearchParams();
-
     if (emotions) params.set("emotions", emotions);
     if (ages) params.set("ages", ages);
-
     cores.forEach((c) => params.append("core", c));
     selectedPatterns.forEach((p) => params.append("pattern", p));
-
     return `/true-core?${params.toString()}`;
   };
 
   return (
-    <AppShell title="What pattern feels most true underneath this?">
+    <AppShell title="What pattern does your body keep running?">
       <div className="space-y-6">
-        <p className="text-sm leading-7 text-slate-700">
-          Tap a category that feels connected. Then choose any deeper patterns
-          that feel true in your body. This helps narrow down what your system
-          has really been protecting.
-        </p>
+
+        <div className="rounded-2xl bg-emerald-50 border border-emerald-200 p-4 space-y-2 text-sm text-slate-700 leading-7">
+          <p className="font-semibold text-emerald-800">How to use this page:</p>
+          <p>
+            Use your <span className="font-semibold">sway test</span> to find which category feels most connected, then open it and sway test the specific patterns inside. These are the survival strategies your nervous system learned to keep you safe.
+          </p>
+        </div>
 
         <div className="space-y-4">
           {Object.entries(patternMap).map(([category, patterns]) => {
             const isOpen = openCategory === category;
-
             return (
               <div
                 key={category}
@@ -100,9 +97,7 @@ export default function PatternPage() {
                   onClick={() => toggleCategory(category)}
                   className="flex w-full items-center justify-between px-5 py-4 text-left"
                 >
-                  <span className="text-lg font-semibold text-slate-900">
-                    {category}
-                  </span>
+                  <span className="text-lg font-semibold text-slate-900">{category}</span>
                   <span className="text-slate-500">{isOpen ? "−" : "+"}</span>
                 </button>
 
@@ -110,7 +105,6 @@ export default function PatternPage() {
                   <div className="space-y-3 border-t border-slate-100 px-5 py-4">
                     {patterns.map((pattern) => {
                       const isSelected = selectedPatterns.includes(pattern);
-
                       return (
                         <button
                           key={pattern}

@@ -1,5 +1,4 @@
 "use client";
-
 import { useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import AppShell from "@/components/AppShell";
@@ -26,7 +25,6 @@ export default function CoreBeliefPage() {
   const [selectedBeliefs, setSelectedBeliefs] = useState<string[]>([]);
   const router = useRouter();
   const searchParams = useSearchParams();
-
   const emotions = searchParams.get("emotions") ?? "";
   const ages = searchParams.get("ages") ?? "";
 
@@ -40,31 +38,26 @@ export default function CoreBeliefPage() {
 
   const continueHref = useMemo(() => {
     const params = new URLSearchParams();
-
-    if (emotions) {
-      params.set("emotions", emotions);
-    }
-
-    if (ages) {
-      params.set("ages", ages);
-    }
-
+    if (emotions) params.set("emotions", emotions);
+    if (ages) params.set("ages", ages);
     selectedBeliefs.forEach((belief) => params.append("core", belief));
-
     return `/pattern?${params.toString()}`;
   }, [selectedBeliefs, emotions, ages]);
 
   return (
     <AppShell title="What did this mean to you?">
       <div className="space-y-6">
-        <p className="text-sm text-slate-600">
-          Choose all beliefs that feel true in your body. You can select more than one.
-        </p>
+
+        <div className="rounded-2xl bg-emerald-50 border border-emerald-200 p-4 space-y-2 text-sm text-slate-700 leading-7">
+          <p className="font-semibold text-emerald-800">How to use this page:</p>
+          <p>
+            Use your <span className="font-semibold">sway test</span> to find which beliefs feel true in your body. These are the meanings your nervous system attached to what happened at that age. You can select more than one.
+          </p>
+        </div>
 
         <div className="space-y-3">
           {beliefs.map((belief) => {
             const isSelected = selectedBeliefs.includes(belief);
-
             return (
               <button
                 key={belief}
