@@ -155,11 +155,11 @@ export default function Dashboard() {
               <p>This Privacy Policy explains how the Release Core Method app ("we", "our", or "the app") collects, uses, and protects your information.</p>
 
               <h3 className="font-semibold text-gray-800">Information We Collect</h3>
-              <p>This app does not require account creation and does not collect personally identifiable information such as your name, email, or address.</p>
+              <p>An account is required to access this app. We collect your email address and payment status in order to provide access to the platform.</p>
               <p>Any inputs you provide during sessions (such as emotions, body awareness, or beliefs) are processed only within the app experience and are not stored on external servers.</p>
 
               <h3 className="font-semibold text-gray-800">How Your Information Is Used</h3>
-              <p>Your responses are used solely to generate a personalized session experience within the app. We do not sell, share, or distribute your information.</p>
+              <p>Your information is used solely to provide access to and operate the app. We do not sell, share, or distribute your information.</p>
 
               <h3 className="font-semibold text-gray-800">Local Storage</h3>
               <p>This app may use local storage on your device to remember preferences, such as whether you have accepted the disclaimer. This data stays on your device and is not transmitted.</p>
