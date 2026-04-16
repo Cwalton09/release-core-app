@@ -56,7 +56,7 @@ export default function Dashboard() {
           return;
         }
 
-        const saved = localStorage.getItem("release-core-disclaimer-accepted");
+        const saved = sessionStorage.getItem("release-core-disclaimer-accepted");
 
         if (mounted) {
           setAccepted(saved === "true");
@@ -76,7 +76,7 @@ export default function Dashboard() {
   }, [router]);
 
   const handleAccept = () => {
-    localStorage.setItem("release-core-disclaimer-accepted", "true");
+    sessionStorage.setItem("release-core-disclaimer-accepted", "true");
     setAccepted(true);
   };
 
