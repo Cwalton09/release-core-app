@@ -15,13 +15,11 @@ export default function DisclaimerPage() {
         data: { user },
       } = await supabase.auth.getUser();
 
-      // Not logged in → send to login
       if (!user) {
         router.push("/login");
         return;
       }
 
-      // Check if paid
       const { data: profile } = await supabase
         .from("profiles")
         .select("paid")
@@ -29,7 +27,6 @@ export default function DisclaimerPage() {
         .single();
 
       if (!profile?.paid) {
-        // Not paid → send to homepage (or Stripe)
         router.push("/");
         return;
       }
@@ -45,7 +42,8 @@ export default function DisclaimerPage() {
   }
 
   const handleAccept = () => {
-    router.push("/start-session"); // 👈 next step in your flow
+    sessionStorage.setItem("release-core-disclaimer-accepted", "true");
+    router.push("/start-session");
   };
 
   return (
