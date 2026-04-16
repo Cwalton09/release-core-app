@@ -18,6 +18,12 @@ export default function BodyAwarenessPage() {
   const [checkingAccess, setCheckingAccess] = useState(true);
   const [symptoms, setSymptoms] = useState("");
   const [showActivation, setShowActivation] = useState(false);
+  const [area, setArea] = useState("");
+  const [feeling, setFeeling] = useState("");
+  const [shape, setShape] = useState("");
+  const [color, setColor] = useState("");
+  const [size, setSize] = useState("");
+  const [texture, setTexture] = useState("");
 
   useEffect(() => {
     const checkAccess = async () => {
@@ -44,14 +50,16 @@ export default function BodyAwarenessPage() {
 
   if (checkingAccess) return null;
 
-  const continueWithSymptoms = () => {
+  const buildHref = (withSymptoms: boolean) => {
     const params = new URLSearchParams();
-    if (symptoms) params.set("symptoms", symptoms);
-    router.push(`/start-session?${params.toString()}`);
-  };
-
-  const continueBodyLead = () => {
-    router.push("/start-session");
+    if (withSymptoms && symptoms) params.set("symptoms", symptoms);
+    if (area) params.set("area", area);
+    if (feeling) params.set("feeling", feeling);
+    if (shape) params.set("shape", shape);
+    if (color) params.set("color", color);
+    if (size) params.set("size", size);
+    if (texture) params.set("texture", texture);
+    return `/emotion?${params.toString()}`;
   };
 
   return (
@@ -66,7 +74,6 @@ export default function BodyAwarenessPage() {
           <p className="text-sm leading-7 text-slate-700">
             The sway test is how you communicate with your body throughout this process. Your body already knows the answers — this is how we listen to it.
           </p>
-
           <div className="space-y-2 text-sm leading-7 text-slate-700">
             <p className="font-semibold text-slate-800">How to find your yes and no:</p>
             <p>• Stand with your feet flat on the ground, shoulder width apart</p>
@@ -76,14 +83,12 @@ export default function BodyAwarenessPage() {
             <p>• Notice which direction your body naturally sways — forward or backward</p>
             <p>• That direction is your body's <span className="font-semibold">yes</span></p>
           </div>
-
           <div className="space-y-2 text-sm leading-7 text-slate-700">
             <p>Now test your <span className="font-semibold">no</span>:</p>
             <p>• Say out loud: <span className="font-medium italic">"My name is [a name that is not yours]."</span></p>
             <p>• Notice your body sway in the opposite direction</p>
             <p>• That is your body's <span className="font-semibold">no</span></p>
           </div>
-
           <p className="text-sm leading-7 text-slate-700">
             Trust the first response your body gives you. You will use this throughout the entire session.
           </p>
@@ -140,6 +145,54 @@ export default function BodyAwarenessPage() {
           />
         </div>
 
+        {/* Body sensation */}
+        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm space-y-4">
+          <h2 className="text-base font-semibold text-slate-900">
+            Bring your attention into your body
+          </h2>
+          <p className="text-sm leading-7 text-slate-700">
+            Close your eyes for a moment. Take a breath. Notice where you feel something in your body right now — any tension, heaviness, pressure, or sensation. Then describe it below.
+          </p>
+          <div className="space-y-3">
+            <input
+              value={area}
+              onChange={(e) => setArea(e.target.value)}
+              className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-400"
+              placeholder="Where do you feel this? (e.g. chest, throat, stomach)"
+            />
+            <input
+              value={feeling}
+              onChange={(e) => setFeeling(e.target.value)}
+              className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-400"
+              placeholder="What does it feel like?"
+            />
+            <input
+              value={shape}
+              onChange={(e) => setShape(e.target.value)}
+              className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-400"
+              placeholder="Shape"
+            />
+            <input
+              value={color}
+              onChange={(e) => setColor(e.target.value)}
+              className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-400"
+              placeholder="Color"
+            />
+            <input
+              value={size}
+              onChange={(e) => setSize(e.target.value)}
+              className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-400"
+              placeholder="Size"
+            />
+            <input
+              value={texture}
+              onChange={(e) => setTexture(e.target.value)}
+              className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-400"
+              placeholder="Texture"
+            />
+          </div>
+        </div>
+
         {/* Continue options */}
         <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm space-y-4">
           <h2 className="text-base font-semibold text-slate-900">
@@ -150,7 +203,7 @@ export default function BodyAwarenessPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
             <button
-              onClick={continueWithSymptoms}
+              onClick={() => router.push(buildHref(true))}
               disabled={!symptoms.trim()}
               className={`flex-1 rounded-xl px-5 py-3 text-sm font-medium transition ${
                 symptoms.trim()
@@ -161,7 +214,7 @@ export default function BodyAwarenessPage() {
               Work with my symptoms
             </button>
             <button
-              onClick={continueBodyLead}
+              onClick={() => router.push(buildHref(false))}
               className="flex-1 rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-medium text-slate-800 hover:border-emerald-400 transition"
             >
               Let my body lead
