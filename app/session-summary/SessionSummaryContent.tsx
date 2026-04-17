@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo } from "react";
+import { useMemo, useEffect, useRef } from "react";
 import { useSearchParams } from "next/navigation";
 import AppShell from "@/components/AppShell";
+import { supabase } from "@/lib/supabase";
 
 const beliefFlipMap: Record<string, string[]> = {
   "I am not safe": [
@@ -103,8 +104,9 @@ const fallbackBeliefs = [
   "My body does not have to protect me like that anymore.",
 ];
 
-export default function SessionSummaryPage() {
+export default function SessionSummaryContent() {
   const searchParams = useSearchParams();
+  const savedRef = useRef(false);
 
   const selectedCore = searchParams.getAll("core");
   const selectedPatterns = searchParams.getAll("pattern");
@@ -144,6 +146,46 @@ export default function SessionSummaryPage() {
     }
     return `Today your body brought forward these beliefs: ${selectedCore.join(", ")}. These patterns may have once helped protect you, even if they no longer reflect where you are now.`;
   }, [selectedCore]);
+
+  // Save session to Supabase once when page loads
+  useEffect(() => {
+    if (savedRef.current) return;
+    savedRef.current = true;
+
+    const saveSession = async () => {
+      try {
+        const {
+          data: { user },
+        } = await supabase.auth.getUser();
+
+        if (!user) return;
+
+        await supabase.from("sessions").insert({
+          user_id: user.id,
+          emotions: emotionsParam || null,
+          ages: agesParam || null,
+          who: whoParam || null,
+          what_happened: ownWords || null,
+          core_beliefs: selectedCore.join(", ") || null,
+          patterns: selectedPatterns.join(", ") || null,
+          unmet_need: unmetNeeds.join(", ") || null,
+          own_words: ownWords || null,
+          symptoms: searchParams.get("symptoms") || null,
+          activation_age: searchParams.get("activationAge") || null,
+          feeling: searchParams.get("feeling") || null,
+          shape: searchParams.get("shape") || null,
+          color: searchParams.get("color") || null,
+          size: searchParams.get("size") || null,
+          texture: searchParams.get("texture") || null,
+          area: searchParams.get("area") || null,
+        });
+      } catch (err) {
+        console.error("Session save error:", err);
+      }
+    };
+
+    saveSession();
+  }, []);
 
   const bodyPlacementText = bodyArea?.trim()
     ? `Place your hand gently on your ${bodyArea.trim()}.`
@@ -255,7 +297,6 @@ export default function SessionSummaryPage() {
         {/* The script */}
         <div className="rounded-2xl border border-slate-300 bg-slate-50 p-6 shadow-sm space-y-6 text-sm leading-7 text-slate-700">
 
-          {/* Settle */}
           <div className="space-y-3">
             <p className="text-xs uppercase tracking-widest text-slate-400">Begin here</p>
             <p>I find a comfortable position. I let my hands rest somewhere soft. I take one slow breath and simply notice that I am here.</p>
@@ -264,7 +305,6 @@ export default function SessionSummaryPage() {
 
           <hr className="border-slate-200" />
 
-          {/* Breath */}
           <div className="space-y-3">
             <p className="text-xs uppercase tracking-widest text-slate-400">Settle my body</p>
             <p>I breathe in slowly for 4 counts. I hold gently for 4. I breathe out for 6.</p>
@@ -273,7 +313,6 @@ export default function SessionSummaryPage() {
 
           <hr className="border-slate-200" />
 
-          {/* Acknowledge */}
           <div className="space-y-3">
             <p className="text-xs uppercase tracking-widest text-slate-400">Acknowledge what was</p>
             <p>
@@ -286,7 +325,6 @@ export default function SessionSummaryPage() {
 
           <hr className="border-slate-200" />
 
-          {/* To the younger self */}
           <div className="space-y-3">
             <p className="text-xs uppercase tracking-widest text-slate-400">To the younger part of me</p>
             <div className="border-l-2 border-rose-300 pl-5 space-y-2 italic text-slate-600">
@@ -300,7 +338,6 @@ export default function SessionSummaryPage() {
 
           <hr className="border-slate-200" />
 
-          {/* Truth */}
           <div className="space-y-3">
             <p className="text-xs uppercase tracking-widest text-slate-400">The truth my nervous system is ready to hear</p>
             <p>The beliefs I formed then — they lived in my body because no one came to correct them. Tonight, I correct them. Gently. Slowly.</p>
@@ -315,7 +352,6 @@ export default function SessionSummaryPage() {
 
           <hr className="border-slate-200" />
 
-          {/* Letter to the body */}
           <div className="space-y-3">
             <p className="text-xs uppercase tracking-widest text-slate-400">A letter to my body</p>
             <p>
@@ -332,7 +368,6 @@ export default function SessionSummaryPage() {
 
           <hr className="border-slate-200" />
 
-          {/* As I drift */}
           <div className="space-y-3">
             <p className="text-xs uppercase tracking-widest text-slate-400">As I drift toward sleep</p>
             <p>
@@ -348,7 +383,6 @@ export default function SessionSummaryPage() {
 
           <hr className="border-slate-200" />
 
-          {/* Final beliefs */}
           <div className="space-y-4 text-center">
             <p className="text-xs uppercase tracking-widest text-slate-400">I carry these into sleep</p>
             <div className="space-y-2">
