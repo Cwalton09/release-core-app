@@ -5,12 +5,12 @@ import AppShell from "@/components/AppShell";
 import { supabase } from "@/lib/supabase";
 
 const activationStatements = [
-  "I am ready, willing, and able to communicate with my body.",
-  "It is safe for me to communicate with my body.",
-  "I want to communicate with my body.",
-  "I believe I can communicate with my body.",
-  "It is good for me to communicate with my body.",
-  "My body wants to communicate with me.",
+  "I give myself permission to listen to my body.",
+  "I am open to receiving what my body wants to share.",
+  "My body is a safe place for me to be.",
+  "I trust what my body is telling me.",
+  "I am here and I am listening.",
+  "My body and I are working together.",
 ];
 
 export default function BodyAwarenessPage() {
