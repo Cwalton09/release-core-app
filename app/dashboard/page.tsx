@@ -13,6 +13,18 @@ type Session = {
   core_beliefs: string;
   ages: string;
   symptoms: string;
+  who_involved: string;
+  what_happened: string;
+  patterns: string;
+  unmet_need: string;
+  own_words: string;
+  body_location: string;
+  feeling: string;
+  shape: string;
+  color: string;
+  size: string;
+  texture: string;
+  activation_age: string;
 };
 
 export default function Dashboard() {
@@ -21,6 +33,7 @@ export default function Dashboard() {
   const [checkingAccess, setCheckingAccess] = useState(true);
   const [sessions, setSessions] = useState<Session[]>([]);
   const [loadingSessions, setLoadingSessions] = useState(true);
+  const [selectedSession, setSelectedSession] = useState<Session | null>(null);
 
   useEffect(() => {
     let mounted = true;
@@ -60,10 +73,9 @@ export default function Dashboard() {
           return;
         }
 
-        // Load past sessions
         const { data: pastSessions } = await supabase
           .from("sessions")
-          .select("id, created_at, emotions, core_beliefs, ages, symptoms")
+          .select("id, created_at, emotions, core_beliefs, ages, symptoms, who_involved, what_happened, patterns, unmet_need, own_words, body_location, feeling, shape, color, size, texture, activation_age")
           .eq("user_id", user.id)
           .order("created_at", { ascending: false })
           .limit(10);
@@ -103,12 +115,12 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-gray-50 px-4 py-6 flex flex-col items-center">
+
+      {/* Disclaimer modal */}
       {!accepted && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 px-4">
           <div className="bg-white w-full max-w-2xl rounded-2xl p-6 shadow-xl max-h-[90vh] overflow-y-auto">
-            <h2 className="text-2xl font-semibold mb-4 text-gray-800">
-              Disclaimer
-            </h2>
+            <h2 className="text-2xl font-semibold mb-4 text-gray-800">Disclaimer</h2>
             <div className="space-y-3 text-gray-700 leading-7 text-sm">
               <p>This app is designed for self-awareness, personal growth, and nervous system support.</p>
               <p>The Release Core Method is not a substitute for medical advice, diagnosis, or treatment. It does not diagnose or treat any physical or mental health condition.</p>
@@ -116,9 +128,7 @@ export default function Dashboard() {
               <p>You are responsible for your own health, decisions, and actions.</p>
               <p>If you are experiencing severe emotional distress, physical symptoms, or medical concerns, please consult a licensed healthcare provider.</p>
             </div>
-
             <hr className="my-5 border-gray-200" />
-
             <h2 className="text-2xl font-semibold mb-4 text-gray-800">Terms of Use</h2>
             <div className="space-y-3 text-gray-700 leading-7 text-sm">
               <p>By accessing or using the Release Core platform, including its website and application, you agree to the following Terms of Use. If you do not agree, you should not use this app.</p>
@@ -144,9 +154,7 @@ export default function Dashboard() {
               <h3 className="font-semibold text-gray-800">Acceptance of Terms</h3>
               <p>By continuing to use this app and/or website, you acknowledge that you have read, understood, and agreed to these Terms of Use.</p>
             </div>
-
             <hr className="my-5 border-gray-200" />
-
             <h2 className="text-2xl font-semibold mb-4 text-gray-800">Privacy Policy</h2>
             <div className="space-y-3 text-gray-700 leading-7 text-sm">
               <p>This Privacy Policy explains how the Release Core Method app ("we", "our", or "the app") collects, uses, and protects your information.</p>
@@ -164,9 +172,7 @@ export default function Dashboard() {
               <h3 className="font-semibold text-gray-800">Contact</h3>
               <p>If you have questions about this policy, you may contact us through the app creator.</p>
             </div>
-
             <hr className="my-5 border-gray-200" />
-
             <p className="text-xs text-gray-500 mb-4">
               By clicking below, you confirm that you have read and agree to the Disclaimer, Terms of Use, and Privacy Policy above.
             </p>
@@ -175,6 +181,127 @@ export default function Dashboard() {
               className="w-full bg-green-600 text-white py-3 rounded-xl text-lg font-medium hover:bg-green-700 transition"
             >
               I Understand and Agree
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Session detail modal */}
+      {selectedSession && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 px-4">
+          <div className="bg-white w-full max-w-2xl rounded-2xl p-6 shadow-xl max-h-[90vh] overflow-y-auto space-y-5">
+            <div className="flex items-center justify-between">
+              <h2 className="text-xl font-semibold text-gray-800">Session Details</h2>
+              <button
+                onClick={() => setSelectedSession(null)}
+                className="text-gray-400 hover:text-gray-600 text-2xl leading-none"
+              >
+                ×
+              </button>
+            </div>
+
+            <p className="text-xs text-gray-400">
+              {new Date(selectedSession.created_at).toLocaleDateString("en-US", {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </p>
+
+            {selectedSession.symptoms && (
+              <div className="rounded-xl bg-slate-50 border border-slate-200 p-4 space-y-1">
+                <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">Symptoms</p>
+                <p className="text-sm text-gray-700">{selectedSession.symptoms}</p>
+              </div>
+            )}
+
+            {(selectedSession.body_location || selectedSession.feeling || selectedSession.shape || selectedSession.color || selectedSession.size || selectedSession.texture) && (
+              <div className="rounded-xl bg-slate-50 border border-slate-200 p-4 space-y-2">
+                <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">Body Sensation</p>
+                {selectedSession.body_location && <p className="text-sm text-gray-700"><span className="font-medium">Location: </span>{selectedSession.body_location}</p>}
+                {selectedSession.feeling && <p className="text-sm text-gray-700"><span className="font-medium">Feeling: </span>{selectedSession.feeling}</p>}
+                {selectedSession.shape && <p className="text-sm text-gray-700"><span className="font-medium">Shape: </span>{selectedSession.shape}</p>}
+                {selectedSession.color && <p className="text-sm text-gray-700"><span className="font-medium">Color: </span>{selectedSession.color}</p>}
+                {selectedSession.size && <p className="text-sm text-gray-700"><span className="font-medium">Size: </span>{selectedSession.size}</p>}
+                {selectedSession.texture && <p className="text-sm text-gray-700"><span className="font-medium">Texture: </span>{selectedSession.texture}</p>}
+              </div>
+            )}
+
+            {selectedSession.emotions && (
+              <div className="rounded-xl bg-slate-50 border border-slate-200 p-4 space-y-1">
+                <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">Emotions</p>
+                <p className="text-sm text-gray-700">{selectedSession.emotions}</p>
+              </div>
+            )}
+
+            {selectedSession.ages && (
+              <div className="rounded-xl bg-slate-50 border border-slate-200 p-4 space-y-1">
+                <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">Age</p>
+                <p className="text-sm text-gray-700">{selectedSession.ages}</p>
+                {selectedSession.activation_age && (
+                  <p className="text-sm text-gray-700"><span className="font-medium">Activation age: </span>{selectedSession.activation_age}</p>
+                )}
+              </div>
+            )}
+
+            {selectedSession.who_involved && (
+              <div className="rounded-xl bg-slate-50 border border-slate-200 p-4 space-y-1">
+                <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">Who Was Involved</p>
+                <p className="text-sm text-gray-700">{selectedSession.who_involved}</p>
+              </div>
+            )}
+
+            {selectedSession.what_happened && (
+              <div className="rounded-xl bg-slate-50 border border-slate-200 p-4 space-y-1">
+                <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">What Happened</p>
+                <p className="text-sm text-gray-700">{selectedSession.what_happened}</p>
+              </div>
+            )}
+
+            {selectedSession.core_beliefs && (
+              <div className="rounded-xl bg-emerald-50 border border-emerald-200 p-4 space-y-2">
+                <p className="text-xs font-semibold uppercase tracking-widest text-emerald-600">Core Beliefs</p>
+                <div className="flex flex-wrap gap-2">
+                  {selectedSession.core_beliefs.split(",").map((b) => (
+                    <span key={b} className="rounded-full bg-white border border-emerald-200 px-3 py-1 text-sm text-gray-700">
+                      {b.trim()}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {selectedSession.patterns && (
+              <div className="rounded-xl bg-slate-50 border border-slate-200 p-4 space-y-1">
+                <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">Patterns</p>
+                {selectedSession.patterns.split(",").map((p) => (
+                  <p key={p} className="text-sm text-gray-700">• {p.trim()}</p>
+                ))}
+              </div>
+            )}
+
+            {selectedSession.unmet_need && (
+              <div className="rounded-xl bg-emerald-50 border border-emerald-200 p-4 space-y-1">
+                <p className="text-xs font-semibold uppercase tracking-widest text-emerald-600">What Your Body Needed</p>
+                {selectedSession.unmet_need.split(",").map((n) => (
+                  <p key={n} className="text-sm text-gray-700">• {n.trim()}</p>
+                ))}
+              </div>
+            )}
+
+            {selectedSession.own_words && (
+              <div className="rounded-xl bg-slate-50 border border-slate-200 p-4 space-y-1">
+                <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">In Your Own Words</p>
+                <p className="text-sm text-gray-600 italic">"{selectedSession.own_words}"</p>
+              </div>
+            )}
+
+            <button
+              onClick={() => setSelectedSession(null)}
+              className="w-full rounded-xl bg-emerald-700 px-5 py-3 text-white font-medium hover:bg-emerald-800 transition"
+            >
+              Close
             </button>
           </div>
         </div>
@@ -214,9 +341,10 @@ export default function Dashboard() {
           ) : (
             <div className="space-y-3">
               {sessions.map((session) => (
-                <div
+                <button
                   key={session.id}
-                  className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm space-y-2"
+                  onClick={() => setSelectedSession(session)}
+                  className="w-full rounded-2xl border border-gray-200 bg-white p-4 shadow-sm space-y-2 text-left hover:border-emerald-400 transition"
                 >
                   <p className="text-xs text-gray-400">
                     {new Date(session.created_at).toLocaleDateString("en-US", {
@@ -250,7 +378,8 @@ export default function Dashboard() {
                       {session.symptoms}
                     </p>
                   )}
-                </div>
+                  <p className="text-xs text-emerald-600 font-medium pt-1">Tap to view full session →</p>
+                </button>
               ))}
             </div>
           )}
