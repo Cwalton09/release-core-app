@@ -18,6 +18,7 @@ export default function BodyAwarenessPage() {
   const [checkingAccess, setCheckingAccess] = useState(true);
   const [symptoms, setSymptoms] = useState("");
   const [showActivation, setShowActivation] = useState(false);
+  const [intention, setIntention] = useState("");
   const [area, setArea] = useState("");
   const [feeling, setFeeling] = useState("");
   const [shape, setShape] = useState("");
@@ -53,6 +54,7 @@ export default function BodyAwarenessPage() {
   const buildHref = (withSymptoms: boolean) => {
     const params = new URLSearchParams();
     if (withSymptoms && symptoms) params.set("symptoms", symptoms);
+    if (intention) params.set("intention", intention);
     if (area) params.set("area", area);
     if (feeling) params.set("feeling", feeling);
     if (shape) params.set("shape", shape);
@@ -126,6 +128,39 @@ export default function BodyAwarenessPage() {
               </p>
             </div>
           )}
+        </div>
+
+        {/* What are we asking the body today */}
+        <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-6 shadow-sm space-y-4">
+          <h2 className="text-base font-semibold text-slate-900">
+            What are we asking your body about today?
+          </h2>
+          <p className="text-sm leading-7 text-slate-700">
+            Today we are asking your body if there is an emotional component contributing to what you are experiencing. This could be something like:
+          </p>
+          <div className="rounded-xl bg-white border border-emerald-100 p-4 text-sm leading-7 text-slate-600 space-y-1">
+            <p>• Financial stress or blocks around money</p>
+            <p>• Pain or tension in the body</p>
+            <p>• A health concern or diagnosis</p>
+            <p>• Difficulty detoxing or healing physically</p>
+            <p>• Relationship stress or conflict</p>
+            <p>• Feeling stuck, anxious, or overwhelmed</p>
+            <p>• Fatigue, brain fog, or low energy</p>
+            <p>• A pattern that keeps repeating in your life</p>
+          </div>
+          <p className="text-sm leading-7 text-slate-700">
+            Type what you want to ask your body about below, then <span className="font-semibold">say it out loud</span> so your body knows what it is looking for today.
+          </p>
+          <textarea
+            value={intention}
+            onChange={(e) => setIntention(e.target.value)}
+            placeholder="e.g. Is there an emotional component contributing to my lower back pain? Is there something emotional underneath my financial stress? Is my body holding emotions that are affecting my ability to heal?"
+            rows={4}
+            className="w-full rounded-2xl border border-emerald-200 bg-white px-4 py-3 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-400"
+          />
+          <p className="text-xs text-slate-500 italic">
+            Once you have typed it, read it out loud before continuing. Let your body hear the question.
+          </p>
         </div>
 
         {/* Symptoms */}
