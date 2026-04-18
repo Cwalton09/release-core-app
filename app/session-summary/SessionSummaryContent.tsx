@@ -273,9 +273,18 @@ export default function SessionSummaryContent() {
       try {
         const {
           data: { user },
+          error: userError,
         } = await supabase.auth.getUser();
-        if (!user) return;
-        await supabase.from("sessions").insert({
+
+        console.log("SAVE SESSION - user:", user);
+        console.log("SAVE SESSION - userError:", userError);
+
+        if (!user) {
+          console.log("SAVE SESSION - no user found, aborting");
+          return;
+        }
+
+        const insertData = {
           user_id: user.id,
           emotions: emotionsParam || null,
           ages: agesParam || null,
@@ -293,9 +302,19 @@ export default function SessionSummaryContent() {
           size: searchParams.get("size") || null,
           texture: searchParams.get("texture") || null,
           area: searchParams.get("area") || null,
-        });
+        };
+
+        console.log("SAVE SESSION - inserting:", insertData);
+
+        const { data, error } = await supabase
+          .from("sessions")
+          .insert(insertData)
+          .select();
+
+        console.log("SAVE SESSION - result data:", data);
+        console.log("SAVE SESSION - result error:", error);
       } catch (err) {
-        console.error("Session save error:", err);
+        console.error("SAVE SESSION - caught error:", err);
       }
     };
 
@@ -406,7 +425,6 @@ export default function SessionSummaryContent() {
             <p>Read slowly. Breathe between each line. Let the words move through your body, not just your mind.</p>
           </div>
 
-          {/* Two script cards */}
           <p className="text-sm font-medium text-slate-900 pt-2">Choose your script:</p>
           <div className="grid grid-cols-2 gap-3">
             <button
@@ -444,31 +462,24 @@ export default function SessionSummaryContent() {
         {/* Standard Script */}
         {standardOpen && (
           <div className="rounded-2xl border border-slate-300 bg-slate-50 p-6 shadow-sm space-y-6 text-sm leading-7 text-slate-700">
-
             <div className="space-y-3">
               <p className="text-xs uppercase tracking-widest text-slate-400">Begin here</p>
               <p>I find a comfortable position. I let my hands rest somewhere soft. I take one slow breath and simply notice that I am here.</p>
               <p>Something in me did important work today. I am ready to let it settle.</p>
             </div>
-
             <hr className="border-slate-200" />
-
             <div className="space-y-3">
               <p className="text-xs uppercase tracking-widest text-slate-400">Settle my body</p>
               <p>I breathe in slowly for 4 counts. I hold gently for 4. I breathe out for 6.</p>
               <p>I do this three times. With each exhale, I let my body know — the danger is not here tonight. I am safe right now.</p>
             </div>
-
             <hr className="border-slate-200" />
-
             <div className="space-y-3">
               <p className="text-xs uppercase tracking-widest text-slate-400">Acknowledge what was</p>
               <p>Today my body brought forward something that has been stored for a long time. Around {ageText}, something happened that involved {whoText}. My body felt {emotionText}. And from that, it formed a belief that made complete sense at the time.</p>
               <p>That belief kept me going. It protected me. It was not wrong — it was the only thing that made sense then.</p>
             </div>
-
             <hr className="border-slate-200" />
-
             <div className="space-y-3">
               <p className="text-xs uppercase tracking-widest text-slate-400">To the younger part of me</p>
               <div className="border-l-2 border-rose-300 pl-5 space-y-2 italic text-slate-600">
@@ -479,9 +490,7 @@ export default function SessionSummaryContent() {
                 <p>I am sorry no one came to tell you that you were going to be okay. I am here now. And I am telling you — you are okay.</p>
               </div>
             </div>
-
             <hr className="border-slate-200" />
-
             <div className="space-y-3">
               <p className="text-xs uppercase tracking-widest text-slate-400">The truth my nervous system is ready to hear</p>
               <p>The beliefs I formed then — they lived in my body because no one came to correct them. Tonight, I correct them. Gently. Slowly.</p>
@@ -493,9 +502,7 @@ export default function SessionSummaryContent() {
                 ))}
               </div>
             </div>
-
             <hr className="border-slate-200" />
-
             <div className="space-y-3">
               <p className="text-xs uppercase tracking-widest text-slate-400">A letter to my body</p>
               <p>Dear body — you have been on high alert for a long time. You learned to scan for danger because once, danger was real. You learned to brace, to hold, to stay ready. That was your gift to me, and I am grateful.</p>
@@ -503,18 +510,14 @@ export default function SessionSummaryContent() {
               <p>{bodyPlacementText}</p>
               <p>I let my body feel my own presence, my support, my safety. I breathe into wherever I feel tension and I simply say — you can soften now. You are allowed.</p>
             </div>
-
             <hr className="border-slate-200" />
-
             <div className="space-y-3">
               <p className="text-xs uppercase tracking-widest text-slate-400">As I drift toward sleep</p>
               <p>I place my hand on my heart. I feel it beating — steady, faithful, mine. It has beaten through every hard night. It is beating now.</p>
               <p>If fears come tonight, I can say to them quietly — I hear you. But we are safe right now. You can rest.</p>
               <p>I am allowed to sleep. I am allowed to let tonight be easy. I am allowed to wake up tomorrow and still be okay.</p>
             </div>
-
             <hr className="border-slate-200" />
-
             <div className="space-y-4 text-center">
               <p className="text-xs uppercase tracking-widest text-slate-400">I carry these into sleep</p>
               <div className="space-y-2">
@@ -524,38 +527,30 @@ export default function SessionSummaryContent() {
               </div>
               <p className="text-slate-500 text-sm mt-4">Goodnight. 🌙</p>
             </div>
-
           </div>
         )}
 
         {/* Biblical Script */}
         {biblicalOpen && (
           <div className="rounded-2xl border border-slate-300 bg-slate-50 p-6 shadow-sm space-y-6 text-sm leading-7 text-slate-700">
-
             <div className="space-y-3">
               <p className="text-xs uppercase tracking-widest text-slate-400">Begin here</p>
               <p>I find a comfortable position. I let my hands rest somewhere soft. I take one slow breath and simply notice that I am here — and that He is here too.</p>
               <p>Something in me did important work today. I bring it to God now and I am ready to let it settle in His presence.</p>
             </div>
-
             <hr className="border-slate-200" />
-
             <div className="space-y-3">
               <p className="text-xs uppercase tracking-widest text-slate-400">Settle my body</p>
               <p>I breathe in slowly for 4 counts. I hold gently for 4. I breathe out for 6.</p>
               <p>I do this three times. With each exhale, I release this to Him. The danger is not here tonight. I am safe in His hands right now.</p>
             </div>
-
             <hr className="border-slate-200" />
-
             <div className="space-y-3">
               <p className="text-xs uppercase tracking-widest text-slate-400">Acknowledge what was</p>
               <p>Today my body brought forward something that has been stored for a long time. Around {ageText}, something happened that involved {whoText}. My body felt {emotionText}. And from that, it formed a belief that made complete sense at the time.</p>
               <p>God saw what happened. He saw what I carried. He has never looked away.</p>
             </div>
-
             <hr className="border-slate-200" />
-
             <div className="space-y-3">
               <p className="text-xs uppercase tracking-widest text-slate-400">To the younger part of me</p>
               <div className="border-l-2 border-rose-300 pl-5 space-y-2 italic text-slate-600">
@@ -566,9 +561,7 @@ export default function SessionSummaryContent() {
                 <p>God says you are okay. You are loved. You always were.</p>
               </div>
             </div>
-
             <hr className="border-slate-200" />
-
             <div className="space-y-3">
               <p className="text-xs uppercase tracking-widest text-slate-400">The truth He says about me</p>
               <p>The beliefs I formed then — they lived in my body because no one came to correct them. Tonight, God's truth corrects them. Gently. Slowly.</p>
@@ -580,9 +573,7 @@ export default function SessionSummaryContent() {
                 ))}
               </div>
             </div>
-
             <hr className="border-slate-200" />
-
             <div className="space-y-3">
               <p className="text-xs uppercase tracking-widest text-slate-400">A prayer for my body</p>
               <p>God — my body has been on high alert for a long time. It learned to scan for danger because once, danger was real. It was doing the best it could without You fully at the center.</p>
@@ -590,18 +581,14 @@ export default function SessionSummaryContent() {
               <p>{bodyPlacementText}</p>
               <p>I breathe into wherever I feel tension and I simply say — God is here. I can soften now. I am held.</p>
             </div>
-
             <hr className="border-slate-200" />
-
             <div className="space-y-3">
               <p className="text-xs uppercase tracking-widest text-slate-400">As I drift toward sleep</p>
               <p>I place my hand on my heart. I feel it beating — steady, faithful, created by Him. It has beaten through every hard night. He kept it beating. He is keeping it now.</p>
               <p>If fears come tonight, I can say quietly — I hear you. But God is here. We are safe. You can rest.</p>
               <p>I am allowed to sleep. I am held tonight. I will wake up tomorrow in His hands, and I will still be okay.</p>
             </div>
-
             <hr className="border-slate-200" />
-
             <div className="space-y-4 text-center">
               <p className="text-xs uppercase tracking-widest text-slate-400">I carry these into sleep</p>
               <div className="space-y-2">
@@ -611,7 +598,6 @@ export default function SessionSummaryContent() {
               </div>
               <p className="text-slate-500 text-sm mt-4">Goodnight. He is with you. 🌙</p>
             </div>
-
           </div>
         )}
 
