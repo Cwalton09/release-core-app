@@ -279,7 +279,7 @@ export default function SessionSummaryContent() {
           user_id: user.id,
           emotions: emotionsParam || null,
           ages: agesParam || null,
-          who: whoParam || null,
+          who_involved: whoParam || null,
           what_happened: ownWords || null,
           core_beliefs: selectedCore.join(", ") || null,
           patterns: selectedPatterns.join(", ") || null,
