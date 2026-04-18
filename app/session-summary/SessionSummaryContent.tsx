@@ -301,7 +301,7 @@ export default function SessionSummaryContent() {
           color: searchParams.get("color") || null,
           size: searchParams.get("size") || null,
           texture: searchParams.get("texture") || null,
-          area: searchParams.get("area") || null,
+          body_location: searchParams.get("area") || null,
         };
 
         console.log("SAVE SESSION - inserting:", insertData);
