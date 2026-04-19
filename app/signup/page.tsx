@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -33,6 +32,7 @@ export default function SignupPage() {
       }
 
       const user = data.user;
+
       if (!user) {
         setErrorMessage("No user returned from signup.");
         return;
@@ -67,11 +67,9 @@ export default function SignupPage() {
         <h1 className="mb-3 text-3xl font-semibold tracking-tight text-slate-900">
           Get started
         </h1>
-
         <p className="mb-6 text-sm leading-7 text-slate-600">
           Create your account to begin your Release Core session flow.
         </p>
-
         <form className="space-y-4" onSubmit={handleSignup}>
           <input
             type="text"
@@ -80,7 +78,6 @@ export default function SignupPage() {
             onChange={(e) => setFullName(e.target.value)}
             className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none"
           />
-
           <input
             type="email"
             placeholder="Email address"
@@ -88,7 +85,6 @@ export default function SignupPage() {
             onChange={(e) => setEmail(e.target.value)}
             className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none"
           />
-
           <input
             type="password"
             placeholder="Password"
@@ -97,9 +93,9 @@ export default function SignupPage() {
             className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none"
           />
 
-          {errorMessage ? (
+          {errorMessage && (
             <p className="text-sm text-red-600">{errorMessage}</p>
-          ) : null}
+          )}
 
           <button
             type="submit"
