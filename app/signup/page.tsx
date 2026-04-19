@@ -6,12 +6,14 @@ import AppShell from "@/components/AppShell";
 import { supabase } from "@/lib/supabase";
 
 const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/5kQ3cvaczg6H6tpgYsbII01";
+const PROMO_CODES = ["FREESESSION", "RELEASECORE", "TRYITFREE"];
 
 export default function SignupPage() {
   const router = useRouter();
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [promoCode, setPromoCode] = useState("");
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -19,6 +21,8 @@ export default function SignupPage() {
     e.preventDefault();
     setLoading(true);
     setErrorMessage("");
+
+    const isPromoValid = PROMO_CODES.includes(promoCode.trim().toUpperCase());
 
     try {
       const { data, error } = await supabase.auth.signUp({
@@ -42,7 +46,7 @@ export default function SignupPage() {
         {
           user_id: user.id,
           display_name: fullName,
-          paid: false,
+          paid: isPromoValid ? true : false,
         },
         { onConflict: "user_id" }
       );
@@ -52,7 +56,11 @@ export default function SignupPage() {
         return;
       }
 
-      window.location.href = STRIPE_PAYMENT_LINK;
+      if (isPromoValid) {
+        router.push("/disclaimer");
+      } else {
+        window.location.href = STRIPE_PAYMENT_LINK;
+      }
     } catch (err) {
       setErrorMessage("Something went wrong during signup.");
       console.error(err);
@@ -92,6 +100,27 @@ export default function SignupPage() {
             onChange={(e) => setPassword(e.target.value)}
             className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none"
           />
+
+          {/* Promo code */}
+          <div className="space-y-1">
+            <input
+              type="text"
+              placeholder="Promo code (optional)"
+              value={promoCode}
+              onChange={(e) => setPromoCode(e.target.value)}
+              className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none uppercase"
+            />
+            {promoCode && PROMO_CODES.includes(promoCode.trim().toUpperCase()) && (
+              <p className="text-sm text-emerald-600 font-medium">
+                ✓ Promo code applied — enjoy your free session!
+              </p>
+            )}
+            {promoCode && !PROMO_CODES.includes(promoCode.trim().toUpperCase()) && (
+              <p className="text-sm text-red-500">
+                That promo code is not valid.
+              </p>
+            )}
+          </div>
 
           {errorMessage && (
             <p className="text-sm text-red-600">{errorMessage}</p>
