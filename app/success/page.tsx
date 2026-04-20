@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
@@ -14,6 +13,8 @@ export default function SuccessPage() {
       } = await supabase.auth.getUser();
 
       if (!user) {
+        // Save that they need to be marked as paid after login
+        sessionStorage.setItem("mark-paid-after-login", "true");
         router.replace("/login");
         return;
       }

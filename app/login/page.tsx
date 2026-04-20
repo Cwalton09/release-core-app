@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -32,8 +31,27 @@ export default function LoginPage() {
       }
 
       const user = data.user;
+
       if (!user) {
         setErrorMessage("No user returned from login.");
+        return;
+      }
+
+      // Check if they were redirected here from the success page after paying
+      const needsMarkPaid = sessionStorage.getItem("mark-paid-after-login");
+
+      if (needsMarkPaid === "true") {
+        // Mark them as paid now that they are logged in
+        await supabase.from("profiles").upsert(
+          {
+            user_id: user.id,
+            paid: true,
+          },
+          { onConflict: "user_id" }
+        );
+        sessionStorage.removeItem("mark-paid-after-login");
+        router.replace("/dashboard");
+        router.refresh();
         return;
       }
 
@@ -78,7 +96,6 @@ export default function LoginPage() {
           onChange={(e) => setEmail(e.target.value)}
           className="w-full rounded-xl border border-calm-200 px-4 py-3 text-base outline-none ring-calm-500 focus:ring"
         />
-
         <input
           type="password"
           placeholder="Password"
@@ -87,11 +104,9 @@ export default function LoginPage() {
           onChange={(e) => setPassword(e.target.value)}
           className="w-full rounded-xl border border-calm-200 px-4 py-3 text-base outline-none ring-calm-500 focus:ring"
         />
-
         {errorMessage ? (
           <p className="text-sm text-red-600">{errorMessage}</p>
         ) : null}
-
         <button
           type="submit"
           disabled={loading}
@@ -100,7 +115,6 @@ export default function LoginPage() {
           {loading ? "Logging in..." : "Log in"}
         </button>
       </form>
-
       <p className="mt-4 text-sm text-slate-600">
         New here?{" "}
         <Link href="/signup" className="font-medium text-calm-700 hover:underline">
