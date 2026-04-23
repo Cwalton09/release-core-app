@@ -4,6 +4,7 @@ import AppShell from "@/components/AppShell";
 export default function FAQPage() {
   return (
     <AppShell title="Frequently Asked Questions">
+      <div className="space-y-6">
 
         {/* Intro */}
         <p className="text-sm leading-7 text-slate-600">
@@ -106,7 +107,7 @@ export default function FAQPage() {
             Join us on our Facebook page <span className="font-medium">Release Core Method</span> to ask questions, connect with others, and share your experience.
           </p>
           
-            href="https://www.facebook.com"
+            href="https://www.facebook.com/groups/952719290453784"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex rounded-xl bg-emerald-700 px-5 py-3 text-white font-medium hover:bg-emerald-800 transition"
