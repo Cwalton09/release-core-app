@@ -1,9 +1,9 @@
+"use client";
 import AppShell from "@/components/AppShell";
 
 export default function FAQPage() {
   return (
     <AppShell title="Frequently Asked Questions">
-      <div className="space-y-6">
 
         {/* Intro */}
         <p className="text-sm leading-7 text-slate-600">
