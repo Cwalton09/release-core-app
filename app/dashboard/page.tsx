@@ -74,6 +74,103 @@ function getNightlyBeliefs(coreBeliefs: string, biblical: boolean) {
   return matched.length > 0 ? matched : fallback;
 }
 
+function downloadScript(session: Session, biblical: boolean) {
+  const beliefs = getNightlyBeliefs(session.core_beliefs, biblical);
+  const ageText = session.ages || "a younger age";
+  const whoText = session.who_involved || "someone in your life";
+  const emotionText = session.emotions || "what came up";
+  const bodyPlacement = session.body_location
+    ? `Place your hand gently on your ${session.body_location}.`
+    : "Place one hand on your chest and one hand on your belly.";
+  const date = new Date(session.created_at).toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
+  const title = biblical ? "Biblical Nighttime Integration Script" : "Nighttime Integration Script";
+  const closing = biblical ? "Goodnight. He is with you. 🌙" : "Goodnight. 🌙";
+
+  const content = `
+RELEASE CORE
+${title}
+${date}
+
+---
+
+BEGIN HERE
+
+I find a comfortable position. I let my hands rest somewhere soft. I take one slow breath and simply notice that I am here.${biblical ? " And that He is here too." : ""}
+
+Something in me did important work. I am ready to let it settle.${biblical ? " I bring it to God now." : ""}
+
+---
+
+SETTLE MY BODY
+
+I breathe in slowly for 4 counts. I hold gently for 4. I breathe out for 6.
+
+I do this three times. With each exhale, I let my body know — the danger is not here tonight. I am safe right now.${biblical ? " I am safe in His hands." : ""}
+
+---
+
+ACKNOWLEDGE WHAT WAS
+
+Around ${ageText}, something happened that involved ${whoText}. My body felt ${emotionText}. And from that, it formed a belief that made complete sense at the time.
+
+That belief kept me going. It protected me. It was not wrong — it was the only thing that made sense then.${biblical ? "\n\nGod saw what happened. He saw what I carried. He has never looked away." : ""}
+
+---
+
+TO THE YOUNGER PART OF ME
+
+I see you. I see how hard that was.
+You were so young, and what you carried was so large.
+You survived something hard. And you have been carrying it ever since.
+${biblical ? "God says you are okay. You are loved. You always were." : "I am here now. And I am telling you — you are okay."}
+
+---
+
+${biblical ? "THE TRUTH HE SAYS ABOUT ME" : "THE TRUTH MY NERVOUS SYSTEM IS READY TO HEAR"}
+
+${biblical ? "Tonight, God's truth corrects what I believed. Gently. Slowly." : "The beliefs I formed then lived in my body because no one came to correct them. Tonight, I correct them. Gently. Slowly."}
+
+${beliefs.map((b) => `• ${b}`).join("\n")}
+
+---
+
+${biblical ? "A PRAYER FOR MY BODY" : "A LETTER TO MY BODY"}
+
+${biblical
+  ? `God — tonight I invite You in. I give You this body, this tension, this holding. I trust You with what I have been carrying.\n\n${bodyPlacement}\n\nGod is here. I can soften now. I am held.`
+  : `Dear body — you have been on high alert for a long time. Tonight, I give you permission to rest. You do not have to keep watch tonight.\n\n${bodyPlacement}\n\nYou can soften now. You are allowed.`}
+
+---
+
+AS I DRIFT TOWARD SLEEP
+
+I place my hand on my heart. I feel it beating — steady, faithful${biblical ? ", created by Him" : ", mine"}.
+
+${biblical
+  ? "I am held tonight. I will wake up tomorrow in His hands, and I will still be okay."
+  : "I am allowed to sleep. I am allowed to let tonight be easy. I am allowed to wake up tomorrow and still be okay."}
+
+---
+
+I CARRY THESE INTO SLEEP
+
+${beliefs.map((b) => b).join("\n")}
+
+${closing}
+
+---
+Release Core | release-core.com
+  `.trim();
+
+  const blob = new Blob([content], { type: "text/plain" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `release-core-nighttime-script-${biblical ? "biblical" : "standard"}-${date.replace(/,/g, "").replace(/ /g, "-")}.txt`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
 export default function Dashboard() {
   const router = useRouter();
   const [accepted, setAccepted] = useState<boolean | null>(null);
@@ -108,7 +205,6 @@ export default function Dashboard() {
           .maybeSingle();
 
         if (error) { if (mounted) setCheckingAccess(false); return; }
-
         if (!profile?.paid) { window.location.href = STRIPE_PAYMENT_LINK; return; }
 
         const { data: pastSessions } = await supabase
@@ -343,6 +439,22 @@ export default function Dashboard() {
                   <p className="text-base">✝️</p>
                   <p className="font-semibold text-sm">Biblical</p>
                   <p className={`text-xs leading-5 ${biblicalOpen ? "text-emerald-100" : "text-slate-500"}`}>Woven with faith</p>
+                </button>
+              </div>
+
+              {/* Download buttons */}
+              <div className="flex gap-2 pt-1">
+                <button
+                  onClick={() => downloadScript(selectedSession, false)}
+                  className="flex-1 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-medium text-slate-700 hover:border-emerald-400 hover:bg-emerald-50 transition"
+                >
+                  ⬇ Download Standard
+                </button>
+                <button
+                  onClick={() => downloadScript(selectedSession, true)}
+                  className="flex-1 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-medium text-slate-700 hover:border-emerald-400 hover:bg-emerald-50 transition"
+                >
+                  ⬇ Download Biblical
                 </button>
               </div>
             </div>
