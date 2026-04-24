@@ -122,6 +122,6 @@ export default function TrueCorePage() {
           Continue
         </button>
       </div>
-    </AppShell> -
+    </AppShell> 
   );
 }
