@@ -33,6 +33,7 @@ export default function TrueCorePage() {
   const emotions = searchParams.get("emotions") ?? "";
   const ages = searchParams.get("ages") ?? "";
   const patterns = searchParams.getAll("pattern");
+  const cores = searchParams.getAll("core");
 
   const toggleNeed = (need: string) => {
     setSelectedNeeds((current) =>
@@ -47,10 +48,11 @@ export default function TrueCorePage() {
     if (emotions) params.set("emotions", emotions);
     if (ages) params.set("ages", ages);
     patterns.forEach((pattern) => params.append("pattern", pattern));
+    cores.forEach((core) => params.append("core", core));
     selectedNeeds.forEach((need) => params.append("unmet", need));
     if (ownWords) params.set("ownWords", ownWords);
     return `/regulation?${params.toString()}`;
-  }, [selectedNeeds, ownWords, emotions, ages, patterns]);
+  }, [selectedNeeds, ownWords, emotions, ages, patterns, cores]);
 
   return (
     <AppShell title="What did your body need that it didn't get?">
