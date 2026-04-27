@@ -19,6 +19,7 @@ const beliefs = [
   "I have to stay strong",
   "I am responsible for everyone",
   "It is not safe to let go",
+  "Lack of control",
 ];
 
 export default function CoreBeliefPage() {
