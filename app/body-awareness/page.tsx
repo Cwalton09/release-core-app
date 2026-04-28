@@ -68,6 +68,38 @@ export default function BodyAwarenessPage() {
     <AppShell title="Body Awareness">
       <div className="space-y-6">
 
+        {/* Grounding exercise */}
+        <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-6 space-y-4">
+          <h2 className="text-lg font-semibold text-slate-900">
+            Start here — Ground yourself first
+          </h2>
+          <p className="text-sm leading-7 text-slate-700">
+            Before we begin, let's help your nervous system feel safe and present. This only takes a moment and makes the rest of the session more effective.
+          </p>
+          <div className="space-y-4 text-sm leading-7 text-slate-700">
+            <div className="rounded-xl bg-white border border-emerald-100 p-4 space-y-2">
+              <p className="font-semibold text-slate-800">1. Feel your feet</p>
+              <p>Press both feet flat on the floor. Feel the ground beneath you. Notice the pressure and the weight of your body being supported.</p>
+            </div>
+            <div className="rounded-xl bg-white border border-emerald-100 p-4 space-y-2">
+              <p className="font-semibold text-slate-800">2. Feel where you are sitting</p>
+              <p>Notice the chair or surface beneath you. Let your body feel held and supported right where you are.</p>
+            </div>
+            <div className="rounded-xl bg-white border border-emerald-100 p-4 space-y-2">
+              <p className="font-semibold text-slate-800">3. Take one slow breath</p>
+              <p>Breathe in slowly for 4 counts. Hold for 2. Breathe out for 6. Let your shoulders drop on the exhale.</p>
+            </div>
+            <div className="rounded-xl bg-white border border-emerald-100 p-4 space-y-2">
+              <p className="font-semibold text-slate-800">4. Name 5 things you can see right now</p>
+              <p>Look around slowly and notice 5 things in your environment. Say them out loud or in your head. This tells your nervous system that you are safe in this moment and that there is no immediate threat.</p>
+            </div>
+            <div className="rounded-xl bg-white border border-emerald-100 p-4 space-y-2">
+              <p className="font-semibold text-slate-800">5. Notice how you feel</p>
+              <p>Take a moment to check in. Do you feel slightly more settled, present, or calm? Even a small shift means your nervous system is beginning to regulate. You are ready to begin.</p>
+            </div>
+          </div>
+        </div>
+
         {/* Sway test instructions */}
         <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-6 space-y-4">
           <h2 className="text-lg font-semibold text-slate-900">
