@@ -9,6 +9,7 @@ const beliefs = [
   "I am not enough",
   "I am not supported",
   "I have to stay in control",
+  "I feel out of control",
   "I have to handle everything myself",
   "Something will go wrong",
   "I cannot relax",
@@ -19,7 +20,21 @@ const beliefs = [
   "I have to stay strong",
   "I am responsible for everyone",
   "It is not safe to let go",
-  "Lack of control",
+  "I am not worthy of love",
+  "I am broken",
+  "I am a burden",
+  "I am not wanted",
+  "I am not good enough",
+  "I have to be perfect",
+  "I cannot trust anyone",
+  "I cannot trust myself",
+  "I am not allowed to say no",
+  "I have to earn my place",
+  "I will be abandoned",
+  "I will be rejected",
+  "I am not lovable",
+  "It is not safe to be seen",
+  "It is not safe to speak up",
 ];
 
 export default function CoreBeliefPage() {
@@ -48,14 +63,12 @@ export default function CoreBeliefPage() {
   return (
     <AppShell title="What did this mean to you?">
       <div className="space-y-6">
-
         <div className="rounded-2xl bg-emerald-50 border border-emerald-200 p-4 space-y-2 text-sm text-slate-700 leading-7">
           <p className="font-semibold text-emerald-800">How to use this page:</p>
           <p>
             Use your <span className="font-semibold">sway test</span> to find which beliefs feel true in your body. These are the meanings your nervous system attached to what happened at that age. You can select more than one.
           </p>
         </div>
-
         <div className="space-y-3">
           {beliefs.map((belief) => {
             const isSelected = selectedBeliefs.includes(belief);
@@ -86,7 +99,6 @@ export default function CoreBeliefPage() {
             );
           })}
         </div>
-
         <button
           type="button"
           onClick={() => router.push(continueHref)}
