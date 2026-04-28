@@ -12,6 +12,7 @@ const beliefFlipMap: Record<string, string[]> = {
   "I am not enough": ["I am enough as I am.", "I do not have to prove my worth.", "I am safe even when I rest.", "I can sleep without holding that pressure anymore."],
   "I am not supported": ["I am supported now.", "It is safe for me to receive help.", "I do not have to hold everything alone anymore.", "I can relax and still be okay."],
   "I have to stay in control": ["I do not have to control everything to be safe.", "It is safe for me to soften.", "I can relax and still be okay.", "I can sleep without gripping."],
+  "I feel out of control": ["I can soften and still be safe.", "I do not have to control everything to be okay.", "It is safe for me to let go little by little.", "I am allowed to release my grip."],
   "I have to handle everything myself": ["I am allowed to ask for help.", "I do not have to do this alone.", "It is safe to receive support.", "I can let others in."],
   "Something will go wrong": ["I am safe in this moment.", "I do not have to brace for what has not happened.", "I can rest in what is true right now.", "My body does not have to stay on alert."],
   "I cannot relax": ["It is safe for me to rest.", "I am allowed to soften.", "Relaxing does not mean losing control.", "My body is allowed to be at ease."],
@@ -22,6 +23,21 @@ const beliefFlipMap: Record<string, string[]> = {
   "I have to stay strong": ["I do not have to stay hard to stay safe.", "It is safe for me to soften.", "Softness is not weakness.", "I am allowed to rest."],
   "I am responsible for everyone": ["I am not responsible for carrying everyone.", "I can release what is not mine.", "I am allowed to rest.", "I can sleep without holding that weight."],
   "It is not safe to let go": ["It is safe for me to let go now.", "I can soften and still be safe.", "I can let go while I sleep.", "Letting go does not mean losing control."],
+  "I am not worthy of love": ["I am worthy of love as I am.", "I do not have to earn love.", "It is safe for me to receive love now.", "I deserve connection and care."],
+  "I am broken": ["I am not broken.", "I am a person who experienced hard things.", "My body is doing its best and always has been.", "I am allowed to heal."],
+  "I am a burden": ["I am not a burden.", "My presence matters.", "It is safe for me to take up space and have needs.", "I am allowed to receive without guilt."],
+  "I am not wanted": ["I am wanted.", "I belong here.", "It is safe for me to be present and seen.", "My presence is welcome."],
+  "I am not good enough": ["I am good enough right now.", "I do not have to keep proving myself.", "I can rest in who I already am.", "I am enough."],
+  "I have to be perfect": ["I am allowed to be imperfect.", "Mistakes do not make me unworthy.", "It is safe for me to be human.", "I can sleep without holding the pressure to be perfect."],
+  "I cannot trust anyone": ["It is safe for me to let some people in.", "Trust can be built slowly.", "I do not have to carry everything alone.", "Safe connection is possible."],
+  "I cannot trust myself": ["I can trust myself.", "My body knows things.", "I am learning to listen to myself again.", "My instincts are valid."],
+  "I am not allowed to say no": ["I am allowed to say no.", "My boundaries are safe.", "No is a complete sentence.", "I can protect my energy."],
+  "I have to earn my place": ["I belong here.", "I do not have to earn my place.", "My presence is enough.", "I am allowed to just be."],
+  "I will be abandoned": ["I am here now.", "I can build connections that are safe.", "I do not have to live in fear of being left.", "I am supported right now."],
+  "I will be rejected": ["It is safe for me to show up.", "Rejection does not define my worth.", "I can be seen and still be okay.", "I am allowed to be myself."],
+  "I am not lovable": ["I am lovable.", "I deserve connection.", "It is safe for me to let love in.", "I am worthy of being loved."],
+  "It is not safe to be seen": ["It is safe for me to be seen.", "I can be visible and still be protected.", "My presence matters.", "I am allowed to take up space."],
+  "It is not safe to speak up": ["My voice matters.", "It is safe for me to speak.", "I am allowed to take up space with my words.", "What I have to say is worth hearing."],
 };
 
 const beliefFlipMapBiblical: Record<string, string[]> = {
@@ -30,6 +46,7 @@ const beliefFlipMapBiblical: Record<string, string[]> = {
   "I am not enough": ["God says I am enough. He made me on purpose.", "I do not have to earn what He has already given me.", "I am enough because He says I am.", "I can rest without proving anything."],
   "I am not supported": ["God is my support and my strength.", "I am not holding this alone — He is holding me.", "It is safe to receive. He provides.", "I can let go and trust that I am carried."],
   "I have to stay in control": ["I can release control to the One who holds all things.", "God's hands are more steady than mine.", "It is safe to let go — He is in control.", "I can rest without gripping."],
+  "I feel out of control": ["God is in control even when I am not.", "I can release my grip and trust Him.", "It is safe to let go — He is holding what I release.", "I do not have to carry this. He does."],
   "I have to handle everything myself": ["I was never meant to carry this alone.", "God invites me to bring this to Him.", "I can ask for help — from Him and from others.", "It is safe to receive."],
   "Something will go wrong": ["God knows what is ahead and He is already there.", "I do not have to brace for what has not happened.", "I can trust what I cannot see.", "I am safe in this moment."],
   "I cannot relax": ["He gives rest to those He loves.", "I am allowed to be still.", "Resting is an act of trust.", "My body is allowed to be at peace tonight."],
@@ -40,6 +57,21 @@ const beliefFlipMapBiblical: Record<string, string[]> = {
   "I have to stay strong": ["His strength is made perfect in my weakness.", "I do not have to hold it together — He holds me.", "Softness is not weakness. It is trust.", "I am allowed to rest in Him tonight."],
   "I am responsible for everyone": ["He is the one who carries the world — not me.", "I can release what was never mine to hold.", "God is responsible for what I cannot control.", "I can sleep without holding that weight."],
   "It is not safe to let go": ["It is safe to let go — He catches what I release.", "I can open my hands and trust Him with what falls.", "Letting go is not losing. It is trusting.", "He is steady when I soften."],
+  "I am not worthy of love": ["God loves me not because of what I do but because of who I am.", "His love is not conditional.", "I am worthy because He says I am.", "I can receive His love tonight."],
+  "I am broken": ["God does not make broken things.", "He formed me and He does not make mistakes.", "I am being restored — He does not discard what He loves.", "I am whole in His eyes."],
+  "I am a burden": ["I am not a burden to God. He delights in me.", "He invites me to come to Him with everything.", "My needs do not push Him away.", "I am welcome in His presence."],
+  "I am not wanted": ["God chose me before I was born.", "I am wanted by the One who made me.", "He has always had a place for me.", "I belong to Him."],
+  "I am not good enough": ["God does not see me through the lens of good enough.", "He sees me through the lens of love.", "I do not have to perform for His approval.", "I already have it."],
+  "I have to be perfect": ["God does not ask for my perfection. He offers His.", "I can rest in His grace tonight.", "I am enough because He says so, not because I got it right.", "I can let go of perfect."],
+  "I cannot trust anyone": ["God is trustworthy even when people are not.", "He will not betray me.", "I can bring what I am afraid to trust to Him.", "He is safe."],
+  "I cannot trust myself": ["God placed wisdom and knowing inside me.", "He speaks through the still small voice within.", "I can learn to trust what He put in me.", "My instincts are not broken."],
+  "I am not allowed to say no": ["God gave me the ability to set limits.", "My boundaries are not a sin.", "He honors my humanity and so can I.", "I am allowed to protect what He placed in me."],
+  "I have to earn my place": ["God gave me my place. I did not earn it and I cannot lose it.", "I belong because He says I belong.", "I can rest in that tonight.", "My place is secure in Him."],
+  "I will be abandoned": ["God will never leave me or forsake me.", "He is with me even now.", "I do not have to brace for His departure.", "He stays."],
+  "I will be rejected": ["God accepted me fully.", "There is no version of me He turns away.", "I can show up as I am.", "He does not reject what He made."],
+  "I am not lovable": ["God so loved me that He gave everything.", "I am deeply and completely lovable to Him.", "His love for me does not waver.", "I can let that in tonight."],
+  "It is not safe to be seen": ["God sees me fully and loves what He sees.", "Being seen by Him is safe.", "I do not have to hide from the One who made me.", "He sees me and He stays."],
+  "It is not safe to speak up": ["God gave me a voice and it matters.", "He listens when I speak.", "I am allowed to bring my words to Him and to others.", "My voice was made on purpose."],
 };
 
 const fallbackBeliefs = ["I am safe now.", "I am not alone.", "I am supported.", "I can relax and still be okay.", "I can let go and still be safe.", "My body does not have to protect me like that anymore."];
@@ -154,7 +186,7 @@ ${biblical
 
 I CARRY THESE INTO SLEEP
 
-${beliefs.map((b) => b).join("\n")}
+${beliefs.join("\n")}
 
 ${closing}
 
@@ -261,7 +293,6 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-gray-50 px-4 py-6 flex flex-col items-center">
 
-      {/* Disclaimer modal */}
       {!accepted && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 px-4">
           <div className="bg-white w-full max-w-2xl rounded-2xl p-6 shadow-xl max-h-[90vh] overflow-y-auto">
@@ -322,7 +353,6 @@ export default function Dashboard() {
         </div>
       )}
 
-      {/* Session detail modal */}
       {selectedSession && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 px-4">
           <div className="bg-white w-full max-w-2xl rounded-2xl p-6 shadow-xl max-h-[90vh] overflow-y-auto space-y-5">
@@ -330,18 +360,15 @@ export default function Dashboard() {
               <h2 className="text-xl font-semibold text-gray-800">Session Details</h2>
               <button onClick={() => setSelectedSession(null)} className="text-gray-400 hover:text-gray-600 text-2xl leading-none">×</button>
             </div>
-
             <p className="text-xs text-gray-400">
               {new Date(selectedSession.created_at).toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}
             </p>
-
             {selectedSession.symptoms && (
               <div className="rounded-xl bg-slate-50 border border-slate-200 p-4 space-y-1">
                 <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">Symptoms</p>
                 <p className="text-sm text-gray-700">{selectedSession.symptoms}</p>
               </div>
             )}
-
             {(selectedSession.body_location || selectedSession.feeling || selectedSession.shape || selectedSession.color || selectedSession.size || selectedSession.texture) && (
               <div className="rounded-xl bg-slate-50 border border-slate-200 p-4 space-y-2">
                 <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">Body Sensation</p>
@@ -353,14 +380,12 @@ export default function Dashboard() {
                 {selectedSession.texture && <p className="text-sm text-gray-700"><span className="font-medium">Texture: </span>{selectedSession.texture}</p>}
               </div>
             )}
-
             {selectedSession.emotions && (
               <div className="rounded-xl bg-slate-50 border border-slate-200 p-4 space-y-1">
                 <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">Emotions</p>
                 <p className="text-sm text-gray-700">{selectedSession.emotions}</p>
               </div>
             )}
-
             {selectedSession.ages && (
               <div className="rounded-xl bg-slate-50 border border-slate-200 p-4 space-y-1">
                 <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">Age</p>
@@ -368,21 +393,18 @@ export default function Dashboard() {
                 {selectedSession.activation_age && <p className="text-sm text-gray-700"><span className="font-medium">Activation age: </span>{selectedSession.activation_age}</p>}
               </div>
             )}
-
             {selectedSession.who_involved && (
               <div className="rounded-xl bg-slate-50 border border-slate-200 p-4 space-y-1">
                 <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">Who Was Involved</p>
                 <p className="text-sm text-gray-700">{selectedSession.who_involved}</p>
               </div>
             )}
-
             {selectedSession.what_happened && (
               <div className="rounded-xl bg-slate-50 border border-slate-200 p-4 space-y-1">
                 <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">What Happened</p>
                 <p className="text-sm text-gray-700">{selectedSession.what_happened}</p>
               </div>
             )}
-
             {selectedSession.core_beliefs && (
               <div className="rounded-xl bg-emerald-50 border border-emerald-200 p-4 space-y-2">
                 <p className="text-xs font-semibold uppercase tracking-widest text-emerald-600">Core Beliefs</p>
@@ -393,7 +415,6 @@ export default function Dashboard() {
                 </div>
               </div>
             )}
-
             {selectedSession.patterns && (
               <div className="rounded-xl bg-slate-50 border border-slate-200 p-4 space-y-1">
                 <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">Patterns</p>
@@ -402,7 +423,6 @@ export default function Dashboard() {
                 ))}
               </div>
             )}
-
             {selectedSession.unmet_need && (
               <div className="rounded-xl bg-emerald-50 border border-emerald-200 p-4 space-y-1">
                 <p className="text-xs font-semibold uppercase tracking-widest text-emerald-600">What Your Body Needed</p>
@@ -411,7 +431,6 @@ export default function Dashboard() {
                 ))}
               </div>
             )}
-
             {selectedSession.own_words && (
               <div className="rounded-xl bg-slate-50 border border-slate-200 p-4 space-y-1">
                 <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">In Your Own Words</p>
@@ -419,47 +438,27 @@ export default function Dashboard() {
               </div>
             )}
 
-            {/* Nighttime script section */}
             <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-3">
               <p className="text-sm font-semibold text-gray-800">🌙 Nighttime Integration Script</p>
               <p className="text-xs text-gray-500">Read this tonight as you are drifting off to sleep. Your subconscious is most open right before sleep — this is when new beliefs install most deeply.</p>
               <div className="grid grid-cols-2 gap-3">
-                <button
-                  onClick={() => setStandardOpen(!standardOpen)}
-                  className={`rounded-2xl border p-3 text-left transition space-y-1 ${standardOpen ? "border-emerald-700 bg-emerald-700 text-white" : "border-slate-200 bg-white hover:border-emerald-400"}`}
-                >
+                <button onClick={() => setStandardOpen(!standardOpen)} className={`rounded-2xl border p-3 text-left transition space-y-1 ${standardOpen ? "border-emerald-700 bg-emerald-700 text-white" : "border-slate-200 bg-white hover:border-emerald-400"}`}>
                   <p className="text-base">🌿</p>
                   <p className="font-semibold text-sm">Standard</p>
                   <p className={`text-xs leading-5 ${standardOpen ? "text-emerald-100" : "text-slate-500"}`}>Grounded in the body</p>
                 </button>
-                <button
-                  onClick={() => setBiblicalOpen(!biblicalOpen)}
-                  className={`rounded-2xl border p-3 text-left transition space-y-1 ${biblicalOpen ? "border-emerald-700 bg-emerald-700 text-white" : "border-slate-200 bg-white hover:border-emerald-400"}`}
-                >
+                <button onClick={() => setBiblicalOpen(!biblicalOpen)} className={`rounded-2xl border p-3 text-left transition space-y-1 ${biblicalOpen ? "border-emerald-700 bg-emerald-700 text-white" : "border-slate-200 bg-white hover:border-emerald-400"}`}>
                   <p className="text-base">✝️</p>
                   <p className="font-semibold text-sm">Biblical</p>
                   <p className={`text-xs leading-5 ${biblicalOpen ? "text-emerald-100" : "text-slate-500"}`}>Woven with faith</p>
                 </button>
               </div>
-
-              {/* Download buttons */}
               <div className="flex gap-2 pt-1">
-                <button
-                  onClick={() => downloadScript(selectedSession, false)}
-                  className="flex-1 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-medium text-slate-700 hover:border-emerald-400 hover:bg-emerald-50 transition"
-                >
-                  ⬇ Download Standard
-                </button>
-                <button
-                  onClick={() => downloadScript(selectedSession, true)}
-                  className="flex-1 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-medium text-slate-700 hover:border-emerald-400 hover:bg-emerald-50 transition"
-                >
-                  ⬇ Download Biblical
-                </button>
+                <button onClick={() => downloadScript(selectedSession, false)} className="flex-1 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-medium text-slate-700 hover:border-emerald-400 hover:bg-emerald-50 transition">⬇ Download Standard</button>
+                <button onClick={() => downloadScript(selectedSession, true)} className="flex-1 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-medium text-slate-700 hover:border-emerald-400 hover:bg-emerald-50 transition">⬇ Download Biblical</button>
               </div>
             </div>
 
-            {/* Standard script */}
             {standardOpen && (
               <div className="rounded-2xl border border-slate-300 bg-slate-50 p-5 space-y-5 text-sm leading-7 text-slate-700">
                 <div className="space-y-2">
@@ -495,9 +494,7 @@ export default function Dashboard() {
                   <p>The beliefs I formed then lived in my body because no one came to correct them. Tonight, I correct them. Gently. Slowly.</p>
                   <div className="space-y-2">
                     {nightlyBeliefs.map((belief) => (
-                      <div key={belief} className="border-l-2 border-emerald-400 pl-4 italic text-slate-600">
-                        <p>{belief}</p>
-                      </div>
+                      <div key={belief} className="border-l-2 border-emerald-400 pl-4 italic text-slate-600"><p>{belief}</p></div>
                     ))}
                   </div>
                 </div>
@@ -517,15 +514,12 @@ export default function Dashboard() {
                 <hr className="border-slate-200" />
                 <div className="space-y-3 text-center">
                   <p className="text-xs uppercase tracking-widest text-slate-400">I carry these into sleep</p>
-                  {nightlyBeliefs.map((belief) => (
-                    <p key={belief} className="text-base font-medium text-slate-800">{belief}</p>
-                  ))}
+                  {nightlyBeliefs.map((belief) => <p key={belief} className="text-base font-medium text-slate-800">{belief}</p>)}
                   <p className="text-slate-500 text-sm">Goodnight. 🌙</p>
                 </div>
               </div>
             )}
 
-            {/* Biblical script */}
             {biblicalOpen && (
               <div className="rounded-2xl border border-slate-300 bg-slate-50 p-5 space-y-5 text-sm leading-7 text-slate-700">
                 <div className="space-y-2">
@@ -561,9 +555,7 @@ export default function Dashboard() {
                   <p>Tonight, God's truth corrects what I believed. Gently. Slowly.</p>
                   <div className="space-y-2">
                     {nightlyBeliefsBiblical.map((belief) => (
-                      <div key={belief} className="border-l-2 border-emerald-400 pl-4 italic text-slate-600">
-                        <p>{belief}</p>
-                      </div>
+                      <div key={belief} className="border-l-2 border-emerald-400 pl-4 italic text-slate-600"><p>{belief}</p></div>
                     ))}
                   </div>
                 </div>
@@ -583,18 +575,13 @@ export default function Dashboard() {
                 <hr className="border-slate-200" />
                 <div className="space-y-3 text-center">
                   <p className="text-xs uppercase tracking-widest text-slate-400">I carry these into sleep</p>
-                  {nightlyBeliefsBiblical.map((belief) => (
-                    <p key={belief} className="text-base font-medium text-slate-800">{belief}</p>
-                  ))}
+                  {nightlyBeliefsBiblical.map((belief) => <p key={belief} className="text-base font-medium text-slate-800">{belief}</p>)}
                   <p className="text-slate-500 text-sm">Goodnight. He is with you. 🌙</p>
                 </div>
               </div>
             )}
 
-            <button
-              onClick={() => setSelectedSession(null)}
-              className="w-full rounded-xl bg-emerald-700 px-5 py-3 text-white font-medium hover:bg-emerald-800 transition"
-            >
+            <button onClick={() => setSelectedSession(null)} className="w-full rounded-xl bg-emerald-700 px-5 py-3 text-white font-medium hover:bg-emerald-800 transition">
               Close
             </button>
           </div>
@@ -603,16 +590,10 @@ export default function Dashboard() {
 
       <div className="w-full max-w-md space-y-6">
         <h1 className="text-3xl font-semibold text-gray-800 text-center">Dashboard</h1>
-
         <div className="space-y-4">
-          <button onClick={() => router.push("/start-session")} className="w-full bg-green-600 text-white py-3 rounded-xl text-lg font-medium hover:bg-green-700 transition">
-            Start Session
-          </button>
-          <button onClick={() => router.push("/session-entry")} className="w-full bg-white border border-gray-300 py-3 rounded-xl text-lg font-medium text-gray-800 hover:bg-gray-100 transition">
-            Session Entry
-          </button>
+          <button onClick={() => router.push("/start-session")} className="w-full bg-green-600 text-white py-3 rounded-xl text-lg font-medium hover:bg-green-700 transition">Start Session</button>
+          <button onClick={() => router.push("/session-entry")} className="w-full bg-white border border-gray-300 py-3 rounded-xl text-lg font-medium text-gray-800 hover:bg-gray-100 transition">Session Entry</button>
         </div>
-
         <div className="space-y-3">
           <h2 className="text-lg font-semibold text-gray-800">Past Sessions</h2>
           {loadingSessions ? (
@@ -624,14 +605,8 @@ export default function Dashboard() {
           ) : (
             <div className="space-y-3">
               {sessions.map((session) => (
-                <button
-                  key={session.id}
-                  onClick={() => openSession(session)}
-                  className="w-full rounded-2xl border border-gray-200 bg-white p-4 shadow-sm space-y-2 text-left hover:border-emerald-400 transition"
-                >
-                  <p className="text-xs text-gray-400">
-                    {new Date(session.created_at).toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}
-                  </p>
+                <button key={session.id} onClick={() => openSession(session)} className="w-full rounded-2xl border border-gray-200 bg-white p-4 shadow-sm space-y-2 text-left hover:border-emerald-400 transition">
+                  <p className="text-xs text-gray-400">{new Date(session.created_at).toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}</p>
                   {session.emotions && <p className="text-sm text-gray-700"><span className="font-medium">Emotions: </span>{session.emotions}</p>}
                   {session.core_beliefs && <p className="text-sm text-gray-700"><span className="font-medium">Core beliefs: </span>{session.core_beliefs}</p>}
                   {session.ages && <p className="text-sm text-gray-700"><span className="font-medium">Age: </span>{session.ages}</p>}
@@ -642,10 +617,7 @@ export default function Dashboard() {
             </div>
           )}
         </div>
-
-        <button onClick={() => router.push("/")} className="w-full text-sm text-gray-500 mt-4 underline">
-          Back to Home
-        </button>
+        <button onClick={() => router.push("/")} className="w-full text-sm text-gray-500 mt-4 underline">Back to Home</button>
       </div>
     </div>
   );
