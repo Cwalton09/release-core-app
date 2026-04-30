@@ -125,62 +125,76 @@ ${date}
 
 ---
 
-BEGIN HERE
+BEGIN HERE — BODY RESET
 
-I find a comfortable position. I let my hands rest somewhere soft. I take one slow breath and simply notice that I am here.${biblical ? " And that He is here too." : ""}
+Step 1 — Collarbone Tap
+Tap lightly on either collarbone point and say:
+"Body, the danger is over. You can let this go now."
 
-Something in me did important work. I am ready to let it settle.${biblical ? " I bring it to God now." : ""}
+Step 2 — Jaw Release
+Gently open and close your jaw, side to side for 5 to 10 seconds.
+Say: "I release old reactions."
+
+Step 3 — Exhale Drop
+Let your shoulders fall while exhaling through your mouth.
+Say: "My body can stand down."
+
+Step 4 — Sweep the Body
+Take both hands and sweep down your chest, ribs, stomach, hips like brushing off dust.
+Say: "This pattern is erased."
+
+Step 5 — Replace the Pattern
+Place your hand on your heart.
+Say: "My new baseline is calm. My new identity is healed."
 
 ---
 
-SETTLE MY BODY
+30-SECOND VAGUS NERVE RESET
 
-I breathe in slowly for 4 counts. I hold gently for 4. I breathe out for 6.
+Step 1 — Look to the Right (15 seconds)
+Hold your eyes far right without moving your head until you feel a sigh, swallow, or yawn.
 
-I do this three times. With each exhale, I let my body know — the danger is not here tonight. I am safe right now.${biblical ? " I am safe in His hands." : ""}
+Step 2 — Look to the Left (15 seconds)
+Same thing — eyes far left until you sigh or swallow again.
 
 ---
 
-ACKNOWLEDGE WHAT WAS
+SLEEP REPROGRAMMING SCRIPT
+
+Lie in bed. Put one hand on your heart and one on your lower belly.
+Breathe in for 4 seconds. Out through your mouth for 8 seconds.
+
+Then repeat softly:
+
+My body knows how to heal.
+My nervous system knows how to relax.
+Every cell is remembering peace.
+I am safe while I sleep.
+My body is switching to repair mode now.
+
+---
+
+THE TRUTH MY NERVOUS SYSTEM IS READY TO HEAR
 
 Around ${ageText}, something happened that involved ${whoText}. My body felt ${emotionText}. And from that, it formed a belief that made complete sense at the time.
 
-That belief kept me going. It protected me. It was not wrong — it was the only thing that made sense then.${biblical ? "\n\nGod saw what happened. He saw what I carried. He has never looked away." : ""}
-
----
-
-TO THE YOUNGER PART OF ME
-
-I see you. I see how hard that was.
-You were so young, and what you carried was so large.
-You survived something hard. And you have been carrying it ever since.
-${biblical ? "God says you are okay. You are loved. You always were." : "I am here now. And I am telling you — you are okay."}
-
----
-
-${biblical ? "THE TRUTH HE SAYS ABOUT ME" : "THE TRUTH MY NERVOUS SYSTEM IS READY TO HEAR"}
-
-${biblical ? "Tonight, God's truth corrects what I believed. Gently. Slowly." : "The beliefs I formed then lived in my body because no one came to correct them. Tonight, I correct them. Gently. Slowly."}
+Tonight I correct those beliefs. Gently. Slowly.
 
 ${beliefs.map((b) => `• ${b}`).join("\n")}
 
 ---
 
-${biblical ? "A PRAYER FOR MY BODY" : "A LETTER TO MY BODY"}
+IDENTITY IMPRINT
 
-${biblical
-  ? `God — tonight I invite You in. I give You this body, this tension, this holding. I trust You with what I have been carrying.\n\n${bodyPlacement}\n\nGod is here. I can soften now. I am held.`
-  : `Dear body — you have been on high alert for a long time. Tonight, I give you permission to rest. You do not have to keep watch tonight.\n\n${bodyPlacement}\n\nYou can soften now. You are allowed.`}
+I am no longer in healing mode.
+I am already healed.
+My body is simply maintaining my health.
 
----
+${bodyPlacement}
 
-AS I DRIFT TOWARD SLEEP
+Breathe in for 4. Out for 8.
 
-I place my hand on my heart. I feel it beating — steady, faithful${biblical ? ", created by Him" : ", mine"}.
-
-${biblical
-  ? "I am held tonight. I will wake up tomorrow in His hands, and I will still be okay."
-  : "I am allowed to sleep. I am allowed to let tonight be easy. I am allowed to wake up tomorrow and still be okay."}
+Everything that is not mine dissolves as I sleep.
 
 ---
 
@@ -461,37 +475,67 @@ export default function Dashboard() {
 
             {standardOpen && (
               <div className="rounded-2xl border border-slate-300 bg-slate-50 p-5 space-y-5 text-sm leading-7 text-slate-700">
-                <div className="space-y-2">
-                  <p className="text-xs uppercase tracking-widest text-slate-400">Begin here</p>
-                  <p>I find a comfortable position. I let my hands rest somewhere soft. I take one slow breath and simply notice that I am here.</p>
-                  <p>Something in me did important work. I am ready to let it settle.</p>
-                </div>
-                <hr className="border-slate-200" />
-                <div className="space-y-2">
-                  <p className="text-xs uppercase tracking-widest text-slate-400">Settle my body</p>
-                  <p>I breathe in slowly for 4 counts. I hold gently for 4. I breathe out for 6.</p>
-                  <p>I do this three times. With each exhale, I let my body know — the danger is not here tonight. I am safe right now.</p>
-                </div>
-                <hr className="border-slate-200" />
-                <div className="space-y-2">
-                  <p className="text-xs uppercase tracking-widest text-slate-400">Acknowledge what was</p>
-                  <p>Around {ageText}, something happened that involved {whoText}. My body felt {emotionText}. And from that, it formed a belief that made complete sense at the time.</p>
-                  <p>That belief kept me going. It protected me. It was not wrong — it was the only thing that made sense then.</p>
-                </div>
-                <hr className="border-slate-200" />
-                <div className="space-y-2">
-                  <p className="text-xs uppercase tracking-widest text-slate-400">To the younger part of me</p>
-                  <div className="border-l-2 border-rose-300 pl-4 space-y-2 italic text-slate-600">
-                    <p>I see you. I see how hard that was.</p>
-                    <p>You were so young, and what you carried was so large.</p>
-                    <p>You survived something hard. And you have been carrying it ever since.</p>
-                    <p>I am here now. And I am telling you — you are okay.</p>
+                <div className="space-y-3">
+                  <p className="text-xs uppercase tracking-widest text-slate-400">Body Reset — Begin here</p>
+                  <div className="space-y-4">
+                    <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-2">
+                      <p className="font-semibold text-slate-800">Step 1 — Collarbone Tap</p>
+                      <p>Tap lightly on either collarbone point and say:</p>
+                      <p className="italic text-slate-600">"Body, the danger is over. You can let this go now."</p>
+                    </div>
+                    <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-2">
+                      <p className="font-semibold text-slate-800">Step 2 — Jaw Release</p>
+                      <p>Gently open and close your jaw, side to side for 5 to 10 seconds.</p>
+                      <p className="italic text-slate-600">Say: "I release old reactions."</p>
+                    </div>
+                    <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-2">
+                      <p className="font-semibold text-slate-800">Step 3 — Exhale Drop</p>
+                      <p>Let your shoulders fall while exhaling through your mouth.</p>
+                      <p className="italic text-slate-600">Say: "My body can stand down."</p>
+                    </div>
+                    <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-2">
+                      <p className="font-semibold text-slate-800">Step 4 — Sweep the Body</p>
+                      <p>Take both hands and sweep down your chest, ribs, stomach, hips like you are brushing off dust.</p>
+                      <p className="italic text-slate-600">Say: "This pattern is erased."</p>
+                    </div>
+                    <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-2">
+                      <p className="font-semibold text-slate-800">Step 5 — Replace the Pattern</p>
+                      <p>Place your hand on your heart.</p>
+                      <p className="italic text-slate-600">Say: "My new baseline is calm. My new identity is healed."</p>
+                    </div>
                   </div>
                 </div>
                 <hr className="border-slate-200" />
-                <div className="space-y-2">
+                <div className="space-y-3">
+                  <p className="text-xs uppercase tracking-widest text-slate-400">30-Second Vagus Nerve Reset</p>
+                  <div className="space-y-3">
+                    <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-2">
+                      <p className="font-semibold text-slate-800">Step 1 — Look to the Right (15 seconds)</p>
+                      <p>Hold your eyes far right without moving your head until you feel a sigh, swallow, or yawn.</p>
+                    </div>
+                    <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-2">
+                      <p className="font-semibold text-slate-800">Step 2 — Look to the Left (15 seconds)</p>
+                      <p>Same thing — eyes far left until you sigh or swallow again. You will feel lighter and more grounded.</p>
+                    </div>
+                  </div>
+                </div>
+                <hr className="border-slate-200" />
+                <div className="space-y-3">
+                  <p className="text-xs uppercase tracking-widest text-slate-400">Sleep Reprogramming Script</p>
+                  <p>Lie in bed. Put one hand on your heart and one on your lower belly. Breathe in for 4 seconds. Out through your mouth for 8 seconds.</p>
+                  <p>Then repeat softly:</p>
+                  <div className="border-l-2 border-emerald-400 pl-5 space-y-2 italic text-slate-600">
+                    <p>My body knows how to heal.</p>
+                    <p>My nervous system knows how to relax.</p>
+                    <p>Every cell is remembering peace.</p>
+                    <p>I am safe while I sleep.</p>
+                    <p>My body is switching to repair mode now.</p>
+                  </div>
+                </div>
+                <hr className="border-slate-200" />
+                <div className="space-y-3">
                   <p className="text-xs uppercase tracking-widest text-slate-400">The truth my nervous system is ready to hear</p>
-                  <p>The beliefs I formed then lived in my body because no one came to correct them. Tonight, I correct them. Gently. Slowly.</p>
+                  <p>Around {ageText}, something happened that involved {whoText}. My body felt {emotionText}. Tonight I correct those beliefs. Gently. Slowly.</p>
                   <div className="space-y-2">
                     {nightlyBeliefs.map((belief) => (
                       <div key={belief} className="border-l-2 border-emerald-400 pl-4 italic text-slate-600"><p>{belief}</p></div>
@@ -499,17 +543,16 @@ export default function Dashboard() {
                   </div>
                 </div>
                 <hr className="border-slate-200" />
-                <div className="space-y-2">
-                  <p className="text-xs uppercase tracking-widest text-slate-400">A letter to my body</p>
-                  <p>Dear body — you have been on high alert for a long time. Tonight, I give you permission to rest. You do not have to keep watch tonight.</p>
+                <div className="space-y-3">
+                  <p className="text-xs uppercase tracking-widest text-slate-400">Identity Imprint</p>
+                  <div className="border-l-2 border-emerald-400 pl-5 space-y-2 italic text-slate-600">
+                    <p>I am no longer in healing mode.</p>
+                    <p>I am already healed.</p>
+                    <p>My body is simply maintaining my health.</p>
+                  </div>
                   <p>{bodyPlacementText}</p>
-                  <p>You can soften now. You are allowed.</p>
-                </div>
-                <hr className="border-slate-200" />
-                <div className="space-y-2">
-                  <p className="text-xs uppercase tracking-widest text-slate-400">As I drift toward sleep</p>
-                  <p>I place my hand on my heart. I feel it beating — steady, faithful, mine.</p>
-                  <p>I am allowed to sleep. I am allowed to let tonight be easy. I am allowed to wake up tomorrow and still be okay.</p>
+                  <p>Breathe in for 4. Out for 8.</p>
+                  <p className="italic text-slate-600">Everything that is not mine dissolves as I sleep.</p>
                 </div>
                 <hr className="border-slate-200" />
                 <div className="space-y-3 text-center">
@@ -522,37 +565,68 @@ export default function Dashboard() {
 
             {biblicalOpen && (
               <div className="rounded-2xl border border-slate-300 bg-slate-50 p-5 space-y-5 text-sm leading-7 text-slate-700">
-                <div className="space-y-2">
-                  <p className="text-xs uppercase tracking-widest text-slate-400">Begin here</p>
-                  <p>I find a comfortable position. I take one slow breath and simply notice that I am here — and that He is here too.</p>
-                  <p>Something in me did important work. I bring it to God now and I am ready to let it settle in His presence.</p>
-                </div>
-                <hr className="border-slate-200" />
-                <div className="space-y-2">
-                  <p className="text-xs uppercase tracking-widest text-slate-400">Settle my body</p>
-                  <p>I breathe in slowly for 4 counts. I hold gently for 4. I breathe out for 6.</p>
-                  <p>With each exhale, I release this to Him. I am safe in His hands right now.</p>
-                </div>
-                <hr className="border-slate-200" />
-                <div className="space-y-2">
-                  <p className="text-xs uppercase tracking-widest text-slate-400">Acknowledge what was</p>
-                  <p>Around {ageText}, something happened that involved {whoText}. My body felt {emotionText}. And from that, it formed a belief that made complete sense at the time.</p>
-                  <p>God saw what happened. He saw what I carried. He has never looked away.</p>
-                </div>
-                <hr className="border-slate-200" />
-                <div className="space-y-2">
-                  <p className="text-xs uppercase tracking-widest text-slate-400">To the younger part of me</p>
-                  <div className="border-l-2 border-rose-300 pl-4 space-y-2 italic text-slate-600">
-                    <p>I see you. God sees you too — He has always seen you.</p>
-                    <p>You were never meant to carry it alone.</p>
-                    <p>You survived something hard. But tonight, you can put it down.</p>
-                    <p>God says you are okay. You are loved. You always were.</p>
+                <div className="space-y-3">
+                  <p className="text-xs uppercase tracking-widest text-slate-400">Body Reset — Begin here</p>
+                  <div className="space-y-4">
+                    <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-2">
+                      <p className="font-semibold text-slate-800">Step 1 — Collarbone Tap</p>
+                      <p>Tap lightly on either collarbone point and say:</p>
+                      <p className="italic text-slate-600">"Body, the danger is over. God is here. You can let this go now."</p>
+                    </div>
+                    <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-2">
+                      <p className="font-semibold text-slate-800">Step 2 — Jaw Release</p>
+                      <p>Gently open and close your jaw, side to side for 5 to 10 seconds.</p>
+                      <p className="italic text-slate-600">Say: "I release old reactions. God is renewing my mind."</p>
+                    </div>
+                    <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-2">
+                      <p className="font-semibold text-slate-800">Step 3 — Exhale Drop</p>
+                      <p>Let your shoulders fall while exhaling through your mouth.</p>
+                      <p className="italic text-slate-600">Say: "My body can stand down. He is standing guard."</p>
+                    </div>
+                    <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-2">
+                      <p className="font-semibold text-slate-800">Step 4 — Sweep the Body</p>
+                      <p>Take both hands and sweep down your chest, ribs, stomach, hips.</p>
+                      <p className="italic text-slate-600">Say: "This pattern is erased. I am made new."</p>
+                    </div>
+                    <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-2">
+                      <p className="font-semibold text-slate-800">Step 5 — Replace the Pattern</p>
+                      <p>Place your hand on your heart.</p>
+                      <p className="italic text-slate-600">Say: "My new baseline is peace in Him. My new identity is healed and whole."</p>
+                    </div>
                   </div>
                 </div>
                 <hr className="border-slate-200" />
-                <div className="space-y-2">
+                <div className="space-y-3">
+                  <p className="text-xs uppercase tracking-widest text-slate-400">30-Second Vagus Nerve Reset</p>
+                  <div className="space-y-3">
+                    <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-2">
+                      <p className="font-semibold text-slate-800">Step 1 — Look to the Right (15 seconds)</p>
+                      <p>Hold your eyes far right until you feel a sigh, swallow, or yawn. This is your body coming into rest.</p>
+                    </div>
+                    <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-2">
+                      <p className="font-semibold text-slate-800">Step 2 — Look to the Left (15 seconds)</p>
+                      <p>Eyes far left until you sigh or swallow. You will feel lighter — that is peace settling in.</p>
+                    </div>
+                  </div>
+                </div>
+                <hr className="border-slate-200" />
+                <div className="space-y-3">
+                  <p className="text-xs uppercase tracking-widest text-slate-400">Sleep Reprogramming Script</p>
+                  <p>Lie in bed. Put one hand on your heart and one on your lower belly. Breathe in for 4 seconds. Out through your mouth for 8 seconds.</p>
+                  <p>Then repeat softly:</p>
+                  <div className="border-l-2 border-emerald-400 pl-5 space-y-2 italic text-slate-600">
+                    <p>My body knows how to heal — God designed it this way.</p>
+                    <p>My nervous system knows how to relax — He gives rest to those He loves.</p>
+                    <p>Every cell is remembering peace — His peace that passes understanding.</p>
+                    <p>I am safe while I sleep — He watches over me.</p>
+                    <p>My body is switching to repair mode now — He restores.</p>
+                  </div>
+                </div>
+                <hr className="border-slate-200" />
+                <div className="space-y-3">
                   <p className="text-xs uppercase tracking-widest text-slate-400">The truth He says about me</p>
-                  <p>Tonight, God's truth corrects what I believed. Gently. Slowly.</p>
+                  <p>Around {ageText}, something happened that involved {whoText}. My body felt {emotionText}. God saw what happened. He has never looked away.</p>
+                  <p>Tonight, His truth corrects what I believed. Gently. Slowly.</p>
                   <div className="space-y-2">
                     {nightlyBeliefsBiblical.map((belief) => (
                       <div key={belief} className="border-l-2 border-emerald-400 pl-4 italic text-slate-600"><p>{belief}</p></div>
@@ -560,17 +634,16 @@ export default function Dashboard() {
                   </div>
                 </div>
                 <hr className="border-slate-200" />
-                <div className="space-y-2">
-                  <p className="text-xs uppercase tracking-widest text-slate-400">A prayer for my body</p>
-                  <p>God — tonight I invite You in. I give You this body, this tension, this holding. I trust You with what I have been carrying.</p>
+                <div className="space-y-3">
+                  <p className="text-xs uppercase tracking-widest text-slate-400">Identity Imprint</p>
+                  <div className="border-l-2 border-emerald-400 pl-5 space-y-2 italic text-slate-600">
+                    <p>I am no longer in healing mode.</p>
+                    <p>I am already healed — by His stripes.</p>
+                    <p>My body is simply maintaining what God has already done.</p>
+                  </div>
                   <p>{bodyPlacementText}</p>
-                  <p>God is here. I can soften now. I am held.</p>
-                </div>
-                <hr className="border-slate-200" />
-                <div className="space-y-2">
-                  <p className="text-xs uppercase tracking-widest text-slate-400">As I drift toward sleep</p>
-                  <p>I place my hand on my heart. I feel it beating — steady, faithful, created by Him.</p>
-                  <p>I am held tonight. I will wake up tomorrow in His hands, and I will still be okay.</p>
+                  <p>Breathe in for 4. Out for 8.</p>
+                  <p className="italic text-slate-600">Everything that is not from Him dissolves as I sleep.</p>
                 </div>
                 <hr className="border-slate-200" />
                 <div className="space-y-3 text-center">
