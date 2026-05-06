@@ -226,6 +226,7 @@ export default function Dashboard() {
   const [selectedSession, setSelectedSession] = useState<Session | null>(null);
   const [standardOpen, setStandardOpen] = useState(false);
   const [biblicalOpen, setBiblicalOpen] = useState(false);
+  const [portalLoading, setPortalLoading] = useState(false);
 
   useEffect(() => {
     let mounted = true;
@@ -283,6 +284,24 @@ export default function Dashboard() {
   const handleAccept = () => {
     sessionStorage.setItem("release-core-disclaimer-accepted", "true");
     setAccepted(true);
+  };
+
+  const handleManageSubscription = async () => {
+    setPortalLoading(true);
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user?.email) return;
+      const res = await fetch("/api/billing-portal", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: user.email }),
+      });
+      const data = await res.json();
+      if (data.url) window.location.href = data.url;
+    } catch (err) {
+      console.error(err);
+    }
+    setPortalLoading(false);
   };
 
   const openSession = (session: Session) => {
@@ -690,6 +709,13 @@ export default function Dashboard() {
             </div>
           )}
         </div>
+        <button
+          onClick={handleManageSubscription}
+          disabled={portalLoading}
+          className="w-full bg-white border border-gray-300 py-3 rounded-xl text-lg font-medium text-gray-800 hover:bg-gray-100 transition disabled:opacity-60"
+        >
+          {portalLoading ? "Loading..." : "Manage Subscription"}
+        </button>
         <button onClick={() => router.push("/")} className="w-full text-sm text-gray-500 mt-4 underline">Back to Home</button>
       </div>
     </div>
