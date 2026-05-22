@@ -15,6 +15,7 @@ const navItems = [
   { href: "/start-session", label: "Start Session" },
   { href: "/session-entry", label: "Session Entry" },
   { href: "/faq", label: "FAQ" },
+  { href: "/grounding-scripts", label: "Grounding Scripts" },
 ];
 
 export default function AppShell({ title, subtitle, children }: AppShellProps) {
