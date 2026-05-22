@@ -3,19 +3,13 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import AppShell from "@/components/AppShell";
 
-// ─── Types ───────────────────────────────────────────────────────────────────
-
 type Script = {
   id: string;
   title: string;
   subtitle: string;
   icon: string;
   lines: string[];
-  steps?: { label: string; body: string }[];
-  closing?: string;
 };
-
-// ─── Script data (plain text lines for TTS + display) ────────────────────────
 
 const scripts: Script[] = [
   {
@@ -50,7 +44,6 @@ const scripts: Script[] = [
       "Finish with a slow deep breath and place a hand over your heart.",
       "My body no longer has to carry fear the same way.",
     ],
-    closing: "My body no longer has to carry fear the same way.",
   },
   {
     id: "manifesting",
@@ -84,7 +77,7 @@ const scripts: Script[] = [
       "You are becoming available for better experiences.",
       "Better relationships. Better opportunities. Better finances. Better health. Better outcomes.",
       "The right ideas find you. The right people find you. The right opportunities find you.",
-      "You stop pushing away the very things you've been praying for.",
+      "You stop pushing away the very things you have been praying for.",
       "You allow yourself to receive without guilt.",
       "You allow yourself to rest without fear.",
       "You allow yourself to trust without constantly waiting for something bad to happen.",
@@ -261,16 +254,16 @@ const scripts: Script[] = [
     subtitle: "Soften self-criticism with kindness",
     icon: "☀️",
     lines: [
-      "You are doing the best you can with what you have right now.",
+      "I am doing the best I can with what I have right now.",
       "That is enough.",
-      "You are enough.",
-      "You do not have to be perfect to deserve kindness.",
-      "You do not have to be healed to deserve love.",
-      "You do not have to be strong to deserve rest.",
-      "The parts of you that are struggling are not your failures.",
-      "They are evidence that you have been carrying something heavy for a long time.",
-      "You are allowed to be gentle with yourself today.",
-      "You are allowed to stop being so hard on yourself.",
+      "I am enough.",
+      "I do not have to be perfect to deserve kindness.",
+      "I do not have to be healed to deserve love.",
+      "I do not have to be strong to deserve rest.",
+      "The parts of me that are struggling are not my failures.",
+      "They are evidence that I have been carrying something heavy for a long time.",
+      "I am allowed to be gentle with myself today.",
+      "I am allowed to stop being so hard on myself.",
       "I forgive myself for the ways I have spoken harshly to myself.",
       "I forgive myself for the times I did not know better.",
       "I forgive myself for the seasons I spent in survival mode.",
@@ -284,31 +277,118 @@ const scripts: Script[] = [
       "I am worthy of my own love.",
     ],
   },
+  {
+    id: "biblical-peace",
+    title: "He Is With Me",
+    subtitle: "A biblical script for fear and anxiety",
+    icon: "✝️",
+    lines: [
+      "I am not alone in this moment.",
+      "The same God who calmed the storm on the sea is with me right now.",
+      "He sees me. He knows me. He has not forgotten me.",
+      "I cast my anxiety on Him, because He cares for me.",
+      "I do not have to carry this alone.",
+      "I was never meant to carry this alone.",
+      "The Lord is my shepherd. I shall not want.",
+      "He makes me lie down in green pastures.",
+      "He leads me beside still waters.",
+      "He restores my soul.",
+      "Even in the valley, He is with me.",
+      "His rod and His staff — they comfort me.",
+      "I do not have to be afraid.",
+      "For He has not given me a spirit of fear,",
+      "but of power, and of love, and of a sound mind.",
+      "Be still.",
+      "And know that He is God.",
+      "And know that I am held.",
+    ],
+  },
+  {
+    id: "biblical-surrender",
+    title: "Surrendering to His Peace",
+    subtitle: "A biblical script for overthinking and worry",
+    icon: "🕊️",
+    lines: [
+      "I will not be anxious about anything.",
+      "Instead, I bring everything to God in prayer.",
+      "Every fear. Every worry. Every what-if.",
+      "He already knows what I need before I ask.",
+      "I do not have to figure this out on my own.",
+      "I was not designed to.",
+      "The peace of God, which surpasses all understanding, is available to me right now.",
+      "It will guard my heart.",
+      "It will guard my mind.",
+      "I can lay this down.",
+      "I can trust Him with the outcome.",
+      "I can release the need to control what only He can carry.",
+      "His plans for me are good.",
+      "Plans to give me a future and a hope.",
+      "Not to harm me. Not to abandon me.",
+      "I rest in that now.",
+      "I let my body soften into His presence.",
+      "I let my mind quiet in His truth.",
+      "He is faithful.",
+      "He was faithful before this moment.",
+      "He will be faithful after it.",
+      "I am safe in His hands.",
+    ],
+  },
+  {
+    id: "biblical-rooted",
+    title: "Rooted in Him",
+    subtitle: "A biblical script for healing, identity, and strength",
+    icon: "🌿",
+    lines: [
+      "I am healing.",
+      "Not because I have it all together,",
+      "but because God is working in me even now.",
+      "He is healing what my mind cannot fix on its own.",
+      "He is restoring what pain tried to take from me.",
+      "He is reaching the places I have not even been able to name yet.",
+      "I do not have to earn my way back to wholeness.",
+      "He is leading me there.",
+      "I know who I am.",
+      "I am not my worst season.",
+      "I am not my hardest moment.",
+      "I am not the version of myself that was just surviving.",
+      "I am a child of God.",
+      "Chosen. Known. Loved. Kept.",
+      "That does not change based on how I feel today.",
+      "When I am weak, He is strong.",
+      "I do not have to hold everything together right now.",
+      "I can lean into the One who is already holding me.",
+      "I release the need to have all the answers.",
+      "I release the pressure of perfect timing.",
+      "I release the fear that I have somehow missed my chance.",
+      "His timing is not behind.",
+      "His love is not conditional.",
+      "His strength is made perfect in my weakness.",
+      "I am not too far gone.",
+      "I am not too broken.",
+      "I am not too tired.",
+      "He meets me exactly where I am.",
+      "And right here, in this moment, that is enough.",
+      "I am rooted in Him.",
+      "And nothing can change that.",
+    ],
+  },
 ];
-
-// ─── TTS Hook ─────────────────────────────────────────────────────────────────
 
 function useTTS(lines: string[]) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentLine, setCurrentLine] = useState<number | null>(null);
   const [rate, setRate] = useState(0.85);
   const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
-  const lineIndexRef = useRef(0);
   const stoppedRef = useRef(false);
 
   const getVoice = useCallback((): SpeechSynthesisVoice | null => {
     const voices = window.speechSynthesis.getVoices();
-    const preferred = [
-      "Samantha", "Karen", "Moira", "Tessa", "Fiona",
-      "Victoria", "Allison", "Ava", "Susan", "Zoe",
-    ];
+    const preferred = ["Samantha", "Karen", "Moira", "Tessa", "Fiona", "Victoria", "Allison", "Ava", "Susan", "Zoe"];
     for (const name of preferred) {
       const v = voices.find((v) => v.name.includes(name));
       if (v) return v;
     }
-    const female = voices.find(
-      (v) => v.lang.startsWith("en") && v.name.toLowerCase().includes("female")
-    );
+    const female = voices.find((v) => v.lang.startsWith("en") && v.name.toLowerCase().includes("female"));
     if (female) return female;
     return voices.find((v) => v.lang.startsWith("en")) ?? null;
   }, []);
@@ -321,21 +401,15 @@ function useTTS(lines: string[]) {
         return;
       }
       const text = lines[index];
-      if (!text.trim()) {
-        speakLine(index + 1);
-        return;
-      }
+      if (!text.trim()) { speakLine(index + 1); return; }
       const utter = new SpeechSynthesisUtterance(text);
       utter.rate = rate;
       utter.pitch = 0.95;
       utter.volume = 1;
       const voice = getVoice();
       if (voice) utter.voice = voice;
-      lineIndexRef.current = index;
       setCurrentLine(index);
-      utter.onend = () => {
-        if (!stoppedRef.current) speakLine(index + 1);
-      };
+      utter.onend = () => { if (!stoppedRef.current) speakLine(index + 1); };
       utteranceRef.current = utter;
       window.speechSynthesis.speak(utter);
     },
@@ -350,17 +424,11 @@ function useTTS(lines: string[]) {
   }, [speakLine]);
 
   const pause = useCallback(() => {
-    if (window.speechSynthesis.speaking) {
-      window.speechSynthesis.pause();
-      setIsPlaying(false);
-    }
+    if (window.speechSynthesis.speaking) { window.speechSynthesis.pause(); setIsPlaying(false); }
   }, []);
 
   const resume = useCallback(() => {
-    if (window.speechSynthesis.paused) {
-      window.speechSynthesis.resume();
-      setIsPlaying(true);
-    }
+    if (window.speechSynthesis.paused) { window.speechSynthesis.resume(); setIsPlaying(true); }
   }, []);
 
   const stop = useCallback(() => {
@@ -370,125 +438,23 @@ function useTTS(lines: string[]) {
     setCurrentLine(null);
   }, []);
 
-  useEffect(() => {
-    return () => {
-      stoppedRef.current = true;
-      window.speechSynthesis.cancel();
-    };
-  }, []);
+  useEffect(() => { return () => { stoppedRef.current = true; window.speechSynthesis.cancel(); }; }, []);
 
   return { isPlaying, currentLine, rate, setRate, play, pause, resume, stop };
 }
 
-// ─── Player UI ────────────────────────────────────────────────────────────────
-
-function ScriptPlayer({ lines }: { lines: string[] }) {
-  const { isPlaying, currentLine, rate, setRate, play, pause, resume, stop } = useTTS(lines);
-  const started = currentLine !== null || isPlaying;
-
-  return (
-    <div className="mb-5 rounded-xl border border-calm-200 bg-calm-50 px-4 py-4">
-      <div className="flex items-center gap-3 flex-wrap">
-        {!started ? (
-          <button
-            onClick={play}
-            className="flex items-center gap-2 rounded-full bg-calm-600 px-5 py-2 text-sm font-medium text-white transition hover:bg-calm-700"
-          >
-            <PlayIcon /> Read aloud
-          </button>
-        ) : (
-          <>
-            {isPlaying ? (
-              <button
-                onClick={pause}
-                className="flex items-center gap-2 rounded-full bg-calm-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-calm-700"
-              >
-                <PauseIcon /> Pause
-              </button>
-            ) : (
-              <button
-                onClick={resume}
-                className="flex items-center gap-2 rounded-full bg-calm-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-calm-700"
-              >
-                <PlayIcon /> Resume
-              </button>
-            )}
-            <button
-              onClick={stop}
-              className="rounded-full border border-calm-300 px-4 py-2 text-sm text-calm-700 transition hover:bg-calm-100"
-            >
-              Stop
-            </button>
-          </>
-        )}
-
-        <div className="flex items-center gap-2 ml-auto">
-          <span className="text-xs text-slate-500">Speed</span>
-          <input
-            type="range"
-            min="0.6"
-            max="1.2"
-            step="0.05"
-            value={rate}
-            onChange={(e) => setRate(parseFloat(e.target.value))}
-            className="w-24 accent-calm-600"
-          />
-          <span className="text-xs text-slate-500 w-6">{rate.toFixed(2)}x</span>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function PlayIcon() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-      <polygon points="5,3 19,12 5,21" />
-    </svg>
-  );
+  return <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21" /></svg>;
 }
 
 function PauseIcon() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-      <rect x="5" y="3" width="4" height="18" />
-      <rect x="15" y="3" width="4" height="18" />
-    </svg>
-  );
+  return <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="5" y="3" width="4" height="18" /><rect x="15" y="3" width="4" height="18" /></svg>;
 }
-
-// ─── Script display ───────────────────────────────────────────────────────────
-
-function ScriptLines({ lines, currentLine }: { lines: string[]; currentLine: number | null }) {
-  return (
-    <div className="space-y-1.5">
-      {lines.map((line, i) =>
-        line.trim() === "" ? (
-          <div key={i} className="h-3" />
-        ) : (
-          <p
-            key={i}
-            className={`text-sm leading-7 rounded-lg px-2 py-0.5 transition-colors duration-300 ${
-              currentLine === i
-                ? "bg-calm-100 text-calm-800 font-medium"
-                : "text-slate-700"
-            }`}
-          >
-            {line}
-          </p>
-        )
-      )}
-    </div>
-  );
-}
-
-// ─── Main page ────────────────────────────────────────────────────────────────
 
 export default function GroundingScripts() {
   const [activeId, setActiveId] = useState<string | null>(null);
   const active = scripts.find((s) => s.id === activeId);
-  const { isPlaying, currentLine, rate, setRate, play, pause, resume, stop } =
-    useTTS(active?.lines ?? []);
+  const { isPlaying, currentLine, rate, setRate, play, pause, resume, stop } = useTTS(active?.lines ?? []);
 
   function openScript(id: string) {
     stop();
@@ -500,8 +466,10 @@ export default function GroundingScripts() {
       title="Grounding Scripts"
       subtitle="When you can't do a full session, these scripts help your body find safety in the moment. Choose one below to begin."
     >
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-        {scripts.map((s) => (
+      {/* General Scripts */}
+      <p className="text-xs font-semibold uppercase tracking-wide text-slate-400 mb-3">Grounding & Nervous System</p>
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 mb-6">
+        {scripts.filter(s => !s.id.startsWith("biblical")).map((s) => (
           <button
             key={s.id}
             onClick={() => openScript(s.id)}
@@ -518,8 +486,29 @@ export default function GroundingScripts() {
         ))}
       </div>
 
+      {/* Biblical Scripts */}
+      <p className="text-xs font-semibold uppercase tracking-wide text-slate-400 mb-3">Biblical</p>
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 mb-6">
+        {scripts.filter(s => s.id.startsWith("biblical")).map((s) => (
+          <button
+            key={s.id}
+            onClick={() => openScript(s.id)}
+            className={`rounded-xl border px-4 py-4 text-left transition-all ${
+              activeId === s.id
+                ? "border-calm-400 bg-calm-50 ring-1 ring-calm-300"
+                : "border-calm-200 bg-white hover:border-calm-300 hover:bg-calm-50"
+            }`}
+          >
+            <div className="text-2xl mb-2">{s.icon}</div>
+            <p className="text-sm font-semibold text-slate-800">{s.title}</p>
+            <p className="text-xs text-slate-500 mt-0.5 leading-4">{s.subtitle}</p>
+          </button>
+        ))}
+      </div>
+
+      {/* Open Script Panel */}
       {active && (
-        <div className="mt-6 rounded-xl border border-calm-200 bg-white p-6">
+        <div className="mt-2 rounded-xl border border-calm-200 bg-white p-6">
           <div className="flex items-start justify-between mb-4">
             <div>
               <h2 className="text-lg font-semibold text-calm-700">{active.title}</h2>
@@ -546,24 +535,15 @@ export default function GroundingScripts() {
               ) : (
                 <>
                   {isPlaying ? (
-                    <button
-                      onClick={pause}
-                      className="flex items-center gap-2 rounded-full bg-calm-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-calm-700"
-                    >
+                    <button onClick={pause} className="flex items-center gap-2 rounded-full bg-calm-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-calm-700">
                       <PauseIcon /> Pause
                     </button>
                   ) : (
-                    <button
-                      onClick={resume}
-                      className="flex items-center gap-2 rounded-full bg-calm-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-calm-700"
-                    >
+                    <button onClick={resume} className="flex items-center gap-2 rounded-full bg-calm-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-calm-700">
                       <PlayIcon /> Resume
                     </button>
                   )}
-                  <button
-                    onClick={stop}
-                    className="rounded-full border border-calm-300 px-4 py-2 text-sm text-calm-700 transition hover:bg-calm-100"
-                  >
+                  <button onClick={stop} className="rounded-full border border-calm-300 px-4 py-2 text-sm text-calm-700 transition hover:bg-calm-100">
                     Stop
                   </button>
                 </>
@@ -571,11 +551,7 @@ export default function GroundingScripts() {
               <div className="flex items-center gap-2 ml-auto">
                 <span className="text-xs text-slate-500">Speed</span>
                 <input
-                  type="range"
-                  min="0.6"
-                  max="1.2"
-                  step="0.05"
-                  value={rate}
+                  type="range" min="0.6" max="1.2" step="0.05" value={rate}
                   onChange={(e) => setRate(parseFloat(e.target.value))}
                   className="w-24 accent-calm-600"
                 />
@@ -584,9 +560,18 @@ export default function GroundingScripts() {
             </div>
           </div>
 
-          {/* Script lines with highlight */}
-          <div className="border-t border-calm-100 pt-4">
-            <ScriptLines lines={active.lines} currentLine={currentLine} />
+          {/* Script lines */}
+          <div className="border-t border-calm-100 pt-4 space-y-1.5">
+            {active.lines.map((line, i) => (
+              <p
+                key={i}
+                className={`text-sm leading-7 rounded-lg px-2 py-0.5 transition-colors duration-300 ${
+                  currentLine === i ? "bg-calm-100 text-calm-800 font-medium" : "text-slate-700"
+                }`}
+              >
+                {line}
+              </p>
+            ))}
           </div>
         </div>
       )}
