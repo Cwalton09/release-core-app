@@ -402,8 +402,9 @@ export default function QuickRelief() {
               <p className="text-xs text-slate-400 uppercase tracking-wide font-semibold mb-0.5">You selected</p>
               <p className="text-base font-semibold text-slate-800">{selected.icon} {selected.label}</p>
             </div>
-            <button onClick={reset} className="text-xs text-slate-400 hover:text-slate-600 border border-slate-200 rounded-lg px-3 py-1.5 transition">
-              Start over
+            <button onClick={reset} className="flex items-center gap-1.5 text-xs text-calm-700 hover:text-calm-800 border border-calm-200 rounded-lg px-3 py-1.5 transition hover:bg-calm-50">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="15,18 9,12 15,6" /></svg>
+              Back
             </button>
           </div>
 
