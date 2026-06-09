@@ -1,8 +1,7 @@
-import { createMiddlewareClient } from "@supabase/auth-helpers-nextjs";
+import { createServerClient } from "@supabase/ssr";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-// Pages that require a paid subscription
 const PROTECTED_ROUTES = [
   "/dashboard",
   "/start-session",
@@ -12,30 +11,49 @@ const PROTECTED_ROUTES = [
   "/daily-practices",
 ];
 
-// Pages only accessible when NOT logged in
 const AUTH_ROUTES = ["/login", "/signup"];
+
+const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/5kQ3cvaczg6H6tpgYsbII01";
 
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next();
-  const supabase = createMiddlewareClient({ req, res });
-
-  const { data: { session } } = await supabase.auth.getSession();
   const { pathname } = req.nextUrl;
 
   const isProtected = PROTECTED_ROUTES.some((route) => pathname.startsWith(route));
   const isAuthRoute = AUTH_ROUTES.some((route) => pathname.startsWith(route));
 
-  // Not logged in trying to access protected page → send to login
+  if (!isProtected && !isAuthRoute) return res;
+
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll() {
+          return req.cookies.getAll();
+        },
+        setAll(cookiesToSet) {
+          cookiesToSet.forEach(({ name, value, options }) => {
+            res.cookies.set(name, value, options);
+          });
+        },
+      },
+    }
+  );
+
+  const { data: { session } } = await supabase.auth.getSession();
+
+  // Not logged in → send to login
   if (isProtected && !session) {
     return NextResponse.redirect(new URL("/login", req.url));
   }
 
-  // Logged in but on login/signup → send to dashboard
+  // Logged in on auth page → send to dashboard
   if (isAuthRoute && session) {
     return NextResponse.redirect(new URL("/dashboard", req.url));
   }
 
-  // Logged in and accessing protected route → check paid status
+  // Logged in on protected route → check paid
   if (isProtected && session) {
     const { data: profile } = await supabase
       .from("profiles")
@@ -43,9 +61,8 @@ export async function middleware(req: NextRequest) {
       .eq("user_id", session.user.id)
       .maybeSingle();
 
-    // Not paid → send to Stripe
     if (!profile?.paid) {
-      return NextResponse.redirect(new URL("https://buy.stripe.com/5kQ3cvaczg6H6tpgYsbII01", req.url));
+      return NextResponse.redirect(new URL(STRIPE_PAYMENT_LINK, req.url));
     }
   }
 
