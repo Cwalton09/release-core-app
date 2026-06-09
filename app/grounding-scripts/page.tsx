@@ -3,6 +3,8 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import AppShell from "@/components/AppShell";
 
+// ─── Types ───────────────────────────────────────────────────────────────────
+
 type Script = {
   id: string;
   title: string;
@@ -10,6 +12,275 @@ type Script = {
   icon: string;
   lines: string[];
 };
+
+type BreathingTechnique = {
+  id: string;
+  title: string;
+  description: string;
+  phases: { label: string; duration: number; color: string }[];
+};
+
+// ─── Breathing Techniques ────────────────────────────────────────────────────
+
+const breathingTechniques: BreathingTechnique[] = [
+  {
+    id: "box",
+    title: "Box Breathing",
+    description: "Calms the nervous system and improves focus",
+    phases: [
+      { label: "Inhale", duration: 4, color: "#1D9E75" },
+      { label: "Hold", duration: 4, color: "#0F6E56" },
+      { label: "Exhale", duration: 4, color: "#6BA8B4" },
+      { label: "Hold", duration: 4, color: "#4A7A85" },
+    ],
+  },
+  {
+    id: "478",
+    title: "4-7-8 Breathing",
+    description: "Deeply relaxing, great for anxiety and sleep",
+    phases: [
+      { label: "Inhale", duration: 4, color: "#1D9E75" },
+      { label: "Hold", duration: 7, color: "#0F6E56" },
+      { label: "Exhale", duration: 8, color: "#6BA8B4" },
+    ],
+  },
+  {
+    id: "physiological",
+    title: "Physiological Sigh",
+    description: "Fastest way to reduce stress in real time",
+    phases: [
+      { label: "Inhale (nose)", duration: 3, color: "#1D9E75" },
+      { label: "Second inhale (nose)", duration: 1, color: "#0F6E56" },
+      { label: "Long exhale (mouth)", duration: 8, color: "#6BA8B4" },
+    ],
+  },
+  {
+    id: "extended",
+    title: "Extended Exhale",
+    description: "Activates the vagus nerve and parasympathetic system",
+    phases: [
+      { label: "Inhale (nose)", duration: 4, color: "#1D9E75" },
+      { label: "Exhale (mouth)", duration: 8, color: "#6BA8B4" },
+    ],
+  },
+];
+
+// ─── Breathing Timer Component ───────────────────────────────────────────────
+
+function BreathingTimer({ technique }: { technique: BreathingTechnique }) {
+  const [isRunning, setIsRunning] = useState(false);
+  const [phaseIndex, setPhaseIndex] = useState(0);
+  const [secondsLeft, setSecondsLeft] = useState(technique.phases[0].duration);
+  const [cycles, setCycles] = useState(0);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  const totalDuration = technique.phases.reduce((sum, p) => sum + p.duration, 0);
+  const currentPhase = technique.phases[phaseIndex];
+
+  // Calculate circle scale based on phase
+  const isInhale = currentPhase.label.toLowerCase().includes("inhale");
+  const isHold = currentPhase.label.toLowerCase().includes("hold");
+  const progress = 1 - secondsLeft / currentPhase.duration;
+
+  let circleScale = 1;
+  if (isInhale) circleScale = 0.6 + 0.4 * progress;
+  else if (isHold) circleScale = phaseIndex === 1 && technique.id === "box" ? 1 : isInhale ? 1 : 0.6;
+  else circleScale = 1 - 0.4 * progress;
+
+  // Fix hold scale
+  if (isHold) {
+    const prevPhase = technique.phases[phaseIndex - 1];
+    if (prevPhase?.label.toLowerCase().includes("inhale")) circleScale = 1;
+    else circleScale = 0.6;
+  }
+
+  useEffect(() => {
+    if (!isRunning) return;
+    intervalRef.current = setInterval(() => {
+      setSecondsLeft((prev) => {
+        if (prev <= 1) {
+          setPhaseIndex((pi) => {
+            const next = (pi + 1) % technique.phases.length;
+            if (next === 0) setCycles((c) => c + 1);
+            setSecondsLeft(technique.phases[next].duration);
+            return next;
+          });
+          return technique.phases[(phaseIndex + 1) % technique.phases.length].duration;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+    return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
+  }, [isRunning, phaseIndex, technique]);
+
+  function start() {
+    setPhaseIndex(0);
+    setSecondsLeft(technique.phases[0].duration);
+    setCycles(0);
+    setIsRunning(true);
+  }
+
+  function stop() {
+    setIsRunning(false);
+    setPhaseIndex(0);
+    setSecondsLeft(technique.phases[0].duration);
+    setCycles(0);
+  }
+
+  return (
+    <div className="flex flex-col items-center py-6">
+      {/* Circle */}
+      <div className="relative flex items-center justify-center w-48 h-48 mb-6">
+        {/* Outer ring */}
+        <div
+          className="absolute rounded-full border-2 border-calm-200"
+          style={{ width: "192px", height: "192px" }}
+        />
+        {/* Animated circle */}
+        <div
+          className="rounded-full flex flex-col items-center justify-center transition-all"
+          style={{
+            width: `${circleScale * 160}px`,
+            height: `${circleScale * 160}px`,
+            backgroundColor: isRunning ? currentPhase.color + "33" : "#E1F5EE",
+            border: `2px solid ${isRunning ? currentPhase.color : "#1D9E75"}`,
+            transitionDuration: "800ms",
+            transitionTimingFunction: "ease-in-out",
+          }}
+        >
+          {isRunning ? (
+            <>
+              <span className="text-2xl font-light text-slate-700">{secondsLeft}</span>
+              <span className="text-xs text-slate-500 mt-0.5">{currentPhase.label}</span>
+            </>
+          ) : (
+            <span className="text-xs text-calm-600 text-center px-2">Press start</span>
+          )}
+        </div>
+      </div>
+
+      {/* Phase indicators */}
+      <div className="flex gap-2 mb-6 flex-wrap justify-center">
+        {technique.phases.map((phase, i) => (
+          <div
+            key={i}
+            className={`rounded-full px-3 py-1 text-xs transition-all ${
+              isRunning && phaseIndex === i
+                ? "bg-calm-600 text-white"
+                : "bg-calm-50 text-slate-500 border border-calm-200"
+            }`}
+          >
+            {phase.label} • {phase.duration}s
+          </div>
+        ))}
+      </div>
+
+      {/* Cycles counter */}
+      {cycles > 0 && (
+        <p className="text-xs text-slate-400 mb-4">Cycles completed: {cycles}</p>
+      )}
+
+      {/* Controls */}
+      <div className="flex gap-3">
+        {!isRunning ? (
+          <button
+            onClick={start}
+            className="flex items-center gap-2 rounded-full bg-calm-600 px-6 py-2.5 text-sm font-medium text-white transition hover:bg-calm-700"
+          >
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21" /></svg>
+            Start
+          </button>
+        ) : (
+          <button
+            onClick={stop}
+            className="rounded-full border border-calm-300 px-6 py-2.5 text-sm text-calm-700 transition hover:bg-calm-100"
+          >
+            Stop
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// ─── TTS Hook ─────────────────────────────────────────────────────────────────
+
+function useTTS(lines: string[]) {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentLine, setCurrentLine] = useState<number | null>(null);
+  const [rate, setRate] = useState(0.85);
+  const stoppedRef = useRef(false);
+
+  const getVoice = useCallback((): SpeechSynthesisVoice | null => {
+    const voices = window.speechSynthesis.getVoices();
+    const preferred = ["Samantha", "Karen", "Moira", "Tessa", "Fiona", "Victoria", "Allison", "Ava", "Susan", "Zoe"];
+    for (const name of preferred) {
+      const v = voices.find((v) => v.name.includes(name));
+      if (v) return v;
+    }
+    const female = voices.find((v) => v.lang.startsWith("en") && v.name.toLowerCase().includes("female"));
+    if (female) return female;
+    return voices.find((v) => v.lang.startsWith("en")) ?? null;
+  }, []);
+
+  const speakLine = useCallback(
+    (index: number) => {
+      if (index >= lines.length || stoppedRef.current) {
+        setIsPlaying(false);
+        setCurrentLine(null);
+        return;
+      }
+      const text = lines[index];
+      if (!text.trim()) { speakLine(index + 1); return; }
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.rate = rate;
+      utter.pitch = 0.95;
+      utter.volume = 1;
+      const voice = getVoice();
+      if (voice) utter.voice = voice;
+      setCurrentLine(index);
+      utter.onend = () => { if (!stoppedRef.current) speakLine(index + 1); };
+      window.speechSynthesis.speak(utter);
+    },
+    [lines, rate, getVoice]
+  );
+
+  const play = useCallback(() => {
+    stoppedRef.current = false;
+    window.speechSynthesis.cancel();
+    setIsPlaying(true);
+    speakLine(0);
+  }, [speakLine]);
+
+  const pause = useCallback(() => {
+    if (window.speechSynthesis.speaking) { window.speechSynthesis.pause(); setIsPlaying(false); }
+  }, []);
+
+  const resume = useCallback(() => {
+    if (window.speechSynthesis.paused) { window.speechSynthesis.resume(); setIsPlaying(true); }
+  }, []);
+
+  const stop = useCallback(() => {
+    stoppedRef.current = true;
+    window.speechSynthesis.cancel();
+    setIsPlaying(false);
+    setCurrentLine(null);
+  }, []);
+
+  useEffect(() => { return () => { stoppedRef.current = true; window.speechSynthesis.cancel(); }; }, []);
+
+  return { isPlaying, currentLine, rate, setRate, play, pause, resume, stop };
+}
+
+function PlayIcon() {
+  return <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21" /></svg>;
+}
+
+function PauseIcon() {
+  return <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="5" y="3" width="4" height="18" /><rect x="15" y="3" width="4" height="18" /></svg>;
+}
+
+// ─── Scripts data ─────────────────────────────────────────────────────────────
 
 const scripts: Script[] = [
   {
@@ -374,100 +645,70 @@ const scripts: Script[] = [
   },
 ];
 
-function useTTS(lines: string[]) {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [currentLine, setCurrentLine] = useState<number | null>(null);
-  const [rate, setRate] = useState(0.85);
-  const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
-  const stoppedRef = useRef(false);
-
-  const getVoice = useCallback((): SpeechSynthesisVoice | null => {
-    const voices = window.speechSynthesis.getVoices();
-    const preferred = ["Samantha", "Karen", "Moira", "Tessa", "Fiona", "Victoria", "Allison", "Ava", "Susan", "Zoe"];
-    for (const name of preferred) {
-      const v = voices.find((v) => v.name.includes(name));
-      if (v) return v;
-    }
-    const female = voices.find((v) => v.lang.startsWith("en") && v.name.toLowerCase().includes("female"));
-    if (female) return female;
-    return voices.find((v) => v.lang.startsWith("en")) ?? null;
-  }, []);
-
-  const speakLine = useCallback(
-    (index: number) => {
-      if (index >= lines.length || stoppedRef.current) {
-        setIsPlaying(false);
-        setCurrentLine(null);
-        return;
-      }
-      const text = lines[index];
-      if (!text.trim()) { speakLine(index + 1); return; }
-      const utter = new SpeechSynthesisUtterance(text);
-      utter.rate = rate;
-      utter.pitch = 0.95;
-      utter.volume = 1;
-      const voice = getVoice();
-      if (voice) utter.voice = voice;
-      setCurrentLine(index);
-      utter.onend = () => { if (!stoppedRef.current) speakLine(index + 1); };
-      utteranceRef.current = utter;
-      window.speechSynthesis.speak(utter);
-    },
-    [lines, rate, getVoice]
-  );
-
-  const play = useCallback(() => {
-    stoppedRef.current = false;
-    window.speechSynthesis.cancel();
-    setIsPlaying(true);
-    speakLine(0);
-  }, [speakLine]);
-
-  const pause = useCallback(() => {
-    if (window.speechSynthesis.speaking) { window.speechSynthesis.pause(); setIsPlaying(false); }
-  }, []);
-
-  const resume = useCallback(() => {
-    if (window.speechSynthesis.paused) { window.speechSynthesis.resume(); setIsPlaying(true); }
-  }, []);
-
-  const stop = useCallback(() => {
-    stoppedRef.current = true;
-    window.speechSynthesis.cancel();
-    setIsPlaying(false);
-    setCurrentLine(null);
-  }, []);
-
-  useEffect(() => { return () => { stoppedRef.current = true; window.speechSynthesis.cancel(); }; }, []);
-
-  return { isPlaying, currentLine, rate, setRate, play, pause, resume, stop };
-}
-
-function PlayIcon() {
-  return <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21" /></svg>;
-}
-
-function PauseIcon() {
-  return <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="5" y="3" width="4" height="18" /><rect x="15" y="3" width="4" height="18" /></svg>;
-}
+// ─── Main page ────────────────────────────────────────────────────────────────
 
 export default function GroundingScripts() {
   const [activeId, setActiveId] = useState<string | null>(null);
+  const [activeBreathing, setActiveBreathing] = useState<string | null>(null);
   const active = scripts.find((s) => s.id === activeId);
-  const { isPlaying, currentLine, rate, setRate, play, pause, resume, stop } = useTTS(active?.lines ?? []);
+  const activeTechnique = breathingTechniques.find((t) => t.id === activeBreathing);
+  const { isPlaying, currentLine, rate, setRate, play, pause, resume, stop } =
+    useTTS(active?.lines ?? []);
 
   function openScript(id: string) {
     stop();
     setActiveId(id === activeId ? null : id);
   }
 
+  function openBreathing(id: string) {
+    setActiveBreathing(id === activeBreathing ? null : id);
+  }
+
   return (
     <AppShell
       title="Grounding Scripts"
-      subtitle="When you can't do a full session, these scripts help your body find safety in the moment. Choose one below to begin."
+      subtitle="When you can't do a full session, these tools help your body find safety in the moment."
     >
-      {/* General Scripts */}
-      <p className="text-xs font-semibold uppercase tracking-wide text-slate-400 mb-3">Grounding & Nervous System</p>
+      {/* ── Breathing Exercises ── */}
+      <p className="text-xs font-semibold uppercase tracking-wide text-slate-400 mb-3">Breathing Exercises</p>
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 mb-4">
+        {breathingTechniques.map((t) => (
+          <button
+            key={t.id}
+            onClick={() => openBreathing(t.id)}
+            className={`rounded-xl border px-3 py-3 text-left transition-all ${
+              activeBreathing === t.id
+                ? "border-calm-400 bg-calm-50 ring-1 ring-calm-300"
+                : "border-calm-200 bg-white hover:border-calm-300 hover:bg-calm-50"
+            }`}
+          >
+            <p className="text-sm font-semibold text-slate-800">{t.title}</p>
+            <p className="text-xs text-slate-500 mt-0.5 leading-4">{t.description}</p>
+          </button>
+        ))}
+      </div>
+
+      {/* Breathing Timer Panel */}
+      {activeTechnique && (
+        <div className="mb-6 rounded-xl border border-calm-200 bg-white p-6">
+          <div className="flex items-start justify-between mb-2">
+            <div>
+              <h2 className="text-lg font-semibold text-calm-700">{activeTechnique.title}</h2>
+              <p className="text-xs text-slate-500 mt-0.5">{activeTechnique.description}</p>
+            </div>
+            <button
+              onClick={() => setActiveBreathing(null)}
+              className="text-xs text-slate-400 hover:text-slate-600 border border-slate-200 rounded-lg px-3 py-1.5 transition"
+            >
+              Close
+            </button>
+          </div>
+          <BreathingTimer technique={activeTechnique} />
+        </div>
+      )}
+
+      {/* ── Grounding Scripts ── */}
+      <p className="text-xs font-semibold uppercase tracking-wide text-slate-400 mb-3 mt-2">Grounding & Nervous System</p>
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 mb-6">
         {scripts.filter(s => !s.id.startsWith("biblical")).map((s) => (
           <button
@@ -486,7 +727,7 @@ export default function GroundingScripts() {
         ))}
       </div>
 
-      {/* Biblical Scripts */}
+      {/* ── Biblical Scripts ── */}
       <p className="text-xs font-semibold uppercase tracking-wide text-slate-400 mb-3">Biblical</p>
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 mb-6">
         {scripts.filter(s => s.id.startsWith("biblical")).map((s) => (
@@ -506,7 +747,7 @@ export default function GroundingScripts() {
         ))}
       </div>
 
-      {/* Open Script Panel */}
+      {/* ── Open Script Panel ── */}
       {active && (
         <div className="mt-2 rounded-xl border border-calm-200 bg-white p-6">
           <div className="flex items-start justify-between mb-4">
@@ -526,10 +767,7 @@ export default function GroundingScripts() {
           <div className="mb-5 rounded-xl border border-calm-200 bg-calm-50 px-4 py-4">
             <div className="flex items-center gap-3 flex-wrap">
               {currentLine === null && !isPlaying ? (
-                <button
-                  onClick={play}
-                  className="flex items-center gap-2 rounded-full bg-calm-600 px-5 py-2 text-sm font-medium text-white transition hover:bg-calm-700"
-                >
+                <button onClick={play} className="flex items-center gap-2 rounded-full bg-calm-600 px-5 py-2 text-sm font-medium text-white transition hover:bg-calm-700">
                   <PlayIcon /> Read aloud
                 </button>
               ) : (
@@ -550,8 +788,7 @@ export default function GroundingScripts() {
               )}
               <div className="flex items-center gap-2 ml-auto">
                 <span className="text-xs text-slate-500">Speed</span>
-                <input
-                  type="range" min="0.6" max="1.2" step="0.05" value={rate}
+                <input type="range" min="0.6" max="1.2" step="0.05" value={rate}
                   onChange={(e) => setRate(parseFloat(e.target.value))}
                   className="w-24 accent-calm-600"
                 />
@@ -563,12 +800,9 @@ export default function GroundingScripts() {
           {/* Script lines */}
           <div className="border-t border-calm-100 pt-4 space-y-1.5">
             {active.lines.map((line, i) => (
-              <p
-                key={i}
-                className={`text-sm leading-7 rounded-lg px-2 py-0.5 transition-colors duration-300 ${
-                  currentLine === i ? "bg-calm-100 text-calm-800 font-medium" : "text-slate-700"
-                }`}
-              >
+              <p key={i} className={`text-sm leading-7 rounded-lg px-2 py-0.5 transition-colors duration-300 ${
+                currentLine === i ? "bg-calm-100 text-calm-800 font-medium" : "text-slate-700"
+              }`}>
                 {line}
               </p>
             ))}
