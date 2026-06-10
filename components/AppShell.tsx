@@ -18,15 +18,6 @@ const publicNavItems = [
   { href: "/faq", label: "FAQ" },
 ];
 
-const privateNavItems = [
-  { href: "/dashboard", label: "Dashboard" },
-  { href: "/start-session", label: "Start Session" },
-  { href: "/session-entry", label: "Session Entry" },
-  { href: "/grounding-scripts", label: "Grounding Scripts" },
-  { href: "/quick-relief", label: "Quick Relief" },
-  { href: "/faq", label: "FAQ" },
-];
-
 export default function AppShell({ title, subtitle, children }: AppShellProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -41,7 +32,7 @@ export default function AppShell({ title, subtitle, children }: AppShellProps) {
     return () => subscription.unsubscribe();
   }, []);
 
-  const navItems = isLoggedIn ? privateNavItems : publicNavItems;
+const navItems = publicNavItems;
 
   return (
     <div className="min-h-screen">
