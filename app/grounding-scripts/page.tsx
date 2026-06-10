@@ -256,16 +256,17 @@ export default function GroundingScripts() {
 
   useEffect(() => {
     let mounted = true;
-    async function checkAccess(retryCount = 0) {
+    async function checkAccess() {
       const { data: { session } } = await supabase.auth.getSession();
+      if (!mounted) return;
       if (!session) {
-        if (retryCount < 3) { setTimeout(() => { if (mounted) checkAccess(retryCount + 1); }, 500); return; }
         router.replace("/login");
         return;
       }
       const { data: profile } = await supabase.from("profiles").select("paid").eq("user_id", session.user.id).maybeSingle();
+      if (!mounted) return;
       if (!profile?.paid) { window.location.href = STRIPE_PAYMENT_LINK; return; }
-      if (mounted) setChecking(false);
+      setChecking(false);
     }
     checkAccess();
     return () => { mounted = false; };
