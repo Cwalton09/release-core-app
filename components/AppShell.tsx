@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { ReactNode } from "react";
+import { supabase } from "@/lib/supabase";
 
 type AppShellProps = {
   title: string;
@@ -10,20 +11,37 @@ type AppShellProps = {
   children: ReactNode;
 };
 
-const navItems = [
+const publicNavItems = [
   { href: "/", label: "Home" },
   { href: "/login", label: "Login" },
   { href: "/signup", label: "Signup" },
+  { href: "/faq", label: "FAQ" },
+];
+
+const privateNavItems = [
   { href: "/dashboard", label: "Dashboard" },
   { href: "/start-session", label: "Start Session" },
   { href: "/session-entry", label: "Session Entry" },
   { href: "/grounding-scripts", label: "Grounding Scripts" },
-  { href: "/faq", label: "FAQ" },
   { href: "/quick-relief", label: "Quick Relief" },
+  { href: "/faq", label: "FAQ" },
 ];
 
 export default function AppShell({ title, subtitle, children }: AppShellProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setIsLoggedIn(!!session);
+    });
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setIsLoggedIn(!!session);
+    });
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const navItems = isLoggedIn ? privateNavItems : publicNavItems;
 
   return (
     <div className="min-h-screen">
@@ -52,21 +70,9 @@ export default function AppShell({ title, subtitle, children }: AppShellProps) {
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
           >
-            <span
-              className={`block h-0.5 w-5 bg-calm-700 transition-transform duration-200 ${
-                menuOpen ? "translate-y-2 rotate-45" : ""
-              }`}
-            />
-            <span
-              className={`block h-0.5 w-5 bg-calm-700 transition-opacity duration-200 ${
-                menuOpen ? "opacity-0" : ""
-              }`}
-            />
-            <span
-              className={`block h-0.5 w-5 bg-calm-700 transition-transform duration-200 ${
-                menuOpen ? "-translate-y-2 -rotate-45" : ""
-              }`}
-            />
+            <span className={`block h-0.5 w-5 bg-calm-700 transition-transform duration-200 ${menuOpen ? "translate-y-2 rotate-45" : ""}`} />
+            <span className={`block h-0.5 w-5 bg-calm-700 transition-opacity duration-200 ${menuOpen ? "opacity-0" : ""}`} />
+            <span className={`block h-0.5 w-5 bg-calm-700 transition-transform duration-200 ${menuOpen ? "-translate-y-2 -rotate-45" : ""}`} />
           </button>
         </nav>
 

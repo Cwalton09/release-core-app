@@ -2,9 +2,19 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 
 const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/5kQ3cvaczg6H6tpgYsbII01";
+
+const navItems = [
+  { href: "/dashboard", label: "Dashboard" },
+  { href: "/start-session", label: "Start Session" },
+  { href: "/session-entry", label: "Session Entry" },
+  { href: "/grounding-scripts", label: "Grounding Scripts" },
+  { href: "/quick-relief", label: "Quick Relief" },
+  { href: "/faq", label: "FAQ" },
+];
 
 const beliefFlipMap: Record<string, string[]> = {
   "I am not safe": ["I am safe now.", "It is safe for me to soften.", "I can rest and still be safe.", "I can let go while I sleep.", "My body does not have to stay on guard anymore."],
@@ -219,6 +229,7 @@ Release Core | release-core.com
 
 export default function Dashboard() {
   const router = useRouter();
+  const [menuOpen, setMenuOpen] = useState(false);
   const [accepted, setAccepted] = useState<boolean | null>(null);
   const [checkingAccess, setCheckingAccess] = useState(true);
   const [sessions, setSessions] = useState<Session[]>([]);
@@ -230,493 +241,305 @@ export default function Dashboard() {
 
   useEffect(() => {
     let mounted = true;
-
     const checkAccess = async (retryCount = 0) => {
       try {
         const { data: { session } } = await supabase.auth.getSession();
         const user = session?.user;
-
         if (!user) {
-          if (retryCount < 3) {
-            setTimeout(() => { if (mounted) checkAccess(retryCount + 1); }, 500);
-            return;
-          }
+          if (retryCount < 3) { setTimeout(() => { if (mounted) checkAccess(retryCount + 1); }, 500); return; }
           if (mounted) router.replace("/login");
           return;
         }
-
-        const { data: profile, error } = await supabase
-          .from("profiles")
-          .select("paid")
-          .eq("user_id", user.id)
-          .maybeSingle();
-
+        const { data: profile, error } = await supabase.from("profiles").select("paid").eq("user_id", user.id).maybeSingle();
         if (error) { if (mounted) setCheckingAccess(false); return; }
         if (!profile?.paid) { window.location.href = STRIPE_PAYMENT_LINK; return; }
-
         const { data: pastSessions } = await supabase
           .from("sessions")
           .select("id, created_at, emotions, core_beliefs, ages, symptoms, who_involved, what_happened, patterns, unmet_need, own_words, body_location, feeling, shape, color, size, texture, activation_age")
           .eq("user_id", user.id)
           .order("created_at", { ascending: false })
           .limit(10);
-
-        if (mounted) {
-          setSessions(pastSessions ?? []);
-          setLoadingSessions(false);
-        }
-
+        if (mounted) { setSessions(pastSessions ?? []); setLoadingSessions(false); }
         const saved = sessionStorage.getItem("release-core-disclaimer-accepted");
-        if (mounted) {
-          setAccepted(saved === "true");
-          setCheckingAccess(false);
-        }
+        if (mounted) { setAccepted(saved === "true"); setCheckingAccess(false); }
       } catch (err) {
         console.error("Dashboard error:", err);
         if (mounted) router.replace("/login");
       }
     };
-
     checkAccess();
     return () => { mounted = false; };
   }, [router]);
 
-  const handleAccept = () => {
-    sessionStorage.setItem("release-core-disclaimer-accepted", "true");
-    setAccepted(true);
-  };
+  const handleAccept = () => { sessionStorage.setItem("release-core-disclaimer-accepted", "true"); setAccepted(true); };
 
   const handleManageSubscription = async () => {
     setPortalLoading(true);
     try {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user?.email) return;
-      const res = await fetch("/api/billing-portal", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: user.email }),
-      });
+      const res = await fetch("/api/billing-portal", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email: user.email }) });
       const data = await res.json();
       if (data.url) window.location.href = data.url;
-    } catch (err) {
-      console.error(err);
-    }
+    } catch (err) { console.error(err); }
     setPortalLoading(false);
   };
 
-  const openSession = (session: Session) => {
-    setSelectedSession(session);
-    setStandardOpen(false);
-    setBiblicalOpen(false);
-  };
+  const openSession = (session: Session) => { setSelectedSession(session); setStandardOpen(false); setBiblicalOpen(false); };
 
-  if (checkingAccess || accepted === null) {
-    return <p className="p-6 text-center">Loading...</p>;
-  }
+  if (checkingAccess || accepted === null) return <p className="p-6 text-center">Loading...</p>;
 
   const nightlyBeliefs = selectedSession ? getNightlyBeliefs(selectedSession.core_beliefs, false) : [];
   const nightlyBeliefsBiblical = selectedSession ? getNightlyBeliefs(selectedSession.core_beliefs, true) : [];
   const ageText = selectedSession?.ages || "a younger age";
   const whoText = selectedSession?.who_involved || "someone in your life";
   const emotionText = selectedSession?.emotions || "what came up";
-  const bodyPlacementText = selectedSession?.body_location
-    ? `Place your hand gently on your ${selectedSession.body_location}.`
-    : "Place one hand on your chest and one hand on your belly.";
+  const bodyPlacementText = selectedSession?.body_location ? `Place your hand gently on your ${selectedSession.body_location}.` : "Place one hand on your chest and one hand on your belly.";
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 py-6 flex flex-col items-center">
+    <div className="min-h-screen bg-gray-50">
 
-      {!accepted && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 px-4">
-          <div className="bg-white w-full max-w-2xl rounded-2xl p-6 shadow-xl max-h-[90vh] overflow-y-auto">
-            <h2 className="text-2xl font-semibold mb-4 text-gray-800">Disclaimer</h2>
-            <div className="space-y-3 text-gray-700 leading-7 text-sm">
-              <p>This app is designed for self-awareness, personal growth, and nervous system support.</p>
-              <p>The Release Core Method is not a substitute for medical advice, diagnosis, or treatment. It does not diagnose or treat any physical or mental health condition.</p>
-              <p>All insights, prompts, and guidance provided within this app are for educational and informational purposes only.</p>
-              <p>You are responsible for your own health, decisions, and actions.</p>
-              <p>If you are experiencing severe emotional distress, physical symptoms, or medical concerns, please consult a licensed healthcare provider.</p>
-            </div>
-            <hr className="my-5 border-gray-200" />
-            <h2 className="text-2xl font-semibold mb-4 text-gray-800">Terms of Use</h2>
-            <div className="space-y-3 text-gray-700 leading-7 text-sm">
-              <p>By accessing or using the Release Core platform, including its website and application, you agree to the following Terms of Use. If you do not agree, you should not use this app.</p>
-              <h3 className="font-semibold text-gray-800">Self-Awareness and Personal Growth Only</h3>
-              <p>The Release Core Method and this application and/or website are intended for self-awareness, personal growth, and educational purposes only.</p>
-              <p>This app and/or website is not intended to diagnose, treat, cure, or prevent any medical or mental health condition. It is not a substitute for professional medical, psychological, or therapeutic advice, diagnosis, or treatment.</p>
-              <h3 className="font-semibold text-gray-800">No Professional Relationship</h3>
-              <p>Use of this app and/or website does not create any doctor-patient, therapist-client, or other licensed professional relationship.</p>
-              <h3 className="font-semibold text-gray-800">User Responsibility</h3>
-              <p>You acknowledge and agree that you are fully responsible for your own health, decisions, actions, and results while using this app.</p>
-              <p>You understand that all guidance, prompts, and experiences within the app are self-directed and that you may stop at any time.</p>
-              <h3 className="font-semibold text-gray-800">Assumption of Risk</h3>
-              <p>You understand that emotional responses, physical sensations, and personal insights may arise during use of this app.</p>
-              <p>By using this app and/or website, you voluntarily assume all risks associated with your use, including but not limited to emotional discomfort, physical sensations, or personal reactions.</p>
-              <h3 className="font-semibold text-gray-800">Limitation of Liability</h3>
-              <p>To the fullest extent permitted by law, the creator of the Release Core app shall not be liable for any direct, indirect, incidental, consequential, or special damages arising from or related to your use of the app and/or website.</p>
-              <h3 className="font-semibold text-gray-800">No Guarantees</h3>
-              <p>The app and/or website makes no guarantees regarding results, outcomes, or effectiveness. Each individual's experience will vary.</p>
-              <h3 className="font-semibold text-gray-800">Not for Crisis Use</h3>
-              <p>This app and/or website is not intended for use in medical or mental health emergencies. If you are experiencing severe emotional distress, crisis, or medical concerns, please seek immediate help from a licensed professional or emergency services.</p>
-              <h3 className="font-semibold text-gray-800">Intellectual Property</h3>
-              <p>All content, materials, methods, language, and processes within the Release Core app are proprietary and protected by copyright and applicable intellectual property laws.</p>
-              <h3 className="font-semibold text-gray-800">Acceptance of Terms</h3>
-              <p>By continuing to use this app and/or website, you acknowledge that you have read, understood, and agreed to these Terms of Use.</p>
-            </div>
-            <hr className="my-5 border-gray-200" />
-            <h2 className="text-2xl font-semibold mb-4 text-gray-800">Privacy Policy</h2>
-            <div className="space-y-3 text-gray-700 leading-7 text-sm">
-              <p>This Privacy Policy explains how the Release Core Method app collects, uses, and protects your information.</p>
-              <h3 className="font-semibold text-gray-800">Information We Collect</h3>
-              <p>An account is required to access this app. We collect your email address and payment status in order to provide access to the platform.</p>
-              <p>Any inputs you provide during sessions are processed only within the app experience and are not stored on external servers.</p>
-              <h3 className="font-semibold text-gray-800">How Your Information Is Used</h3>
-              <p>Your information is used solely to provide access to and operate the app. We do not sell, share, or distribute your information.</p>
-              <h3 className="font-semibold text-gray-800">Changes to This Policy</h3>
-              <p>We may update this Privacy Policy from time to time. Continued use of the app means you accept any updates.</p>
-              <h3 className="font-semibold text-gray-800">Contact</h3>
-              <p>If you have questions about this policy, you may contact us through the app creator.</p>
-            </div>
-            <hr className="my-5 border-gray-200" />
-            <p className="text-xs text-gray-500 mb-4">By clicking below, you confirm that you have read and agree to the Disclaimer, Terms of Use, and Privacy Policy above.</p>
-            <button onClick={handleAccept} className="w-full bg-green-600 text-white py-3 rounded-xl text-lg font-medium hover:bg-green-700 transition">
-              I Understand and Agree
-            </button>
+      {/* ── Nav bar ── */}
+      <header className="sticky top-0 z-10 border-b border-calm-200 bg-calm-50/90 backdrop-blur">
+        <nav className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
+          <Link href="/" className="text-sm font-semibold text-calm-700">Release Core</Link>
+          <div className="hidden gap-2 md:flex">
+            {navItems.map((item) => (
+              <Link key={item.href} href={item.href} className="rounded-full px-3 py-1.5 text-xs text-slate-600 transition hover:bg-calm-100 hover:text-calm-700">{item.label}</Link>
+            ))}
           </div>
-        </div>
-      )}
-
-      {selectedSession && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 px-4">
-          <div className="bg-white w-full max-w-2xl rounded-2xl p-6 shadow-xl max-h-[90vh] overflow-y-auto space-y-5">
-            <div className="flex items-center justify-between">
-              <h2 className="text-xl font-semibold text-gray-800">Session Details</h2>
-              <button onClick={() => setSelectedSession(null)} className="text-gray-400 hover:text-gray-600 text-2xl leading-none">×</button>
-            </div>
-            <p className="text-xs text-gray-400">
-              {new Date(selectedSession.created_at).toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}
-            </p>
-            {selectedSession.symptoms && (
-              <div className="rounded-xl bg-slate-50 border border-slate-200 p-4 space-y-1">
-                <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">Symptoms</p>
-                <p className="text-sm text-gray-700">{selectedSession.symptoms}</p>
-              </div>
-            )}
-            {(selectedSession.body_location || selectedSession.feeling || selectedSession.shape || selectedSession.color || selectedSession.size || selectedSession.texture) && (
-              <div className="rounded-xl bg-slate-50 border border-slate-200 p-4 space-y-2">
-                <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">Body Sensation</p>
-                {selectedSession.body_location && <p className="text-sm text-gray-700"><span className="font-medium">Location: </span>{selectedSession.body_location}</p>}
-                {selectedSession.feeling && <p className="text-sm text-gray-700"><span className="font-medium">Feeling: </span>{selectedSession.feeling}</p>}
-                {selectedSession.shape && <p className="text-sm text-gray-700"><span className="font-medium">Shape: </span>{selectedSession.shape}</p>}
-                {selectedSession.color && <p className="text-sm text-gray-700"><span className="font-medium">Color: </span>{selectedSession.color}</p>}
-                {selectedSession.size && <p className="text-sm text-gray-700"><span className="font-medium">Size: </span>{selectedSession.size}</p>}
-                {selectedSession.texture && <p className="text-sm text-gray-700"><span className="font-medium">Texture: </span>{selectedSession.texture}</p>}
-              </div>
-            )}
-            {selectedSession.emotions && (
-              <div className="rounded-xl bg-slate-50 border border-slate-200 p-4 space-y-1">
-                <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">Emotions</p>
-                <p className="text-sm text-gray-700">{selectedSession.emotions}</p>
-              </div>
-            )}
-            {selectedSession.ages && (
-              <div className="rounded-xl bg-slate-50 border border-slate-200 p-4 space-y-1">
-                <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">Age</p>
-                <p className="text-sm text-gray-700">{selectedSession.ages}</p>
-                {selectedSession.activation_age && <p className="text-sm text-gray-700"><span className="font-medium">Activation age: </span>{selectedSession.activation_age}</p>}
-              </div>
-            )}
-            {selectedSession.who_involved && (
-              <div className="rounded-xl bg-slate-50 border border-slate-200 p-4 space-y-1">
-                <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">Who Was Involved</p>
-                <p className="text-sm text-gray-700">{selectedSession.who_involved}</p>
-              </div>
-            )}
-            {selectedSession.what_happened && (
-              <div className="rounded-xl bg-slate-50 border border-slate-200 p-4 space-y-1">
-                <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">What Happened</p>
-                <p className="text-sm text-gray-700">{selectedSession.what_happened}</p>
-              </div>
-            )}
-            {selectedSession.core_beliefs && (
-              <div className="rounded-xl bg-emerald-50 border border-emerald-200 p-4 space-y-2">
-                <p className="text-xs font-semibold uppercase tracking-widest text-emerald-600">Core Beliefs</p>
-                <div className="flex flex-wrap gap-2">
-                  {selectedSession.core_beliefs.split(",").map((b) => (
-                    <span key={b} className="rounded-full bg-white border border-emerald-200 px-3 py-1 text-sm text-gray-700">{b.trim()}</span>
-                  ))}
-                </div>
-              </div>
-            )}
-            {selectedSession.patterns && (
-              <div className="rounded-xl bg-slate-50 border border-slate-200 p-4 space-y-1">
-                <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">Patterns</p>
-                {selectedSession.patterns.split(",").map((p) => (
-                  <p key={p} className="text-sm text-gray-700">• {p.trim()}</p>
-                ))}
-              </div>
-            )}
-            {selectedSession.unmet_need && (
-              <div className="rounded-xl bg-emerald-50 border border-emerald-200 p-4 space-y-1">
-                <p className="text-xs font-semibold uppercase tracking-widest text-emerald-600">What Your Body Needed</p>
-                {selectedSession.unmet_need.split(",").map((n) => (
-                  <p key={n} className="text-sm text-gray-700">• {n.trim()}</p>
-                ))}
-              </div>
-            )}
-            {selectedSession.own_words && (
-              <div className="rounded-xl bg-slate-50 border border-slate-200 p-4 space-y-1">
-                <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">In Your Own Words</p>
-                <p className="text-sm text-gray-600 italic">"{selectedSession.own_words}"</p>
-              </div>
-            )}
-
-            <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-3">
-              <p className="text-sm font-semibold text-gray-800">🌙 Nighttime Integration Script</p>
-              <p className="text-xs text-gray-500">Read this tonight as you are drifting off to sleep. Your subconscious is most open right before sleep — this is when new beliefs install most deeply.</p>
-              <div className="grid grid-cols-2 gap-3">
-                <button onClick={() => setStandardOpen(!standardOpen)} className={`rounded-2xl border p-3 text-left transition space-y-1 ${standardOpen ? "border-emerald-700 bg-emerald-700 text-white" : "border-slate-200 bg-white hover:border-emerald-400"}`}>
-                  <p className="text-base">🌿</p>
-                  <p className="font-semibold text-sm">Standard</p>
-                  <p className={`text-xs leading-5 ${standardOpen ? "text-emerald-100" : "text-slate-500"}`}>Grounded in the body</p>
-                </button>
-                <button onClick={() => setBiblicalOpen(!biblicalOpen)} className={`rounded-2xl border p-3 text-left transition space-y-1 ${biblicalOpen ? "border-emerald-700 bg-emerald-700 text-white" : "border-slate-200 bg-white hover:border-emerald-400"}`}>
-                  <p className="text-base">✝️</p>
-                  <p className="font-semibold text-sm">Biblical</p>
-                  <p className={`text-xs leading-5 ${biblicalOpen ? "text-emerald-100" : "text-slate-500"}`}>Woven with faith</p>
-                </button>
-              </div>
-              <div className="flex gap-2 pt-1">
-                <button onClick={() => downloadScript(selectedSession, false)} className="flex-1 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-medium text-slate-700 hover:border-emerald-400 hover:bg-emerald-50 transition">⬇ Download Standard</button>
-                <button onClick={() => downloadScript(selectedSession, true)} className="flex-1 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-medium text-slate-700 hover:border-emerald-400 hover:bg-emerald-50 transition">⬇ Download Biblical</button>
-              </div>
-            </div>
-
-            {standardOpen && (
-              <div className="rounded-2xl border border-slate-300 bg-slate-50 p-5 space-y-5 text-sm leading-7 text-slate-700">
-                <div className="space-y-3">
-                  <p className="text-xs uppercase tracking-widest text-slate-400">Body Reset — Begin here</p>
-                  <div className="space-y-4">
-                    <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-2">
-                      <p className="font-semibold text-slate-800">Step 1 — Collarbone Tap</p>
-                      <p>Tap lightly on either collarbone point and say:</p>
-                      <p className="italic text-slate-600">"Body, the danger is over. You can let this go now."</p>
-                    </div>
-                    <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-2">
-                      <p className="font-semibold text-slate-800">Step 2 — Jaw Release</p>
-                      <p>Gently open and close your jaw, side to side for 5 to 10 seconds.</p>
-                      <p className="italic text-slate-600">Say: "I release old reactions."</p>
-                    </div>
-                    <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-2">
-                      <p className="font-semibold text-slate-800">Step 3 — Exhale Drop</p>
-                      <p>Let your shoulders fall while exhaling through your mouth.</p>
-                      <p className="italic text-slate-600">Say: "My body can stand down."</p>
-                    </div>
-                    <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-2">
-                      <p className="font-semibold text-slate-800">Step 4 — Sweep the Body</p>
-                      <p>Take both hands and sweep down your chest, ribs, stomach, hips like you are brushing off dust.</p>
-                      <p className="italic text-slate-600">Say: "This pattern is erased."</p>
-                    </div>
-                    <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-2">
-                      <p className="font-semibold text-slate-800">Step 5 — Replace the Pattern</p>
-                      <p>Place your hand on your heart.</p>
-                      <p className="italic text-slate-600">Say: "My new baseline is calm. My new identity is healed."</p>
-                    </div>
-                  </div>
-                </div>
-                <hr className="border-slate-200" />
-                <div className="space-y-3">
-                  <p className="text-xs uppercase tracking-widest text-slate-400">30-Second Vagus Nerve Reset</p>
-                  <div className="space-y-3">
-                    <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-2">
-                      <p className="font-semibold text-slate-800">Step 1 — Look to the Right (15 seconds)</p>
-                      <p>Hold your eyes far right without moving your head until you feel a sigh, swallow, or yawn.</p>
-                    </div>
-                    <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-2">
-                      <p className="font-semibold text-slate-800">Step 2 — Look to the Left (15 seconds)</p>
-                      <p>Same thing — eyes far left until you sigh or swallow again. You will feel lighter and more grounded.</p>
-                    </div>
-                  </div>
-                </div>
-                <hr className="border-slate-200" />
-                <div className="space-y-3">
-                  <p className="text-xs uppercase tracking-widest text-slate-400">Sleep Reprogramming Script</p>
-                  <p>Lie in bed. Put one hand on your heart and one on your lower belly. Breathe in for 4 seconds. Out through your mouth for 8 seconds.</p>
-                  <p>Then repeat softly:</p>
-                  <div className="border-l-2 border-emerald-400 pl-5 space-y-2 italic text-slate-600">
-                    <p>My body knows how to heal.</p>
-                    <p>My nervous system knows how to relax.</p>
-                    <p>Every cell is remembering peace.</p>
-                    <p>I am safe while I sleep.</p>
-                    <p>My body is switching to repair mode now.</p>
-                  </div>
-                </div>
-                <hr className="border-slate-200" />
-                <div className="space-y-3">
-                  <p className="text-xs uppercase tracking-widest text-slate-400">The truth my nervous system is ready to hear</p>
-                  <p>Around {ageText}, something happened that involved {whoText}. My body felt {emotionText}. Tonight I correct those beliefs. Gently. Slowly.</p>
-                  <div className="space-y-2">
-                    {nightlyBeliefs.map((belief) => (
-                      <div key={belief} className="border-l-2 border-emerald-400 pl-4 italic text-slate-600"><p>{belief}</p></div>
-                    ))}
-                  </div>
-                </div>
-                <hr className="border-slate-200" />
-                <div className="space-y-3">
-                  <p className="text-xs uppercase tracking-widest text-slate-400">Identity Imprint</p>
-                  <div className="border-l-2 border-emerald-400 pl-5 space-y-2 italic text-slate-600">
-                    <p>I am no longer in healing mode.</p>
-                    <p>I am already healed.</p>
-                    <p>My body is simply maintaining my health.</p>
-                  </div>
-                  <p>{bodyPlacementText}</p>
-                  <p>Breathe in for 4. Out for 8.</p>
-                  <p className="italic text-slate-600">Everything that is not mine dissolves as I sleep.</p>
-                </div>
-                <hr className="border-slate-200" />
-                <div className="space-y-3 text-center">
-                  <p className="text-xs uppercase tracking-widest text-slate-400">I carry these into sleep</p>
-                  {nightlyBeliefs.map((belief) => <p key={belief} className="text-base font-medium text-slate-800">{belief}</p>)}
-                  <p className="text-slate-500 text-sm">Goodnight. 🌙</p>
-                </div>
-              </div>
-            )}
-
-            {biblicalOpen && (
-              <div className="rounded-2xl border border-slate-300 bg-slate-50 p-5 space-y-5 text-sm leading-7 text-slate-700">
-                <div className="space-y-3">
-                  <p className="text-xs uppercase tracking-widest text-slate-400">Body Reset — Begin here</p>
-                  <div className="space-y-4">
-                    <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-2">
-                      <p className="font-semibold text-slate-800">Step 1 — Collarbone Tap</p>
-                      <p>Tap lightly on either collarbone point and say:</p>
-                      <p className="italic text-slate-600">"Body, the danger is over. God is here. You can let this go now."</p>
-                    </div>
-                    <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-2">
-                      <p className="font-semibold text-slate-800">Step 2 — Jaw Release</p>
-                      <p>Gently open and close your jaw, side to side for 5 to 10 seconds.</p>
-                      <p className="italic text-slate-600">Say: "I release old reactions. God is renewing my mind."</p>
-                    </div>
-                    <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-2">
-                      <p className="font-semibold text-slate-800">Step 3 — Exhale Drop</p>
-                      <p>Let your shoulders fall while exhaling through your mouth.</p>
-                      <p className="italic text-slate-600">Say: "My body can stand down. He is standing guard."</p>
-                    </div>
-                    <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-2">
-                      <p className="font-semibold text-slate-800">Step 4 — Sweep the Body</p>
-                      <p>Take both hands and sweep down your chest, ribs, stomach, hips.</p>
-                      <p className="italic text-slate-600">Say: "This pattern is erased. I am made new."</p>
-                    </div>
-                    <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-2">
-                      <p className="font-semibold text-slate-800">Step 5 — Replace the Pattern</p>
-                      <p>Place your hand on your heart.</p>
-                      <p className="italic text-slate-600">Say: "My new baseline is peace in Him. My new identity is healed and whole."</p>
-                    </div>
-                  </div>
-                </div>
-                <hr className="border-slate-200" />
-                <div className="space-y-3">
-                  <p className="text-xs uppercase tracking-widest text-slate-400">30-Second Vagus Nerve Reset</p>
-                  <div className="space-y-3">
-                    <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-2">
-                      <p className="font-semibold text-slate-800">Step 1 — Look to the Right (15 seconds)</p>
-                      <p>Hold your eyes far right until you feel a sigh, swallow, or yawn. This is your body coming into rest.</p>
-                    </div>
-                    <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-2">
-                      <p className="font-semibold text-slate-800">Step 2 — Look to the Left (15 seconds)</p>
-                      <p>Eyes far left until you sigh or swallow. You will feel lighter — that is peace settling in.</p>
-                    </div>
-                  </div>
-                </div>
-                <hr className="border-slate-200" />
-                <div className="space-y-3">
-                  <p className="text-xs uppercase tracking-widest text-slate-400">Sleep Reprogramming Script</p>
-                  <p>Lie in bed. Put one hand on your heart and one on your lower belly. Breathe in for 4 seconds. Out through your mouth for 8 seconds.</p>
-                  <p>Then repeat softly:</p>
-                  <div className="border-l-2 border-emerald-400 pl-5 space-y-2 italic text-slate-600">
-                    <p>My body knows how to heal — God designed it this way.</p>
-                    <p>My nervous system knows how to relax — He gives rest to those He loves.</p>
-                    <p>Every cell is remembering peace — His peace that passes understanding.</p>
-                    <p>I am safe while I sleep — He watches over me.</p>
-                    <p>My body is switching to repair mode now — He restores.</p>
-                  </div>
-                </div>
-                <hr className="border-slate-200" />
-                <div className="space-y-3">
-                  <p className="text-xs uppercase tracking-widest text-slate-400">The truth He says about me</p>
-                  <p>Around {ageText}, something happened that involved {whoText}. My body felt {emotionText}. God saw what happened. He has never looked away.</p>
-                  <p>Tonight, His truth corrects what I believed. Gently. Slowly.</p>
-                  <div className="space-y-2">
-                    {nightlyBeliefsBiblical.map((belief) => (
-                      <div key={belief} className="border-l-2 border-emerald-400 pl-4 italic text-slate-600"><p>{belief}</p></div>
-                    ))}
-                  </div>
-                </div>
-                <hr className="border-slate-200" />
-                <div className="space-y-3">
-                  <p className="text-xs uppercase tracking-widest text-slate-400">Identity Imprint</p>
-                  <div className="border-l-2 border-emerald-400 pl-5 space-y-2 italic text-slate-600">
-                    <p>I am no longer in healing mode.</p>
-                    <p>I am already healed — by His stripes.</p>
-                    <p>My body is simply maintaining what God has already done.</p>
-                  </div>
-                  <p>{bodyPlacementText}</p>
-                  <p>Breathe in for 4. Out for 8.</p>
-                  <p className="italic text-slate-600">Everything that is not from Him dissolves as I sleep.</p>
-                </div>
-                <hr className="border-slate-200" />
-                <div className="space-y-3 text-center">
-                  <p className="text-xs uppercase tracking-widest text-slate-400">I carry these into sleep</p>
-                  {nightlyBeliefsBiblical.map((belief) => <p key={belief} className="text-base font-medium text-slate-800">{belief}</p>)}
-                  <p className="text-slate-500 text-sm">Goodnight. He is with you. 🌙</p>
-                </div>
-              </div>
-            )}
-
-            <button onClick={() => setSelectedSession(null)} className="w-full rounded-xl bg-emerald-700 px-5 py-3 text-white font-medium hover:bg-emerald-800 transition">
-              Close
-            </button>
-          </div>
-        </div>
-      )}
-
-      <div className="w-full max-w-md space-y-6">
-        <h1 className="text-3xl font-semibold text-gray-800 text-center">Dashboard</h1>
-        <div className="space-y-4">
-          <button onClick={() => router.push("/start-session")} className="w-full bg-green-600 text-white py-3 rounded-xl text-lg font-medium hover:bg-green-700 transition">Start Session</button>
-          <button onClick={() => router.push("/session-entry")} className="w-full bg-white border border-gray-300 py-3 rounded-xl text-lg font-medium text-gray-800 hover:bg-gray-100 transition">Session Entry</button>
-        </div>
-        <div className="space-y-3">
-          <h2 className="text-lg font-semibold text-gray-800">Past Sessions</h2>
-          {loadingSessions ? (
-            <p className="text-sm text-gray-500">Loading sessions...</p>
-          ) : sessions.length === 0 ? (
-            <div className="rounded-2xl border border-gray-200 bg-white p-5 text-center">
-              <p className="text-sm text-gray-500">No sessions yet. Start your first session above.</p>
-            </div>
-          ) : (
-            <div className="space-y-3">
-              {sessions.map((session) => (
-                <button key={session.id} onClick={() => openSession(session)} className="w-full rounded-2xl border border-gray-200 bg-white p-4 shadow-sm space-y-2 text-left hover:border-emerald-400 transition">
-                  <p className="text-xs text-gray-400">{new Date(session.created_at).toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}</p>
-                  {session.emotions && <p className="text-sm text-gray-700"><span className="font-medium">Emotions: </span>{session.emotions}</p>}
-                  {session.core_beliefs && <p className="text-sm text-gray-700"><span className="font-medium">Core beliefs: </span>{session.core_beliefs}</p>}
-                  {session.ages && <p className="text-sm text-gray-700"><span className="font-medium">Age: </span>{session.ages}</p>}
-                  {session.symptoms && <p className="text-sm text-gray-700"><span className="font-medium">Symptoms: </span>{session.symptoms}</p>}
-                  <p className="text-xs text-emerald-600 font-medium pt-1">Tap to view full session →</p>
-                </button>
+          <button className="flex flex-col gap-1.5 p-2 md:hidden" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
+            <span className={`block h-0.5 w-5 bg-calm-700 transition-transform duration-200 ${menuOpen ? "translate-y-2 rotate-45" : ""}`} />
+            <span className={`block h-0.5 w-5 bg-calm-700 transition-opacity duration-200 ${menuOpen ? "opacity-0" : ""}`} />
+            <span className={`block h-0.5 w-5 bg-calm-700 transition-transform duration-200 ${menuOpen ? "-translate-y-2 -rotate-45" : ""}`} />
+          </button>
+        </nav>
+        {menuOpen && (
+          <div className="border-t border-calm-200 bg-calm-50 px-4 py-3 md:hidden">
+            <div className="flex flex-col gap-1">
+              {navItems.map((item) => (
+                <Link key={item.href} href={item.href} onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm text-slate-600 transition hover:bg-calm-100 hover:text-calm-700">{item.label}</Link>
               ))}
             </div>
-          )}
+          </div>
+        )}
+      </header>
+
+      <div className="px-4 py-6 flex flex-col items-center">
+        {!accepted && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 px-4">
+            <div className="bg-white w-full max-w-2xl rounded-2xl p-6 shadow-xl max-h-[90vh] overflow-y-auto">
+              <h2 className="text-2xl font-semibold mb-4 text-gray-800">Disclaimer</h2>
+              <div className="space-y-3 text-gray-700 leading-7 text-sm">
+                <p>This app is designed for self-awareness, personal growth, and nervous system support.</p>
+                <p>The Release Core Method is not a substitute for medical advice, diagnosis, or treatment. It does not diagnose or treat any physical or mental health condition.</p>
+                <p>All insights, prompts, and guidance provided within this app are for educational and informational purposes only.</p>
+                <p>You are responsible for your own health, decisions, and actions.</p>
+                <p>If you are experiencing severe emotional distress, physical symptoms, or medical concerns, please consult a licensed healthcare provider.</p>
+              </div>
+              <hr className="my-5 border-gray-200" />
+              <h2 className="text-2xl font-semibold mb-4 text-gray-800">Terms of Use</h2>
+              <div className="space-y-3 text-gray-700 leading-7 text-sm">
+                <p>By accessing or using the Release Core platform, including its website and application, you agree to the following Terms of Use. If you do not agree, you should not use this app.</p>
+                <h3 className="font-semibold text-gray-800">Self-Awareness and Personal Growth Only</h3>
+                <p>The Release Core Method and this application and/or website are intended for self-awareness, personal growth, and educational purposes only.</p>
+                <p>This app and/or website is not intended to diagnose, treat, cure, or prevent any medical or mental health condition. It is not a substitute for professional medical, psychological, or therapeutic advice, diagnosis, or treatment.</p>
+                <h3 className="font-semibold text-gray-800">No Professional Relationship</h3>
+                <p>Use of this app and/or website does not create any doctor-patient, therapist-client, or other licensed professional relationship.</p>
+                <h3 className="font-semibold text-gray-800">User Responsibility</h3>
+                <p>You acknowledge and agree that you are fully responsible for your own health, decisions, actions, and results while using this app.</p>
+                <p>You understand that all guidance, prompts, and experiences within the app are self-directed and that you may stop at any time.</p>
+                <h3 className="font-semibold text-gray-800">Assumption of Risk</h3>
+                <p>You understand that emotional responses, physical sensations, and personal insights may arise during use of this app.</p>
+                <p>By using this app and/or website, you voluntarily assume all risks associated with your use, including but not limited to emotional discomfort, physical sensations, or personal reactions.</p>
+                <h3 className="font-semibold text-gray-800">Limitation of Liability</h3>
+                <p>To the fullest extent permitted by law, the creator of the Release Core app shall not be liable for any direct, indirect, incidental, consequential, or special damages arising from or related to your use of the app and/or website.</p>
+                <h3 className="font-semibold text-gray-800">No Guarantees</h3>
+                <p>The app and/or website makes no guarantees regarding results, outcomes, or effectiveness. Each individual's experience will vary.</p>
+                <h3 className="font-semibold text-gray-800">Not for Crisis Use</h3>
+                <p>This app and/or website is not intended for use in medical or mental health emergencies. If you are experiencing severe emotional distress, crisis, or medical concerns, please seek immediate help from a licensed professional or emergency services.</p>
+                <h3 className="font-semibold text-gray-800">Intellectual Property</h3>
+                <p>All content, materials, methods, language, and processes within the Release Core app are proprietary and protected by copyright and applicable intellectual property laws.</p>
+                <h3 className="font-semibold text-gray-800">Acceptance of Terms</h3>
+                <p>By continuing to use this app and/or website, you acknowledge that you have read, understood, and agreed to these Terms of Use.</p>
+              </div>
+              <hr className="my-5 border-gray-200" />
+              <h2 className="text-2xl font-semibold mb-4 text-gray-800">Privacy Policy</h2>
+              <div className="space-y-3 text-gray-700 leading-7 text-sm">
+                <p>This Privacy Policy explains how the Release Core Method app collects, uses, and protects your information.</p>
+                <h3 className="font-semibold text-gray-800">Information We Collect</h3>
+                <p>An account is required to access this app. We collect your email address and payment status in order to provide access to the platform.</p>
+                <p>Any inputs you provide during sessions are processed only within the app experience and are not stored on external servers.</p>
+                <h3 className="font-semibold text-gray-800">How Your Information Is Used</h3>
+                <p>Your information is used solely to provide access to and operate the app. We do not sell, share, or distribute your information.</p>
+                <h3 className="font-semibold text-gray-800">Changes to This Policy</h3>
+                <p>We may update this Privacy Policy from time to time. Continued use of the app means you accept any updates.</p>
+                <h3 className="font-semibold text-gray-800">Contact</h3>
+                <p>If you have questions about this policy, you may contact us through the app creator.</p>
+              </div>
+              <hr className="my-5 border-gray-200" />
+              <p className="text-xs text-gray-500 mb-4">By clicking below, you confirm that you have read and agree to the Disclaimer, Terms of Use, and Privacy Policy above.</p>
+              <button onClick={handleAccept} className="w-full bg-green-600 text-white py-3 rounded-xl text-lg font-medium hover:bg-green-700 transition">I Understand and Agree</button>
+            </div>
+          </div>
+        )}
+
+        {selectedSession && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 px-4">
+            <div className="bg-white w-full max-w-2xl rounded-2xl p-6 shadow-xl max-h-[90vh] overflow-y-auto space-y-5">
+              <div className="flex items-center justify-between">
+                <h2 className="text-xl font-semibold text-gray-800">Session Details</h2>
+                <button onClick={() => setSelectedSession(null)} className="text-gray-400 hover:text-gray-600 text-2xl leading-none">×</button>
+              </div>
+              <p className="text-xs text-gray-400">{new Date(selectedSession.created_at).toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}</p>
+              {selectedSession.symptoms && (<div className="rounded-xl bg-slate-50 border border-slate-200 p-4 space-y-1"><p className="text-xs font-semibold uppercase tracking-widest text-slate-400">Symptoms</p><p className="text-sm text-gray-700">{selectedSession.symptoms}</p></div>)}
+              {(selectedSession.body_location || selectedSession.feeling || selectedSession.shape || selectedSession.color || selectedSession.size || selectedSession.texture) && (
+                <div className="rounded-xl bg-slate-50 border border-slate-200 p-4 space-y-2">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">Body Sensation</p>
+                  {selectedSession.body_location && <p className="text-sm text-gray-700"><span className="font-medium">Location: </span>{selectedSession.body_location}</p>}
+                  {selectedSession.feeling && <p className="text-sm text-gray-700"><span className="font-medium">Feeling: </span>{selectedSession.feeling}</p>}
+                  {selectedSession.shape && <p className="text-sm text-gray-700"><span className="font-medium">Shape: </span>{selectedSession.shape}</p>}
+                  {selectedSession.color && <p className="text-sm text-gray-700"><span className="font-medium">Color: </span>{selectedSession.color}</p>}
+                  {selectedSession.size && <p className="text-sm text-gray-700"><span className="font-medium">Size: </span>{selectedSession.size}</p>}
+                  {selectedSession.texture && <p className="text-sm text-gray-700"><span className="font-medium">Texture: </span>{selectedSession.texture}</p>}
+                </div>
+              )}
+              {selectedSession.emotions && (<div className="rounded-xl bg-slate-50 border border-slate-200 p-4 space-y-1"><p className="text-xs font-semibold uppercase tracking-widest text-slate-400">Emotions</p><p className="text-sm text-gray-700">{selectedSession.emotions}</p></div>)}
+              {selectedSession.ages && (<div className="rounded-xl bg-slate-50 border border-slate-200 p-4 space-y-1"><p className="text-xs font-semibold uppercase tracking-widest text-slate-400">Age</p><p className="text-sm text-gray-700">{selectedSession.ages}</p>{selectedSession.activation_age && <p className="text-sm text-gray-700"><span className="font-medium">Activation age: </span>{selectedSession.activation_age}</p>}</div>)}
+              {selectedSession.who_involved && (<div className="rounded-xl bg-slate-50 border border-slate-200 p-4 space-y-1"><p className="text-xs font-semibold uppercase tracking-widest text-slate-400">Who Was Involved</p><p className="text-sm text-gray-700">{selectedSession.who_involved}</p></div>)}
+              {selectedSession.what_happened && (<div className="rounded-xl bg-slate-50 border border-slate-200 p-4 space-y-1"><p className="text-xs font-semibold uppercase tracking-widest text-slate-400">What Happened</p><p className="text-sm text-gray-700">{selectedSession.what_happened}</p></div>)}
+              {selectedSession.core_beliefs && (
+                <div className="rounded-xl bg-emerald-50 border border-emerald-200 p-4 space-y-2">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-emerald-600">Core Beliefs</p>
+                  <div className="flex flex-wrap gap-2">{selectedSession.core_beliefs.split(",").map((b) => (<span key={b} className="rounded-full bg-white border border-emerald-200 px-3 py-1 text-sm text-gray-700">{b.trim()}</span>))}</div>
+                </div>
+              )}
+              {selectedSession.patterns && (<div className="rounded-xl bg-slate-50 border border-slate-200 p-4 space-y-1"><p className="text-xs font-semibold uppercase tracking-widest text-slate-400">Patterns</p>{selectedSession.patterns.split(",").map((p) => (<p key={p} className="text-sm text-gray-700">• {p.trim()}</p>))}</div>)}
+              {selectedSession.unmet_need && (<div className="rounded-xl bg-emerald-50 border border-emerald-200 p-4 space-y-1"><p className="text-xs font-semibold uppercase tracking-widest text-emerald-600">What Your Body Needed</p>{selectedSession.unmet_need.split(",").map((n) => (<p key={n} className="text-sm text-gray-700">• {n.trim()}</p>))}</div>)}
+              {selectedSession.own_words && (<div className="rounded-xl bg-slate-50 border border-slate-200 p-4 space-y-1"><p className="text-xs font-semibold uppercase tracking-widest text-slate-400">In Your Own Words</p><p className="text-sm text-gray-600 italic">"{selectedSession.own_words}"</p></div>)}
+              <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-3">
+                <p className="text-sm font-semibold text-gray-800">🌙 Nighttime Integration Script</p>
+                <p className="text-xs text-gray-500">Read this tonight as you are drifting off to sleep. Your subconscious is most open right before sleep — this is when new beliefs install most deeply.</p>
+                <div className="grid grid-cols-2 gap-3">
+                  <button onClick={() => setStandardOpen(!standardOpen)} className={`rounded-2xl border p-3 text-left transition space-y-1 ${standardOpen ? "border-emerald-700 bg-emerald-700 text-white" : "border-slate-200 bg-white hover:border-emerald-400"}`}>
+                    <p className="text-base">🌿</p><p className="font-semibold text-sm">Standard</p><p className={`text-xs leading-5 ${standardOpen ? "text-emerald-100" : "text-slate-500"}`}>Grounded in the body</p>
+                  </button>
+                  <button onClick={() => setBiblicalOpen(!biblicalOpen)} className={`rounded-2xl border p-3 text-left transition space-y-1 ${biblicalOpen ? "border-emerald-700 bg-emerald-700 text-white" : "border-slate-200 bg-white hover:border-emerald-400"}`}>
+                    <p className="text-base">✝️</p><p className="font-semibold text-sm">Biblical</p><p className={`text-xs leading-5 ${biblicalOpen ? "text-emerald-100" : "text-slate-500"}`}>Woven with faith</p>
+                  </button>
+                </div>
+                <div className="flex gap-2 pt-1">
+                  <button onClick={() => downloadScript(selectedSession, false)} className="flex-1 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-medium text-slate-700 hover:border-emerald-400 hover:bg-emerald-50 transition">⬇ Download Standard</button>
+                  <button onClick={() => downloadScript(selectedSession, true)} className="flex-1 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-medium text-slate-700 hover:border-emerald-400 hover:bg-emerald-50 transition">⬇ Download Biblical</button>
+                </div>
+              </div>
+              {standardOpen && (
+                <div className="rounded-2xl border border-slate-300 bg-slate-50 p-5 space-y-5 text-sm leading-7 text-slate-700">
+                  <div className="space-y-3"><p className="text-xs uppercase tracking-widest text-slate-400">Body Reset — Begin here</p>
+                    <div className="space-y-4">
+                      <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-2"><p className="font-semibold text-slate-800">Step 1 — Collarbone Tap</p><p>Tap lightly on either collarbone point and say:</p><p className="italic text-slate-600">"Body, the danger is over. You can let this go now."</p></div>
+                      <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-2"><p className="font-semibold text-slate-800">Step 2 — Jaw Release</p><p>Gently open and close your jaw, side to side for 5 to 10 seconds.</p><p className="italic text-slate-600">Say: "I release old reactions."</p></div>
+                      <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-2"><p className="font-semibold text-slate-800">Step 3 — Exhale Drop</p><p>Let your shoulders fall while exhaling through your mouth.</p><p className="italic text-slate-600">Say: "My body can stand down."</p></div>
+                      <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-2"><p className="font-semibold text-slate-800">Step 4 — Sweep the Body</p><p>Take both hands and sweep down your chest, ribs, stomach, hips like you are brushing off dust.</p><p className="italic text-slate-600">Say: "This pattern is erased."</p></div>
+                      <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-2"><p className="font-semibold text-slate-800">Step 5 — Replace the Pattern</p><p>Place your hand on your heart.</p><p className="italic text-slate-600">Say: "My new baseline is calm. My new identity is healed."</p></div>
+                    </div>
+                  </div>
+                  <hr className="border-slate-200" />
+                  <div className="space-y-3"><p className="text-xs uppercase tracking-widest text-slate-400">30-Second Vagus Nerve Reset</p>
+                    <div className="space-y-3">
+                      <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-2"><p className="font-semibold text-slate-800">Step 1 — Look to the Right (15 seconds)</p><p>Hold your eyes far right without moving your head until you feel a sigh, swallow, or yawn.</p></div>
+                      <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-2"><p className="font-semibold text-slate-800">Step 2 — Look to the Left (15 seconds)</p><p>Same thing — eyes far left until you sigh or swallow again. You will feel lighter and more grounded.</p></div>
+                    </div>
+                  </div>
+                  <hr className="border-slate-200" />
+                  <div className="space-y-3"><p className="text-xs uppercase tracking-widest text-slate-400">Sleep Reprogramming Script</p><p>Lie in bed. Put one hand on your heart and one on your lower belly. Breathe in for 4 seconds. Out through your mouth for 8 seconds.</p><p>Then repeat softly:</p>
+                    <div className="border-l-2 border-emerald-400 pl-5 space-y-2 italic text-slate-600"><p>My body knows how to heal.</p><p>My nervous system knows how to relax.</p><p>Every cell is remembering peace.</p><p>I am safe while I sleep.</p><p>My body is switching to repair mode now.</p></div>
+                  </div>
+                  <hr className="border-slate-200" />
+                  <div className="space-y-3"><p className="text-xs uppercase tracking-widest text-slate-400">The truth my nervous system is ready to hear</p><p>Around {ageText}, something happened that involved {whoText}. My body felt {emotionText}. Tonight I correct those beliefs. Gently. Slowly.</p>
+                    <div className="space-y-2">{nightlyBeliefs.map((belief) => (<div key={belief} className="border-l-2 border-emerald-400 pl-4 italic text-slate-600"><p>{belief}</p></div>))}</div>
+                  </div>
+                  <hr className="border-slate-200" />
+                  <div className="space-y-3"><p className="text-xs uppercase tracking-widest text-slate-400">Identity Imprint</p>
+                    <div className="border-l-2 border-emerald-400 pl-5 space-y-2 italic text-slate-600"><p>I am no longer in healing mode.</p><p>I am already healed.</p><p>My body is simply maintaining my health.</p></div>
+                    <p>{bodyPlacementText}</p><p>Breathe in for 4. Out for 8.</p><p className="italic text-slate-600">Everything that is not mine dissolves as I sleep.</p>
+                  </div>
+                  <hr className="border-slate-200" />
+                  <div className="space-y-3 text-center"><p className="text-xs uppercase tracking-widest text-slate-400">I carry these into sleep</p>{nightlyBeliefs.map((belief) => <p key={belief} className="text-base font-medium text-slate-800">{belief}</p>)}<p className="text-slate-500 text-sm">Goodnight. 🌙</p></div>
+                </div>
+              )}
+              {biblicalOpen && (
+                <div className="rounded-2xl border border-slate-300 bg-slate-50 p-5 space-y-5 text-sm leading-7 text-slate-700">
+                  <div className="space-y-3"><p className="text-xs uppercase tracking-widest text-slate-400">Body Reset — Begin here</p>
+                    <div className="space-y-4">
+                      <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-2"><p className="font-semibold text-slate-800">Step 1 — Collarbone Tap</p><p>Tap lightly on either collarbone point and say:</p><p className="italic text-slate-600">"Body, the danger is over. God is here. You can let this go now."</p></div>
+                      <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-2"><p className="font-semibold text-slate-800">Step 2 — Jaw Release</p><p>Gently open and close your jaw, side to side for 5 to 10 seconds.</p><p className="italic text-slate-600">Say: "I release old reactions. God is renewing my mind."</p></div>
+                      <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-2"><p className="font-semibold text-slate-800">Step 3 — Exhale Drop</p><p>Let your shoulders fall while exhaling through your mouth.</p><p className="italic text-slate-600">Say: "My body can stand down. He is standing guard."</p></div>
+                      <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-2"><p className="font-semibold text-slate-800">Step 4 — Sweep the Body</p><p>Take both hands and sweep down your chest, ribs, stomach, hips.</p><p className="italic text-slate-600">Say: "This pattern is erased. I am made new."</p></div>
+                      <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-2"><p className="font-semibold text-slate-800">Step 5 — Replace the Pattern</p><p>Place your hand on your heart.</p><p className="italic text-slate-600">Say: "My new baseline is peace in Him. My new identity is healed and whole."</p></div>
+                    </div>
+                  </div>
+                  <hr className="border-slate-200" />
+                  <div className="space-y-3"><p className="text-xs uppercase tracking-widest text-slate-400">30-Second Vagus Nerve Reset</p>
+                    <div className="space-y-3">
+                      <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-2"><p className="font-semibold text-slate-800">Step 1 — Look to the Right (15 seconds)</p><p>Hold your eyes far right until you feel a sigh, swallow, or yawn. This is your body coming into rest.</p></div>
+                      <div className="rounded-xl bg-white border border-slate-200 p-4 space-y-2"><p className="font-semibold text-slate-800">Step 2 — Look to the Left (15 seconds)</p><p>Eyes far left until you sigh or swallow. You will feel lighter — that is peace settling in.</p></div>
+                    </div>
+                  </div>
+                  <hr className="border-slate-200" />
+                  <div className="space-y-3"><p className="text-xs uppercase tracking-widest text-slate-400">Sleep Reprogramming Script</p><p>Lie in bed. Put one hand on your heart and one on your lower belly. Breathe in for 4 seconds. Out through your mouth for 8 seconds.</p><p>Then repeat softly:</p>
+                    <div className="border-l-2 border-emerald-400 pl-5 space-y-2 italic text-slate-600"><p>My body knows how to heal — God designed it this way.</p><p>My nervous system knows how to relax — He gives rest to those He loves.</p><p>Every cell is remembering peace — His peace that passes understanding.</p><p>I am safe while I sleep — He watches over me.</p><p>My body is switching to repair mode now — He restores.</p></div>
+                  </div>
+                  <hr className="border-slate-200" />
+                  <div className="space-y-3"><p className="text-xs uppercase tracking-widest text-slate-400">The truth He says about me</p><p>Around {ageText}, something happened that involved {whoText}. My body felt {emotionText}. God saw what happened. He has never looked away.</p><p>Tonight, His truth corrects what I believed. Gently. Slowly.</p>
+                    <div className="space-y-2">{nightlyBeliefsBiblical.map((belief) => (<div key={belief} className="border-l-2 border-emerald-400 pl-4 italic text-slate-600"><p>{belief}</p></div>))}</div>
+                  </div>
+                  <hr className="border-slate-200" />
+                  <div className="space-y-3"><p className="text-xs uppercase tracking-widest text-slate-400">Identity Imprint</p>
+                    <div className="border-l-2 border-emerald-400 pl-5 space-y-2 italic text-slate-600"><p>I am no longer in healing mode.</p><p>I am already healed — by His stripes.</p><p>My body is simply maintaining what God has already done.</p></div>
+                    <p>{bodyPlacementText}</p><p>Breathe in for 4. Out for 8.</p><p className="italic text-slate-600">Everything that is not from Him dissolves as I sleep.</p>
+                  </div>
+                  <hr className="border-slate-200" />
+                  <div className="space-y-3 text-center"><p className="text-xs uppercase tracking-widest text-slate-400">I carry these into sleep</p>{nightlyBeliefsBiblical.map((belief) => <p key={belief} className="text-base font-medium text-slate-800">{belief}</p>)}<p className="text-slate-500 text-sm">Goodnight. He is with you. 🌙</p></div>
+                </div>
+              )}
+              <button onClick={() => setSelectedSession(null)} className="w-full rounded-xl bg-emerald-700 px-5 py-3 text-white font-medium hover:bg-emerald-800 transition">Close</button>
+            </div>
+          </div>
+        )}
+
+        <div className="w-full max-w-md space-y-6 pt-4">
+          <h1 className="text-3xl font-semibold text-gray-800 text-center">Dashboard</h1>
+          <div className="space-y-4">
+            <button onClick={() => router.push("/start-session")} className="w-full bg-green-600 text-white py-3 rounded-xl text-lg font-medium hover:bg-green-700 transition">Start Session</button>
+            <button onClick={() => router.push("/session-entry")} className="w-full bg-white border border-gray-300 py-3 rounded-xl text-lg font-medium text-gray-800 hover:bg-gray-100 transition">Session Entry</button>
+          </div>
+          <div className="space-y-3">
+            <h2 className="text-lg font-semibold text-gray-800">Past Sessions</h2>
+            {loadingSessions ? (
+              <p className="text-sm text-gray-500">Loading sessions...</p>
+            ) : sessions.length === 0 ? (
+              <div className="rounded-2xl border border-gray-200 bg-white p-5 text-center"><p className="text-sm text-gray-500">No sessions yet. Start your first session above.</p></div>
+            ) : (
+              <div className="space-y-3">
+                {sessions.map((session) => (
+                  <button key={session.id} onClick={() => openSession(session)} className="w-full rounded-2xl border border-gray-200 bg-white p-4 shadow-sm space-y-2 text-left hover:border-emerald-400 transition">
+                    <p className="text-xs text-gray-400">{new Date(session.created_at).toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}</p>
+                    {session.emotions && <p className="text-sm text-gray-700"><span className="font-medium">Emotions: </span>{session.emotions}</p>}
+                    {session.core_beliefs && <p className="text-sm text-gray-700"><span className="font-medium">Core beliefs: </span>{session.core_beliefs}</p>}
+                    {session.ages && <p className="text-sm text-gray-700"><span className="font-medium">Age: </span>{session.ages}</p>}
+                    {session.symptoms && <p className="text-sm text-gray-700"><span className="font-medium">Symptoms: </span>{session.symptoms}</p>}
+                    <p className="text-xs text-emerald-600 font-medium pt-1">Tap to view full session →</p>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+          <button onClick={handleManageSubscription} disabled={portalLoading} className="w-full bg-white border border-gray-300 py-3 rounded-xl text-lg font-medium text-gray-800 hover:bg-gray-100 transition disabled:opacity-60">
+            {portalLoading ? "Loading..." : "Manage Subscription"}
+          </button>
+          <button onClick={() => router.push("/")} className="w-full text-sm text-gray-500 mt-4 underline">Back to Home</button>
         </div>
-        <button
-          onClick={handleManageSubscription}
-          disabled={portalLoading}
-          className="w-full bg-white border border-gray-300 py-3 rounded-xl text-lg font-medium text-gray-800 hover:bg-gray-100 transition disabled:opacity-60"
-        >
-          {portalLoading ? "Loading..." : "Manage Subscription"}
-        </button>
-        <button onClick={() => router.push("/")} className="w-full text-sm text-gray-500 mt-4 underline">Back to Home</button>
       </div>
     </div>
   );
