@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import AppShell from "@/components/AppShell";
+import AuthShell from "@/components/AuthShell";
 import { supabase } from "@/lib/supabase";
 
 const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/5kQ3cvaczg6H6tpgYsbII01";
