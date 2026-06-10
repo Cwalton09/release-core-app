@@ -1,8 +1,12 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import AppShell from "@/components/AppShell";
 import { practices } from "@/lib/dailyPracticesData";
+import { supabase } from "@/lib/supabase";
+
+const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/5kQ3cvaczg6H6tpgYsbII01";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -239,6 +243,8 @@ const scripts: Script[] = [
 // ─── Main page ────────────────────────────────────────────────────────────────
 
 export default function GroundingScripts() {
+  const router = useRouter();
+  const [checking, setChecking] = useState(true);
   const [activeId, setActiveId] = useState<string | null>(null);
   const [activeBreathing, setActiveBreathing] = useState<string | null>(null);
   const [activePractice, setActivePractice] = useState<string | null>(null);
@@ -248,6 +254,23 @@ export default function GroundingScripts() {
   const activePracticeData = practices.find((p) => p.belief === activePractice);
   const { isPlaying, currentLine, rate, setRate, play, pause, resume, stop } = useTTS(active?.lines ?? []);
 
+  useEffect(() => {
+    let mounted = true;
+    async function checkAccess(retryCount = 0) {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        if (retryCount < 3) { setTimeout(() => { if (mounted) checkAccess(retryCount + 1); }, 500); return; }
+        router.replace("/login");
+        return;
+      }
+      const { data: profile } = await supabase.from("profiles").select("paid").eq("user_id", session.user.id).maybeSingle();
+      if (!profile?.paid) { window.location.href = STRIPE_PAYMENT_LINK; return; }
+      if (mounted) setChecking(false);
+    }
+    checkAccess();
+    return () => { mounted = false; };
+  }, [router]);
+
   const filteredPractices = practices.filter((p) =>
     p.belief.toLowerCase().includes(practiceSearch.toLowerCase())
   );
@@ -256,12 +279,13 @@ export default function GroundingScripts() {
   function openBreathing(id: string) { setActiveBreathing(id === activeBreathing ? null : id); }
   function openPractice(belief: string) { setActivePractice(belief === activePractice ? null : belief); }
 
+  if (checking) return <p className="p-6 text-center text-sm text-slate-500">Loading...</p>;
+
   return (
     <AppShell
       title="Grounding Scripts"
       subtitle="When you can't do a full session, these tools help your body find safety in the moment."
     >
-
       {/* ── Breathing Exercises ── */}
       <p className="text-xs font-semibold uppercase tracking-wide text-slate-400 mb-3">Breathing Exercises</p>
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 mb-4">

@@ -1,7 +1,11 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import AppShell from "@/components/AppShell";
+import { supabase } from "@/lib/supabase";
+
+const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/5kQ3cvaczg6H6tpgYsbII01";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -245,11 +249,7 @@ function MiniBreathTimer({ phases, color }: { phases: { label: string; duration:
       setSecondsLeft((prev) => {
         if (prev <= 1) {
           const next = phaseIndex + 1;
-          if (next >= phases.length) {
-            setIsRunning(false);
-            setDone(true);
-            return 0;
-          }
+          if (next >= phases.length) { setIsRunning(false); setDone(true); return 0; }
           setPhaseIndex(next);
           return phases[next].duration;
         }
@@ -354,10 +354,29 @@ function StepCard({ number, title, children }: { number: number; title: string; 
 // ─── Main page ────────────────────────────────────────────────────────────────
 
 export default function QuickRelief() {
+  const router = useRouter();
+  const [checking, setChecking] = useState(true);
   const [selected, setSelected] = useState<Emotion | null>(null);
   const [step, setStep] = useState(0);
   const [breathDone, setBreathDone] = useState(false);
   const { speak, stop } = useTTS();
+
+  useEffect(() => {
+    let mounted = true;
+    async function checkAccess(retryCount = 0) {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        if (retryCount < 3) { setTimeout(() => { if (mounted) checkAccess(retryCount + 1); }, 500); return; }
+        router.replace("/login");
+        return;
+      }
+      const { data: profile } = await supabase.from("profiles").select("paid").eq("user_id", session.user.id).maybeSingle();
+      if (!profile?.paid) { window.location.href = STRIPE_PAYMENT_LINK; return; }
+      if (mounted) setChecking(false);
+    }
+    checkAccess();
+    return () => { mounted = false; };
+  }, [router]);
 
   function selectEmotion(e: Emotion) {
     stop();
@@ -372,6 +391,8 @@ export default function QuickRelief() {
     setStep(0);
     setBreathDone(false);
   }
+
+  if (checking) return <p className="p-6 text-center text-sm text-slate-500">Loading...</p>;
 
   return (
     <AppShell
@@ -396,7 +417,6 @@ export default function QuickRelief() {
         </>
       ) : (
         <div>
-          {/* Header */}
           <div className="flex items-center justify-between mb-5">
             <div>
               <p className="text-xs text-slate-400 uppercase tracking-wide font-semibold mb-0.5">You selected</p>
@@ -408,14 +428,12 @@ export default function QuickRelief() {
             </button>
           </div>
 
-          {/* Progress */}
           <div className="flex gap-1.5 mb-6">
             {[1, 2, 3, 4].map((s) => (
               <div key={s} className={`h-1.5 flex-1 rounded-full transition-all ${step >= s ? "bg-calm-600" : "bg-calm-100"}`} />
             ))}
           </div>
 
-          {/* Step 1 — Breath */}
           {step >= 1 && (
             <StepCard number={1} title={selected.breath.title}>
               <p className="text-sm text-slate-500 mb-3 leading-6">{selected.breath.description}</p>
@@ -428,14 +446,10 @@ export default function QuickRelief() {
             </StepCard>
           )}
 
-          {/* Step 2 — Body Anchor */}
           {step >= 2 && (
             <StepCard number={2} title="Body Anchor">
               <p className="text-sm text-slate-700 leading-7">{selected.anchor}</p>
-              <button
-                onClick={() => speak(selected.anchor)}
-                className="mt-3 flex items-center gap-2 rounded-full border border-calm-200 px-4 py-2 text-xs text-calm-700 transition hover:bg-calm-50"
-              >
+              <button onClick={() => speak(selected.anchor)} className="mt-3 flex items-center gap-2 rounded-full border border-calm-200 px-4 py-2 text-xs text-calm-700 transition hover:bg-calm-50">
                 <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21" /></svg>
                 Read to me
               </button>
@@ -447,7 +461,6 @@ export default function QuickRelief() {
             </StepCard>
           )}
 
-          {/* Step 3 — Calming Statement */}
           {step >= 3 && (
             <StepCard number={3} title="Calming Statements">
               <p className="text-xs text-slate-400 mb-3">Read these slowly. Let each one land before moving to the next.</p>
@@ -456,10 +469,7 @@ export default function QuickRelief() {
                   <p key={i} className="text-sm text-slate-700 leading-7 rounded-lg bg-calm-50 px-3 py-1.5">{line}</p>
                 ))}
               </div>
-              <button
-                onClick={() => speak(selected.statement.join(". "))}
-                className="mt-3 flex items-center gap-2 rounded-full border border-calm-200 px-4 py-2 text-xs text-calm-700 transition hover:bg-calm-50"
-              >
+              <button onClick={() => speak(selected.statement.join(". "))} className="mt-3 flex items-center gap-2 rounded-full border border-calm-200 px-4 py-2 text-xs text-calm-700 transition hover:bg-calm-50">
                 <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21" /></svg>
                 Read to me
               </button>
@@ -471,7 +481,6 @@ export default function QuickRelief() {
             </StepCard>
           )}
 
-          {/* Step 4 — Reframe + Complete */}
           {step >= 4 && (
             <StepCard number={4} title="New Belief">
               <div className="rounded-xl bg-calm-50 border border-calm-100 px-4 py-4 mb-4">
