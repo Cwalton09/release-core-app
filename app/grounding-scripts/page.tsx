@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import AppShell from "@/components/AppShell";
+import AuthShell from "@/components/AuthShell";
 import { practices } from "@/lib/dailyPracticesData";
 import { supabase } from "@/lib/supabase";
 
