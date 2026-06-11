@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import AuthShell from "@/components/AuthShell";
+import AppShell from "@/components/AppShell";
 import { practices } from "@/lib/dailyPracticesData";
 import { supabase } from "@/lib/supabase";
 
@@ -283,7 +283,7 @@ export default function GroundingScripts() {
   if (checking) return <p className="p-6 text-center text-sm text-slate-500">Loading...</p>;
 
   return (
-    <AuthShell
+    <Appshell
       title="Grounding Scripts"
       subtitle="When you can't do a full session, these tools help your body find safety in the moment."
     >
@@ -419,6 +419,6 @@ export default function GroundingScripts() {
           </div>
         </div>
       )}
-    </AuthShell>
+    </Appshell>
   );
 }
