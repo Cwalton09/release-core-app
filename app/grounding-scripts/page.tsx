@@ -419,6 +419,6 @@ export default function GroundingScripts() {
           </div>
         </div>
       )}
-    </Appshell>
+    </AppShell>
   );
 }
