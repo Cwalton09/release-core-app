@@ -98,7 +98,7 @@ export default function DreamInterpreter() {
         <section className="rounded-2xl border border-calm-200 bg-white p-6 shadow-sm sm:p-8">
           <h1 className="text-3xl font-semibold tracking-tight text-slate-900">Dream Interpreter</h1>
           <p className="mt-3 text-sm leading-6 text-slate-600">
-            Dreams often reflect what your nervous system is processing, releasing, and rewiring — especially after healing work. Share your dream and receive an interpretation through the lens of nervous system healing.
+            Your dreams speak the language of your nervous system. Share a dream and discover what your body is processing, how your new beliefs are integrating, and whether you are experiencing a completion dream — a sign that deep healing has taken place.
           </p>
 
           <div className="mt-6 space-y-4">
