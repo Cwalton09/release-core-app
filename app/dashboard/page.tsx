@@ -14,6 +14,7 @@ const navItems = [
   { href: "/grounding-scripts", label: "Grounding Scripts" },
   { href: "/quick-relief", label: "Quick Relief" },
   { href: "/faq", label: "FAQ" },
+  { href: "/dream-interpreter", label: "Dream Interpreter" },
 ];
 
 const beliefFlipMap: Record<string, string[]> = {

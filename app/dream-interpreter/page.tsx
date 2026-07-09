@@ -22,7 +22,6 @@ export default function DreamInterpreter() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [checking, setChecking] = useState(true);
   const [dream, setDream] = useState("");
-  const [context, setContext] = useState("");
   const [loading, setLoading] = useState(false);
   const [interpretation, setInterpretation] = useState("");
   const [error, setError] = useState("");
@@ -49,37 +48,19 @@ export default function DreamInterpreter() {
     setError("");
 
     try {
-      const prompt = `You are a nervous system healing guide trained in somatic therapy, trauma-informed care, and the Release Core Method. Your role is to interpret dreams through the lens of nervous system healing — identifying what the body and subconscious mind may be processing, releasing, or rewiring.
-
-${context.trim() ? `Context about this person's recent healing work or life situation: ${context}` : ""}
-
-Dream(s) to interpret:
-${dream}
-
-Please provide a warm, grounded interpretation that:
-1. Identifies what nervous system patterns or protective strategies may be appearing in the dream
-2. Notices what the dreamer does differently from old patterns (signs of healing)
-3. Connects the dream imagery to possible limiting beliefs being released or rewired
-4. Recognizes what the subconscious may be practicing or rehearsing
-5. Reflects back the healing that appears to be happening
-6. If multiple dreams are shared, find the connecting theme between them
-7. Ends with a gentle, affirming insight about what this means for their healing journey
-
-Write in a warm, personal, non-clinical tone — like a trusted guide who deeply understands nervous system healing. Do not use bullet points for the main interpretation — write in flowing paragraphs. You may use bullet points only when listing specific dream moments or old vs new patterns for clarity. Keep it grounded in somatic and nervous system language, not generic dream symbolism.`;
-
-      const response = await fetch("https://api.anthropic.com/v1/messages", {
+      const response = await fetch("/api/dream", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          model: "claude-sonnet-4-6",
-          max_tokens: 1000,
-          messages: [{ role: "user", content: prompt }],
-        }),
+        body: JSON.stringify({ dream }),
       });
 
       const data = await response.json();
-      const text = data.content?.map((c: any) => c.text || "").join("") || "";
-      setInterpretation(text);
+
+      if (!response.ok || data.error) {
+        setError(data.error || "Something went wrong. Please try again.");
+      } else {
+        setInterpretation(data.interpretation);
+      }
     } catch (err) {
       setError("Something went wrong. Please try again.");
     }
@@ -117,34 +98,19 @@ Write in a warm, personal, non-clinical tone — like a trusted guide who deeply
         <section className="rounded-2xl border border-calm-200 bg-white p-6 shadow-sm sm:p-8">
           <h1 className="text-3xl font-semibold tracking-tight text-slate-900">Dream Interpreter</h1>
           <p className="mt-3 text-sm leading-6 text-slate-600">
-            Dreams often reflect what your nervous system is processing, releasing, or rewiring — especially after healing work. Share your dream and receive an interpretation through the lens of nervous system healing.
+            Dreams often reflect what your nervous system is processing, releasing, and rewiring — especially after healing work. Share your dream and receive an interpretation through the lens of nervous system healing.
           </p>
 
           <div className="mt-6 space-y-4">
-            {/* Optional context */}
             <div>
               <label className="block text-xs font-semibold uppercase tracking-wide text-slate-400 mb-2">
-                Recent healing work or context <span className="normal-case font-normal text-slate-400">(optional)</span>
-              </label>
-              <textarea
-                value={context}
-                onChange={(e) => setContext(e.target.value)}
-                placeholder="e.g. I just had a session where I released fear of abandonment and a belief that I need certainty from others to feel safe..."
-                rows={3}
-                className="w-full rounded-xl border border-calm-200 bg-white px-4 py-3 text-sm text-slate-700 placeholder:text-slate-400 focus:border-calm-400 focus:outline-none focus:ring-1 focus:ring-calm-300 resize-none"
-              />
-            </div>
-
-            {/* Dream input */}
-            <div>
-              <label className="block text-xs font-semibold uppercase tracking-wide text-slate-400 mb-2">
-                Your dream(s)
+                Describe your dream
               </label>
               <textarea
                 value={dream}
                 onChange={(e) => setDream(e.target.value)}
-                placeholder="Describe your dream in as much detail as you remember. You can share multiple dreams — they often connect in meaningful ways..."
-                rows={7}
+                placeholder="Share your dream in as much detail as you remember. You can include multiple dreams — they often connect in meaningful ways..."
+                rows={8}
                 className="w-full rounded-xl border border-calm-200 bg-white px-4 py-3 text-sm text-slate-700 placeholder:text-slate-400 focus:border-calm-400 focus:outline-none focus:ring-1 focus:ring-calm-300 resize-none"
               />
             </div>
@@ -158,7 +124,7 @@ Write in a warm, personal, non-clinical tone — like a trusted guide who deeply
             </button>
           </div>
 
-          {/* Loading state */}
+          {/* Loading */}
           {loading && (
             <div className="mt-6 rounded-xl border border-calm-200 bg-calm-50 p-6 text-center">
               <div className="flex items-center justify-center gap-2 mb-2">
@@ -185,15 +151,13 @@ Write in a warm, personal, non-clinical tone — like a trusted guide who deeply
                 <h2 className="text-lg font-semibold text-calm-700">Your Dream Interpretation</h2>
               </div>
               <div className="rounded-xl border border-calm-200 bg-calm-50 p-6">
-                <div className="prose prose-sm max-w-none text-slate-700 leading-7 whitespace-pre-wrap">
-                  {interpretation}
-                </div>
+                <p className="text-sm text-slate-700 leading-7 whitespace-pre-wrap">{interpretation}</p>
               </div>
               <p className="mt-4 text-xs text-slate-400 text-center leading-5">
                 This interpretation is offered as a gentle reflection through the lens of nervous system healing. Trust what resonates and release what doesn't.
               </p>
               <button
-                onClick={() => { setDream(""); setContext(""); setInterpretation(""); }}
+                onClick={() => { setDream(""); setInterpretation(""); }}
                 className="mt-4 w-full rounded-xl border border-calm-200 py-2.5 text-sm text-calm-700 transition hover:bg-calm-50"
               >
                 Interpret another dream
