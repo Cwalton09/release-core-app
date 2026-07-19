@@ -1,4 +1,5 @@
 "use client";
+
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import AppShell from "@/components/AppShell";
@@ -13,38 +14,39 @@ export default function ResetPasswordPage() {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    // Supabase sets the session from the URL hash automatically
-    supabase.auth.onAuthStateChange((event) => {
-      if (event === "PASSWORD_RECOVERY") {
+    // Check if there's a session already (token in URL hash processed by Supabase)
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session) setReady(true);
+    });
+
+    // Also listen for the PASSWORD_RECOVERY event
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === "PASSWORD_RECOVERY" || (event === "SIGNED_IN" && session)) {
         setReady(true);
       }
     });
+
+    return () => subscription.unsubscribe();
   }, []);
 
   const handleUpdate = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage("");
-
     if (password !== confirm) {
       setErrorMessage("Passwords do not match.");
       return;
     }
-
     if (password.length < 6) {
       setErrorMessage("Password must be at least 6 characters.");
       return;
     }
-
     setLoading(true);
-
     const { error } = await supabase.auth.updateUser({ password });
-
     if (error) {
       setErrorMessage(error.message);
     } else {
       router.replace("/dashboard");
     }
-
     setLoading(false);
   };
 
@@ -53,6 +55,7 @@ export default function ResetPasswordPage() {
       <AppShell title="Reset Password">
         <div className="mx-auto max-w-xl rounded-2xl border border-slate-200 bg-white p-8 shadow-sm text-center">
           <p className="text-sm text-slate-600">Verifying your reset link...</p>
+          <p className="text-xs text-slate-400 mt-2">This should only take a moment.</p>
         </div>
       </AppShell>
     );
