@@ -99,6 +99,8 @@ function BeliefCheckList({
 }) {
   const [checked, setChecked] = useState<boolean[]>(statements.map(() => false));
   const [submitted, setSubmitted] = useState(false);
+  const [somethingElse, setSomethingElse] = useState("");
+  const [somethingElseChecked, setSomethingElseChecked] = useState(false);
 
   function toggle(index: number) {
     setChecked((prev) => prev.map((v, i) => (i === index ? !v : v)));
@@ -110,6 +112,9 @@ function BeliefCheckList({
       ...s,
       answer: checked[i] ? "yes" as const : "no" as const,
     }));
+    if (somethingElseChecked && somethingElse.trim()) {
+      answers.push({ text: somethingElse.trim(), answer: "yes" as const });
+    }
     onSubmit(answers);
   }
 
@@ -124,6 +129,14 @@ function BeliefCheckList({
             <p className="text-sm text-slate-600">{s.text}</p>
           </div>
         ))}
+        {somethingElseChecked && somethingElse.trim() && (
+          <div className="flex items-center gap-3 rounded-xl bg-calm-50 border border-calm-100 px-4 py-2.5">
+            <div className="w-5 h-5 rounded flex-shrink-0 flex items-center justify-center border-2 bg-calm-600 border-calm-600">
+              <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </div>
+            <p className="text-sm text-slate-600">{somethingElse}</p>
+          </div>
+        )}
       </div>
     );
   }
@@ -136,9 +149,7 @@ function BeliefCheckList({
           key={i}
           onClick={() => toggle(i)}
           className={`w-full flex items-center gap-3 rounded-xl border px-4 py-3 text-left transition-all ${
-            checked[i]
-              ? "border-calm-400 bg-calm-50"
-              : "border-calm-200 bg-white hover:border-calm-300"
+            checked[i] ? "border-calm-400 bg-calm-50" : "border-calm-200 bg-white hover:border-calm-300"
           }`}
         >
           <div className={`w-5 h-5 rounded flex-shrink-0 flex items-center justify-center border-2 transition-all ${checked[i] ? "bg-calm-600 border-calm-600" : "border-slate-300"}`}>
@@ -147,6 +158,29 @@ function BeliefCheckList({
           <p className="text-sm text-slate-700 leading-6">{s.text}</p>
         </button>
       ))}
+
+      {/* Something else option */}
+      <div className={`rounded-xl border px-4 py-3 transition-all ${somethingElseChecked ? "border-calm-400 bg-calm-50" : "border-calm-200 bg-white"}`}>
+        <button
+          onClick={() => setSomethingElseChecked(!somethingElseChecked)}
+          className="w-full flex items-center gap-3 text-left"
+        >
+          <div className={`w-5 h-5 rounded flex-shrink-0 flex items-center justify-center border-2 transition-all ${somethingElseChecked ? "bg-calm-600 border-calm-600" : "border-slate-300"}`}>
+            {somethingElseChecked && <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>}
+          </div>
+          <p className="text-sm text-slate-500 italic">Something else came up...</p>
+        </button>
+        {somethingElseChecked && (
+          <textarea
+            value={somethingElse}
+            onChange={(e) => setSomethingElse(e.target.value)}
+            placeholder="Describe what came up for you..."
+            rows={2}
+            className="mt-2 w-full resize-none rounded-lg border border-calm-200 px-3 py-2 text-sm text-slate-700 placeholder:text-slate-400 focus:outline-none focus:border-calm-400"
+          />
+        )}
+      </div>
+
       <button
         onClick={handleSubmit}
         className="w-full mt-2 rounded-xl bg-calm-600 py-3 text-sm font-medium text-white transition hover:bg-calm-700"
