@@ -1,9 +1,11 @@
 "use client";
 
+import { SessionPicker } from "@/components/SessionPicker";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
+
 
 const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/5kQ3cvaczg6H6tpgYsbII01";
 
@@ -512,7 +514,7 @@ export default function Dashboard() {
         <div className="w-full max-w-md space-y-6 pt-4">
           <h1 className="text-3xl font-semibold text-gray-800 text-center">Dashboard</h1>
           <div className="space-y-4">
-            <button onClick={() => router.push("/start-session")} className="w-full bg-green-600 text-white py-3 rounded-xl text-lg font-medium hover:bg-green-700 transition">Start Session</button>
+            <SessionPicker />
             <button onClick={() => router.push("/session-entry")} className="w-full bg-white border border-gray-300 py-3 rounded-xl text-lg font-medium text-gray-800 hover:bg-gray-100 transition">Session Entry</button>
           </div>
           <div className="space-y-3">
