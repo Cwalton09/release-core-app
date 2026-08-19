@@ -42,17 +42,25 @@ function parseBeliefStatements(text: string): BeliefStatement[] | null {
 
   for (const line of lines) {
     const trimmed = line.trim();
-    // Match lines starting with *, -, •, or numbered like "1."
-    if (/^[\*\-•]\s+.{10,}/.test(trimmed) || /^\d+\.\s+.{10,}/.test(trimmed)) {
-      const text = trimmed.replace(/^[\*\-•]\s+/, "").replace(/^\d+\.\s+/, "").trim();
+    // Match lines starting with *, -, •, –, or numbered like "1." or quoted like "I need..."
+    const isBullet = /^[\*\-•–]\s+.{5,}/.test(trimmed) || /^\d+[\.\)]\s+.{5,}/.test(trimmed);
+    if (isBullet) {
+      const text = trimmed
+        .replace(/^[\*\-•–]\s+/, "")
+        .replace(/^\d+[\.\)]\s+/, "")
+        .replace(/^[""]/, "")
+        .replace(/[""]$/, "")
+        .trim();
       // Filter out lines that are clearly not belief statements
-      if (text.length > 10 && !text.toLowerCase().startsWith("note:") && !text.toLowerCase().startsWith("for example")) {
+      const skipWords = ["note:", "for example", "example:", "step ", "check ", "test this"];
+      const shouldSkip = skipWords.some(w => text.toLowerCase().startsWith(w));
+      if (text.length > 5 && !shouldSkip) {
         statements.push({ text, answer: null });
       }
     }
   }
 
-  return statements.length >= 3 ? statements : null;
+  return statements.length >= 2 ? statements : null;
 }
 
 // Split message into text parts and belief list
@@ -266,8 +274,13 @@ export default function Phase2Session() {
   }, [messages, loading]);
 
   function checkIfComplete(text: string) {
-    const signals = ["nighttime script", "goodnight", "you can rest", "session is complete", "that is the root", "that is your release core target", "body, you can"];
-    return signals.some(s => text.toLowerCase().includes(s));
+    const lower = text.toLowerCase();
+    // Only mark complete when the full closing sequence is present
+    return (
+      lower.includes("your session is complete") ||
+      (lower.includes("nighttime script") && lower.includes("goodnight")) ||
+      (lower.includes("body, you can rest") && lower.includes("goodnight"))
+    );
   }
 
   async function sendToAI(userContent: string) {
