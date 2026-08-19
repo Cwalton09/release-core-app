@@ -347,6 +347,33 @@ export default function Phase2Session() {
     setGeneratingSummary(false);
   }
 
+  function extractNighttimeScript() {
+    const lastAssistant = messages.filter(m => m.role === "assistant").slice(-1)[0];
+    if (!lastAssistant) return "";
+    const content = lastAssistant.content;
+    const lower = content.toLowerCase();
+    const idx = lower.indexOf("your nighttime script");
+    if (idx === -1) {
+      // Try alternate headers
+      const alt = lower.indexOf("nighttime script");
+      if (alt === -1) return "";
+      return content.slice(alt).trim();
+    }
+    return content.slice(idx).trim();
+  }
+
+  function downloadNighttimeScript() {
+    const script = extractNighttimeScript();
+    if (!script) return;
+    const blob = new Blob([script], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `release-core-nighttime-script-${new Date().toLocaleDateString("en-US").replace(/\//g, "-")}.txt`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
   function downloadSummary() {
     const blob = new Blob([summary], { type: "text/plain" });
     const url = URL.createObjectURL(blob);
@@ -448,18 +475,24 @@ export default function Phase2Session() {
             <div className="rounded-2xl border border-calm-200 bg-calm-50 p-6 text-center">
               <p className="text-2xl mb-2">✨</p>
               <p className="text-sm font-semibold text-slate-800 mb-1">Your session is complete.</p>
-              <p className="text-xs text-slate-500 mb-4 leading-5">Generate a session summary to keep a record of what you found today.</p>
-              {!summary ? (
-                <button onClick={generateSummary} disabled={generatingSummary}
-                  className="rounded-xl bg-calm-600 px-6 py-2.5 text-sm font-medium text-white transition hover:bg-calm-700 disabled:opacity-50">
-                  {generatingSummary ? "Generating..." : "Generate session summary"}
+              <p className="text-xs text-slate-500 mb-4 leading-5">Download your nighttime script or generate your full session summary below.</p>
+              <div className="flex flex-col gap-2">
+                <button onClick={downloadNighttimeScript}
+                  className="w-full rounded-xl bg-calm-600 px-6 py-2.5 text-sm font-medium text-white transition hover:bg-calm-700">
+                  🌙 Download nighttime script
                 </button>
-              ) : (
-                <button onClick={downloadSummary}
-                  className="rounded-xl border border-calm-300 px-6 py-2.5 text-sm font-medium text-calm-700 transition hover:bg-calm-100">
-                  ⬇ Download session summary
-                </button>
-              )}
+                {!summary ? (
+                  <button onClick={generateSummary} disabled={generatingSummary}
+                    className="w-full rounded-xl border border-calm-300 px-6 py-2.5 text-sm font-medium text-calm-700 transition hover:bg-calm-100 disabled:opacity-50">
+                    {generatingSummary ? "Generating..." : "Generate session summary"}
+                  </button>
+                ) : (
+                  <button onClick={downloadSummary}
+                    className="w-full rounded-xl border border-calm-300 px-6 py-2.5 text-sm font-medium text-calm-700 transition hover:bg-calm-100">
+                    ⬇ Download session summary
+                  </button>
+                )}
+              </div>
             </div>
           )}
 
