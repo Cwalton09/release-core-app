@@ -1,155 +1,541 @@
-import { NextRequest, NextResponse } from "next/server";
+"use client";
 
-const SYSTEM_PROMPT = `You are a Release Core Guided Deep Session facilitator. You guide people through nervous system healing using body-based yes/no questions. You are HIGHLY DIRECTIVE — you drive every step. The person never has to figure out what to say next.
+import { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { supabase } from "@/lib/supabase";
 
-CORE BEHAVIOR:
-- After every response, immediately name what you see and drive the next step
-- Never ask open-ended questions like "how does that make you feel"
-- Make specific observations, then offer specific things to test
-- Predict the likely answers before they test — "I suspect your body will say yes to this one" or "I had a feeling it was [person]"
-- Always end with either a belief list OR one specific direct question
-- When someone corrects themselves mid-response, acknowledge it naturally and adjust
-- Move FAST when the root is clear — do not keep testing after you have found it
+const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/5kQ3cvaczg6H6tpgYsbII01";
 
-SESSION FLOW:
+const navItems = [
+  { href: "/dashboard", label: "Dashboard" },
+  { href: "/start-session", label: "Start Session" },
+  { href: "/session-entry", label: "Session Entry" },
+  { href: "/grounding-scripts", label: "Grounding Scripts" },
+  { href: "/quick-relief", label: "Quick Relief" },
+  { href: "/dream-interpreter", label: "Dream Interpreter" },
+  { href: "/faq", label: "FAQ" },
+];
 
-STEP 1 — OPENING
-After they describe what is going on:
-- Name the nervous system pattern in 2-3 sentences — interpret the pattern, not the story
-- Identify what strategy the nervous system is running: performance, hypervigilance, people-pleasing, reality defense, attachment safety, etc.
-- Offer 6-10 belief statements to test
-- Say: "Check each one with your body. Check the ones that feel true — leave unchecked for NO."
+type Message = {
+  role: "user" | "assistant";
+  content: string;
+};
 
-STEP 2 — READING THE ANSWERS
-After they submit:
-- Name EXACTLY what the YES answers have in common — one precise sentence
-- Name what the NO answers reveal — what this pattern is NOT about
-- This distinction is critical — be precise, not general
-- Then offer 6-10 more specific statements going one layer deeper
-- OR ask one specific direct question if a direct answer would reveal more than a belief list
+type BeliefStatement = {
+  text: string;
+  answer: "yes" | "no" | null;
+};
 
-STEP 3 — ZOOMING IN
-When something important fires, zoom in immediately with just 1-2 targeted statements rather than a full list.
-Example: "That gives us something very specific. Test just this one: [single belief]"
-Then follow that answer before continuing.
+const OPENING_MESSAGE = `Welcome to your Guided Deep Session.
 
-STEP 4 — FINDING THE ORIGIN
-When the pattern is clear, explore where or when the nervous system may have learned the rule.
-Do NOT guess the person, relationship, age, or event. Never say things like "I had a feeling it was your dad" or assume who caused the pattern.
-Use one targeted question at a time:
-- "When does your body associate this pattern with beginning?"
-- "Does this feel connected to one specific relationship, several relationships, or something you have carried for as long as you can remember?"
-- "What did you learn you had to do to stay safe, connected, accepted, or valued?"
-- "When this pattern activates now, what does your body believe it needs to protect you from?"
-If a specific person, age, relationship, or event comes up in their answer, follow it.
-Never suggest who caused the pattern, what happened, what age it started, or what another person thought or intended.
-Do not force an origin story. If no specific memory or age appears, continue with the developmental rule, feared consequence, protective job, and unmet need.
+This session will help you find what your nervous system is carrying underneath the surface — the root patterns, protective beliefs, and unmet needs connected to what you are experiencing right now.
 
-STEP 5 — DRILLING TO THE ROOT
-Use these pivots to find the deepest belief:
-- "What did [person's] disappointment mean about you?"
-- "What do you believe they see when they look at you in that moment?"
-- "If you simply said 'we disagree' and they stayed unhappy — what did your body believe would happen?"
-- "Which parts of you feel unsafe to show?"
-- "What did you learn you had to hide, soften, or edit to stay loved?"
-- "If someone fully knew you and still chose not to approve of part of you, what would that mean?"
+Take a moment to settle in. Place one hand on your heart if that feels right.
 
-THE CORE ROOT IS USUALLY ONE OF:
-- "I am only lovable when the people I care about are pleased with me"
-- "I have to hide parts of myself to stay loved"
-- "Disappointment means I am less worthy of love"
-- "I am not worth it"
-- "I am too much" or "I am not enough"
-- "If I disappoint someone I lose the connection"
-When this fires — STOP TESTING. Move immediately to close.
+Then share with me: What is going on for you today? It could be a physical symptom, an emotional reaction, something that triggered you, a situation that feels unresolved, or a dream. Whatever feels most alive in your body right now — start there.`;
 
-STEP 6 — AUTOMATIC CLOSE
-The moment you detect the root belief, close immediately without waiting to be asked.
-Say: "That is the root. Here is what your session found:"
+// Parse bullet point belief statements from AI response
+function parseBeliefStatements(text: string): BeliefStatement[] | null {
+  const lines = text.split("\n");
+  const statements: BeliefStatement[] = [];
 
-Then write ALL THREE of these in order — you MUST include all three, never skip any:
-
-1. THE CHAIN — one paragraph naming the complete pattern from surface to root
-
-2. THE REWIRE — a full narrative script, long and poetic, speaking directly to the body. MINIMUM 300 words. It should:
-   - Name what the body learned and why it made sense
-   - Release each layer of the old belief with specificity
-   - Install the new truth with repetition
-   - Use the person's own words whenever possible
-   - End with the core new belief stated clearly
-
-3. THE NIGHTTIME SCRIPT — a separate section titled "Your Nighttime Script" — ALWAYS WRITE THIS, NEVER SKIP IT. It should:
-   - Start with "Body, you can rest now."
-   - Speak directly to ANY body parts or physical symptoms mentioned during the session (headache, tight chest, sore throat, hip, back, etc.) — name each one specifically and give it permission to soften, release, or settle
-   - Use language like: "Your [body part] can soften now." "The tension in your [body part] can release." "Your [body part] no longer has to hold this."
-   - Name the protective job the body has been doing and give it permission to stop
-   - Gently install the new belief
-   - End with "You are safe to sleep. You are safe to rest. Goodnight."
-   - Minimum 150 words
-   - If NO physical symptoms were mentioned, still address the body generally — chest, shoulders, jaw, throat, belly
-
-After all three, end with: "Your session is complete. You can generate your full session summary below."
-
-NEVER end a session without writing both the Rewire AND the Nighttime Script in full. If you find yourself about to say "read your nighttime script" without having written one — write it first.
-
-BELIEF STATEMENT STYLE:
-First person present tense. 6-10 per round unless zooming in on one specific belief.
-ALWAYS format belief statements as bullet points starting with - so the interface can render them as checkboxes.
-Never put belief statements inline in a paragraph — always on separate bullet lines.
-Always note which ones you expect to fire.
-Examples:
-- I need to perform to prove my value.
-- I have to read the room before I am allowed to participate.
-- Someone can disagree with me and still love me.
-- I am lovable when you are happy with me. If you are disappointed, my lovability is in question.
-
-When zooming in on just one or two beliefs, still format them as bullet points:
-- [single belief statement]
-
-PHYSICAL SYMPTOMS:
-If someone mentions physical symptoms, immediately connect them:
-"Your body may be holding something connected to this. Let us find out what."
-Then offer belief statements connected to the symptom and emotional pattern.
-
-IMPORTANT:
-- Sessions end when the root is found — not on a schedule
-- Never rewrite beliefs before the root — no matter how long it takes
-- The rewire uses their exact words and is written as a full narrative, not a list
-- Zoom in fast when something important fires — do not keep offering long lists when 1-2 statements will do`;
-
-export async function POST(req: NextRequest) {
-  try {
-    const { messages } = await req.json();
-
-    if (!messages || messages.length === 0) {
-      return NextResponse.json({ error: "No messages provided" }, { status: 400 });
+  for (const line of lines) {
+    const trimmed = line.trim();
+    // Match lines starting with *, -, •, –, or numbered like "1." or quoted like "I need..."
+    const isBullet = /^[\*\-•–]\s+.{5,}/.test(trimmed) || /^\d+[\.\)]\s+.{5,}/.test(trimmed);
+    if (isBullet) {
+      const text = trimmed
+        .replace(/^[\*\-•–]\s+/, "")
+        .replace(/^\d+[\.\)]\s+/, "")
+        .replace(/^[""]/, "")
+        .replace(/[""]$/, "")
+        .trim();
+      // Filter out lines that are clearly not belief statements
+      const skipWords = ["note:", "for example", "example:", "step ", "check ", "test this"];
+      const shouldSkip = skipWords.some(w => text.toLowerCase().startsWith(w));
+      if (text.length > 5 && !shouldSkip) {
+        statements.push({ text, answer: null });
+      }
     }
-
-    const response = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-api-key": process.env.ANTHROPIC_API_KEY!,
-        "anthropic-version": "2023-06-01",
-      },
-      body: JSON.stringify({
-        model: "claude-sonnet-4-6",
-        max_tokens: 2000,
-        system: SYSTEM_PROMPT,
-        messages,
-      }),
-    });
-
-    const data = await response.json();
-    const text = data.content?.map((c: any) => c.text || "").join("") || "";
-
-    if (!text) {
-      return NextResponse.json({ error: "No response returned" }, { status: 500 });
-    }
-
-    return NextResponse.json({ message: text });
-  } catch (err) {
-    console.error("Phase 2 session error:", err);
-    return NextResponse.json({ error: "Something went wrong" }, { status: 500 });
   }
+
+  return statements.length >= 2 ? statements : null;
+}
+
+// Split message into text parts and belief list
+function splitMessageParts(content: string): { intro: string; statements: BeliefStatement[] | null; outro: string } {
+  const statements = parseBeliefStatements(content);
+  if (!statements) return { intro: content, statements: null, outro: "" };
+
+  const lines = content.split("\n");
+  let introLines: string[] = [];
+  let outroLines: string[] = [];
+  let inList = false;
+  let listDone = false;
+
+  for (const line of lines) {
+    const trimmed = line.trim();
+    const isBullet = /^[\*\-•]\s+.{10,}/.test(trimmed) || /^\d+\.\s+.{10,}/.test(trimmed);
+
+    if (isBullet && !listDone) {
+      inList = true;
+    } else if (inList && !isBullet) {
+      listDone = true;
+      inList = false;
+      outroLines.push(line);
+    } else if (!inList && !listDone) {
+      introLines.push(line);
+    } else if (listDone) {
+      outroLines.push(line);
+    }
+  }
+
+  return {
+    intro: introLines.join("\n").trim(),
+    statements,
+    outro: outroLines.join("\n").trim(),
+  };
+}
+
+function BeliefCheckList({
+  statements,
+  onSubmit,
+}: {
+  statements: BeliefStatement[];
+  onSubmit: (answers: BeliefStatement[]) => void;
+}) {
+  const [checked, setChecked] = useState<boolean[]>(statements.map(() => false));
+  const [submitted, setSubmitted] = useState(false);
+  const [somethingElse, setSomethingElse] = useState("");
+  const [somethingElseChecked, setSomethingElseChecked] = useState(false);
+
+  function toggle(index: number) {
+    setChecked((prev) => prev.map((v, i) => (i === index ? !v : v)));
+  }
+
+  function handleSubmit() {
+    setSubmitted(true);
+    const answers = statements.map((s, i) => ({
+      ...s,
+      answer: checked[i] ? "yes" as const : "no" as const,
+    }));
+    if (somethingElseChecked && somethingElse.trim()) {
+      answers.push({ text: somethingElse.trim(), answer: "yes" as const });
+    }
+    onSubmit(answers);
+  }
+
+  if (submitted) {
+    return (
+      <div className="space-y-2 opacity-60">
+        {statements.map((s, i) => (
+          <div key={i} className="flex items-center gap-3 rounded-xl bg-green-50 border border-green-100 px-4 py-2.5">
+            <div className={`w-5 h-5 rounded flex-shrink-0 flex items-center justify-center border-2 ${checked[i] ? "bg-green-600 border-green-600" : "border-slate-300 bg-white"}`}>
+              {checked[i] && <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>}
+            </div>
+            <p className="text-sm text-slate-600">{s.text}</p>
+          </div>
+        ))}
+        {somethingElseChecked && somethingElse.trim() && (
+          <div className="flex items-center gap-3 rounded-xl bg-green-50 border border-green-100 px-4 py-2.5">
+            <div className="w-5 h-5 rounded flex-shrink-0 flex items-center justify-center border-2 bg-green-600 border-green-600">
+              <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </div>
+            <p className="text-sm text-slate-600">{somethingElse}</p>
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-2">
+      <p className="text-xs text-slate-400 mb-3">✓ Check the ones your body says YES to. Leave unchecked for NO. Then tap Submit when done.</p>
+      {statements.map((s, i) => (
+        <button
+          key={i}
+          type="button"
+          onClick={() => toggle(i)}
+          className={`w-full flex items-center gap-3 rounded-xl border-2 px-4 py-3 text-left transition-all ${
+            checked[i]
+              ? "border-green-500 bg-green-50"
+              : "border-slate-200 bg-white hover:border-slate-300"
+          }`}
+        >
+          <div className={`w-6 h-6 rounded flex-shrink-0 flex items-center justify-center border-2 transition-all ${checked[i] ? "bg-green-600 border-green-600" : "border-slate-300 bg-white"}`}>
+            {checked[i] && <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>}
+          </div>
+          <p className="text-sm text-slate-700 leading-6">{s.text}</p>
+        </button>
+      ))}
+
+      {/* Something else option */}
+      <div className={`rounded-xl border-2 px-4 py-3 transition-all ${somethingElseChecked ? "border-green-500 bg-green-50" : "border-slate-200 bg-white"}`}>
+        <button
+          type="button"
+          onClick={() => setSomethingElseChecked(!somethingElseChecked)}
+          className="w-full flex items-center gap-3 text-left"
+        >
+          <div className={`w-6 h-6 rounded flex-shrink-0 flex items-center justify-center border-2 transition-all ${somethingElseChecked ? "bg-green-600 border-green-600" : "border-slate-300 bg-white"}`}>
+            {somethingElseChecked && <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>}
+          </div>
+          <p className="text-sm text-slate-500 italic">Something else came up...</p>
+        </button>
+        {somethingElseChecked && (
+          <textarea
+            value={somethingElse}
+            onChange={(e) => setSomethingElse(e.target.value)}
+            placeholder="Describe what came up..."
+            rows={2}
+            className="mt-2 w-full resize-none rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-700 placeholder:text-slate-400 focus:outline-none focus:border-green-400"
+          />
+        )}
+      </div>
+
+      <button
+        type="button"
+        onClick={handleSubmit}
+        className="w-full mt-3 rounded-xl bg-green-600 py-3.5 text-sm font-semibold text-white transition hover:bg-green-700 shadow-sm"
+      >
+        Submit my answers →
+      </button>
+    </div>
+  );
+}
+
+function AssistantMessage({
+  content,
+  onBeliefSubmit,
+  isLatest,
+}: {
+  content: string;
+  onBeliefSubmit: (answers: BeliefStatement[]) => void;
+  isLatest: boolean;
+}) {
+  const { intro, statements, outro } = splitMessageParts(content);
+
+  return (
+    <div className="flex gap-3">
+      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-calm-600 flex items-center justify-center text-white text-xs font-semibold">RC</div>
+      <div className="flex-1 space-y-3">
+        {intro && (
+          <div className="rounded-2xl rounded-tl-sm bg-white border border-calm-200 px-4 py-3">
+            <p className="text-sm text-slate-700 leading-7 whitespace-pre-wrap">{intro}</p>
+          </div>
+        )}
+        {statements && (
+          <div className="rounded-2xl border border-calm-200 bg-white p-4">
+            <p className="text-xs font-semibold uppercase tracking-wide text-calm-600 mb-3">
+              Check each one with your body — then tap Yes or No
+            </p>
+            <BeliefCheckList
+              statements={statements}
+              onSubmit={isLatest ? onBeliefSubmit : () => {}}
+            />
+          </div>
+        )}
+        {outro && (
+          <div className="rounded-2xl rounded-tl-sm bg-white border border-calm-200 px-4 py-3">
+            <p className="text-sm text-slate-700 leading-7 whitespace-pre-wrap">{outro}</p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+export default function Phase2Session() {
+  const router = useRouter();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [checking, setChecking] = useState(true);
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [sessionComplete, setSessionComplete] = useState(false);
+  const [summary, setSummary] = useState("");
+  const [generatingSummary, setGeneratingSummary] = useState(false);
+  const [beliefSubmitted, setBeliefSubmitted] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let mounted = true;
+    async function checkAccess() {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!mounted) return;
+      if (!session) { router.replace("/login"); return; }
+      const { data: profile } = await supabase.from("profiles").select("paid").eq("user_id", session.user.id).maybeSingle();
+      if (!mounted) return;
+      if (!profile?.paid) { window.location.href = STRIPE_PAYMENT_LINK; return; }
+      setChecking(false);
+    }
+    checkAccess();
+    return () => { mounted = false; };
+  }, [router]);
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages, loading]);
+
+  function checkIfComplete(text: string) {
+    const lower = text.toLowerCase();
+    // Only mark complete when the full closing sequence is present
+    return (
+      lower.includes("your session is complete") ||
+      (lower.includes("nighttime script") && lower.includes("goodnight")) ||
+      (lower.includes("body, you can rest") && lower.includes("goodnight"))
+    );
+  }
+
+  async function sendToAI(userContent: string) {
+    const userMessage: Message = { role: "user", content: userContent };
+    const newMessages = [...messages, userMessage];
+    setMessages(newMessages);
+    setLoading(true);
+    setError("");
+    setBeliefSubmitted(false);
+
+    try {
+      const response = await fetch("/api/phase2", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages: newMessages }),
+      });
+      const data = await response.json();
+      if (!response.ok || data.error) {
+        setError(data.error || "Something went wrong.");
+      } else {
+        const assistantMessage: Message = { role: "assistant", content: data.message };
+        setMessages([...newMessages, assistantMessage]);
+        if (checkIfComplete(data.message)) setSessionComplete(true);
+      }
+    } catch {
+      setError("Something went wrong. Please try again.");
+    }
+    setLoading(false);
+  }
+
+  async function sendMessage() {
+    if (!input.trim() || loading) return;
+    const text = input.trim();
+    setInput("");
+    await sendToAI(text);
+  }
+
+  function handleBeliefSubmit(answers: BeliefStatement[]) {
+    setBeliefSubmitted(true);
+    const formatted = answers
+      .map(a => `${a.text} — ${a.answer === "yes" ? "Yes" : "No"}`)
+      .join("\n");
+    sendToAI(formatted);
+  }
+
+  function handleKeyDown(e: React.KeyboardEvent) {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  }
+
+  async function generateSummary() {
+    setGeneratingSummary(true);
+    try {
+      const response = await fetch("/api/phase2-summary", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages }),
+      });
+      const data = await response.json();
+      if (data.summary) setSummary(data.summary);
+    } catch { console.error("Summary error"); }
+    setGeneratingSummary(false);
+  }
+
+  function extractNighttimeScript() {
+    const lastAssistant = messages.filter(m => m.role === "assistant").slice(-1)[0];
+    if (!lastAssistant) return "";
+    const content = lastAssistant.content;
+    const lower = content.toLowerCase();
+    const idx = lower.indexOf("your nighttime script");
+    if (idx === -1) {
+      // Try alternate headers
+      const alt = lower.indexOf("nighttime script");
+      if (alt === -1) return "";
+      return content.slice(alt).trim();
+    }
+    return content.slice(idx).trim();
+  }
+
+  function downloadNighttimeScript() {
+    const script = extractNighttimeScript();
+    if (!script) return;
+    const blob = new Blob([script], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `release-core-nighttime-script-${new Date().toLocaleDateString("en-US").replace(/\//g, "-")}.txt`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  function downloadSummary() {
+    const blob = new Blob([summary], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `release-core-session-${new Date().toLocaleDateString("en-US").replace(/\//g, "-")}.txt`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  // Check if the latest assistant message has beliefs that haven't been submitted
+  const lastAssistantMessage = messages.filter(m => m.role === "assistant").slice(-1)[0];
+  const lastHasBeliefs = lastAssistantMessage ? parseBeliefStatements(lastAssistantMessage.content) !== null : false;
+  const showTextInput = !lastHasBeliefs || beliefSubmitted || sessionComplete;
+
+  if (checking) return <p className="p-6 text-center text-sm text-slate-500">Loading...</p>;
+
+  return (
+    <div className="min-h-screen bg-gray-50 flex flex-col">
+      <header className="sticky top-0 z-10 border-b border-calm-200 bg-calm-50/90 backdrop-blur">
+        <nav className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
+          <Link href="/" className="text-sm font-semibold text-calm-700">Release Core</Link>
+          <div className="hidden gap-2 md:flex">
+            {navItems.map((item) => (<Link key={item.href} href={item.href} className="rounded-full px-3 py-1.5 text-xs text-slate-600 transition hover:bg-calm-100 hover:text-calm-700">{item.label}</Link>))}
+          </div>
+          <button className="flex flex-col gap-1.5 p-2 md:hidden" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
+            <span className={`block h-0.5 w-5 bg-calm-700 transition-transform duration-200 ${menuOpen ? "translate-y-2 rotate-45" : ""}`} />
+            <span className={`block h-0.5 w-5 bg-calm-700 transition-opacity duration-200 ${menuOpen ? "opacity-0" : ""}`} />
+            <span className={`block h-0.5 w-5 bg-calm-700 transition-transform duration-200 ${menuOpen ? "-translate-y-2 -rotate-45" : ""}`} />
+          </button>
+        </nav>
+        {menuOpen && (
+          <div className="border-t border-calm-200 bg-calm-50 px-4 py-3 md:hidden">
+            <div className="flex flex-col gap-1">
+              {navItems.map((item) => (<Link key={item.href} href={item.href} onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm text-slate-600 transition hover:bg-calm-100 hover:text-calm-700">{item.label}</Link>))}
+            </div>
+          </div>
+        )}
+      </header>
+
+      <div className="flex-1 mx-auto w-full max-w-3xl px-4 py-6 flex flex-col">
+        <div className="mb-4">
+          <h1 className="text-2xl font-semibold text-slate-900">Guided Deep Session</h1>
+          <p className="text-sm text-slate-500 mt-1">A conversational session to find the root pattern underneath what you are experiencing.</p>
+        </div>
+
+        <div className="flex-1 space-y-4 mb-4">
+          {/* Opening */}
+          <div className="flex gap-3">
+            <div className="flex-shrink-0 w-8 h-8 rounded-full bg-calm-600 flex items-center justify-center text-white text-xs font-semibold">RC</div>
+            <div className="flex-1 rounded-2xl rounded-tl-sm bg-white border border-calm-200 px-4 py-3">
+              <p className="text-sm text-slate-700 leading-7 whitespace-pre-wrap">{OPENING_MESSAGE}</p>
+            </div>
+          </div>
+
+          {/* Conversation */}
+          {messages.map((msg, i) => {
+            const isLatestAssistant = msg.role === "assistant" && i === messages.length - 1;
+            if (msg.role === "assistant") {
+              return (
+                <AssistantMessage
+                  key={i}
+                  content={msg.content}
+                  onBeliefSubmit={handleBeliefSubmit}
+                  isLatest={isLatestAssistant && !beliefSubmitted}
+                />
+              );
+            }
+            return (
+              <div key={i} className="flex gap-3 flex-row-reverse">
+                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-slate-400 flex items-center justify-center text-white text-xs font-semibold">You</div>
+                <div className="flex-1 rounded-2xl rounded-tr-sm bg-calm-50 border border-calm-200 px-4 py-3">
+                  <p className="text-sm text-slate-700 leading-7 whitespace-pre-wrap">{msg.content}</p>
+                </div>
+              </div>
+            );
+          })}
+
+          {loading && (
+            <div className="flex gap-3">
+              <div className="flex-shrink-0 w-8 h-8 rounded-full bg-calm-600 flex items-center justify-center text-white text-xs font-semibold">RC</div>
+              <div className="flex-1 rounded-2xl rounded-tl-sm bg-white border border-calm-200 px-4 py-3">
+                <div className="flex items-center gap-1.5">
+                  <div className="h-2 w-2 rounded-full bg-calm-400 animate-bounce" style={{ animationDelay: "0ms" }} />
+                  <div className="h-2 w-2 rounded-full bg-calm-400 animate-bounce" style={{ animationDelay: "150ms" }} />
+                  <div className="h-2 w-2 rounded-full bg-calm-400 animate-bounce" style={{ animationDelay: "300ms" }} />
+                </div>
+              </div>
+            </div>
+          )}
+
+          {error && (
+            <div className="rounded-xl border border-red-200 bg-red-50 p-3">
+              <p className="text-sm text-red-600">{error}</p>
+            </div>
+          )}
+
+          {sessionComplete && (
+            <div className="rounded-2xl border border-calm-200 bg-calm-50 p-6 text-center">
+              <p className="text-2xl mb-2">✨</p>
+              <p className="text-sm font-semibold text-slate-800 mb-1">Your session is complete.</p>
+              <p className="text-xs text-slate-500 mb-4 leading-5">Download your nighttime script or generate your full session summary below.</p>
+              <div className="flex flex-col gap-2">
+                <button onClick={downloadNighttimeScript}
+                  className="w-full rounded-xl bg-calm-600 px-6 py-2.5 text-sm font-medium text-white transition hover:bg-calm-700">
+                  🌙 Download nighttime script
+                </button>
+                {!summary ? (
+                  <button onClick={generateSummary} disabled={generatingSummary}
+                    className="w-full rounded-xl border border-calm-300 px-6 py-2.5 text-sm font-medium text-calm-700 transition hover:bg-calm-100 disabled:opacity-50">
+                    {generatingSummary ? "Generating..." : "Generate session summary"}
+                  </button>
+                ) : (
+                  <button onClick={downloadSummary}
+                    className="w-full rounded-xl border border-calm-300 px-6 py-2.5 text-sm font-medium text-calm-700 transition hover:bg-calm-100">
+                    ⬇ Download session summary
+                  </button>
+                )}
+              </div>
+            </div>
+          )}
+
+          {summary && (
+            <div className="rounded-2xl border border-calm-200 bg-white p-6">
+              <h2 className="text-sm font-semibold text-calm-700 mb-3">Session Summary</h2>
+              <p className="text-xs text-slate-600 leading-6 whitespace-pre-wrap">{summary}</p>
+              <button onClick={downloadSummary}
+                className="mt-4 w-full rounded-xl bg-calm-600 py-2.5 text-sm font-medium text-white transition hover:bg-calm-700">
+                ⬇ Download as text file
+              </button>
+            </div>
+          )}
+
+          <div ref={messagesEndRef} />
+        </div>
+
+        {/* Text input — only shows when not waiting for belief answers */}
+        {showTextInput && !sessionComplete && (
+          <div className="sticky bottom-4">
+            <div className="rounded-2xl border border-calm-200 bg-white shadow-sm p-3 flex gap-3 items-end">
+              <textarea
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={handleKeyDown}
+                placeholder="Share what is going on, or answer the question above..."
+                rows={3}
+                className="flex-1 resize-none text-sm text-slate-700 placeholder:text-slate-400 focus:outline-none leading-6"
+              />
+              <button onClick={sendMessage} disabled={loading || !input.trim()}
+                className="flex-shrink-0 rounded-xl bg-calm-600 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-calm-700 disabled:opacity-50 disabled:cursor-not-allowed">
+                Send
+              </button>
+            </div>
+            <p className="text-xs text-slate-400 text-center mt-2">Press Enter to send · Shift+Enter for new line</p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 }
