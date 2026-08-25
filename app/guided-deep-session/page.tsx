@@ -130,16 +130,16 @@ function BeliefCheckList({
     return (
       <div className="space-y-2 opacity-60">
         {statements.map((s, i) => (
-          <div key={i} className="flex items-center gap-3 rounded-xl bg-calm-50 border border-calm-100 px-4 py-2.5">
-            <div className={`w-5 h-5 rounded flex-shrink-0 flex items-center justify-center border-2 ${checked[i] ? "bg-calm-600 border-calm-600" : "border-slate-300"}`}>
+          <div key={i} className="flex items-center gap-3 rounded-xl bg-green-50 border border-green-100 px-4 py-2.5">
+            <div className={`w-5 h-5 rounded flex-shrink-0 flex items-center justify-center border-2 ${checked[i] ? "bg-green-600 border-green-600" : "border-slate-300 bg-white"}`}>
               {checked[i] && <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>}
             </div>
             <p className="text-sm text-slate-600">{s.text}</p>
           </div>
         ))}
         {somethingElseChecked && somethingElse.trim() && (
-          <div className="flex items-center gap-3 rounded-xl bg-calm-50 border border-calm-100 px-4 py-2.5">
-            <div className="w-5 h-5 rounded flex-shrink-0 flex items-center justify-center border-2 bg-calm-600 border-calm-600">
+          <div className="flex items-center gap-3 rounded-xl bg-green-50 border border-green-100 px-4 py-2.5">
+            <div className="w-5 h-5 rounded flex-shrink-0 flex items-center justify-center border-2 bg-green-600 border-green-600">
               <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </div>
             <p className="text-sm text-slate-600">{somethingElse}</p>
@@ -151,30 +151,34 @@ function BeliefCheckList({
 
   return (
     <div className="space-y-2">
-      <p className="text-xs text-slate-400 mb-3">Check the ones your body says YES to. Leave unchecked for NO.</p>
+      <p className="text-xs text-slate-400 mb-3">✓ Check the ones your body says YES to. Leave unchecked for NO. Then tap Submit when done.</p>
       {statements.map((s, i) => (
         <button
           key={i}
+          type="button"
           onClick={() => toggle(i)}
-          className={`w-full flex items-center gap-3 rounded-xl border px-4 py-3 text-left transition-all ${
-            checked[i] ? "border-calm-400 bg-calm-50" : "border-calm-200 bg-white hover:border-calm-300"
+          className={`w-full flex items-center gap-3 rounded-xl border-2 px-4 py-3 text-left transition-all ${
+            checked[i]
+              ? "border-green-500 bg-green-50"
+              : "border-slate-200 bg-white hover:border-slate-300"
           }`}
         >
-          <div className={`w-5 h-5 rounded flex-shrink-0 flex items-center justify-center border-2 transition-all ${checked[i] ? "bg-calm-600 border-calm-600" : "border-slate-300"}`}>
-            {checked[i] && <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>}
+          <div className={`w-6 h-6 rounded flex-shrink-0 flex items-center justify-center border-2 transition-all ${checked[i] ? "bg-green-600 border-green-600" : "border-slate-300 bg-white"}`}>
+            {checked[i] && <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>}
           </div>
           <p className="text-sm text-slate-700 leading-6">{s.text}</p>
         </button>
       ))}
 
       {/* Something else option */}
-      <div className={`rounded-xl border px-4 py-3 transition-all ${somethingElseChecked ? "border-calm-400 bg-calm-50" : "border-calm-200 bg-white"}`}>
+      <div className={`rounded-xl border-2 px-4 py-3 transition-all ${somethingElseChecked ? "border-green-500 bg-green-50" : "border-slate-200 bg-white"}`}>
         <button
+          type="button"
           onClick={() => setSomethingElseChecked(!somethingElseChecked)}
           className="w-full flex items-center gap-3 text-left"
         >
-          <div className={`w-5 h-5 rounded flex-shrink-0 flex items-center justify-center border-2 transition-all ${somethingElseChecked ? "bg-calm-600 border-calm-600" : "border-slate-300"}`}>
-            {somethingElseChecked && <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>}
+          <div className={`w-6 h-6 rounded flex-shrink-0 flex items-center justify-center border-2 transition-all ${somethingElseChecked ? "bg-green-600 border-green-600" : "border-slate-300 bg-white"}`}>
+            {somethingElseChecked && <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>}
           </div>
           <p className="text-sm text-slate-500 italic">Something else came up...</p>
         </button>
@@ -182,18 +186,19 @@ function BeliefCheckList({
           <textarea
             value={somethingElse}
             onChange={(e) => setSomethingElse(e.target.value)}
-            placeholder="Describe what came up for you..."
+            placeholder="Describe what came up..."
             rows={2}
-            className="mt-2 w-full resize-none rounded-lg border border-calm-200 px-3 py-2 text-sm text-slate-700 placeholder:text-slate-400 focus:outline-none focus:border-calm-400"
+            className="mt-2 w-full resize-none rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-700 placeholder:text-slate-400 focus:outline-none focus:border-green-400"
           />
         )}
       </div>
 
       <button
+        type="button"
         onClick={handleSubmit}
-        className="w-full mt-2 rounded-xl bg-calm-600 py-3 text-sm font-medium text-white transition hover:bg-calm-700"
+        className="w-full mt-3 rounded-xl bg-green-600 py-3.5 text-sm font-semibold text-white transition hover:bg-green-700 shadow-sm"
       >
-        Submit my answers
+        Submit my answers →
       </button>
     </div>
   );
