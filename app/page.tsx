@@ -515,67 +515,81 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 1:1 Booking Calendar */}
-        <section className="rounded-3xl border border-emerald-200 bg-emerald-50 p-7 sm:p-9">
+        {/* 1:1 Booking */}
+        <section className="rounded-3xl border border-emerald-200 bg-emerald-50 p-6 sm:p-9">
           <div className="mx-auto max-w-4xl space-y-6">
 
             <div className="mx-auto max-w-2xl space-y-4 text-center">
               <h2 className="text-2xl font-semibold text-slate-900 sm:text-3xl">
-                Want to do a 1:1 Release Core session with me?
+                Book a 1:1 Release Core Session
               </h2>
 
               <p className="text-sm leading-8 text-slate-700 sm:text-base">
                 If you would rather have me guide the questions while you focus
-                completely on listening to your body, you can book a 1:1 session
-                with me.
+                completely on listening to your body, you can book a private
+                1:1 Release Core session with me.
               </p>
 
               <p className="text-sm leading-8 text-slate-700 sm:text-base">
-                We will start with whatever you want to work on, follow your
-                body&apos;s responses, and keep digging until we can see the
-                pattern, rule, or loop underneath it.
+                We&apos;ll start with whatever you want to work on and follow your
+                body&apos;s responses until we can see the pattern, belief, rule,
+                loop, or protective response underneath it.
+              </p>
+            </div>
+
+            <div className="mx-auto max-w-xl rounded-2xl border border-emerald-200 bg-white p-6 text-center shadow-sm">
+              <p className="text-xl font-semibold text-slate-900">
+                1:1 Release Core Session
               </p>
 
-              <div className="rounded-2xl border border-emerald-200 bg-white p-5 shadow-sm">
-                <p className="text-xl font-semibold text-slate-900">
-                  1:1 Release Core Session — $60
-                </p>
+              <p className="mt-2 text-lg font-semibold text-emerald-700">
+                $60 · 60 Minutes
+              </p>
 
-                <p className="mt-1 text-sm font-medium text-emerald-700">
-                  60-minute session
-                </p>
+              <p className="mt-4 text-sm leading-7 text-slate-600">
+                Choose an available appointment time and complete payment when
+                you book. Once payment goes through, your session is reserved.
+              </p>
+            </div>
 
-                <p className="mt-3 text-sm leading-7 text-slate-600">
-                  Choose your appointment time below. Payment is completed when
-                  you book, so once your payment goes through your session time
-                  is officially reserved.
-                </p>
+            {/* Mobile Booking Button */}
+            <div className="block md:hidden">
+              <a
+                href="https://calendly.com/chelseadwalton/60min"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full rounded-2xl bg-emerald-700 px-6 py-4 text-center text-lg font-semibold text-white shadow-sm transition hover:bg-emerald-800"
+              >
+                View Available Times & Book
+              </a>
+
+              <p className="mt-3 text-center text-xs leading-6 text-slate-500">
+                Tap above to open the booking calendar and choose the time that
+                works best for you.
+              </p>
+            </div>
+
+            {/* Desktop / Tablet Calendly Embed */}
+            <div className="hidden md:block">
+              <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+                <iframe
+                  src="https://calendly.com/chelseadwalton/60min"
+                  title="Book a 1:1 Release Core Session"
+                  width="100%"
+                  height="820"
+                  frameBorder="0"
+                  loading="lazy"
+                  style={{
+                    width: "100%",
+                    minWidth: "100%",
+                  }}
+                />
               </div>
-
-              <p className="text-sm leading-7 text-slate-600">
-                The calendar only shows times I actually have available. If a
-                time is not showing, I&apos;m not available during that time.
-                Pick whatever opening works best for you.
-              </p>
             </div>
 
-            <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-              <iframe
-                src="https://calendly.com/chelseadwalton/60min"
-                title="Book a 1:1 Release Core Session"
-                width="100%"
-                height="800"
-                frameBorder="0"
-                loading="lazy"
-                style={{
-                  minWidth: "320px",
-                  width: "100%",
-                }}
-              />
-            </div>
-
-            <p className="text-center text-xs leading-6 text-slate-500">
-              Available appointments update automatically based on my current schedule.
+            <p className="text-center text-sm leading-7 text-slate-600">
+              The booking calendar only shows times I actually have available.
+              If a time isn&apos;t showing, I&apos;m not available during that time.
             </p>
           </div>
         </section>
