@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import AppShell from "@/components/AppShell";
 
 export default function Home() {
@@ -52,11 +53,11 @@ export default function Home() {
           <h2 className="text-2xl font-semibold text-slate-900">
             Instead of asking,
             <br />
-            “What is wrong with me?”
+            "What is wrong with me?"
           </h2>
 
           <p className="text-xl font-medium text-emerald-800">
-            We ask: “What is my body trying to protect me from?”
+            We ask: "What is my body trying to protect me from?"
           </p>
         </section>
 
@@ -136,17 +137,17 @@ export default function Home() {
           </div>
 
           <p className="text-sm leading-7 text-slate-700">
-            You may consciously know, “I am safe now,” while another part of
+            You may consciously know, "I am safe now," while another part of
             your nervous system is still operating from an old belief such as:
           </p>
 
           <div className="grid sm:grid-cols-2 gap-3 text-sm italic text-slate-700">
-            <p>“I have to stay prepared.”</p>
-            <p>“I cannot depend on anyone.”</p>
-            <p>“Being noticed is dangerous.”</p>
-            <p>“My needs are a burden.”</p>
-            <p>“I have to earn love.”</p>
-            <p>“Rest is not safe.”</p>
+            <p>"I have to stay prepared."</p>
+            <p>"I cannot depend on anyone."</p>
+            <p>"Being noticed is dangerous."</p>
+            <p>"My needs are a burden."</p>
+            <p>"I have to earn love."</p>
+            <p>"Rest is not safe."</p>
           </div>
         </section>
 
@@ -176,8 +177,8 @@ export default function Home() {
 
               <p className="text-sm leading-7 text-slate-700">
                 A pattern of constantly pushing through may connect to beliefs
-                like “I have to carry everything,” “my needs come last,” or
-                “stopping is not an option.”
+                like "I have to carry everything," "my needs come last," or
+                "stopping is not an option."
               </p>
             </div>
 
@@ -188,8 +189,8 @@ export default function Home() {
 
               <p className="text-sm leading-7 text-slate-700">
                 A present-day rejection trigger may connect to deeper beliefs
-                such as “I am not enough,” “I am unlikeable,” or “other
-                people’s opinions determine my worth.”
+                such as "I am not enough," "I am unlikeable," or "other
+                people's opinions determine my worth."
               </p>
             </div>
 
@@ -229,13 +230,13 @@ export default function Home() {
               <div className="text-emerald-700 text-xl">★★★★★</div>
 
               <p className="text-lg font-semibold leading-7 text-slate-900">
-                “Release Core is incredible for getting to the very root for
-                me.”
+                "Release Core is incredible for getting to the very root for
+                me."
               </p>
 
               <p className="text-sm leading-7 text-slate-700">
-                “Release Core is incredible for getting to the very root for me
-                in ways journaling or anything else could never reveal.”
+                "Release Core is incredible for getting to the very root for me
+                in ways journaling or anything else could never reveal."
               </p>
             </div>
 
@@ -243,13 +244,13 @@ export default function Home() {
               <div className="text-emerald-700 text-xl">★★★★★</div>
 
               <p className="text-lg font-semibold leading-7 text-slate-900">
-                “I’m feeling good still!!”
+                "I'm feeling good still!!"
               </p>
 
               <p className="text-sm leading-7 text-slate-700">
-                “Thank you for checking in! I’m feeling good still!! No
+                "Thank you for checking in! I'm feeling good still!! No
                 significant dreams or anything like that haha. To be honest, I
-                know I have been dreaming, but I can’t remember them.”
+                know I have been dreaming, but I can't remember them."
               </p>
             </div>
           </div>
@@ -258,12 +259,12 @@ export default function Home() {
             <div className="text-emerald-700 text-xl">★★★★★</div>
 
             <p className="text-2xl font-semibold leading-tight text-slate-900">
-              “My nervous system is calm, and it was out of control.”
+              "My nervous system is calm, and it was out of control."
             </p>
 
             <div className="space-y-4 text-sm leading-7 text-slate-700">
               <p>
-                “I have been doing sessions with Chelsea and on my own for a
+                "I have been doing sessions with Chelsea and on my own for a
                 while now. I just want to say to anyone sitting on the fence
                 how amazing she is and how effective Release Core has been for
                 me.
@@ -277,7 +278,7 @@ export default function Home() {
               </p>
 
               <p>
-                I have let go of so much and I’m really coming into myself
+                I have let go of so much and I'm really coming into myself
                 again more and more. I feel so clear and alive.
               </p>
 
@@ -293,7 +294,7 @@ export default function Home() {
               </p>
 
               <p>
-                Thank you so much, Chelsea. I am so grateful.” ❤️
+                Thank you so much, Chelsea. I am so grateful." ❤️
               </p>
             </div>
           </div>
@@ -304,12 +305,12 @@ export default function Home() {
             </p>
 
             <p className="text-2xl font-semibold leading-tight text-white">
-              “I am dumbfounded.”
+              "I am dumbfounded."
             </p>
 
             <div className="space-y-4 text-sm leading-7 text-slate-300">
               <p>
-                “I have done SEVERAL sessions with Chels, but this one TOPPED
+                "I have done SEVERAL sessions with Chels, but this one TOPPED
                 them all!!!
               </p>
 
@@ -326,8 +327,8 @@ export default function Home() {
               </p>
 
               <p>
-                THANK YOU, THANK YOU, THANK YOU!!!!! If you haven’t given this
-                a try, please do yourself a favor, trust Chels, and do it!!!”
+                THANK YOU, THANK YOU, THANK YOU!!!!! If you haven't given this
+                a try, please do yourself a favor, trust Chels, and do it!!!"
               </p>
             </div>
           </div>
@@ -470,12 +471,22 @@ export default function Home() {
 
         {/* About Chelsea */}
         <section className="rounded-3xl border border-emerald-200 bg-emerald-50 p-7 shadow-sm space-y-4">
-          <p className="text-sm font-medium uppercase tracking-wider text-emerald-700">
+          <div className="flex justify-center">
+            <Image
+              src="/chelsea.jpeg"
+              alt="Chelsea, creator of Release Core"
+              width={160}
+              height={160}
+              className="rounded-full object-cover border-4 border-white shadow-md"
+            />
+          </div>
+
+          <p className="text-sm font-medium uppercase tracking-wider text-emerald-700 text-center">
             MEET THE CREATOR
           </p>
 
-          <h2 className="text-2xl font-semibold text-slate-900">
-            Hi, I’m Chelsea — creator of Release Core.
+          <h2 className="text-2xl font-semibold text-slate-900 text-center">
+            Hi, I'm Chelsea — creator of Release Core.
           </h2>
 
           <p className="text-sm leading-7 text-slate-700">
