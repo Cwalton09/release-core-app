@@ -51,7 +51,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Testimonials moved up */}
+        {/* Testimonials */}
         <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
           <div className="space-y-5">
             <h2 className="text-2xl font-semibold text-slate-900">
@@ -85,26 +85,26 @@ export default function Home() {
 
               <div className="space-y-4 text-sm leading-7 text-slate-700">
                 <p>
-                  “I have been doing sessions with Chelsea and on my own for a while now.
-                  I just want to say to anyone sitting on the fence how amazing she is
-                  and how effective Release Core has been for me.
+                  “I have been doing sessions with Chelsea and on my own for a
+                  while now. I just want to say to anyone sitting on the fence
+                  how amazing she is and how effective Release Core has been for me.
                 </p>
 
                 <p>
-                  My nervous system is calm, and it was out of control. I feel calm yet
-                  rock solid. No spiraling out of control, no panicking, just calm with
-                  a strength to get through whatever comes up in life.
+                  My nervous system is calm, and it was out of control. I feel
+                  calm yet rock solid. No spiraling out of control, no panicking,
+                  just calm with a strength to get through whatever comes up in life.
                 </p>
 
                 <p>
-                  I have let go of so much and I’m really coming into myself again more
-                  and more. I feel so clear and alive.
+                  I have let go of so much and I’m really coming into myself again
+                  more and more. I feel so clear and alive.
                 </p>
 
                 <p>
-                  One-on-one is amazing, but there is the website option also so I can
-                  continue doing the work on my own. Thank you so much, Chelsea. I am so
-                  grateful.” ❤️
+                  One-on-one is amazing, but there is the website option also so
+                  I can continue doing the work on my own. Thank you so much,
+                  Chelsea. I am so grateful.” ❤️
                 </p>
               </div>
             </div>
@@ -116,35 +116,37 @@ export default function Home() {
 
               <div className="space-y-4 text-sm leading-7 text-slate-300">
                 <p>
-                  “I have done SEVERAL sessions with Chels, but this one TOPPED them all!!!
+                  “I have done SEVERAL sessions with Chels, but this one TOPPED
+                  them all!!!
                 </p>
 
                 <p>
-                  I woke up SO sick with so many symptoms. As soon as Chels saw my post,
-                  she called me immediately and did a session with me.
+                  I woke up SO sick with so many symptoms. As soon as Chels saw
+                  my post, she called me immediately and did a session with me.
                 </p>
 
                 <p>
-                  Within 10 minutes of the session, I was feeling way better, could
-                  actually function again, and even had my appetite back!!!
+                  Within 10 minutes of the session, I was feeling way better,
+                  could actually function again, and even had my appetite back!!!
                 </p>
 
                 <p>
-                  THANK YOU, THANK YOU, THANK YOU!!!!! If you haven’t given this a try,
-                  please do yourself a favor, trust Chels, and do it!!!”
+                  THANK YOU, THANK YOU, THANK YOU!!!!! If you haven’t given this
+                  a try, please do yourself a favor, trust Chels, and do it!!!”
                 </p>
               </div>
             </div>
 
             <p className="text-xs leading-6 text-slate-500">
               Testimonials are personal experiences shared by individual clients.
-              Every person is different and these experiences are not a guarantee of
-              results. Release Core is not a substitute for medical or psychological care.
+              Every person is different and these experiences are not a guarantee
+              of results. Release Core is not a substitute for medical or
+              psychological care.
             </p>
           </div>
         </section>
 
-        {/* Broader explanation */}
+        {/* Broader Explanation */}
         <section className="rounded-3xl border border-emerald-200 bg-emerald-50 p-7 sm:p-9">
           <div className="mx-auto max-w-3xl space-y-5">
             <h2 className="text-2xl font-semibold text-slate-900">
@@ -154,10 +156,10 @@ export default function Home() {
             <div className="space-y-4 text-sm leading-8 text-slate-700 sm:text-base">
               <p>
                 Sometimes somebody comes to me because they are anxious,
-                overwhelmed, angry, constantly overthinking, scared of
-                rejection, struggling in a relationship, feeling stuck with
-                money, afraid to be seen, unable to rest, or repeating the same
-                pattern over and over.
+                overwhelmed, angry, constantly overthinking, scared of rejection,
+                struggling in a relationship, feeling stuck with money, afraid
+                to be seen, unable to rest, or repeating the same pattern over
+                and over.
               </p>
 
               <p>
@@ -197,7 +199,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Nervous system chart */}
+        {/* Nervous System Chart */}
         <section className="space-y-5 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
           <div className="max-w-3xl space-y-3">
             <h2 className="text-2xl font-semibold text-slate-900">
@@ -219,6 +221,7 @@ export default function Home() {
                   <th className="px-4 py-4 font-semibold text-slate-900">
                     What someone may be dealing with
                   </th>
+
                   <th className="px-4 py-4 font-semibold text-slate-900">
                     Where the nervous system may come into the picture
                   </th>
@@ -256,9 +259,9 @@ export default function Home() {
                   </td>
                   <td className="px-4 py-4 align-top leading-7 text-slate-700">
                     The gut and nervous system communicate constantly. Stress
-                    physiology can affect appetite, motility, digestive
-                    activity, elimination, and how settled or defended the body
-                    feels while eating and digesting.
+                    physiology can affect appetite, motility, digestive activity,
+                    elimination, and how settled or defended the body feels while
+                    eating and digesting.
                   </td>
                 </tr>
 
@@ -282,9 +285,9 @@ export default function Home() {
                   <td className="px-4 py-4 align-top leading-7 text-slate-700">
                     Stress signaling and reproductive physiology are connected.
                     In Release Core, we may explore things like safety, loss,
-                    fear, disappointment, control, pressure, receiving, or
-                    other patterns the nervous system may be carrying alongside
-                    the physical side of fertility.
+                    fear, disappointment, control, pressure, receiving, or other
+                    patterns the nervous system may be carrying alongside the
+                    physical side of fertility.
                   </td>
                 </tr>
 
@@ -294,9 +297,9 @@ export default function Home() {
                   </td>
                   <td className="px-4 py-4 align-top leading-7 text-slate-700">
                     The nervous system communicates with immune and inflammatory
-                    pathways. Sometimes we also uncover patterns around
-                    visibility, pressure, boundaries, being noticed, or feeling
-                    responsible for other people’s reactions.
+                    pathways. Sometimes we also uncover patterns around visibility,
+                    pressure, boundaries, being noticed, or feeling responsible
+                    for other people’s reactions.
                   </td>
                 </tr>
 
@@ -305,11 +308,11 @@ export default function Home() {
                     Fatigue, burnout, brain fog, feeling depleted
                   </td>
                   <td className="px-4 py-4 align-top leading-7 text-slate-700">
-                    Sometimes we find a system that has spent years believing
-                    it cannot stop, cannot rest, cannot disappoint anyone, or
-                    has to carry everything. Other times the body may be trying
-                    to slow somebody down because it does not feel like they
-                    are allowed to choose rest themselves.
+                    Sometimes we find a system that has spent years believing it
+                    cannot stop, cannot rest, cannot disappoint anyone, or has
+                    to carry everything. Other times the body may be trying to
+                    slow somebody down because it does not feel like they are
+                    allowed to choose rest themselves.
                   </td>
                 </tr>
 
@@ -343,9 +346,9 @@ export default function Home() {
                   </td>
                   <td className="px-4 py-4 align-top leading-7 text-slate-700">
                     The autonomic nervous system helps regulate and communicate
-                    with many body systems. Release Core does not replace
-                    medical care, but it can explore whether chronic stress or
-                    protective patterns are another layer worth working with.
+                    with many body systems. Release Core does not replace medical
+                    care, but it can explore whether chronic stress or protective
+                    patterns are another layer worth working with.
                   </td>
                 </tr>
               </tbody>
@@ -360,7 +363,7 @@ export default function Home() {
           </p>
         </section>
 
-        {/* Session explanation */}
+        {/* Session Explanation */}
         <section className="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm sm:p-9">
           <div className="mx-auto max-w-3xl space-y-5">
             <h2 className="text-2xl font-semibold text-slate-900">
@@ -407,17 +410,16 @@ export default function Home() {
 
               <p>
                 Once we see the pattern clearly, we stop digging and work on
-                what is true now. You are not that age anymore. You have
-                choices now. You have a voice now. You can set limits now. You
-                can ask for support now. You can respond to what is actually
-                happening today instead of living from an old rule your body
-                created years ago.
+                what is true now. You are not that age anymore. You have choices
+                now. You have a voice now. You can set limits now. You can ask
+                for support now. You can respond to what is actually happening
+                today instead of living from an old rule your body created years ago.
               </p>
             </div>
           </div>
         </section>
 
-        {/* Overwhelmed systems */}
+        {/* Overwhelmed Systems */}
         <section className="rounded-3xl border border-emerald-200 bg-emerald-50 p-7 sm:p-9">
           <div className="mx-auto max-w-3xl space-y-5">
             <h2 className="text-2xl font-semibold text-slate-900">
@@ -427,9 +429,9 @@ export default function Home() {
             <div className="space-y-4 text-sm leading-8 text-slate-700 sm:text-base">
               <p>
                 A lot of people I work with already feel like their body is
-                completely maxed out. They are exhausted, sensitive to
-                everything, wired and tired, overwhelmed, in pain, or feel like
-                their body has been fighting for a very long time.
+                completely maxed out. They are exhausted, sensitive to everything,
+                wired and tired, overwhelmed, in pain, or feel like their body
+                has been fighting for a very long time.
               </p>
 
               <p>
@@ -477,9 +479,9 @@ export default function Home() {
                 </p>
 
                 <p>
-                  I am the person who wants to know what is underneath
-                  something. I do not want to stop at, “You’re anxious,” or,
-                  “You’re overwhelmed,” or, “That’s just a trigger.”
+                  I am the person who wants to know what is underneath something.
+                  I do not want to stop at, “You’re anxious,” or, “You’re overwhelmed,”
+                  or, “That’s just a trigger.”
                 </p>
 
                 <p>
@@ -494,9 +496,9 @@ export default function Home() {
                 </p>
 
                 <p>
-                  The more I started working this way, the more I watched
-                  people uncover connections they never would have consciously
-                  thought of on their own.
+                  The more I started working this way, the more I watched people
+                  uncover connections they never would have consciously thought
+                  of on their own.
                 </p>
 
                 <p>
@@ -505,10 +507,76 @@ export default function Home() {
                 </p>
 
                 <p className="font-medium text-slate-900">
-                  And I still get excited every single time we find the thing underneath the thing.
+                  And I still get excited every single time we find the thing
+                  underneath the thing.
                 </p>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* 1:1 Booking Calendar */}
+        <section className="rounded-3xl border border-emerald-200 bg-emerald-50 p-7 sm:p-9">
+          <div className="mx-auto max-w-4xl space-y-6">
+
+            <div className="mx-auto max-w-2xl space-y-4 text-center">
+              <h2 className="text-2xl font-semibold text-slate-900 sm:text-3xl">
+                Want to do a 1:1 Release Core session with me?
+              </h2>
+
+              <p className="text-sm leading-8 text-slate-700 sm:text-base">
+                If you would rather have me guide the questions while you focus
+                completely on listening to your body, you can book a 1:1 session
+                with me.
+              </p>
+
+              <p className="text-sm leading-8 text-slate-700 sm:text-base">
+                We will start with whatever you want to work on, follow your
+                body&apos;s responses, and keep digging until we can see the
+                pattern, rule, or loop underneath it.
+              </p>
+
+              <div className="rounded-2xl border border-emerald-200 bg-white p-5 shadow-sm">
+                <p className="text-xl font-semibold text-slate-900">
+                  1:1 Release Core Session — $60
+                </p>
+
+                <p className="mt-1 text-sm font-medium text-emerald-700">
+                  60-minute session
+                </p>
+
+                <p className="mt-3 text-sm leading-7 text-slate-600">
+                  Choose your appointment time below. Payment is completed when
+                  you book, so once your payment goes through your session time
+                  is officially reserved.
+                </p>
+              </div>
+
+              <p className="text-sm leading-7 text-slate-600">
+                The calendar only shows times I actually have available. If a
+                time is not showing, I&apos;m not available during that time.
+                Pick whatever opening works best for you.
+              </p>
+            </div>
+
+            <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+              <iframe
+                src="https://calendly.com/chelseadwalton/60min"
+                title="Book a 1:1 Release Core Session"
+                width="100%"
+                height="800"
+                frameBorder="0"
+                loading="lazy"
+                style={{
+                  minWidth: "320px",
+                  width: "100%",
+                }}
+              />
+            </div>
+
+            <p className="text-center text-xs leading-6 text-slate-500">
+              Available appointments update automatically based on my current schedule.
+            </p>
           </div>
         </section>
 
@@ -544,7 +612,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Main Disclaimer */}
+        {/* Disclaimer */}
         <p className="mx-auto max-w-3xl pb-4 text-center text-xs leading-6 text-slate-400">
           Release Core is intended for educational, wellness, and personal
           growth purposes. It is not medical or psychological treatment and
@@ -552,6 +620,7 @@ export default function Home() {
           and health conditions can have many causes and should be evaluated by
           an appropriate healthcare professional when needed.
         </p>
+
       </div>
     </AppShell>
   );
