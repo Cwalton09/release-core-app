@@ -1,6 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import AppShell from "@/components/AppShell";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 export default function Home() {
   return (
