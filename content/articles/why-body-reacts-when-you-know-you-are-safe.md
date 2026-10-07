@@ -2,7 +2,7 @@
 title: Why Does My Body Still React When I Know I'm Safe?
 description: You can know you're safe and still feel your chest tighten, your stomach drop, or your mind start racing. Here's why your body reacts anyway, and what it may be trying to protect you from.
 date: 2026-10-07
-published: false
+published: true
 ---
 You can know you are safe. You can know the argument is over, the person is gone, the deadline is handled, the danger has passed... and your body can still react like it's happening right now.
 

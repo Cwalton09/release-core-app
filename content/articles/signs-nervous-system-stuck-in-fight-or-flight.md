@@ -2,7 +2,7 @@
 title: Signs Your Nervous System Is Stuck in Fight or Flight
 description: Always on edge, can't relax, snapping at people, waking up already wired? These are common signs your nervous system is stuck in fight or flight, and why it may be staying there.
 date: 2026-10-07
-published: false
+published: true
 ---
 Fight or flight is supposed to be temporary. Something feels threatening, your body gears up to handle it, and when it's over, you settle back down.
 

@@ -2,7 +2,7 @@
 title: Why Do I Shut Down When I'm Overwhelmed?
 description: Going blank, numb, or frozen when things get to be too much isn't laziness or weakness. It's a protective response from your nervous system. Here's why it happens and what helps.
 date: 2026-10-07
-published: false
+published: true
 ---
 Some people get loud when they're overwhelmed. Some people get busy. And some people just... shut down.
 
