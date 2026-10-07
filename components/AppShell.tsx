@@ -11,6 +11,12 @@ type AppShellProps = {
   children: ReactNode;
 };
 
+const socialLinks = [
+  { href: "https://www.instagram.com/releasecoremethod", label: "Instagram" },
+  { href: "https://www.tiktok.com/@chelsea.walton2", label: "TikTok" },
+  { href: "https://www.facebook.com/groups/952719290453784", label: "Facebook Community" },
+];
+
 const publicNavItems = [
   { href: "/", label: "Home" },
   { href: "/login", label: "Login" },
@@ -93,6 +99,23 @@ const navItems = publicNavItems;
           <div className="mt-6">{children}</div>
         </section>
       </main>
+
+      <footer className="mx-auto max-w-3xl px-4 pb-10 text-center">
+        <p className="text-xs text-slate-500">Follow Release Core</p>
+        <div className="mt-2 flex flex-wrap justify-center gap-2">
+          {socialLinks.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full px-3 py-1.5 text-xs text-slate-600 transition hover:bg-calm-100 hover:text-calm-700"
+            >
+              {item.label}
+            </a>
+          ))}
+        </div>
+      </footer>
     </div>
   );
 }

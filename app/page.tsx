@@ -7,9 +7,27 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
+// Tells Google which social accounts belong to Release Core.
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Release Core",
+  url: "https://release-core.com",
+  logo: "https://release-core.com/opengraph-image",
+  founder: { "@type": "Person", name: "Chelsea Walton" },
+  sameAs: [
+    "https://www.instagram.com/releasecoremethod",
+    "https://www.tiktok.com/@chelsea.walton2",
+  ],
+};
+
 export default function Home() {
   return (
     <AppShell title="Release Core">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+      />
       <div className="space-y-8">
 
         {/* Hero */}
