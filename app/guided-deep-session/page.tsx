@@ -41,7 +41,9 @@ You do not need to know why it is happening. That's what we're going to figure o
 
 What are we looking at today?`;
 
-function parseBodyStatements(text: string): BodyStatement[] | null {
+function parseBodyStatements(
+  text: string
+): BodyStatement[] | null {
   const lines = text.split("\n");
   const statements: BodyStatement[] = [];
 
@@ -84,7 +86,9 @@ function parseBodyStatements(text: string): BodyStatement[] | null {
     }
   }
 
-  return statements.length >= 1 ? statements : null;
+  return statements.length >= 1
+    ? statements
+    : null;
 }
 
 function splitMessageParts(content: string): {
@@ -158,10 +162,16 @@ function BodyQuestionList({
     statements.map(() => false)
   );
 
-  const [submitted, setSubmitted] = useState(false);
-  const [somethingElse, setSomethingElse] = useState("");
-  const [somethingElseChecked, setSomethingElseChecked] =
+  const [submitted, setSubmitted] =
     useState(false);
+
+  const [somethingElse, setSomethingElse] =
+    useState("");
+
+  const [
+    somethingElseChecked,
+    setSomethingElseChecked,
+  ] = useState(false);
 
   function toggle(index: number) {
     setChecked((previous) =>
@@ -176,14 +186,20 @@ function BodyQuestionList({
 
     setSubmitted(true);
 
-    const answers: BodyStatement[] = statements.map(
-      (statement, index) => ({
-        ...statement,
-        answer: checked[index] ? "yes" : "no",
-      })
-    );
+    const answers: BodyStatement[] =
+      statements.map(
+        (statement, index) => ({
+          ...statement,
+          answer: checked[index]
+            ? "yes"
+            : "no",
+        })
+      );
 
-    if (somethingElseChecked && somethingElse.trim()) {
+    if (
+      somethingElseChecked &&
+      somethingElse.trim()
+    ) {
       answers.push({
         text: `Something else: ${somethingElse.trim()}`,
         answer: "yes",
@@ -196,19 +212,54 @@ function BodyQuestionList({
   if (submitted) {
     return (
       <div className="space-y-2 opacity-70">
-        {statements.map((statement, index) => (
-          <div
-            key={index}
-            className="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3"
-          >
+        {statements.map(
+          (statement, index) => (
             <div
-              className={`flex h-5 w-5 flex-shrink-0 items-center justify-center rounded border-2 ${
-                checked[index]
-                  ? "border-green-600 bg-green-600"
-                  : "border-slate-300 bg-white"
-              }`}
+              key={index}
+              className="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3"
             >
-              {checked[index] && (
+              <div
+                className={`flex h-5 w-5 flex-shrink-0 items-center justify-center rounded border-2 ${
+                  checked[index]
+                    ? "border-green-600 bg-green-600"
+                    : "border-slate-300 bg-white"
+                }`}
+              >
+                {checked[index] && (
+                  <svg
+                    width="10"
+                    height="10"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                  >
+                    <path
+                      d="M2 6l3 3 5-5"
+                      stroke="white"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                )}
+              </div>
+
+              <p className="text-sm text-slate-600">
+                {statement.text}
+              </p>
+
+              <span className="ml-auto text-xs font-semibold text-slate-400">
+                {checked[index]
+                  ? "YES"
+                  : "NO"}
+              </span>
+            </div>
+          )
+        )}
+
+        {somethingElseChecked &&
+          somethingElse.trim() && (
+            <div className="flex items-center gap-3 rounded-xl border border-green-100 bg-green-50 px-4 py-3">
+              <div className="flex h-5 w-5 items-center justify-center rounded border-2 border-green-600 bg-green-600">
                 <svg
                   width="10"
                   height="10"
@@ -223,47 +274,17 @@ function BodyQuestionList({
                     strokeLinejoin="round"
                   />
                 </svg>
-              )}
+              </div>
+
+              <p className="text-sm text-slate-600">
+                {somethingElse}
+              </p>
+
+              <span className="ml-auto text-xs font-semibold text-green-700">
+                YES
+              </span>
             </div>
-
-            <p className="text-sm text-slate-600">
-              {statement.text}
-            </p>
-
-            <span className="ml-auto text-xs font-semibold text-slate-400">
-              {checked[index] ? "YES" : "NO"}
-            </span>
-          </div>
-        ))}
-
-        {somethingElseChecked && somethingElse.trim() && (
-          <div className="flex items-center gap-3 rounded-xl border border-green-100 bg-green-50 px-4 py-3">
-            <div className="flex h-5 w-5 items-center justify-center rounded border-2 border-green-600 bg-green-600">
-              <svg
-                width="10"
-                height="10"
-                viewBox="0 0 12 12"
-                fill="none"
-              >
-                <path
-                  d="M2 6l3 3 5-5"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </div>
-
-            <p className="text-sm text-slate-600">
-              {somethingElse}
-            </p>
-
-            <span className="ml-auto text-xs font-semibold text-green-700">
-              YES
-            </span>
-          </div>
-        )}
+          )}
       </div>
     );
   }
@@ -271,51 +292,55 @@ function BodyQuestionList({
   return (
     <div className="space-y-2">
       <p className="mb-3 text-xs leading-5 text-slate-500">
-        Ask your body each question. Check the box for YES.
-        Leave it unchecked for NO, then tap Submit when you're finished.
+        Ask your body each question.
+        Check the box for YES. Leave it
+        unchecked for NO, then tap Submit
+        when you're finished.
       </p>
 
-      {statements.map((statement, index) => (
-        <button
-          key={index}
-          type="button"
-          onClick={() => toggle(index)}
-          className={`flex w-full items-center gap-3 rounded-xl border-2 px-4 py-3 text-left transition-all ${
-            checked[index]
-              ? "border-green-500 bg-green-50"
-              : "border-slate-200 bg-white hover:border-slate-300"
-          }`}
-        >
-          <div
-            className={`flex h-6 w-6 flex-shrink-0 items-center justify-center rounded border-2 transition-all ${
+      {statements.map(
+        (statement, index) => (
+          <button
+            key={index}
+            type="button"
+            onClick={() => toggle(index)}
+            className={`flex w-full items-center gap-3 rounded-xl border-2 px-4 py-3 text-left transition-all ${
               checked[index]
-                ? "border-green-600 bg-green-600"
-                : "border-slate-300 bg-white"
+                ? "border-green-500 bg-green-50"
+                : "border-slate-200 bg-white hover:border-slate-300"
             }`}
           >
-            {checked[index] && (
-              <svg
-                width="12"
-                height="12"
-                viewBox="0 0 12 12"
-                fill="none"
-              >
-                <path
-                  d="M2 6l3 3 5-5"
-                  stroke="white"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            )}
-          </div>
+            <div
+              className={`flex h-6 w-6 flex-shrink-0 items-center justify-center rounded border-2 transition-all ${
+                checked[index]
+                  ? "border-green-600 bg-green-600"
+                  : "border-slate-300 bg-white"
+              }`}
+            >
+              {checked[index] && (
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                >
+                  <path
+                    d="M2 6l3 3 5-5"
+                    stroke="white"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              )}
+            </div>
 
-          <p className="text-sm leading-6 text-slate-700">
-            {statement.text}
-          </p>
-        </button>
-      ))}
+            <p className="text-sm leading-6 text-slate-700">
+              {statement.text}
+            </p>
+          </button>
+        )
+      )}
 
       <div
         className={`rounded-xl border-2 px-4 py-3 transition-all ${
@@ -327,7 +352,9 @@ function BodyQuestionList({
         <button
           type="button"
           onClick={() =>
-            setSomethingElseChecked(!somethingElseChecked)
+            setSomethingElseChecked(
+              !somethingElseChecked
+            )
           }
           className="flex w-full items-center gap-3 text-left"
         >
@@ -365,7 +392,9 @@ function BodyQuestionList({
           <textarea
             value={somethingElse}
             onChange={(event) =>
-              setSomethingElse(event.target.value)
+              setSomethingElse(
+                event.target.value
+              )
             }
             placeholder="Type what came up..."
             rows={2}
@@ -391,11 +420,16 @@ function AssistantMessage({
   isLatest,
 }: {
   content: string;
-  onBodySubmit: (answers: BodyStatement[]) => void;
+  onBodySubmit: (
+    answers: BodyStatement[]
+  ) => void;
   isLatest: boolean;
 }) {
-  const { intro, statements, outro } =
-    splitMessageParts(content);
+  const {
+    intro,
+    statements,
+    outro,
+  } = splitMessageParts(content);
 
   return (
     <div className="flex gap-3">
@@ -417,7 +451,9 @@ function AssistantMessage({
             <BodyQuestionList
               statements={statements}
               onSubmit={
-                isLatest ? onBodySubmit : () => {}
+                isLatest
+                  ? onBodySubmit
+                  : () => {}
               }
             />
           </div>
@@ -440,27 +476,42 @@ function extractSection(
   heading: string,
   nextHeading?: string
 ) {
-  const lower = content.toLowerCase();
-  const start = lower.indexOf(heading.toLowerCase());
+  const lower =
+    content.toLowerCase();
 
-  if (start === -1) return "";
+  const start =
+    lower.indexOf(
+      heading.toLowerCase()
+    );
 
-  const contentStart = start + heading.length;
+  if (start === -1) {
+    return "";
+  }
+
+  const contentStart =
+    start + heading.length;
 
   if (!nextHeading) {
-    return content.slice(contentStart).trim();
+    return content
+      .slice(contentStart)
+      .trim();
   }
 
-  const end = lower.indexOf(
-    nextHeading.toLowerCase(),
-    contentStart
-  );
+  const end =
+    lower.indexOf(
+      nextHeading.toLowerCase(),
+      contentStart
+    );
 
   if (end === -1) {
-    return content.slice(contentStart).trim();
+    return content
+      .slice(contentStart)
+      .trim();
   }
 
-  return content.slice(contentStart, end).trim();
+  return content
+    .slice(contentStart, end)
+    .trim();
 }
 
 function savePDF({
@@ -478,60 +529,99 @@ function savePDF({
     format: "letter",
   });
 
-  const pageWidth = pdf.internal.pageSize.getWidth();
-  const pageHeight = pdf.internal.pageSize.getHeight();
+  const pageWidth =
+    pdf.internal.pageSize.getWidth();
+
+  const pageHeight =
+    pdf.internal.pageSize.getHeight();
 
   const margin = 55;
-  const usableWidth = pageWidth - margin * 2;
+
+  const usableWidth =
+    pageWidth - margin * 2;
 
   let y = 60;
 
   const addHeader = () => {
-    pdf.setFont("helvetica", "bold");
+    pdf.setFont(
+      "helvetica",
+      "bold"
+    );
+
     pdf.setFontSize(21);
-    pdf.text("Release Core", margin, y);
+
+    pdf.text(
+      "Release Core",
+      margin,
+      y
+    );
 
     y += 30;
 
     pdf.setFontSize(15);
-    pdf.text(title, margin, y);
+
+    pdf.text(
+      title,
+      margin,
+      y
+    );
 
     y += 30;
 
-    pdf.setFont("helvetica", "normal");
+    pdf.setFont(
+      "helvetica",
+      "normal"
+    );
+
     pdf.setFontSize(11);
   };
 
   const newPage = () => {
     pdf.addPage();
+
     y = 60;
+
     addHeader();
   };
 
   addHeader();
 
-  const paragraphs = content
-    .split(/\n+/)
-    .map((paragraph) => paragraph.trim())
-    .filter(Boolean);
+  const paragraphs =
+    content
+      .split(/\n+/)
+      .map((paragraph) =>
+        paragraph.trim()
+      )
+      .filter(Boolean);
 
-  paragraphs.forEach((paragraph) => {
-    const lines = pdf.splitTextToSize(
-      paragraph,
-      usableWidth
-    );
+  paragraphs.forEach(
+    (paragraph) => {
+      const lines =
+        pdf.splitTextToSize(
+          paragraph,
+          usableWidth
+        );
 
-    for (const line of lines) {
-      if (y > pageHeight - 60) {
-        newPage();
+      for (const line of lines) {
+        if (
+          y >
+          pageHeight - 60
+        ) {
+          newPage();
+        }
+
+        pdf.text(
+          line,
+          margin,
+          y
+        );
+
+        y += 17;
       }
 
-      pdf.text(line, margin, y);
-      y += 17;
+      y += 8;
     }
-
-    y += 8;
-  });
+  );
 
   pdf.save(filename);
 }
@@ -539,24 +629,58 @@ function savePDF({
 export default function Phase2Session() {
   const router = useRouter();
 
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [checking, setChecking] = useState(true);
+  const [
+    menuOpen,
+    setMenuOpen,
+  ] = useState(false);
 
-  const [messages, setMessages] = useState<Message[]>(
-    []
-  );
+  const [
+    checking,
+    setChecking,
+  ] = useState(true);
 
-  const [input, setInput] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [
+    messages,
+    setMessages,
+  ] = useState<Message[]>([]);
 
-  const [sessionComplete, setSessionComplete] =
-    useState(false);
+  const [
+    input,
+    setInput,
+  ] = useState("");
 
-  const [bodyAnswersSubmitted, setBodyAnswersSubmitted] =
-    useState(false);
+  const [
+    loading,
+    setLoading,
+  ] = useState(false);
 
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const [
+    error,
+    setError,
+  ] = useState("");
+
+  const [
+    sessionComplete,
+    setSessionComplete,
+  ] = useState(false);
+
+  const [
+    summary,
+    setSummary,
+  ] = useState("");
+
+  const [
+    generatingSummary,
+    setGeneratingSummary,
+  ] = useState(false);
+
+  const [
+    bodyAnswersSubmitted,
+    setBodyAnswersSubmitted,
+  ] = useState(false);
+
+  const messagesEndRef =
+    useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let mounted = true;
@@ -564,7 +688,8 @@ export default function Phase2Session() {
     async function checkAccess() {
       const {
         data: { session },
-      } = await supabase.auth.getSession();
+      } =
+        await supabase.auth.getSession();
 
       if (!mounted) return;
 
@@ -573,16 +698,24 @@ export default function Phase2Session() {
         return;
       }
 
-      const { data: profile } = await supabase
-        .from("profiles")
-        .select("paid")
-        .eq("user_id", session.user.id)
-        .maybeSingle();
+      const {
+        data: profile,
+      } =
+        await supabase
+          .from("profiles")
+          .select("paid")
+          .eq(
+            "user_id",
+            session.user.id
+          )
+          .maybeSingle();
 
       if (!mounted) return;
 
       if (!profile?.paid) {
-        window.location.href = STRIPE_PAYMENT_LINK;
+        window.location.href =
+          STRIPE_PAYMENT_LINK;
+
         return;
       }
 
@@ -597,75 +730,194 @@ export default function Phase2Session() {
   }, [router]);
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({
-      behavior: "smooth",
-    });
-  }, [messages, loading]);
+    messagesEndRef.current
+      ?.scrollIntoView({
+        behavior: "smooth",
+      });
+  }, [
+    messages,
+    loading,
+    generatingSummary,
+  ]);
 
-  function checkIfComplete(text: string) {
+  function checkIfComplete(
+    text: string
+  ) {
     return text
       .toLowerCase()
-      .includes("your phase 2 session is complete");
+      .includes(
+        "your phase 2 session is complete"
+      );
   }
 
-  async function sendToAI(userContent: string) {
+  async function generateSummary(
+    completedMessages: Message[]
+  ) {
+    setGeneratingSummary(true);
+    setError("");
+
+    try {
+      const response =
+        await fetch(
+          "/api/phase2-summary",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type":
+                "application/json",
+            },
+            body: JSON.stringify({
+              messages:
+                completedMessages,
+            }),
+          }
+        );
+
+      const data =
+        await response.json();
+
+      if (
+        !response.ok ||
+        data.error
+      ) {
+        setError(
+          data.error ||
+            "Your session finished, but your summary could not be generated."
+        );
+
+        return;
+      }
+
+      if (
+        !data.summary ||
+        !data.summary.trim()
+      ) {
+        setError(
+          "Your session finished, but the summary generator returned an empty summary."
+        );
+
+        return;
+      }
+
+      setSummary(
+        data.summary
+      );
+    } catch (summaryError) {
+      console.error(
+        "Summary generation error:",
+        summaryError
+      );
+
+      setError(
+        "Your session finished, but your summary could not be generated. You can retry below."
+      );
+    } finally {
+      setGeneratingSummary(false);
+    }
+  }
+
+  async function sendToAI(
+    userContent: string
+  ) {
     const userMessage: Message = {
       role: "user",
       content: userContent,
     };
 
-    const newMessages = [...messages, userMessage];
+    const newMessages = [
+      ...messages,
+      userMessage,
+    ];
 
     setMessages(newMessages);
+
     setLoading(true);
+
     setError("");
-    setBodyAnswersSubmitted(false);
+
+    setBodyAnswersSubmitted(
+      false
+    );
 
     try {
-      const response = await fetch("/api/phase2", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          messages: newMessages,
-        }),
-      });
+      const response =
+        await fetch(
+          "/api/phase2",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type":
+                "application/json",
+            },
+            body: JSON.stringify({
+              messages:
+                newMessages,
+            }),
+          }
+        );
 
-      const data = await response.json();
+      const data =
+        await response.json();
 
-      if (!response.ok || data.error) {
+      if (
+        !response.ok ||
+        data.error
+      ) {
         setError(
-          data.error || "Something went wrong."
+          data.error ||
+            "Something went wrong."
         );
       } else {
-        const assistantMessage: Message = {
-          role: "assistant",
-          content: data.message,
-        };
+        const assistantMessage: Message =
+          {
+            role: "assistant",
+            content:
+              data.message,
+          };
 
-        setMessages([
-          ...newMessages,
-          assistantMessage,
-        ]);
+        const completedMessages =
+          [
+            ...newMessages,
+            assistantMessage,
+          ];
 
-        if (checkIfComplete(data.message)) {
-          setSessionComplete(true);
+        setMessages(
+          completedMessages
+        );
+
+        if (
+          checkIfComplete(
+            data.message
+          )
+        ) {
+          setSessionComplete(
+            true
+          );
+
+          await generateSummary(
+            completedMessages
+          );
         }
       }
     } catch {
       setError(
         "Something went wrong. Please try again."
       );
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   }
 
   async function sendMessage() {
-    if (!input.trim() || loading) return;
+    if (
+      !input.trim() ||
+      loading
+    ) {
+      return;
+    }
 
-    const text = input.trim();
+    const text =
+      input.trim();
 
     setInput("");
 
@@ -675,18 +927,22 @@ export default function Phase2Session() {
   function handleBodySubmit(
     answers: BodyStatement[]
   ) {
-    setBodyAnswersSubmitted(true);
+    setBodyAnswersSubmitted(
+      true
+    );
 
-    const formatted = answers
-      .map(
-        (answer) =>
-          `${answer.text} — ${
-            answer.answer === "yes"
-              ? "YES"
-              : "NO"
-          }`
-      )
-      .join("\n");
+    const formatted =
+      answers
+        .map(
+          (answer) =>
+            `${answer.text} — ${
+              answer.answer ===
+              "yes"
+                ? "YES"
+                : "NO"
+            }`
+        )
+        .join("\n");
 
     sendToAI(formatted);
   }
@@ -699,68 +955,91 @@ export default function Phase2Session() {
       !event.shiftKey
     ) {
       event.preventDefault();
+
       sendMessage();
     }
   }
 
-  const finalAssistantMessage = messages
-    .filter(
-      (message) => message.role === "assistant"
-    )
-    .slice(-1)[0];
+  const finalAssistantMessage =
+    messages
+      .filter(
+        (message) =>
+          message.role ===
+          "assistant"
+      )
+      .slice(-1)[0];
 
   const finalContent =
-    finalAssistantMessage?.content || "";
+    finalAssistantMessage
+      ?.content || "";
 
-  const nighttimeScript = sessionComplete
-    ? extractSection(
-        finalContent,
-        "Your Nighttime Script",
-        "Session Summary"
-      )
-    : "";
-
-  const sessionSummary = sessionComplete
-    ? extractSection(
-        finalContent,
-        "Session Summary"
-      )
-        .replace(
-          /Your Phase 2 session is complete\./gi,
-          ""
+  const nighttimeScript =
+    sessionComplete
+      ? extractSection(
+          finalContent,
+          "Your Nighttime Script",
+          "Your Phase 2 session is complete"
         )
-        .trim()
-    : "";
+      : "";
 
   function downloadNighttimeScript() {
-    if (!nighttimeScript) return;
+    if (!nighttimeScript) {
+      setError(
+        "I couldn't find your nighttime script in the completed session."
+      );
+
+      return;
+    }
 
     savePDF({
-      title: "Nighttime Script",
-      content: nighttimeScript,
+      title:
+        "Nighttime Script",
+
+      content:
+        nighttimeScript,
+
       filename: `release-core-nighttime-script-${new Date()
-        .toLocaleDateString("en-US")
-        .replace(/\//g, "-")}.pdf`,
+        .toLocaleDateString(
+          "en-US"
+        )
+        .replace(
+          /\//g,
+          "-"
+        )}.pdf`,
     });
   }
 
   function downloadSummary() {
-    if (!sessionSummary) return;
+    if (!summary.trim()) {
+      return;
+    }
 
     savePDF({
-      title: "Session Summary",
-      content: sessionSummary,
+      title:
+        "Session Summary",
+
+      content:
+        summary,
+
       filename: `release-core-session-summary-${new Date()
-        .toLocaleDateString("en-US")
-        .replace(/\//g, "-")}.pdf`,
+        .toLocaleDateString(
+          "en-US"
+        )
+        .replace(
+          /\//g,
+          "-"
+        )}.pdf`,
     });
   }
 
-  const lastAssistantMessage = messages
-    .filter(
-      (message) => message.role === "assistant"
-    )
-    .slice(-1)[0];
+  const lastAssistantMessage =
+    messages
+      .filter(
+        (message) =>
+          message.role ===
+          "assistant"
+      )
+      .slice(-1)[0];
 
   const lastHasBodyQuestions =
     lastAssistantMessage
@@ -794,21 +1073,32 @@ export default function Phase2Session() {
           </Link>
 
           <div className="hidden gap-2 md:flex">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="rounded-full px-3 py-1.5 text-xs text-slate-600 transition hover:bg-calm-100 hover:text-calm-700"
-              >
-                {item.label}
-              </Link>
-            ))}
+            {navItems.map(
+              (item) => (
+                <Link
+                  key={
+                    item.href
+                  }
+                  href={
+                    item.href
+                  }
+                  className="rounded-full px-3 py-1.5 text-xs text-slate-600 transition hover:bg-calm-100 hover:text-calm-700"
+                >
+                  {
+                    item.label
+                  }
+                </Link>
+              )
+            )}
           </div>
 
           <button
+            type="button"
             className="flex flex-col gap-1.5 p-2 md:hidden"
             onClick={() =>
-              setMenuOpen(!menuOpen)
+              setMenuOpen(
+                !menuOpen
+              )
             }
             aria-label="Toggle menu"
           >
@@ -822,7 +1112,9 @@ export default function Phase2Session() {
 
             <span
               className={`block h-0.5 w-5 bg-calm-700 transition-opacity duration-200 ${
-                menuOpen ? "opacity-0" : ""
+                menuOpen
+                  ? "opacity-0"
+                  : ""
               }`}
             />
 
@@ -839,18 +1131,28 @@ export default function Phase2Session() {
         {menuOpen && (
           <div className="border-t border-calm-200 bg-calm-50 px-4 py-3 md:hidden">
             <div className="flex flex-col gap-1">
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() =>
-                    setMenuOpen(false)
-                  }
-                  className="rounded-lg px-3 py-2.5 text-sm text-slate-600 transition hover:bg-calm-100 hover:text-calm-700"
-                >
-                  {item.label}
-                </Link>
-              ))}
+              {navItems.map(
+                (item) => (
+                  <Link
+                    key={
+                      item.href
+                    }
+                    href={
+                      item.href
+                    }
+                    onClick={() =>
+                      setMenuOpen(
+                        false
+                      )
+                    }
+                    className="rounded-lg px-3 py-2.5 text-sm text-slate-600 transition hover:bg-calm-100 hover:text-calm-700"
+                  >
+                    {
+                      item.label
+                    }
+                  </Link>
+                )
+              )}
             </div>
           </div>
         )}
@@ -863,9 +1165,10 @@ export default function Phase2Session() {
           </h1>
 
           <p className="mt-1 text-sm text-slate-500">
-            Follow your body's answers until we
-            uncover the pattern underneath what
-            you're experiencing.
+            Follow your body's
+            answers until we uncover
+            the pattern underneath
+            what you're experiencing.
           </p>
         </div>
 
@@ -877,49 +1180,70 @@ export default function Phase2Session() {
 
             <div className="flex-1 rounded-2xl rounded-tl-sm border border-calm-200 bg-white px-4 py-3">
               <p className="whitespace-pre-wrap text-sm leading-7 text-slate-700">
-                {OPENING_MESSAGE}
+                {
+                  OPENING_MESSAGE
+                }
               </p>
             </div>
           </div>
 
-          {messages.map((message, index) => {
-            const isLatestAssistant =
-              message.role === "assistant" &&
-              index === messages.length - 1;
+          {messages.map(
+            (
+              message,
+              index
+            ) => {
+              const isLatestAssistant =
+                message.role ===
+                  "assistant" &&
+                index ===
+                  messages.length -
+                    1;
 
-            if (message.role === "assistant") {
+              if (
+                message.role ===
+                "assistant"
+              ) {
+                return (
+                  <AssistantMessage
+                    key={
+                      index
+                    }
+                    content={
+                      message.content
+                    }
+                    onBodySubmit={
+                      handleBodySubmit
+                    }
+                    isLatest={
+                      isLatestAssistant &&
+                      !bodyAnswersSubmitted
+                    }
+                  />
+                );
+              }
+
               return (
-                <AssistantMessage
-                  key={index}
-                  content={message.content}
-                  onBodySubmit={
-                    handleBodySubmit
+                <div
+                  key={
+                    index
                   }
-                  isLatest={
-                    isLatestAssistant &&
-                    !bodyAnswersSubmitted
-                  }
-                />
+                  className="flex flex-row-reverse gap-3"
+                >
+                  <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-slate-400 text-xs font-semibold text-white">
+                    You
+                  </div>
+
+                  <div className="flex-1 rounded-2xl rounded-tr-sm border border-calm-200 bg-calm-50 px-4 py-3">
+                    <p className="whitespace-pre-wrap text-sm leading-7 text-slate-700">
+                      {
+                        message.content
+                      }
+                    </p>
+                  </div>
+                </div>
               );
             }
-
-            return (
-              <div
-                key={index}
-                className="flex flex-row-reverse gap-3"
-              >
-                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-slate-400 text-xs font-semibold text-white">
-                  You
-                </div>
-
-                <div className="flex-1 rounded-2xl rounded-tr-sm border border-calm-200 bg-calm-50 px-4 py-3">
-                  <p className="whitespace-pre-wrap text-sm leading-7 text-slate-700">
-                    {message.content}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
+          )}
 
           {loading && (
             <div className="flex gap-3">
@@ -932,21 +1256,24 @@ export default function Phase2Session() {
                   <div
                     className="h-2 w-2 animate-bounce rounded-full bg-calm-400"
                     style={{
-                      animationDelay: "0ms",
+                      animationDelay:
+                        "0ms",
                     }}
                   />
 
                   <div
                     className="h-2 w-2 animate-bounce rounded-full bg-calm-400"
                     style={{
-                      animationDelay: "150ms",
+                      animationDelay:
+                        "150ms",
                     }}
                   />
 
                   <div
                     className="h-2 w-2 animate-bounce rounded-full bg-calm-400"
                     style={{
-                      animationDelay: "300ms",
+                      animationDelay:
+                        "300ms",
                     }}
                   />
                 </div>
@@ -970,54 +1297,110 @@ export default function Phase2Session() {
                 </p>
 
                 <p className="mb-2 text-base font-semibold text-slate-900">
-                  Your Release Core session is
-                  complete.
+                  Your Release Core
+                  session is complete.
                 </p>
 
                 <p className="text-sm leading-6 text-slate-600">
-                  Your Nighttime Script and
-                  Session Summary are ready.
+                  {summary
+                    ? "Your Nighttime Script and Session Summary are ready."
+                    : generatingSummary
+                      ? "Your Nighttime Script is ready. We’re creating your Session Summary now..."
+                      : "Your Nighttime Script is ready. Your Session Summary still needs to be generated."}
                 </p>
               </div>
 
               <div className="mb-5 rounded-xl border border-amber-300 bg-white p-4">
                 <p className="mb-1 text-sm font-bold text-amber-800">
-                  You must download these now.
+                  You must download
+                  these now.
                 </p>
 
                 <p className="text-xs leading-5 text-slate-600">
-                  Phase 2 sessions are not saved
-                  to your dashboard. Once you leave
-                  this page, you may not be able to
-                  return to this session. Download
-                  both PDFs before closing or
+                  Phase 2 sessions
+                  are not saved to
+                  your dashboard.
+                  Once you leave this
+                  page, you may not be
+                  able to return to
+                  this session.
+                  Download both PDFs
+                  before closing or
                   leaving this page.
                 </p>
               </div>
 
+              {generatingSummary && (
+                <div className="mb-4 rounded-xl border border-calm-200 bg-white p-4 text-center">
+                  <p className="text-sm font-semibold text-calm-700">
+                    Creating your
+                    Session Summary...
+                  </p>
+
+                  <p className="mt-1 text-xs text-slate-500">
+                    We’re reviewing
+                    your full session
+                    so your summary
+                    matches what
+                    actually came up.
+                  </p>
+                </div>
+              )}
+
               <div className="flex flex-col gap-3">
                 <button
+                  type="button"
                   onClick={
                     downloadNighttimeScript
                   }
-                  disabled={!nighttimeScript}
-                  className="w-full rounded-xl bg-calm-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-calm-700 disabled:opacity-50"
+                  disabled={
+                    !nighttimeScript
+                  }
+                  className="w-full rounded-xl bg-calm-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-calm-700 disabled:cursor-not-allowed disabled:opacity-50"
                 >
-                  🌙 Download Nighttime Script PDF
+                  🌙 Download
+                  Nighttime Script
+                  PDF
                 </button>
 
-                <button
-                  onClick={downloadSummary}
-                  disabled={!sessionSummary}
-                  className="w-full rounded-xl border border-calm-300 bg-white px-6 py-3 text-sm font-semibold text-calm-700 transition hover:bg-calm-100 disabled:opacity-50"
-                >
-                  ⬇ Download Session Summary PDF
-                </button>
+                {summary ? (
+                  <button
+                    type="button"
+                    onClick={
+                      downloadSummary
+                    }
+                    className="w-full rounded-xl border border-calm-300 bg-white px-6 py-3 text-sm font-semibold text-calm-700 transition hover:bg-calm-100"
+                  >
+                    ⬇ Download Session
+                    Summary PDF
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() =>
+                      generateSummary(
+                        messages
+                      )
+                    }
+                    disabled={
+                      generatingSummary
+                    }
+                    className="w-full rounded-xl border border-calm-300 bg-white px-6 py-3 text-sm font-semibold text-calm-700 transition hover:bg-calm-100 disabled:cursor-not-allowed disabled:opacity-50"
+                  >
+                    {generatingSummary
+                      ? "Creating Session Summary..."
+                      : "Retry Session Summary"}
+                  </button>
+                )}
               </div>
             </div>
           )}
 
-          <div ref={messagesEndRef} />
+          <div
+            ref={
+              messagesEndRef
+            }
+          />
         </div>
 
         {showTextInput &&
@@ -1025,20 +1408,34 @@ export default function Phase2Session() {
             <div className="sticky bottom-4">
               <div className="flex items-end gap-3 rounded-2xl border border-calm-200 bg-white p-3 shadow-sm">
                 <textarea
-                  value={input}
-                  onChange={(event) =>
-                    setInput(event.target.value)
+                  value={
+                    input
                   }
-                  onKeyDown={handleKeyDown}
+                  onChange={(
+                    event
+                  ) =>
+                    setInput(
+                      event
+                        .target
+                        .value
+                    )
+                  }
+                  onKeyDown={
+                    handleKeyDown
+                  }
                   placeholder="Type your answer here..."
                   rows={3}
                   className="flex-1 resize-none text-sm leading-6 text-slate-700 placeholder:text-slate-400 focus:outline-none"
                 />
 
                 <button
-                  onClick={sendMessage}
+                  type="button"
+                  onClick={
+                    sendMessage
+                  }
                   disabled={
-                    loading || !input.trim()
+                    loading ||
+                    !input.trim()
                   }
                   className="flex-shrink-0 rounded-xl bg-calm-600 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-calm-700 disabled:cursor-not-allowed disabled:opacity-50"
                 >
@@ -1047,8 +1444,9 @@ export default function Phase2Session() {
               </div>
 
               <p className="mt-2 text-center text-xs text-slate-400">
-                Press Enter to send · Shift+Enter
-                for a new line
+                Press Enter to send
+                · Shift+Enter for a
+                new line
               </p>
             </div>
           )}
