@@ -9,13 +9,22 @@ import { supabase } from "@/lib/supabase";
 const STRIPE_PAYMENT_LINK =
   "https://buy.stripe.com/5kQ3cvaczg6H6tpgYsbII01";
 
+const STORAGE_KEY =
+  "release-core-phase2-session";
+
 const navItems = [
   { href: "/dashboard", label: "Dashboard" },
   { href: "/start-session", label: "Start Session" },
   { href: "/session-entry", label: "Session Entry" },
-  { href: "/grounding-scripts", label: "Grounding Scripts" },
+  {
+    href: "/grounding-scripts",
+    label: "Grounding Scripts",
+  },
   { href: "/quick-relief", label: "Quick Relief" },
-  { href: "/dream-interpreter", label: "Dream Interpreter" },
+  {
+    href: "/dream-interpreter",
+    label: "Dream Interpreter",
+  },
   { href: "/faq", label: "FAQ" },
 ];
 
@@ -27,6 +36,12 @@ type Message = {
 type BodyStatement = {
   text: string;
   answer: "yes" | "no" | null;
+};
+
+type StoredSession = {
+  messages: Message[];
+  sessionComplete: boolean;
+  summary: string;
 };
 
 const OPENING_MESSAGE = `Welcome to your Guided Deep Session.
@@ -74,11 +89,17 @@ function parseBodyStatements(
       "session summary",
     ];
 
-    const shouldSkip = skipWords.some((word) =>
-      clean.toLowerCase().startsWith(word)
+    const shouldSkip = skipWords.some(
+      (word) =>
+        clean
+          .toLowerCase()
+          .startsWith(word)
     );
 
-    if (clean.length > 5 && !shouldSkip) {
+    if (
+      clean.length > 5 &&
+      !shouldSkip
+    ) {
       statements.push({
         text: clean,
         answer: null,
@@ -86,17 +107,20 @@ function parseBodyStatements(
     }
   }
 
-  return statements.length >= 1
+  return statements.length
     ? statements
     : null;
 }
 
-function splitMessageParts(content: string): {
+function splitMessageParts(
+  content: string
+): {
   intro: string;
   statements: BodyStatement[] | null;
   outro: string;
 } {
-  const statements = parseBodyStatements(content);
+  const statements =
+    parseBodyStatements(content);
 
   if (!statements) {
     return {
@@ -121,12 +145,18 @@ function splitMessageParts(content: string): {
       /^[\*\-•–]\s+.{5,}/.test(trimmed) ||
       /^\d+[\.\)]\s+.{5,}/.test(trimmed);
 
-    if (isBullet && !listDone) {
+    if (
+      isBullet &&
+      !listDone
+    ) {
       inList = true;
       continue;
     }
 
-    if (inList && !isBullet) {
+    if (
+      inList &&
+      !isBullet
+    ) {
       listDone = true;
       inList = false;
 
@@ -137,7 +167,10 @@ function splitMessageParts(content: string): {
       continue;
     }
 
-    if (!inList && !listDone) {
+    if (
+      !inList &&
+      !listDone
+    ) {
       introLines.push(line);
     } else if (listDone) {
       outroLines.push(line);
@@ -145,9 +178,15 @@ function splitMessageParts(content: string): {
   }
 
   return {
-    intro: introLines.join("\n").trim(),
+    intro: introLines
+      .join("\n")
+      .trim(),
+
     statements,
-    outro: outroLines.join("\n").trim(),
+
+    outro: outroLines
+      .join("\n")
+      .trim(),
   };
 }
 
@@ -156,17 +195,26 @@ function BodyQuestionList({
   onSubmit,
 }: {
   statements: BodyStatement[];
-  onSubmit: (answers: BodyStatement[]) => void;
+  onSubmit: (
+    answers: BodyStatement[]
+  ) => void;
 }) {
-  const [checked, setChecked] = useState<boolean[]>(
+  const [
+    checked,
+    setChecked,
+  ] = useState<boolean[]>(
     statements.map(() => false)
   );
 
-  const [submitted, setSubmitted] =
-    useState(false);
+  const [
+    submitted,
+    setSubmitted,
+  ] = useState(false);
 
-  const [somethingElse, setSomethingElse] =
-    useState("");
+  const [
+    somethingElse,
+    setSomethingElse,
+  ] = useState("");
 
   const [
     somethingElseChecked,
@@ -175,8 +223,11 @@ function BodyQuestionList({
 
   function toggle(index: number) {
     setChecked((previous) =>
-      previous.map((value, i) =>
-        i === index ? !value : value
+      previous.map(
+        (value, i) =>
+          i === index
+            ? !value
+            : value
       )
     );
   }
@@ -186,13 +237,17 @@ function BodyQuestionList({
 
     setSubmitted(true);
 
-    const answers: BodyStatement[] =
+    const answers =
       statements.map(
-        (statement, index) => ({
+        (
+          statement,
+          index
+        ) => ({
           ...statement,
+
           answer: checked[index]
-            ? "yes"
-            : "no",
+            ? ("yes" as const)
+            : ("no" as const),
         })
       );
 
@@ -213,7 +268,10 @@ function BodyQuestionList({
     return (
       <div className="space-y-2 opacity-70">
         {statements.map(
-          (statement, index) => (
+          (
+            statement,
+            index
+          ) => (
             <div
               key={index}
               className="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3"
@@ -244,7 +302,9 @@ function BodyQuestionList({
               </div>
 
               <p className="text-sm text-slate-600">
-                {statement.text}
+                {
+                  statement.text
+                }
               </p>
 
               <span className="ml-auto text-xs font-semibold text-slate-400">
@@ -277,7 +337,9 @@ function BodyQuestionList({
               </div>
 
               <p className="text-sm text-slate-600">
-                {somethingElse}
+                {
+                  somethingElse
+                }
               </p>
 
               <span className="ml-auto text-xs font-semibold text-green-700">
@@ -292,18 +354,25 @@ function BodyQuestionList({
   return (
     <div className="space-y-2">
       <p className="mb-3 text-xs leading-5 text-slate-500">
-        Ask your body each question.
-        Check the box for YES. Leave it
-        unchecked for NO, then tap Submit
-        when you're finished.
+        Ask your body each
+        question. Check the box
+        for YES. Leave it
+        unchecked for NO, then
+        tap Submit when you're
+        finished.
       </p>
 
       {statements.map(
-        (statement, index) => (
+        (
+          statement,
+          index
+        ) => (
           <button
             key={index}
             type="button"
-            onClick={() => toggle(index)}
+            onClick={() =>
+              toggle(index)
+            }
             className={`flex w-full items-center gap-3 rounded-xl border-2 px-4 py-3 text-left transition-all ${
               checked[index]
                 ? "border-green-500 bg-green-50"
@@ -311,7 +380,7 @@ function BodyQuestionList({
             }`}
           >
             <div
-              className={`flex h-6 w-6 flex-shrink-0 items-center justify-center rounded border-2 transition-all ${
+              className={`flex h-6 w-6 flex-shrink-0 items-center justify-center rounded border-2 ${
                 checked[index]
                   ? "border-green-600 bg-green-600"
                   : "border-slate-300 bg-white"
@@ -336,14 +405,16 @@ function BodyQuestionList({
             </div>
 
             <p className="text-sm leading-6 text-slate-700">
-              {statement.text}
+              {
+                statement.text
+              }
             </p>
           </button>
         )
       )}
 
       <div
-        className={`rounded-xl border-2 px-4 py-3 transition-all ${
+        className={`rounded-xl border-2 px-4 py-3 ${
           somethingElseChecked
             ? "border-green-500 bg-green-50"
             : "border-slate-200 bg-white"
@@ -384,21 +455,26 @@ function BodyQuestionList({
           </div>
 
           <p className="text-sm italic text-slate-500">
-            Something else came up...
+            Something else came
+            up...
           </p>
         </button>
 
         {somethingElseChecked && (
           <textarea
-            value={somethingElse}
-            onChange={(event) =>
+            value={
+              somethingElse
+            }
+            onChange={(
+              event
+            ) =>
               setSomethingElse(
                 event.target.value
               )
             }
             placeholder="Type what came up..."
             rows={2}
-            className="mt-3 w-full resize-none rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-700 placeholder:text-slate-400 focus:border-green-400 focus:outline-none"
+            className="mt-3 w-full resize-none rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-700"
           />
         )}
       </div>
@@ -406,7 +482,7 @@ function BodyQuestionList({
       <button
         type="button"
         onClick={handleSubmit}
-        className="mt-3 w-full rounded-xl bg-green-600 py-3.5 text-sm font-semibold text-white shadow-sm transition hover:bg-green-700"
+        className="mt-3 w-full rounded-xl bg-green-600 py-3.5 text-sm font-semibold text-white"
       >
         Submit my answers →
       </button>
@@ -420,16 +496,20 @@ function AssistantMessage({
   isLatest,
 }: {
   content: string;
+
   onBodySubmit: (
     answers: BodyStatement[]
   ) => void;
+
   isLatest: boolean;
 }) {
   const {
     intro,
     statements,
     outro,
-  } = splitMessageParts(content);
+  } = splitMessageParts(
+    content
+  );
 
   return (
     <div className="flex gap-3">
@@ -449,7 +529,9 @@ function AssistantMessage({
         {statements && (
           <div className="rounded-2xl border border-calm-200 bg-white p-4">
             <BodyQuestionList
-              statements={statements}
+              statements={
+                statements
+              }
               onSubmit={
                 isLatest
                   ? onBodySubmit
@@ -510,18 +592,19 @@ function extractSection(
   }
 
   return content
-    .slice(contentStart, end)
+    .slice(
+      contentStart,
+      end
+    )
     .trim();
 }
 
-function savePDF({
+function createPDFBlob({
   title,
   content,
-  filename,
 }: {
   title: string;
   content: string;
-  filename: string;
 }) {
   const pdf = new jsPDF({
     orientation: "portrait",
@@ -538,11 +621,12 @@ function savePDF({
   const margin = 55;
 
   const usableWidth =
-    pageWidth - margin * 2;
+    pageWidth -
+    margin * 2;
 
   let y = 60;
 
-  const addHeader = () => {
+  function addHeader() {
     pdf.setFont(
       "helvetica",
       "bold"
@@ -574,60 +658,100 @@ function savePDF({
     );
 
     pdf.setFontSize(11);
-  };
+  }
 
-  const newPage = () => {
+  function newPage() {
     pdf.addPage();
 
     y = 60;
 
     addHeader();
-  };
+  }
 
   addHeader();
 
   const paragraphs =
     content
+      .replace(/\r/g, "")
       .split(/\n+/)
-      .map((paragraph) =>
-        paragraph.trim()
+      .map((p) =>
+        p.trim()
       )
       .filter(Boolean);
 
-  paragraphs.forEach(
-    (paragraph) => {
-      const lines =
-        pdf.splitTextToSize(
-          paragraph,
-          usableWidth
-        );
+  for (const paragraph of paragraphs) {
+    const lines =
+      pdf.splitTextToSize(
+        paragraph,
+        usableWidth
+      );
 
-      for (const line of lines) {
-        if (
-          y >
-          pageHeight - 60
-        ) {
-          newPage();
-        }
-
-        pdf.text(
-          line,
-          margin,
-          y
-        );
-
-        y += 17;
+    for (const line of lines) {
+      if (
+        y >
+        pageHeight - 60
+      ) {
+        newPage();
       }
 
-      y += 8;
+      pdf.text(
+        line,
+        margin,
+        y
+      );
+
+      y += 17;
     }
+
+    y += 8;
+  }
+
+  return pdf.output(
+    "blob"
+  );
+}
+
+function downloadBlob(
+  blob: Blob,
+  filename: string
+) {
+  const url =
+    URL.createObjectURL(
+      blob
+    );
+
+  const anchor =
+    document.createElement(
+      "a"
+    );
+
+  anchor.href = url;
+  anchor.download =
+    filename;
+
+  anchor.rel =
+    "noopener";
+
+  document.body.appendChild(
+    anchor
   );
 
-  pdf.save(filename);
+  anchor.click();
+
+  anchor.remove();
+
+  window.setTimeout(
+    () =>
+      URL.revokeObjectURL(
+        url
+      ),
+    3000
+  );
 }
 
 export default function Phase2Session() {
-  const router = useRouter();
+  const router =
+    useRouter();
 
   const [
     menuOpen,
@@ -640,9 +764,16 @@ export default function Phase2Session() {
   ] = useState(true);
 
   const [
+    restored,
+    setRestored,
+  ] = useState(false);
+
+  const [
     messages,
     setMessages,
-  ] = useState<Message[]>([]);
+  ] = useState<
+    Message[]
+  >([]);
 
   const [
     input,
@@ -680,21 +811,118 @@ export default function Phase2Session() {
   ] = useState(false);
 
   const messagesEndRef =
-    useRef<HTMLDivElement>(null);
+    useRef<HTMLDivElement>(
+      null
+    );
+
+  /*
+   * Restore the current
+   * Phase 2 session after
+   * Safari reloads/back.
+   */
+  useEffect(() => {
+    try {
+      const saved =
+        window.sessionStorage.getItem(
+          STORAGE_KEY
+        );
+
+      if (saved) {
+        const parsed =
+          JSON.parse(
+            saved
+          ) as StoredSession;
+
+        if (
+          Array.isArray(
+            parsed.messages
+          )
+        ) {
+          setMessages(
+            parsed.messages
+          );
+        }
+
+        if (
+          parsed.sessionComplete
+        ) {
+          setSessionComplete(
+            true
+          );
+        }
+
+        if (
+          typeof parsed.summary ===
+          "string"
+        ) {
+          setSummary(
+            parsed.summary
+          );
+        }
+      }
+    } catch (restoreError) {
+      console.error(
+        "Could not restore Phase 2 session:",
+        restoreError
+      );
+    } finally {
+      setRestored(true);
+    }
+  }, []);
+
+  /*
+   * Save the session every
+   * time important data
+   * changes.
+   */
+  useEffect(() => {
+    if (!restored) return;
+
+    const state:
+      StoredSession = {
+      messages,
+      sessionComplete,
+      summary,
+    };
+
+    try {
+      window.sessionStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(
+          state
+        )
+      );
+    } catch (saveError) {
+      console.error(
+        "Could not save Phase 2 session:",
+        saveError
+      );
+    }
+  }, [
+    messages,
+    sessionComplete,
+    summary,
+    restored,
+  ]);
 
   useEffect(() => {
     let mounted = true;
 
     async function checkAccess() {
       const {
-        data: { session },
+        data: {
+          session,
+        },
       } =
         await supabase.auth.getSession();
 
       if (!mounted) return;
 
       if (!session) {
-        router.replace("/login");
+        router.replace(
+          "/login"
+        );
+
         return;
       }
 
@@ -702,7 +930,9 @@ export default function Phase2Session() {
         data: profile,
       } =
         await supabase
-          .from("profiles")
+          .from(
+            "profiles"
+          )
           .select("paid")
           .eq(
             "user_id",
@@ -753,7 +983,16 @@ export default function Phase2Session() {
   async function generateSummary(
     completedMessages: Message[]
   ) {
-    setGeneratingSummary(true);
+    if (
+      generatingSummary
+    ) {
+      return;
+    }
+
+    setGeneratingSummary(
+      true
+    );
+
     setError("");
 
     try {
@@ -761,15 +1000,21 @@ export default function Phase2Session() {
         await fetch(
           "/api/phase2-summary",
           {
-            method: "POST",
+            method:
+              "POST",
+
             headers: {
               "Content-Type":
                 "application/json",
             },
-            body: JSON.stringify({
-              messages:
-                completedMessages,
-            }),
+
+            body:
+              JSON.stringify(
+                {
+                  messages:
+                    completedMessages,
+                }
+              ),
           }
         );
 
@@ -780,48 +1025,81 @@ export default function Phase2Session() {
         !response.ok ||
         data.error
       ) {
-        setError(
+        throw new Error(
           data.error ||
-            "Your session finished, but your summary could not be generated."
+            "Your Session Summary could not be generated."
         );
-
-        return;
       }
 
-      if (
-        !data.summary ||
-        !data.summary.trim()
-      ) {
-        setError(
-          "Your session finished, but the summary generator returned an empty summary."
-        );
+      const generated =
+        typeof data.summary ===
+        "string"
+          ? data.summary.trim()
+          : "";
 
-        return;
+      if (!generated) {
+        throw new Error(
+          "The Session Summary came back empty."
+        );
       }
 
       setSummary(
-        data.summary
+        generated
       );
-    } catch (summaryError) {
+    } catch (
+      summaryError:
+        any
+    ) {
       console.error(
         "Summary generation error:",
         summaryError
       );
 
       setError(
-        "Your session finished, but your summary could not be generated. You can retry below."
+        summaryError?.message ||
+          "Your Session Summary could not be generated."
       );
     } finally {
-      setGeneratingSummary(false);
+      setGeneratingSummary(
+        false
+      );
     }
   }
+
+  /*
+   * If a completed session
+   * was restored but the
+   * summary had not finished
+   * before Safari reloaded,
+   * generate it again.
+   */
+  useEffect(() => {
+    if (
+      !restored ||
+      !sessionComplete ||
+      summary ||
+      generatingSummary ||
+      messages.length === 0
+    ) {
+      return;
+    }
+
+    generateSummary(
+      messages
+    );
+  }, [
+    restored,
+    sessionComplete,
+  ]);
 
   async function sendToAI(
     userContent: string
   ) {
-    const userMessage: Message = {
+    const userMessage:
+      Message = {
       role: "user",
-      content: userContent,
+      content:
+        userContent,
     };
 
     const newMessages = [
@@ -829,7 +1107,9 @@ export default function Phase2Session() {
       userMessage,
     ];
 
-    setMessages(newMessages);
+    setMessages(
+      newMessages
+    );
 
     setLoading(true);
 
@@ -844,15 +1124,21 @@ export default function Phase2Session() {
         await fetch(
           "/api/phase2",
           {
-            method: "POST",
+            method:
+              "POST",
+
             headers: {
               "Content-Type":
                 "application/json",
             },
-            body: JSON.stringify({
-              messages:
-                newMessages,
-            }),
+
+            body:
+              JSON.stringify(
+                {
+                  messages:
+                    newMessages,
+                }
+              ),
           }
         );
 
@@ -867,39 +1153,47 @@ export default function Phase2Session() {
           data.error ||
             "Something went wrong."
         );
-      } else {
-        const assistantMessage: Message =
-          {
-            role: "assistant",
-            content:
-              data.message,
-          };
 
-        const completedMessages =
-          [
-            ...newMessages,
-            assistantMessage,
-          ];
+        return;
+      }
 
-        setMessages(
-          completedMessages
+      const assistantMessage:
+        Message = {
+        role: "assistant",
+        content:
+          data.message,
+      };
+
+      const completedMessages =
+        [
+          ...newMessages,
+          assistantMessage,
+        ];
+
+      setMessages(
+        completedMessages
+      );
+
+      if (
+        checkIfComplete(
+          data.message
+        )
+      ) {
+        setSessionComplete(
+          true
         );
 
-        if (
-          checkIfComplete(
-            data.message
-          )
-        ) {
-          setSessionComplete(
-            true
-          );
-
-          await generateSummary(
-            completedMessages
-          );
-        }
+        await generateSummary(
+          completedMessages
+        );
       }
-    } catch {
+    } catch (
+      requestError
+    ) {
+      console.error(
+        requestError
+      );
+
       setError(
         "Something went wrong. Please try again."
       );
@@ -944,14 +1238,17 @@ export default function Phase2Session() {
         )
         .join("\n");
 
-    sendToAI(formatted);
+    sendToAI(
+      formatted
+    );
   }
 
   function handleKeyDown(
     event: React.KeyboardEvent<HTMLTextAreaElement>
   ) {
     if (
-      event.key === "Enter" &&
+      event.key ===
+        "Enter" &&
       !event.shiftKey
     ) {
       event.preventDefault();
@@ -983,52 +1280,107 @@ export default function Phase2Session() {
       : "";
 
   function downloadNighttimeScript() {
-    if (!nighttimeScript) {
+    if (
+      !nighttimeScript
+    ) {
       setError(
-        "I couldn't find your nighttime script in the completed session."
+        "Your Nighttime Script could not be found."
       );
 
       return;
     }
 
-    savePDF({
-      title:
-        "Nighttime Script",
-
-      content:
-        nighttimeScript,
-
-      filename: `release-core-nighttime-script-${new Date()
+    const date =
+      new Date()
         .toLocaleDateString(
           "en-US"
         )
         .replace(
           /\//g,
           "-"
-        )}.pdf`,
-    });
+        );
+
+    const blob =
+      createPDFBlob({
+        title:
+          "Nighttime Script",
+
+        content:
+          nighttimeScript,
+      });
+
+    downloadBlob(
+      blob,
+      `release-core-nighttime-script-${date}.pdf`
+    );
   }
 
   function downloadSummary() {
-    if (!summary.trim()) {
+    if (!summary) {
+      setError(
+        "Your Session Summary is not ready yet."
+      );
+
       return;
     }
 
-    savePDF({
-      title:
-        "Session Summary",
-
-      content:
-        summary,
-
-      filename: `release-core-session-summary-${new Date()
+    const date =
+      new Date()
         .toLocaleDateString(
           "en-US"
         )
         .replace(
           /\//g,
           "-"
-        )}.pdf`,
+        );
+
+    const blob =
+      createPDFBlob({
+        title:
+          "Session Summary",
+
+        content:
+          summary,
+      });
+
+    downloadBlob(
+      blob,
+      `release-core-session-summary-${date}.pdf`
+    );
+  }
+
+  function startNewSession() {
+    const confirmed =
+      window.confirm(
+        "Start a new Phase 2 session? Make sure you have downloaded both PDFs first."
+      );
+
+    if (!confirmed) {
+      return;
+    }
+
+    window.sessionStorage.removeItem(
+      STORAGE_KEY
+    );
+
+    setMessages([]);
+    setSummary("");
+
+    setSessionComplete(
+      false
+    );
+
+    setError("");
+
+    setInput("");
+
+    setBodyAnswersSubmitted(
+      false
+    );
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
     });
   }
 
@@ -1053,7 +1405,10 @@ export default function Phase2Session() {
     bodyAnswersSubmitted ||
     sessionComplete;
 
-  if (checking) {
+  if (
+    checking ||
+    !restored
+  ) {
     return (
       <p className="p-6 text-center text-sm text-slate-500">
         Loading...
@@ -1103,7 +1458,7 @@ export default function Phase2Session() {
             aria-label="Toggle menu"
           >
             <span
-              className={`block h-0.5 w-5 bg-calm-700 transition-transform duration-200 ${
+              className={`block h-0.5 w-5 bg-calm-700 ${
                 menuOpen
                   ? "translate-y-2 rotate-45"
                   : ""
@@ -1111,7 +1466,7 @@ export default function Phase2Session() {
             />
 
             <span
-              className={`block h-0.5 w-5 bg-calm-700 transition-opacity duration-200 ${
+              className={`block h-0.5 w-5 bg-calm-700 ${
                 menuOpen
                   ? "opacity-0"
                   : ""
@@ -1119,7 +1474,7 @@ export default function Phase2Session() {
             />
 
             <span
-              className={`block h-0.5 w-5 bg-calm-700 transition-transform duration-200 ${
+              className={`block h-0.5 w-5 bg-calm-700 ${
                 menuOpen
                   ? "-translate-y-2 -rotate-45"
                   : ""
@@ -1145,7 +1500,7 @@ export default function Phase2Session() {
                         false
                       )
                     }
-                    className="rounded-lg px-3 py-2.5 text-sm text-slate-600 transition hover:bg-calm-100 hover:text-calm-700"
+                    className="rounded-lg px-3 py-2.5 text-sm text-slate-600 hover:bg-calm-100"
                   >
                     {
                       item.label
@@ -1161,14 +1516,16 @@ export default function Phase2Session() {
       <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col px-4 py-6">
         <div className="mb-4">
           <h1 className="text-2xl font-semibold text-slate-900">
-            Guided Deep Session
+            Guided Deep
+            Session
           </h1>
 
           <p className="mt-1 text-sm text-slate-500">
             Follow your body's
-            answers until we uncover
-            the pattern underneath
-            what you're experiencing.
+            answers until we
+            uncover the pattern
+            underneath what
+            you're experiencing.
           </p>
         </div>
 
@@ -1251,32 +1608,11 @@ export default function Phase2Session() {
                 RC
               </div>
 
-              <div className="flex-1 rounded-2xl rounded-tl-sm border border-calm-200 bg-white px-4 py-3">
-                <div className="flex items-center gap-1.5">
-                  <div
-                    className="h-2 w-2 animate-bounce rounded-full bg-calm-400"
-                    style={{
-                      animationDelay:
-                        "0ms",
-                    }}
-                  />
-
-                  <div
-                    className="h-2 w-2 animate-bounce rounded-full bg-calm-400"
-                    style={{
-                      animationDelay:
-                        "150ms",
-                    }}
-                  />
-
-                  <div
-                    className="h-2 w-2 animate-bounce rounded-full bg-calm-400"
-                    style={{
-                      animationDelay:
-                        "300ms",
-                    }}
-                  />
-                </div>
+              <div className="rounded-2xl border border-calm-200 bg-white px-5 py-4">
+                <p className="text-sm text-slate-500">
+                  Following the
+                  thread...
+                </p>
               </div>
             </div>
           )}
@@ -1296,56 +1632,54 @@ export default function Phase2Session() {
                   ✨
                 </p>
 
-                <p className="mb-2 text-base font-semibold text-slate-900">
-                  Your Release Core
-                  session is complete.
+                <p className="text-lg font-semibold text-slate-900">
+                  Your Release
+                  Core session is
+                  complete.
                 </p>
 
-                <p className="text-sm leading-6 text-slate-600">
-                  {summary
-                    ? "Your Nighttime Script and Session Summary are ready."
-                    : generatingSummary
-                      ? "Your Nighttime Script is ready. We’re creating your Session Summary now..."
-                      : "Your Nighttime Script is ready. Your Session Summary still needs to be generated."}
-                </p>
+                {generatingSummary ? (
+                  <p className="mt-2 text-sm leading-6 text-slate-600">
+                    Your Nighttime
+                    Script is ready.
+                    We are finishing
+                    your Session
+                    Summary now...
+                  </p>
+                ) : summary ? (
+                  <p className="mt-2 text-sm leading-6 text-slate-600">
+                    Both PDFs are
+                    ready to
+                    download.
+                  </p>
+                ) : (
+                  <p className="mt-2 text-sm leading-6 text-red-600">
+                    Your Nighttime
+                    Script is ready,
+                    but the Session
+                    Summary needs to
+                    be retried.
+                  </p>
+                )}
               </div>
 
               <div className="mb-5 rounded-xl border border-amber-300 bg-white p-4">
                 <p className="mb-1 text-sm font-bold text-amber-800">
-                  You must download
-                  these now.
+                  Download both
+                  before starting
+                  another session.
                 </p>
 
                 <p className="text-xs leading-5 text-slate-600">
-                  Phase 2 sessions
-                  are not saved to
-                  your dashboard.
-                  Once you leave this
-                  page, you may not be
-                  able to return to
-                  this session.
-                  Download both PDFs
-                  before closing or
-                  leaving this page.
+                  This completed
+                  session will stay
+                  available in this
+                  browser if the
+                  download screen
+                  opens or the page
+                  reloads.
                 </p>
               </div>
-
-              {generatingSummary && (
-                <div className="mb-4 rounded-xl border border-calm-200 bg-white p-4 text-center">
-                  <p className="text-sm font-semibold text-calm-700">
-                    Creating your
-                    Session Summary...
-                  </p>
-
-                  <p className="mt-1 text-xs text-slate-500">
-                    We’re reviewing
-                    your full session
-                    so your summary
-                    matches what
-                    actually came up.
-                  </p>
-                </div>
-              )}
 
               <div className="flex flex-col gap-3">
                 <button
@@ -1356,7 +1690,7 @@ export default function Phase2Session() {
                   disabled={
                     !nighttimeScript
                   }
-                  className="w-full rounded-xl bg-calm-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-calm-700 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="w-full rounded-xl bg-calm-600 px-6 py-3.5 text-sm font-semibold text-white disabled:opacity-50"
                 >
                   🌙 Download
                   Nighttime Script
@@ -1369,10 +1703,11 @@ export default function Phase2Session() {
                     onClick={
                       downloadSummary
                     }
-                    className="w-full rounded-xl border border-calm-300 bg-white px-6 py-3 text-sm font-semibold text-calm-700 transition hover:bg-calm-100"
+                    className="w-full rounded-xl bg-calm-600 px-6 py-3.5 text-sm font-semibold text-white"
                   >
-                    ⬇ Download Session
-                    Summary PDF
+                    ⬇ Download
+                    Session Summary
+                    PDF
                   </button>
                 ) : (
                   <button
@@ -1385,14 +1720,28 @@ export default function Phase2Session() {
                     disabled={
                       generatingSummary
                     }
-                    className="w-full rounded-xl border border-calm-300 bg-white px-6 py-3 text-sm font-semibold text-calm-700 transition hover:bg-calm-100 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="w-full rounded-xl border-2 border-calm-500 bg-white px-6 py-3.5 text-sm font-semibold text-calm-700 disabled:opacity-50"
                   >
                     {generatingSummary
-                      ? "Creating Session Summary..."
+                      ? "Preparing Session Summary..."
                       : "Retry Session Summary"}
                   </button>
                 )}
               </div>
+
+              {summary && (
+                <button
+                  type="button"
+                  onClick={
+                    startNewSession
+                  }
+                  className="mt-5 w-full py-2 text-xs font-medium text-slate-500 underline"
+                >
+                  I downloaded
+                  both — start a
+                  new session
+                </button>
+              )}
             </div>
           )}
 
@@ -1408,15 +1757,12 @@ export default function Phase2Session() {
             <div className="sticky bottom-4">
               <div className="flex items-end gap-3 rounded-2xl border border-calm-200 bg-white p-3 shadow-sm">
                 <textarea
-                  value={
-                    input
-                  }
+                  value={input}
                   onChange={(
                     event
                   ) =>
                     setInput(
-                      event
-                        .target
+                      event.target
                         .value
                     )
                   }
@@ -1437,15 +1783,16 @@ export default function Phase2Session() {
                     loading ||
                     !input.trim()
                   }
-                  className="flex-shrink-0 rounded-xl bg-calm-600 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-calm-700 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="flex-shrink-0 rounded-xl bg-calm-600 px-4 py-2.5 text-sm font-medium text-white disabled:opacity-50"
                 >
                   Send
                 </button>
               </div>
 
               <p className="mt-2 text-center text-xs text-slate-400">
-                Press Enter to send
-                · Shift+Enter for a
+                Press Enter to
+                send ·
+                Shift+Enter for a
                 new line
               </p>
             </div>
