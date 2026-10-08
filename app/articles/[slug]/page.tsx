@@ -6,6 +6,19 @@ import { getPublishedArticle, getPublishedArticles } from "@/lib/articles";
 
 type Props = { params: { slug: string } };
 
+// Turns [text](/path) in article text into links; everything else stays plain text.
+function renderInline(text: string) {
+  return text.split(/(\[[^\]]+\]\([^)\s]+\))/g).map((part, i) => {
+    const match = part.match(/^\[([^\]]+)\]\(([^)\s]+)\)$/);
+    if (!match) return part;
+    return (
+      <Link key={i} href={match[2]} className="font-medium text-emerald-700 underline underline-offset-4 hover:text-emerald-800">
+        {match[1]}
+      </Link>
+    );
+  });
+}
+
 // Drafts (published: false) are never built, so their URLs 404.
 export const dynamicParams = false;
 
@@ -64,12 +77,12 @@ export default function ArticlePage({ params }: Props) {
             return (
               <ul key={i} className="list-disc space-y-2 pl-6">
                 {block.items.map((item, j) => (
-                  <li key={j}>{item}</li>
+                  <li key={j}>{renderInline(item)}</li>
                 ))}
               </ul>
             );
           }
-          return <p key={i}>{block.text}</p>;
+          return <p key={i}>{renderInline(block.text)}</p>;
         })}
       </article>
 
