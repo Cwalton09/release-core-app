@@ -2,7 +2,7 @@
 title: Why Do I Feel Emotionally Numb?
 description: Feeling flat, disconnected, or numb to everything, even things you used to love? Emotional numbness is often your nervous system protecting you from feeling too much. Here's why it happens and how feeling comes back.
 date: 2026-10-09
-published: false
+published: true
 ---
 Things that used to make you happy don't really land anymore. Sad things don't hit the way they should either. You're going through the motions, but it feels like you're watching your life from behind glass.
 

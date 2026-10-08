@@ -2,7 +2,7 @@
 title: Dysregulated Nervous System Symptoms: Emotional and Physical Signs
 description: Anxious, exhausted, reactive, foggy, or all of the above? Here are common emotional and physical signs of a dysregulated nervous system, what dysregulation actually means, and how to start coming back to balance.
 date: 2026-10-09
-published: false
+published: true
 ---
 You hear the phrase "dysregulated nervous system" everywhere now. But what does it actually mean? And how do you know if it's you?
 

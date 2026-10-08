@@ -2,7 +2,7 @@
 title: Why Do I Wake Up With Anxiety Every Morning?
 description: Waking up with a tight chest, a knot in your stomach, or dread before your feet hit the floor? Here's why morning anxiety happens and how to help your nervous system start the day feeling safer.
 date: 2026-10-09
-published: false
+published: true
 ---
 Your eyes open, and before you've had a single thought, it's already there. The tight chest. The knot in your stomach. That heavy sense of dread, like something is wrong.
 

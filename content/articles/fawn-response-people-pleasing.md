@@ -2,7 +2,7 @@
 title: The Fawn Response: Why You People-Please (With Examples)
 description: Saying yes when you mean no, keeping everyone happy, and losing yourself in the process? People-pleasing is often the fawn response, a survival pattern your nervous system learned to keep you safe.
 date: 2026-10-09
-published: false
+published: true
 ---
 You say yes when you want to say no. You apologize for things that aren't your fault. You can feel someone's mood shift from across the room, and you immediately start trying to fix it.
 

@@ -2,7 +2,7 @@
 title: Why Do I Self-Sabotage When Things Are Going Well?
 description: Pulling away when a relationship gets good, quitting right before a breakthrough, or ruining things you worked hard for? Self-sabotage is often your nervous system protecting you from something it learned to fear.
 date: 2026-10-09
-published: false
+published: true
 ---
 Things are finally going well. The relationship feels good. The work is paying off. You're making progress.
 

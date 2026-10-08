@@ -2,7 +2,7 @@
 title: How to Change Subconscious Beliefs That Keep You Stuck
 description: Affirmations not working? Subconscious beliefs live in your nervous system, not your thinking mind. Here's how they form, how to find yours, and what it actually takes for them to change.
 date: 2026-10-09
-published: false
+published: true
 ---
 You've read the books. You've said the affirmations. You know, logically, that you're worthy, that you're safe, that you can let go.
 
