@@ -89,6 +89,25 @@ export default function HowItWorksPage() {
           </div>
         </section>
 
+        <section className="space-y-3">
+          <h2 className="text-xl font-semibold text-slate-900">What people often feel afterward</h2>
+          <p>
+            Every body is different, but people often describe feeling lighter, calmer, and more like
+            themselves. Some notice more energy, easier sleep, or that a situation that used to set
+            them off simply doesn&apos;t carry the same charge anymore. Sometimes it&apos;s immediate.
+            Sometimes it unfolds over the next few days as your body integrates what changed.
+          </p>
+        </section>
+
+        <section className="space-y-3">
+          <h2 className="text-xl font-semibold text-slate-900">Faith-friendly</h2>
+          <p>
+            If your faith matters to you, your rewire can include God, so the new message lands in a
+            way that feels true to who you are. If it doesn&apos;t, it never has to. Your session is
+            built around you.
+          </p>
+        </section>
+
         <section className="space-y-4">
           <h2 className="text-xl font-semibold text-slate-900">Good to know</h2>
           <ul className="list-disc space-y-3 pl-6">
