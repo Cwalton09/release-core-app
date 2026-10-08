@@ -1,0 +1,66 @@
+---
+title: Why Do I Feel Emotionally Numb?
+description: Feeling flat, disconnected, or numb to everything, even things you used to love? Emotional numbness is often your nervous system protecting you from feeling too much. Here's why it happens and how feeling comes back.
+date: 2026-10-09
+published: false
+---
+Things that used to make you happy don't really land anymore. Sad things don't hit the way they should either. You're going through the motions, but it feels like you're watching your life from behind glass.
+
+Sometimes people describe it as feeling "nothing." Sometimes it's feeling flat, foggy, or far away. Either way, it can be scary, especially when you don't know why it's happening.
+
+Emotional numbness isn't a sign that you're broken or that you've stopped caring. Very often, it's a sign that your body is protecting you.
+
+## Numbness is a form of protection
+
+When feelings become too much, your nervous system has a way to turn the volume down. It's part of the freeze or shutdown response.
+
+Instead of feeling everything at full intensity, your body dims it all. Less pain, but also less joy. Less fear, but also less connection. It's not choosing what to turn down. It turns down everything.
+
+I wrote more about this shutdown response in [Why Do I Shut Down When I'm Overwhelmed?](/articles/why-do-i-shut-down-when-overwhelmed)
+
+## Why it can happen "out of nowhere"
+
+Numbness often seems to show up suddenly, but there's usually something building underneath it:
+
+- A long stretch of stress or pressure
+- A loss, breakup, or big life change
+- Holding everything together for other people
+- Feelings you haven't had space to feel
+- Years of staying on high alert, until your system finally crashes
+
+When your body has been running hard for a long time, numbness can be what happens when it simply can't keep going at that pace.
+
+## Numb and tired at the same time
+
+A lot of people feel emotionally numb and physically exhausted together. That makes sense. Protecting you takes energy, and when your nervous system shifts into shutdown, it often takes your energy down with it.
+
+You might feel heavy, unmotivated, or like even small things take a huge amount of effort. That's not laziness. That's a system that's depleted.
+
+## Signs your numbness is protective
+
+- You feel disconnected from people you love
+- Your emotions feel muted or far away
+- You can talk about painful things without feeling much
+- You feel foggy, spaced out, or unreal
+- You've stopped looking forward to things
+- You sometimes feel a flash of emotion, then it disappears quickly
+
+## What helps feeling come back
+
+You can't force numbness away. Pushing hard to feel something usually makes your body hold on tighter. What helps is giving your body small, safe doses of sensation and connection.
+
+- Notice physical sensations: warm water on your hands, a soft blanket, the sun on your face
+- Move gently: walk, stretch, sway
+- Spend time with someone safe, even without talking about anything deep
+- Listen to music that used to move you, without expecting a big reaction
+- Let small feelings be enough. A tiny flicker of something counts
+
+## What helps long term
+
+Numbness usually lifts when your body no longer believes that feeling is dangerous. That means understanding what it's protecting you from and what it decided back when it first learned to turn everything down.
+
+Often there's a belief underneath, like "My feelings are too much," "If I feel this, I'll fall apart," or "It's not safe to need anything." When your body gets what it needed back then, feeling can start coming back in a way that feels safe.
+
+That's what Release Core is built to help you do.
+
+If numbness comes with hopelessness or thoughts of not wanting to be here, please reach out to someone today. In the U.S., you can call or text 988 any time.
