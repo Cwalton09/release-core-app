@@ -59,8 +59,10 @@ And here's the hard part: you usually can't find that belief by thinking about i
 
 ## How Release Core helps
 
-In a Release Core session, you don't have to figure it out on your own. The session guides you to ask your body questions and follow its answers, one step at a time, until you find what it's still protecting you from and the belief it has been running.
+In a Release Core session, you don't have to figure it out on your own. You find what's actually driving the pattern, and if a symptom has a nervous system piece to it, what's behind that too.
 
-Then it helps your body get what it needed back then, so it doesn't have to keep waking up braced for the day. Some members feel a shift in their very first session.
+You find the age the pattern started, what was happening in your life back then, and everything your nervous system learned from it, whether it came from one moment or several.
+
+Then you rewire it. Not only with affirmations, which your nervous system often rejects at first, but with questions like "Can you show me what my body softening 10% feels like?" A question gives your nervous system something to go looking for instead of something to argue with. In my experience, that's where the shift happens, and your body can finally stop waking up braced for the day.
 
 [Start your first Release Core session](/signup)

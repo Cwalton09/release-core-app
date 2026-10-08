@@ -12,7 +12,8 @@ function SessionInvite() {
   return (
     <aside className="rounded-xl border-l-4 border-emerald-600 bg-slate-50 px-5 py-4 text-sm leading-7 text-slate-700">
       <span className="font-semibold text-slate-900">Want to know what your body is protecting you from? </span>
-      A Release Core session helps you find the belief underneath, step by step.{" "}
+      A Release Core session helps you find when the pattern started and what your body learned
+      back then.{" "}
       <Link href="/signup" className="font-medium text-emerald-700 underline underline-offset-4">
         Start your first session
       </Link>
@@ -115,9 +116,9 @@ export default function ArticlePage({ params }: Props) {
           Find the belief your body is still running.
         </p>
         <p className="mt-3 text-sm leading-7 text-slate-700">
-          You can&apos;t think your way to it, because it isn&apos;t stored as a thought. A Release Core
-          session guides you to ask your body questions and follow its answers until you find what
-          it&apos;s still protecting you from, then helps it let go.
+          You can&apos;t think your way to it, because it isn&apos;t stored as a thought. In a Release
+          Core session you find the age the pattern started, what your nervous system learned back
+          then, and rewire it with questions your body can actually say yes to.
         </p>
         <p className="mt-3 text-sm italic leading-7 text-slate-600">
           &ldquo;Within 10 minutes of the session, I was feeling way better and could actually
