@@ -65,10 +65,16 @@ That might come from a hard childhood, a stressful relationship, a long season o
 
 These help your body practice coming back down. Small and consistent works better than big and occasional.
 
-## What helps long term
+## Why it keeps coming back
 
-Regulation tools help a lot, but if your body is still holding onto an old lesson about danger, it will keep pulling you back into protection mode.
+Regulation tools can take the edge off in the moment. But if the belief underneath is still there, your body will keep pulling you back into protection mode.
 
-Lasting change comes from finding what your body is still protecting you from and the belief underneath it, then giving your body what it needed back then. That's how it learns that it doesn't have to stay on guard anymore.
+And here's the hard part: you usually can't find that belief by thinking about it. It isn't stored as a thought. It's stored in your body, which is why it can feel so obvious once you find it, and so impossible to see on your own.
 
-That's exactly what Release Core is built for.
+## How Release Core helps
+
+In a Release Core session, you don't have to figure it out on your own. The session guides you to ask your body questions and follow its answers, one step at a time, until you find what it's still protecting you from and the belief it has been running.
+
+Then it helps your body get what it needed back then, so it doesn't have to keep pulling you back into protection mode. Some members feel a shift in their very first session.
+
+[Start your first Release Core session](/signup)

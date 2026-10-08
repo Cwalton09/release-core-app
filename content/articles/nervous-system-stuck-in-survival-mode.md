@@ -59,10 +59,16 @@ And many people bounce between the two. Wired all day, crashing at night. Pushin
 
 These won't undo years of survival mode, but they can bring your system down a notch when you need it.
 
-## What helps long term
+## Why it keeps coming back
 
-Lasting change happens when your body gets what it needed back then, and actually believes it's safe now.
+These tools can take the edge off in the moment. But if the belief underneath is still there, your body will keep staying in protection mode.
 
-In my experience, survival mode is usually held in place by a core belief underneath it. Something like "I have to stay on guard," "It's not safe to rest," or "If I let go, everything falls apart." Emotions like anxiety, anger, or numbness are the protective layers on top. The belief is what's driving them.
+And here's the hard part: you usually can't find that belief by thinking about it. It isn't stored as a thought. It's stored in your body, which is why it can feel so obvious once you find it, and so impossible to see on your own.
 
-That's what Release Core is built to find. We ask your body questions, follow its answers down to the belief it's still running, and help it close the loop so it doesn't have to keep protecting you in the same way.
+## How Release Core helps
+
+In a Release Core session, you don't have to figure it out on your own. The session guides you to ask your body questions and follow its answers, one step at a time, until you find what it's still protecting you from and the belief it has been running.
+
+Then it helps your body get what it needed back then, so it doesn't have to keep staying in protection mode. Some members feel a shift in their very first session.
+
+[Start your first Release Core session](/signup)

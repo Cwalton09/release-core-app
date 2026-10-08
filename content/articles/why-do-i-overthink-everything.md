@@ -47,10 +47,16 @@ When everything gets quiet, there's nothing to distract your mind. And if your b
 - Write the thoughts down so your mind doesn't have to hold them.
 - Ask, "Is there anything I actually need to do about this right now?" If not, you're allowed to set it down.
 
-## What helps long term
+## Why it keeps coming back
 
-You can't think your way out of overthinking. The thinking is a symptom. What quiets it is helping your body feel safe enough that your mind doesn't have to stand guard.
+These tools can take the edge off in the moment. But if the belief underneath is still there, your body will keep putting your mind on guard duty.
 
-Underneath most overthinking there's a core belief, like "If I make a mistake, something bad will happen," "I have to have everything figured out," or "People will leave if I get it wrong." When you find that belief and give your body what it needed back then, the overthinking often loosens on its own.
+And here's the hard part: you usually can't find that belief by thinking about it. It isn't stored as a thought. It's stored in your body, which is why it can feel so obvious once you find it, and so impossible to see on your own.
 
-That's what Release Core is built to help you find. If you want to understand more about how these beliefs work, read [Core Beliefs: The Hidden Rules Running Your Reactions](/articles/core-beliefs-examples).
+## How Release Core helps
+
+In a Release Core session, you don't have to figure it out on your own. The session guides you to ask your body questions and follow its answers, one step at a time, until you find what it's still protecting you from and the belief it has been running.
+
+Then it helps your body get what it needed back then, so it doesn't have to keep putting your mind on guard duty. Some members feel a shift in their very first session.
+
+[Start your first Release Core session](/signup)

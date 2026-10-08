@@ -34,39 +34,16 @@ So when you say "I am safe" while your body believes "I'm not safe," your body d
 
 That's not a failure. It's just a sign that the belief needs to be reached in a different way.
 
-## How to find your subconscious beliefs
+## Why it keeps coming back
 
-Your reactions are the best clues. When you have a reaction that feels bigger than the situation, get curious:
+Insight is a good start. But if the belief underneath is still there, your body will keep running the same old pattern, no matter how many affirmations you say.
 
-- What am I afraid will happen here?
-- What does this mean about me?
-- When have I felt this exact feeling before?
-- What did I decide about myself or the world back then?
+And here's the hard part: you usually can't find that belief by thinking about it. It isn't stored as a thought. It's stored in your body, which is why it can feel so obvious once you find it, and so impossible to see on your own.
 
-Keep following the answers. A core belief is usually a short, simple sentence that feels painfully true when you land on it.
+## How Release Core helps
 
-## What it actually takes to change them
+In a Release Core session, you don't have to figure it out on your own. The session guides you to ask your body questions and follow its answers, one step at a time, until you find what it's still protecting you from and the belief it has been running.
 
-This is the part that changed everything for me.
+Then it helps your body get what it needed back then, so it doesn't have to keep running the same old pattern. Release Core also uses nighttime scripts, so the new message reaches your body when your subconscious is most open to receiving it. Some members feel a shift in their very first session.
 
-Understanding a belief isn't enough. Your body learned it in a moment when it didn't get what it needed. To actually let it go, your body needs to get what it needed in that moment. That's how you close the loop. That's how safety gets created.
-
-Because if your body doesn't feel safe, it won't let anything go.
-
-## Why nighttime matters
-
-There's another piece that made a huge difference in my own healing. You can consciously "do all the work" during the day, but if your body doesn't actually believe it's safe, nothing sticks.
-
-As you drift toward sleep, your brain slows down and your guard comes down with it. In that calmer, dreamier state, your subconscious is much more open to new messages. That's why Release Core uses nighttime scripts: so the new message reaches your body at the time it's most ready to receive it. I share more about this in [How to Calm Your Nervous System Before Bed](/articles/how-to-calm-your-nervous-system-before-bed).
-
-## Putting it together
-
-Changing a subconscious belief usually looks like this:
-
-- Notice the reaction
-- Follow it down to the belief underneath
-- Find where your body first learned it
-- Give your body what it needed back then
-- Reinforce the new message when your subconscious is most open
-
-That's the Release Core Method. We ask your body questions, follow its answers to the belief it's still running, and help it close the loop, so the old pattern doesn't have to keep running your life.
+[Start your first Release Core session](/signup)

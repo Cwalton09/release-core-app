@@ -53,8 +53,16 @@ That last one surprises people. But if your body learned that good things don't 
 
 That fourth one is more powerful than it sounds. Instead of fighting the anxiety, you're getting curious about it.
 
-## What helps long term
+## Why it keeps coming back
 
-Anxiety that keeps showing up "for no reason" is usually connected to an older pattern your body is still running. Often there's a core belief underneath it, like "Something bad is about to happen," "I'm not safe when I let my guard down," or "I have to be ready for anything."
+These tools can take the edge off in the moment. But if the belief underneath is still there, your body will keep sounding the alarm "for no reason".
 
-When you find that belief and give your body what it needed back when it first learned it, the anxiety often doesn't need to keep sounding the alarm. That's what Release Core is designed to help you do.
+And here's the hard part: you usually can't find that belief by thinking about it. It isn't stored as a thought. It's stored in your body, which is why it can feel so obvious once you find it, and so impossible to see on your own.
+
+## How Release Core helps
+
+In a Release Core session, you don't have to figure it out on your own. The session guides you to ask your body questions and follow its answers, one step at a time, until you find what it's still protecting you from and the belief it has been running.
+
+Then it helps your body get what it needed back then, so it doesn't have to keep sounding the alarm "for no reason". Some members feel a shift in their very first session.
+
+[Start your first Release Core session](/signup)

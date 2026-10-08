@@ -51,10 +51,16 @@ If you also find yourself anxious at night or out of nowhere, read [Why Do I Fee
 - Tell your body something simple and true: "Right now, in this moment, I'm okay."
 - Get some daylight and gentle movement early, even just a few minutes.
 
-## What helps long term
+## Why it keeps coming back
 
-Morning anxiety tends to ease when your nervous system stops expecting each day to be a threat. That usually means finding what your body is bracing for and the belief underneath it, like "I have to be ready for anything," "It's all on me," or "Something bad is coming."
+A calmer first few minutes can take the edge off in the moment. But if the belief underneath is still there, your body will keep waking up braced for the day.
 
-What happens at night matters too. The state your body falls asleep in often shapes the state it wakes up in. I share more about that in [How to Calm Your Nervous System Before Bed](/articles/how-to-calm-your-nervous-system-before-bed).
+And here's the hard part: you usually can't find that belief by thinking about it. It isn't stored as a thought. It's stored in your body, which is why it can feel so obvious once you find it, and so impossible to see on your own.
 
-That's the work Release Core is designed for. We ask your body questions and follow its answers to the pattern underneath, so mornings can start to feel like a fresh start instead of an alarm.
+## How Release Core helps
+
+In a Release Core session, you don't have to figure it out on your own. The session guides you to ask your body questions and follow its answers, one step at a time, until you find what it's still protecting you from and the belief it has been running.
+
+Then it helps your body get what it needed back then, so it doesn't have to keep waking up braced for the day. Some members feel a shift in their very first session.
+
+[Start your first Release Core session](/signup)

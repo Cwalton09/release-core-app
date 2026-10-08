@@ -52,10 +52,16 @@ But pushing hard against a protective response usually makes your body hold on t
 - Reach out to someone safe, even just with a text
 - Give yourself a little time instead of demanding instant recovery
 
-## What helps long term
+## Why it keeps coming back
 
-The bigger shift comes from understanding what your body is protecting you from when it shuts down.
+Small steps like these can take the edge off in the moment. But if the belief underneath is still there, your body will keep reaching for shutdown when things feel like too much.
 
-What does this moment mean to it? What does it believe will happen if you stay present? When did it first learn that disappearing was safer than showing up?
+And here's the hard part: you usually can't find that belief by thinking about it. It isn't stored as a thought. It's stored in your body, which is why it can feel so obvious once you find it, and so impossible to see on your own.
 
-That's what Release Core helps you explore. We ask your body questions and follow its answers until we find the pattern underneath, so your nervous system can learn that it doesn't have to shut you down to keep you safe anymore.
+## How Release Core helps
+
+In a Release Core session, you don't have to figure it out on your own. The session guides you to ask your body questions and follow its answers, one step at a time, until you find what it's still protecting you from and the belief it has been running.
+
+Then it helps your body get what it needed back then, so it doesn't have to keep reaching for shutdown when things feel like too much. Some members feel a shift in their very first session.
+
+[Start your first Release Core session](/signup)

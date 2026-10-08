@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -6,6 +7,18 @@ import FreeGuideSignup from "@/components/FreeGuideSignup";
 import { getPublishedArticle, getPublishedArticles } from "@/lib/articles";
 
 type Props = { params: { slug: string } };
+
+function SessionInvite() {
+  return (
+    <aside className="rounded-xl border-l-4 border-emerald-600 bg-slate-50 px-5 py-4 text-sm leading-7 text-slate-700">
+      <span className="font-semibold text-slate-900">Want to know what your body is protecting you from? </span>
+      A Release Core session helps you find the belief underneath, step by step.{" "}
+      <Link href="/signup" className="font-medium text-emerald-700 underline underline-offset-4">
+        Start your first session
+      </Link>
+    </aside>
+  );
+}
 
 // Turns [text](/path) in article text into links; everything else stays plain text.
 function renderInline(text: string) {
@@ -59,6 +72,10 @@ export default function ArticlePage({ params }: Props) {
     mainEntityOfPage: `https://release-core.com/articles/${article.slug}`,
   };
 
+  // A short session invite sits just before the article's third section.
+  const headingIndexes = article.blocks.flatMap((b, i) => (b.type === "h2" ? [i] : []));
+  const midInviteAt = headingIndexes[2] ?? -1;
+
   return (
     <AppShell title={article.title}>
       <script
@@ -69,9 +86,10 @@ export default function ArticlePage({ params }: Props) {
         {article.blocks.map((block, i) => {
           if (block.type === "h2") {
             return (
-              <h2 key={i} className="pt-4 text-xl font-semibold text-slate-900">
-                {block.text}
-              </h2>
+              <Fragment key={i}>
+                {i === midInviteAt && <SessionInvite />}
+                <h2 className="pt-4 text-xl font-semibold text-slate-900">{block.text}</h2>
+              </Fragment>
             );
           }
           if (block.type === "ul") {
@@ -92,31 +110,37 @@ export default function ArticlePage({ params }: Props) {
         for medical or mental health care. If you&apos;re in crisis, call or text 988 (U.S.).
       </p>
 
-      <div className="mt-10">
-        <FreeGuideSignup compact />
-      </div>
-
-      <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-6">
-        <p className="text-lg font-semibold text-slate-900">
-          Want to find out what your nervous system is responding to?
+      <div className="mt-10 rounded-2xl border border-emerald-200 bg-emerald-50 p-6 sm:p-8">
+        <p className="text-xl font-semibold text-slate-900">
+          Find the belief your body is still running.
         </p>
-        <p className="mt-2 text-sm leading-7 text-slate-700">
-          Release Core helps you ask your body questions and follow the answers to the pattern underneath.
+        <p className="mt-3 text-sm leading-7 text-slate-700">
+          You can&apos;t think your way to it, because it isn&apos;t stored as a thought. A Release Core
+          session guides you to ask your body questions and follow its answers until you find what
+          it&apos;s still protecting you from, then helps it let go.
         </p>
-        <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+        <p className="mt-3 text-sm italic leading-7 text-slate-600">
+          &ldquo;Within 10 minutes of the session, I was feeling way better and could actually
+          function again.&rdquo;
+        </p>
+        <div className="mt-5 flex flex-col gap-3 sm:flex-row">
           <Link
             href="/signup"
             className="rounded-xl bg-emerald-700 px-6 py-3 text-center font-medium text-white transition hover:bg-emerald-800"
           >
-            Create Account
+            Start your first session
           </Link>
           <Link
             href="/articles"
-            className="rounded-xl border border-slate-300 px-6 py-3 text-center font-medium text-slate-800 transition hover:bg-white"
+            className="rounded-xl border border-slate-300 bg-white px-6 py-3 text-center font-medium text-slate-800 transition hover:bg-slate-50"
           >
-            More Articles
+            More articles
           </Link>
         </div>
+      </div>
+
+      <div className="mt-6">
+        <FreeGuideSignup compact />
       </div>
     </AppShell>
   );

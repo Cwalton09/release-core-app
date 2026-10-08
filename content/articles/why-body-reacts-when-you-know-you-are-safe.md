@@ -42,10 +42,16 @@ Breathing, grounding, and stepping away can help a lot in the moment. I use them
 
 But if your nervous system is still holding the original lesson, it will keep sounding the alarm every time something reminds it. You end up managing the same reaction over and over without ever changing what's driving it.
 
-## What actually helps
+## Why it keeps coming back
 
-Instead of fighting the reaction or deciding what it means from the outside, it helps to get curious about it.
+Breathing and grounding can take the edge off in the moment. But if the belief underneath is still there, your body will keep reacting like the danger is still happening.
 
-What is your body responding to right now? What does this moment mean to it? When did it first learn that this kind of moment wasn't safe? And what did it decide it had to do to protect you?
+And here's the hard part: you usually can't find that belief by thinking about it. It isn't stored as a thought. It's stored in your body, which is why it can feel so obvious once you find it, and so impossible to see on your own.
 
-That's what Release Core is built around. Instead of me guessing what your issue means, we ask your body questions and follow the answers until we understand what your nervous system believes, what it's responding to, and what pattern it may still be running. When your body understands that the old lesson no longer fits your life, it often stops needing to protect you in the same way.
+## How Release Core helps
+
+In a Release Core session, you don't have to figure it out on your own. The session guides you to ask your body questions and follow its answers, one step at a time, until you find what it's still protecting you from and the belief it has been running.
+
+Then it helps your body get what it needed back then, so it doesn't have to keep reacting like the danger is still happening. Some members feel a shift in their very first session.
+
+[Start your first Release Core session](/signup)

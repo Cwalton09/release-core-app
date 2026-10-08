@@ -53,10 +53,16 @@ That's also why some people feel worse when they finally slow down. Taking a bre
 
 These can bring your system down a notch. They're worth using.
 
-## What helps long term
+## Why it keeps coming back
 
-Lasting change comes from understanding why your body thinks it needs to stay on guard in the first place.
+These tools can take the edge off in the moment. But if the belief underneath is still there, your body will keep pulling you back into fight or flight.
 
-What is it bracing for? When did it learn that? What does it think will happen if it lets go?
+And here's the hard part: you usually can't find that belief by thinking about it. It isn't stored as a thought. It's stored in your body, which is why it can feel so obvious once you find it, and so impossible to see on your own.
 
-That's the work Release Core is designed for. We ask your body questions and follow its answers to find the pattern underneath, so your nervous system can update what it believes instead of running the same alarm year after year.
+## How Release Core helps
+
+In a Release Core session, you don't have to figure it out on your own. The session guides you to ask your body questions and follow its answers, one step at a time, until you find what it's still protecting you from and the belief it has been running.
+
+Then it helps your body get what it needed back then, so it doesn't have to keep pulling you back into fight or flight. Some members feel a shift in their very first session.
+
+[Start your first Release Core session](/signup)

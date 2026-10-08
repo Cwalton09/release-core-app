@@ -63,8 +63,16 @@ If any of those land, you can learn more about how these beliefs work in [Core B
 - Let someone be a little disappointed, and notice that you're still okay.
 - Ask yourself, "What do I want here?" even if you don't act on it yet.
 
-## What helps long term
+## Why it keeps coming back
 
-The fawn response softens when your body learns that your needs are allowed, and that you can be safe and loved without abandoning yourself.
+Small boundaries like these can take the edge off in the moment. But if the belief underneath is still there, your body will keep choosing everyone else over you.
 
-That's what Release Core helps you find. We ask your body questions, follow its answers to the belief underneath, and help it get what it needed back when it first learned that pleasing everyone was the only way to be okay.
+And here's the hard part: you usually can't find that belief by thinking about it. It isn't stored as a thought. It's stored in your body, which is why it can feel so obvious once you find it, and so impossible to see on your own.
+
+## How Release Core helps
+
+In a Release Core session, you don't have to figure it out on your own. The session guides you to ask your body questions and follow its answers, one step at a time, until you find what it's still protecting you from and the belief it has been running.
+
+Then it helps your body get what it needed back then, so it doesn't have to keep choosing everyone else over you. Some members feel a shift in their very first session.
+
+[Start your first Release Core session](/signup)

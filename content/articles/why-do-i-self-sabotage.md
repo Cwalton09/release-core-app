@@ -58,10 +58,16 @@ These beliefs rarely announce themselves. They just quietly steer your choices. 
 - Remind yourself that this moment is different from the past
 - Tell someone safe what you're noticing
 
-## What helps long term
+## Why it keeps coming back
 
-You can't willpower your way out of self-sabotage, because the thing driving it isn't a lack of discipline. It's a part of you that believes it's protecting you.
+Pausing like this can take the edge off in the moment. But if the belief underneath is still there, your body will keep pulling you away from good things.
 
-When you find that belief, understand where it came from, and give your body what it needed back then, it doesn't have to keep pulling you away from good things. You can let good things stay.
+And here's the hard part: you usually can't find that belief by thinking about it. It isn't stored as a thought. It's stored in your body, which is why it can feel so obvious once you find it, and so impossible to see on your own.
 
-That's what Release Core helps you do.
+## How Release Core helps
+
+In a Release Core session, you don't have to figure it out on your own. The session guides you to ask your body questions and follow its answers, one step at a time, until you find what it's still protecting you from and the belief it has been running.
+
+Then it helps your body get what it needed back then, so it doesn't have to keep pulling you away from good things. Some members feel a shift in their very first session.
+
+[Start your first Release Core session](/signup)

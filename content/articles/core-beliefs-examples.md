@@ -62,21 +62,16 @@ Core beliefs rarely announce themselves. Instead, they show up as reactions:
 
 When you notice a reaction that feels bigger than the situation, there's often a core belief underneath it.
 
-## How to find your core beliefs
+## Why it keeps coming back
 
-Next time you have a strong reaction, try asking yourself:
+Understanding your beliefs can take the edge off in the moment. But if the belief underneath is still there, your body will keep running the same old rules.
 
-- What am I afraid will happen here?
-- What does this situation mean about me?
-- When have I felt this way before?
-- What did I learn about myself back then?
+And here's the hard part: you usually can't find that belief by thinking about it. It isn't stored as a thought. It's stored in your body, which is why it can feel so obvious once you find it, and so impossible to see on your own.
 
-Keep following the answers. The belief is usually a short, simple sentence that feels painfully true when you land on it.
+## How Release Core helps
 
-## How core beliefs actually change
+In a Release Core session, you don't have to figure it out on your own. The session guides you to ask your body questions and follow its answers, one step at a time, until you find what it's still protecting you from and the belief it has been running.
 
-Understanding a belief is a great start, but it usually isn't enough on its own. Your body learned it through experience, so it needs a new experience to let it go.
+Then it helps your body get what it needed back then, so it doesn't have to keep running the same old rules. Some members feel a shift in their very first session.
 
-In my experience, that means giving your body what it needed in the moment it first learned the belief. That's how you close the loop. That's how safety gets created. Because if your body doesn't feel safe, it won't let anything go.
-
-That's exactly what Release Core is built around. We ask your body questions, follow its answers to the core belief underneath, and help it get what it needed so the old pattern doesn't have to keep running.
+[Start your first Release Core session](/signup)

@@ -49,8 +49,16 @@ You can consciously "do all the work" during the day, but if your body doesn't a
 
 That's why Release Core uses nighttime scripts. Instead of falling asleep to your worries, you fall asleep to words that tell your body what it needed to hear: that it's safe, that it can let go, that it doesn't have to carry everything anymore. Many people find their body starts to believe it more easily when they hear it that way.
 
-## What helps long term
+## Why it keeps coming back
 
-If you've been struggling with sleep for a long time, there's usually a reason your body doesn't feel safe letting go at night. Often there's a core belief underneath, like "I have to stay alert" or "Something bad happens when I'm not watching."
+A good wind-down routine can take the edge off in the moment. But if the belief underneath is still there, your body will keep staying on guard at night.
 
-When you find that belief and give your body what it needed, sleep often gets easier on its own. That's the work Release Core is designed for.
+And here's the hard part: you usually can't find that belief by thinking about it. It isn't stored as a thought. It's stored in your body, which is why it can feel so obvious once you find it, and so impossible to see on your own.
+
+## How Release Core helps
+
+In a Release Core session, you don't have to figure it out on your own. The session guides you to ask your body questions and follow its answers, one step at a time, until you find what it's still protecting you from and the belief it has been running.
+
+Then it helps your body get what it needed back then, so it doesn't have to keep staying on guard at night. Some members feel a shift in their very first session.
+
+[Start your first Release Core session](/signup)

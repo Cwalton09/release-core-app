@@ -55,12 +55,18 @@ You can't force numbness away. Pushing hard to feel something usually makes your
 - Listen to music that used to move you, without expecting a big reaction
 - Let small feelings be enough. A tiny flicker of something counts
 
-## What helps long term
+## Why it keeps coming back
 
-Numbness usually lifts when your body no longer believes that feeling is dangerous. That means understanding what it's protecting you from and what it decided back when it first learned to turn everything down.
+Small doses of feeling like these can take the edge off in the moment. But if the belief underneath is still there, your body will keep keeping the volume turned down.
 
-Often there's a belief underneath, like "My feelings are too much," "If I feel this, I'll fall apart," or "It's not safe to need anything." When your body gets what it needed back then, feeling can start coming back in a way that feels safe.
+And here's the hard part: you usually can't find that belief by thinking about it. It isn't stored as a thought. It's stored in your body, which is why it can feel so obvious once you find it, and so impossible to see on your own.
 
-That's what Release Core is built to help you do.
+## How Release Core helps
+
+In a Release Core session, you don't have to figure it out on your own. The session guides you to ask your body questions and follow its answers, one step at a time, until you find what it's still protecting you from and the belief it has been running.
+
+Then it helps your body get what it needed back then, so it doesn't have to keep keeping the volume turned down. Some members feel a shift in their very first session.
+
+[Start your first Release Core session](/signup)
 
 If numbness comes with hopelessness or thoughts of not wanting to be here, please reach out to someone today. In the U.S., you can call or text 988 any time.

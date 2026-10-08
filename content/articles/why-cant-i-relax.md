@@ -54,8 +54,16 @@ You might not consciously believe any of these. But your body might. And your bo
 - When the guilt shows up, name it: "That's an old belief. I'm allowed to rest."
 - Let rest be imperfect. Restless rest still counts.
 
-## What helps long term
+## Why it keeps coming back
 
-Lasting change comes when your body stops connecting rest with danger. That usually means finding the belief underneath, understanding where your body learned it, and giving it what it needed back then.
+Small steps like these can take the edge off in the moment. But if the belief underneath is still there, your body will keep resisting rest.
 
-That's the work Release Core is built for. We ask your body questions and follow its answers until we find the pattern, so rest can start to feel like rest again.
+And here's the hard part: you usually can't find that belief by thinking about it. It isn't stored as a thought. It's stored in your body, which is why it can feel so obvious once you find it, and so impossible to see on your own.
+
+## How Release Core helps
+
+In a Release Core session, you don't have to figure it out on your own. The session guides you to ask your body questions and follow its answers, one step at a time, until you find what it's still protecting you from and the belief it has been running.
+
+Then it helps your body get what it needed back then, so it doesn't have to keep resisting rest. Some members feel a shift in their very first session.
+
+[Start your first Release Core session](/signup)
