@@ -1,6 +1,6 @@
 // The Stripe Payment Link new members subscribe through. Members who signed up
 // on an older price keep that price; only this link decides what new members pay.
-export const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/5kQ3cvaczg6H6tpgYsbII01";
+export const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/14AbJ1aczf2DcRNfUobII03";
 
 type CheckoutUser = { id: string; email?: string | null } | null | undefined;
 
