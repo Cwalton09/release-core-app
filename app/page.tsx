@@ -17,7 +17,7 @@ const organizationJsonLd = {
   founder: { "@type": "Person", name: "Chelsea Walton" },
   sameAs: [
     "https://www.instagram.com/releasecoremethod",
-    "https://www.tiktok.com/@chelsea.walton2",
+    "https://www.tiktok.com/@releasecore",
   ],
 };
 

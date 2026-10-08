@@ -13,7 +13,7 @@ type AppShellProps = {
 
 const socialLinks = [
   { href: "https://www.instagram.com/releasecoremethod", label: "Instagram" },
-  { href: "https://www.tiktok.com/@chelsea.walton2", label: "TikTok" },
+  { href: "https://www.tiktok.com/@releasecore", label: "TikTok" },
   { href: "https://www.facebook.com/groups/952719290453784", label: "Facebook Community" },
 ];
 

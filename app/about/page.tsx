@@ -23,7 +23,7 @@ const personJsonLd = {
   jobTitle: "Creator of the Release Core Method",
   sameAs: [
     "https://www.instagram.com/releasecoremethod",
-    "https://www.tiktok.com/@chelsea.walton2",
+    "https://www.tiktok.com/@releasecore",
   ],
 };
 
