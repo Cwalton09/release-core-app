@@ -76,4 +76,4 @@ You find the age the pattern started, what was happening in your life back then,
 
 Then you rewire it. Not only with affirmations, which your nervous system often rejects at first, but with questions like "Can you show me what my body softening 10% feels like?" A question gives your nervous system something to go looking for instead of something to argue with. In my experience, that's where the shift happens, and your body can finally stop running the same old rules.
 
-[Start your first Release Core session](/signup)
+[See what happens in a session](/how-it-works) or [start your first Release Core session](/signup).

@@ -22,6 +22,7 @@ const publicNavItems = [
   { href: "/login", label: "Login" },
   { href: "/signup", label: "Signup" },
   { href: "/about", label: "About" },
+  { href: "/how-it-works", label: "How It Works" },
   { href: "/articles", label: "Articles" },
   { href: "/free", label: "Free Guide" },
   { href: "/faq", label: "FAQ" },
