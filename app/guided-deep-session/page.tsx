@@ -9,9 +9,8 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { jsPDF } from "jspdf";
 import { supabase } from "@/lib/supabase";
+import { goToCheckout } from "@/lib/checkout";
 
-const STRIPE_PAYMENT_LINK =
-  "https://buy.stripe.com/5kQ3cvaczg6H6tpgYsbII01";
 
 const STORAGE_KEY =
   "release-core-phase2-active-session";
@@ -837,8 +836,7 @@ export default function GuidedDeepSession() {
       }
 
       if (!profile?.paid) {
-        window.location.href =
-          STRIPE_PAYMENT_LINK;
+        goToCheckout(session.user);
 
         return;
       }

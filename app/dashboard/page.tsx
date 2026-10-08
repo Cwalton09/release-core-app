@@ -5,9 +5,9 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
+import { goToCheckout } from "@/lib/checkout";
 
 
-const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/5kQ3cvaczg6H6tpgYsbII01";
 
 const navItems = [
   { href: "/dashboard", label: "Dashboard" },
@@ -255,7 +255,7 @@ export default function Dashboard() {
         }
         const { data: profile, error } = await supabase.from("profiles").select("paid").eq("user_id", user.id).maybeSingle();
         if (error) { if (mounted) setCheckingAccess(false); return; }
-        if (!profile?.paid) { window.location.href = STRIPE_PAYMENT_LINK; return; }
+        if (!profile?.paid) { goToCheckout(user); return; }
         const { data: pastSessions } = await supabase
           .from("sessions")
           .select("id, created_at, emotions, core_beliefs, ages, symptoms, who_involved, what_happened, patterns, unmet_need, own_words, body_location, feeling, shape, color, size, texture, activation_age")

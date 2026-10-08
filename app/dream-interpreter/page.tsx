@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
+import { goToCheckout } from "@/lib/checkout";
 
-const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/5kQ3cvaczg6H6tpgYsbII01";
 
 const navItems = [
   { href: "/dashboard", label: "Dashboard" },
@@ -34,7 +34,7 @@ export default function DreamInterpreter() {
       if (!session) { router.replace("/login"); return; }
       const { data: profile } = await supabase.from("profiles").select("paid").eq("user_id", session.user.id).maybeSingle();
       if (!mounted) return;
-      if (!profile?.paid) { window.location.href = STRIPE_PAYMENT_LINK; return; }
+      if (!profile?.paid) { goToCheckout(session.user); return; }
       setChecking(false);
     }
     checkAccess();

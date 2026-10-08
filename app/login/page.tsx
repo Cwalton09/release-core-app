@@ -4,8 +4,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import AppShell from "@/components/AppShell";
 import { supabase } from "@/lib/supabase";
+import { goToCheckout } from "@/lib/checkout";
 
-const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/5kQ3cvaczg6H6tpgYsbII01";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -37,24 +37,7 @@ export default function LoginPage() {
         return;
       }
 
-      // Check if they were redirected here from the success page after paying
-      const needsMarkPaid = sessionStorage.getItem("mark-paid-after-login");
-
-      if (needsMarkPaid === "true") {
-        // Mark them as paid now that they are logged in
-        await supabase.from("profiles").upsert(
-          {
-            user_id: user.id,
-            paid: true,
-          },
-          { onConflict: "user_id" }
-        );
-        sessionStorage.removeItem("mark-paid-after-login");
-        router.replace("/dashboard");
-        router.refresh();
-        return;
-      }
-
+      // Paid status is set only by the Stripe webhook after a real payment.
       const { data: profile, error: profileError } = await supabase
         .from("profiles")
         .select("paid")
@@ -73,7 +56,7 @@ export default function LoginPage() {
         return;
       }
 
-      window.location.href = STRIPE_PAYMENT_LINK;
+      goToCheckout(user);
     } catch (err) {
       console.error(err);
       setErrorMessage("Something went wrong during login.");

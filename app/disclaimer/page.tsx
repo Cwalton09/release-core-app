@@ -20,8 +20,8 @@ export default function DisclaimerPage() {
       const { data: profile } = await supabase
         .from("profiles")
         .select("paid")
-        .eq("id", user.id)
-        .single();
+        .eq("user_id", user.id)
+        .maybeSingle();
       if (!profile?.paid) {
         router.push("/");
         return;

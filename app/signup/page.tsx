@@ -4,8 +4,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import AppShell from "@/components/AppShell";
 import { supabase } from "@/lib/supabase";
+import { goToCheckout } from "@/lib/checkout";
 
-const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/5kQ3cvaczg6H6tpgYsbII01";
 
 export default function SignupPage() {
   const router = useRouter();
@@ -45,7 +45,7 @@ export default function SignupPage() {
         setErrorMessage(profileError.message);
         return;
       }
-      window.location.href = STRIPE_PAYMENT_LINK;
+      goToCheckout(user);
     } catch (err) {
       setErrorMessage("Something went wrong during signup.");
       console.error(err);

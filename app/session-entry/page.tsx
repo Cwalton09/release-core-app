@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import AppShell from "@/components/AppShell";
 import { supabase } from "@/lib/supabase";
+import { goToCheckout } from "@/lib/checkout";
 
 const affirmations = [
   "I give myself permission to listen to my body.",
@@ -33,7 +34,7 @@ export default function SessionEntryPage() {
         .eq("user_id", user.id)
         .single();
       if (error || !profile?.paid) {
-        window.location.href = "https://buy.stripe.com/5kQ3cvaczg6H6tpgYsbII01";
+        goToCheckout(user);
         return;
       }
       setCheckingAccess(false);

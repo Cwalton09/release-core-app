@@ -1,9 +1,56 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
-import { createClient } from "@supabase/supabase-js";
+import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 
-// Clients are created per request (not at module load) so `next build`
-// doesn't fail when the secret env vars aren't available at build time.
+// Paid status is only ever set here, from events Stripe has signed. The browser
+// cannot grant itself access (see supabase/billing-protection.sql).
+
+// past_due keeps access while Stripe retries a failed card; if every retry
+// fails, the subscription moves to canceled/unpaid and access is removed.
+const ACTIVE_STATUSES = new Set(["active", "trialing", "past_due"]);
+
+type BillingFields = {
+  paid: boolean;
+  subscription_status: string | null;
+  stripe_customer_id?: string;
+  stripe_subscription_id?: string | null;
+};
+
+// Finds the profile for a Stripe customer: first by the saved customer id, then
+// by the email on the Stripe customer. Members who joined before customer ids
+// were saved get linked the first time Stripe sends an event about them.
+async function findUserId(
+  supabase: SupabaseClient,
+  stripe: Stripe,
+  customerId: string,
+  email?: string | null
+): Promise<string | null> {
+  const { data: byCustomer } = await supabase
+    .from("profiles")
+    .select("user_id")
+    .eq("stripe_customer_id", customerId)
+    .maybeSingle();
+  if (byCustomer?.user_id) return byCustomer.user_id;
+
+  let lookupEmail = email;
+  if (!lookupEmail) {
+    const customer = await stripe.customers.retrieve(customerId);
+    if (!customer.deleted) lookupEmail = customer.email;
+  }
+  if (!lookupEmail) return null;
+
+  const { data: userId, error } = await supabase.rpc("get_user_id_by_email", {
+    lookup_email: lookupEmail,
+  });
+  if (error) console.error("Email lookup failed:", error);
+  return (userId as string | null) ?? null;
+}
+
+async function updateProfile(supabase: SupabaseClient, userId: string, fields: BillingFields) {
+  const { error } = await supabase.from("profiles").update(fields).eq("user_id", userId);
+  if (error) throw error;
+}
+
 export async function POST(req: NextRequest) {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
     apiVersion: "2026-05-27.dahlia" as any,
@@ -36,41 +83,69 @@ export async function POST(req: NextRequest) {
 
   try {
     switch (event.type) {
-      case "customer.subscription.deleted": {
-        const subscription = event.data.object as Stripe.Subscription;
-        const stripeCustomerId = subscription.customer as string;
+      // A new member finished checkout through the payment link.
+      case "checkout.session.completed": {
+        const session = event.data.object as Stripe.Checkout.Session;
+        if (session.payment_status !== "paid") break;
 
-        await supabase
-          .from("profiles")
-          .update({
-            paid: false,
-            subscription_status: "cancelled",
-            stripe_subscription_id: null,
-          })
-          .eq("stripe_customer_id", stripeCustomerId);
+        const customerId = session.customer as string;
+        const userId =
+          session.client_reference_id ??
+          (await findUserId(supabase, stripe, customerId, session.customer_details?.email));
 
-        console.log(`Subscription cancelled for customer: ${stripeCustomerId}`);
+        if (!userId) {
+          console.error(`Checkout ${session.id}: no matching user for customer ${customerId}`);
+          break;
+        }
+
+        await updateProfile(supabase, userId, {
+          paid: true,
+          subscription_status: "active",
+          stripe_customer_id: customerId,
+          stripe_subscription_id: (session.subscription as string | null) ?? null,
+        });
+        console.log(`Checkout completed for user ${userId}`);
         break;
       }
 
-      case "customer.subscription.updated": {
+      // Fires for every successful monthly payment, which also links existing members.
+      case "invoice.paid": {
+        const invoice = event.data.object as Stripe.Invoice;
+        const customerId = invoice.customer as string;
+        const userId = await findUserId(supabase, stripe, customerId, invoice.customer_email);
+
+        if (!userId) {
+          console.error(`Invoice ${invoice.id}: no matching user for customer ${customerId}`);
+          break;
+        }
+
+        await updateProfile(supabase, userId, {
+          paid: true,
+          subscription_status: "active",
+          stripe_customer_id: customerId,
+        });
+        break;
+      }
+
+      case "customer.subscription.updated":
+      case "customer.subscription.deleted": {
         const subscription = event.data.object as Stripe.Subscription;
-        const stripeCustomerId = subscription.customer as string;
-        const status = subscription.status;
+        const customerId = subscription.customer as string;
+        const userId = await findUserId(supabase, stripe, customerId);
 
-        // Handle all possible subscription states
-        const isPaid = status === "active" || status === "trialing";
+        if (!userId) {
+          console.error(`Subscription ${subscription.id}: no matching user for customer ${customerId}`);
+          break;
+        }
 
-        await supabase
-          .from("profiles")
-          .update({
-            paid: isPaid,
-            subscription_status: status,
-            stripe_subscription_id: subscription.id,
-          })
-          .eq("stripe_customer_id", stripeCustomerId);
-
-        console.log(`Subscription updated for customer: ${stripeCustomerId}, status: ${status}`);
+        const deleted = event.type === "customer.subscription.deleted";
+        await updateProfile(supabase, userId, {
+          paid: !deleted && ACTIVE_STATUSES.has(subscription.status),
+          subscription_status: deleted ? "cancelled" : subscription.status,
+          stripe_customer_id: customerId,
+          stripe_subscription_id: deleted ? null : subscription.id,
+        });
+        console.log(`Subscription ${event.type} for user ${userId}: ${subscription.status}`);
         break;
       }
 

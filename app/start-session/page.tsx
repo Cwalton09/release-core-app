@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
+import { goToCheckout } from "@/lib/checkout";
 
 export default function StartSessionPage() {
   const router = useRouter();
@@ -27,8 +28,7 @@ export default function StartSessionPage() {
 
       // Not paid
       if (error || !profile?.paid) {
-        window.location.href =
-          "https://buy.stripe.com/5kQ3cvaczg6H6tpgYsbII01";
+        goToCheckout(user);
         return;
       }
 
