@@ -1,7 +1,9 @@
+import { Fragment } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import AppShell from "@/components/AppShell";
+import FreeGuideSignup from "@/components/FreeGuideSignup";
 import { getPublishedArticles } from "@/lib/articles";
 
 export const metadata: Metadata = {
@@ -21,15 +23,18 @@ export default function ArticlesPage() {
       subtitle="Why your body reacts the way it does, and what it may be trying to protect you from."
     >
       <div className="space-y-4">
-        {articles.map((article) => (
-          <Link
-            key={article.slug}
-            href={`/articles/${article.slug}`}
-            className="block rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:border-emerald-300"
-          >
-            <h2 className="text-lg font-semibold text-slate-900">{article.title}</h2>
-            <p className="mt-2 text-sm leading-7 text-slate-600">{article.description}</p>
-          </Link>
+        {articles.map((article, i) => (
+          <Fragment key={article.slug}>
+            <Link
+              href={`/articles/${article.slug}`}
+              className="block rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:border-emerald-300"
+            >
+              <h2 className="text-lg font-semibold text-slate-900">{article.title}</h2>
+              <p className="mt-2 text-sm leading-7 text-slate-600">{article.description}</p>
+            </Link>
+            {/* Offer the free guide after the newest few articles, so the list stays first. */}
+            {i === 2 && <FreeGuideSignup compact />}
+          </Fragment>
         ))}
       </div>
     </AppShell>
