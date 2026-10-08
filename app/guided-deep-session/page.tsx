@@ -56,9 +56,12 @@ type BodyStatement = {
   answer: "yes" | "no" | null;
 };
 
+type FaithChoice = "faith" | "standard";
+
 type StoredSession = {
   messages: Message[];
   sessionComplete: boolean;
+  faithChoice?: FaithChoice | null;
 };
 
 const OPENING_MESSAGE = `Welcome to your Guided Deep Session.
@@ -724,6 +727,13 @@ export default function GuidedDeepSession() {
     setBodyAnswersSubmitted,
   ] = useState(false);
 
+  const [
+    faithChoice,
+    setFaithChoice,
+  ] = useState<FaithChoice | null>(
+    null
+  );
+
   const messagesEndRef =
     useRef<HTMLDivElement>(
       null
@@ -759,6 +769,21 @@ export default function GuidedDeepSession() {
             true
           );
         }
+
+        if (
+          parsed.faithChoice
+        ) {
+          setFaithChoice(
+            parsed.faithChoice
+          );
+        } else if (
+          parsed.messages?.length
+        ) {
+          // Sessions started before the faith choice existed keep going as before.
+          setFaithChoice(
+            "standard"
+          );
+        }
       }
     } catch (error) {
       console.error(
@@ -779,6 +804,7 @@ export default function GuidedDeepSession() {
       StoredSession = {
       messages,
       sessionComplete,
+      faithChoice,
     };
 
     try {
@@ -795,6 +821,7 @@ export default function GuidedDeepSession() {
   }, [
     messages,
     sessionComplete,
+    faithChoice,
     restored,
   ]);
 
@@ -915,6 +942,9 @@ export default function GuidedDeepSession() {
               JSON.stringify({
                 messages:
                   newMessages,
+                faith:
+                  faithChoice ===
+                  "faith",
               }),
           }
         );
@@ -1161,6 +1191,8 @@ export default function GuidedDeepSession() {
       false
     );
 
+    setFaithChoice(null);
+
     window.scrollTo({
       top: 0,
       behavior: "smooth",
@@ -1184,8 +1216,9 @@ export default function GuidedDeepSession() {
       : false;
 
   const showTextInput =
-    !lastHasBodyQuestions ||
-    bodyAnswersSubmitted;
+    faithChoice !== null &&
+    (!lastHasBodyQuestions ||
+      bodyAnswersSubmitted);
 
   if (
     checking ||
@@ -1298,6 +1331,43 @@ export default function GuidedDeepSession() {
               </p>
             </div>
           </div>
+
+          {faithChoice ===
+            null &&
+            messages.length ===
+              0 && (
+              <div className="rounded-2xl border border-calm-200 bg-white p-4">
+                <p className="text-sm font-medium text-slate-800">
+                  Before we start, how would you like your rewire?
+                </p>
+
+                <div className="mt-3 flex flex-col gap-2 sm:flex-row">
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setFaithChoice(
+                        "faith"
+                      )
+                    }
+                    className="flex-1 rounded-xl bg-calm-600 px-4 py-3 text-sm font-medium text-white"
+                  >
+                    Faith-based (include God)
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setFaithChoice(
+                        "standard"
+                      )
+                    }
+                    className="flex-1 rounded-xl border border-calm-300 bg-white px-4 py-3 text-sm font-medium text-calm-700"
+                  >
+                    Not faith-based
+                  </button>
+                </div>
+              </div>
+            )}
 
           {messages.map(
             (
