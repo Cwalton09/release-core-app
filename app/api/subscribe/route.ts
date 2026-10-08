@@ -26,7 +26,6 @@ export async function POST(req: Request) {
 
   const form = new URLSearchParams({ email_address: email });
   if (firstName) form.set("fields[first_name]", firstName);
-  if (body.source) form.set("referrer", `https://release-core.com${body.source}`);
 
   try {
     const res = await fetch(`https://app.kit.com/forms/${KIT_FORM_ID}/subscriptions`, {
@@ -34,9 +33,21 @@ export async function POST(req: Request) {
       headers: { "Content-Type": "application/x-www-form-urlencoded", Accept: "application/json" },
       body: form.toString(),
     });
-    if (!res.ok) {
-      console.error("Kit subscribe failed:", res.status, await res.text());
-      return NextResponse.json({ error: "Something went wrong. Please try again." }, { status: 502 });
+    // Kit answers 200 even when it rejects a sign-up; the real result is in `status`.
+    const text = await res.text();
+    let result: { status?: string; errors?: { messages?: string[] } } = {};
+    try {
+      result = JSON.parse(text);
+    } catch {
+      // Not JSON (e.g. a bot-check page): treat as a failure below.
+    }
+    if (!res.ok || result.status !== "success") {
+      console.error("Kit subscribe failed:", res.status, text.slice(0, 500));
+      const message = result.errors?.messages?.[0];
+      return NextResponse.json(
+        { error: message ? `${message}.` : "Something went wrong. Please try again." },
+        { status: 502 }
+      );
     }
   } catch (err) {
     console.error("Kit subscribe error:", err);
