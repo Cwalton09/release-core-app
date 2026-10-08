@@ -2,7 +2,7 @@
 title: Core Beliefs: The Hidden Rules Running Your Reactions (With Examples)
 description: Core beliefs are the deep, often unconscious rules your nervous system learned about safety, love, and your worth. Here are common examples, how they show up in your body, and how to change them.
 date: 2026-10-08
-published: false
+published: true
 ---
 Have you ever reacted to something way more strongly than it deserved, and had no idea why?
 

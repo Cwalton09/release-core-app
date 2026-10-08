@@ -2,7 +2,7 @@
 title: Nervous System Stuck in Survival Mode: Signs, Causes, and What Helps
 description: Wired but exhausted, always bracing, can't fully rest? Here are the signs your nervous system is stuck in survival mode, why it stays there, and how to help your body feel safe enough to let go.
 date: 2026-10-08
-published: false
+published: true
 ---
 Survival mode is supposed to be a short-term state. Something feels threatening, your body shifts into protection, and once it passes, you come back down.
 

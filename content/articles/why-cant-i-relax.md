@@ -2,7 +2,7 @@
 title: Why Can't I Relax, Even on My Days Off?
 description: If rest makes you restless, guilty, or anxious, your nervous system may not feel safe slowing down. Here's why it happens and how to help your body actually let go.
 date: 2026-10-08
-published: false
+published: true
 ---
 It's your day off. Nothing is due. Nobody needs you. You finally sit down to rest... and you can't.
 

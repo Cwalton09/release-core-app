@@ -2,7 +2,7 @@
 title: Why Do I Overthink Everything?
 description: Replaying conversations, imagining worst-case scenarios, and second-guessing every decision isn't a personality flaw. Here's how overthinking is connected to your nervous system, and what helps quiet it.
 date: 2026-10-08
-published: false
+published: true
 ---
 You send a text and immediately start wondering if it came across wrong. You replay a conversation from three days ago. You lie awake running through every way tomorrow could go badly.
 

@@ -2,7 +2,7 @@
 title: How to Calm Your Nervous System Before Bed
 description: Racing thoughts, a tight chest, or feeling wired at bedtime? Here's why your body struggles to wind down at night, and a simple routine to help your nervous system feel safe enough to sleep.
 date: 2026-10-08
-published: false
+published: true
 ---
 You're exhausted all day. Then you finally get into bed, and suddenly you're wide awake.
 
