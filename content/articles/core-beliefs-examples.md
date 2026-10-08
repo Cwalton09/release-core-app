@@ -80,7 +80,3 @@ Understanding a belief is a great start, but it usually isn't enough on its own.
 In my experience, that means giving your body what it needed in the moment it first learned the belief. That's how you close the loop. That's how safety gets created. Because if your body doesn't feel safe, it won't let anything go.
 
 That's exactly what Release Core is built around. We ask your body questions, follow its answers to the core belief underneath, and help it get what it needed so the old pattern doesn't have to keep running.
-
-## A gentle note
-
-If exploring old beliefs brings up a lot, take it slowly, and reach out to a licensed provider if you need more support. Release Core is for self-awareness and nervous system support, and it works best alongside the care you need.

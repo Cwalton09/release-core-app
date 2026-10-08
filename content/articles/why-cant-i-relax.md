@@ -59,7 +59,3 @@ You might not consciously believe any of these. But your body might. And your bo
 Lasting change comes when your body stops connecting rest with danger. That usually means finding the belief underneath, understanding where your body learned it, and giving it what it needed back then.
 
 That's the work Release Core is built for. We ask your body questions and follow its answers until we find the pattern, so rest can start to feel like rest again.
-
-## A gentle note
-
-If you're constantly exhausted, can't sleep, or feel restless all the time, it's worth checking in with a doctor to rule out medical causes. Release Core is for self-awareness and nervous system support, and it works best alongside the care you need.

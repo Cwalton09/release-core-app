@@ -86,6 +86,11 @@ export default function ArticlePage({ params }: Props) {
         })}
       </article>
 
+      <p className="mt-8 text-xs leading-6 text-slate-500">
+        Release Core is for self-awareness and nervous system support. It isn&apos;t a substitute
+        for medical or mental health care. If you&apos;re in crisis, call or text 988 (U.S.).
+      </p>
+
       <div className="mt-10 rounded-2xl border border-emerald-200 bg-emerald-50 p-6">
         <p className="text-lg font-semibold text-slate-900">
           Want to find out what your nervous system is responding to?

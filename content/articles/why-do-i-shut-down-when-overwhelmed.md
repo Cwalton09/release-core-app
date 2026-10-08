@@ -59,7 +59,3 @@ The bigger shift comes from understanding what your body is protecting you from 
 What does this moment mean to it? What does it believe will happen if you stay present? When did it first learn that disappearing was safer than showing up?
 
 That's what Release Core helps you explore. We ask your body questions and follow its answers until we find the pattern underneath, so your nervous system can learn that it doesn't have to shut you down to keep you safe anymore.
-
-## A gentle note
-
-Ongoing numbness, exhaustion, or feeling disconnected can also be signs of depression or a medical condition. If this has been going on for a while, or you're having thoughts of harming yourself, please reach out to a doctor or licensed provider. Release Core is for self-awareness and nervous system support, and it works best alongside the care you need.

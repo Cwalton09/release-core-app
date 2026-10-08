@@ -54,7 +54,3 @@ That's why Release Core uses nighttime scripts. Instead of falling asleep to you
 If you've been struggling with sleep for a long time, there's usually a reason your body doesn't feel safe letting go at night. Often there's a core belief underneath, like "I have to stay alert" or "Something bad happens when I'm not watching."
 
 When you find that belief and give your body what it needed, sleep often gets easier on its own. That's the work Release Core is designed for.
-
-## A gentle note
-
-Ongoing trouble sleeping can be connected to sleep apnea, hormones, medications, pain, or other health conditions. If sleep problems have lasted more than a few weeks, please check in with a doctor. Release Core is for self-awareness and nervous system support, and it works best alongside the care you need.

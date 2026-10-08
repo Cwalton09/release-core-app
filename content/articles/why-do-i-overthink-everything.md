@@ -54,7 +54,3 @@ You can't think your way out of overthinking. The thinking is a symptom. What qu
 Underneath most overthinking there's a core belief, like "If I make a mistake, something bad will happen," "I have to have everything figured out," or "People will leave if I get it wrong." When you find that belief and give your body what it needed back then, the overthinking often loosens on its own.
 
 That's what Release Core is built to help you find. If you want to understand more about how these beliefs work, read [Core Beliefs: The Hidden Rules Running Your Reactions](/articles/core-beliefs-examples).
-
-## A gentle note
-
-If overthinking comes with intrusive thoughts, panic, or makes it hard to function, please reach out to a licensed provider. Release Core is for self-awareness and nervous system support, and it works best alongside the care you need.

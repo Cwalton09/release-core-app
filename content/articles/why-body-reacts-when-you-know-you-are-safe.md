@@ -49,7 +49,3 @@ Instead of fighting the reaction or deciding what it means from the outside, it 
 What is your body responding to right now? What does this moment mean to it? When did it first learn that this kind of moment wasn't safe? And what did it decide it had to do to protect you?
 
 That's what Release Core is built around. Instead of me guessing what your issue means, we ask your body questions and follow the answers until we understand what your nervous system believes, what it's responding to, and what pattern it may still be running. When your body understands that the old lesson no longer fits your life, it often stops needing to protect you in the same way.
-
-## A gentle note
-
-If you're dealing with physical symptoms, a medical condition, or thoughts of harming yourself, please reach out to a doctor or licensed provider. Release Core is for self-awareness and nervous system support, and it works best alongside the care you need, not instead of it.

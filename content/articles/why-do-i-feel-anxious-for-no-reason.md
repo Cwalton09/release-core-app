@@ -58,7 +58,3 @@ That fourth one is more powerful than it sounds. Instead of fighting the anxiety
 Anxiety that keeps showing up "for no reason" is usually connected to an older pattern your body is still running. Often there's a core belief underneath it, like "Something bad is about to happen," "I'm not safe when I let my guard down," or "I have to be ready for anything."
 
 When you find that belief and give your body what it needed back when it first learned it, the anxiety often doesn't need to keep sounding the alarm. That's what Release Core is designed to help you do.
-
-## A gentle note
-
-Frequent anxiety can also be connected to thyroid issues, blood sugar, hormones, medications, or other health conditions. If you're unsure, check in with a doctor. And if anxiety is making it hard to function, a licensed provider can help. Release Core is for self-awareness and nervous system support, and it works best alongside the care you need.

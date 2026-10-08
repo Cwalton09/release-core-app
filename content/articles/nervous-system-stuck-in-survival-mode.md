@@ -66,7 +66,3 @@ Lasting change happens when your body gets what it needed back then, and actuall
 In my experience, survival mode is usually held in place by a core belief underneath it. Something like "I have to stay on guard," "It's not safe to rest," or "If I let go, everything falls apart." Emotions like anxiety, anger, or numbness are the protective layers on top. The belief is what's driving them.
 
 That's what Release Core is built to find. We ask your body questions, follow its answers down to the belief it's still running, and help it close the loop so it doesn't have to keep protecting you in the same way.
-
-## A gentle note
-
-Exhaustion, trouble sleeping, brain fog, and a racing heart can also have medical causes. If you're unsure, check in with a doctor or licensed provider. Release Core is for self-awareness and nervous system support, and it works best alongside the care you need.

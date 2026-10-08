@@ -60,7 +60,3 @@ Lasting change comes from understanding why your body thinks it needs to stay on
 What is it bracing for? When did it learn that? What does it think will happen if it lets go?
 
 That's the work Release Core is designed for. We ask your body questions and follow its answers to find the pattern underneath, so your nervous system can update what it believes instead of running the same alarm year after year.
-
-## A gentle note
-
-Constant anxiety, a racing heart, or trouble sleeping can also have medical causes. If you're unsure, check in with a doctor or licensed provider. Release Core is for self-awareness and nervous system support, and it works best alongside the care you need.
