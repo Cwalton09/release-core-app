@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
+import { requirePaidMember } from "@/lib/requirePaidMember";
 
 export async function POST(req: NextRequest) {
+  const denied = await requirePaidMember(req);
+  if (denied) return denied;
+
   try {
     const { dream } = await req.json();
 

@@ -10,6 +10,7 @@ import Link from "next/link";
 import { jsPDF } from "jspdf";
 import { supabase } from "@/lib/supabase";
 import { goToCheckout } from "@/lib/checkout";
+import { memberFetch } from "@/lib/memberFetch";
 
 
 const STORAGE_KEY =
@@ -927,7 +928,7 @@ export default function GuidedDeepSession() {
 
     try {
       const response =
-        await fetch(
+        await memberFetch(
           "/api/phase2",
           {
             method:

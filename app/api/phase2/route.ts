@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { requirePaidMember } from "@/lib/requirePaidMember";
 
 const SYSTEM_PROMPT = `
 You are the Release Core Guided Deep Session facilitator.
@@ -1348,6 +1349,9 @@ The person chose a session that is not faith-based. Do not mention God, faith, p
 `;
 
 export async function POST(req: NextRequest) {
+  const denied = await requirePaidMember(req);
+  if (denied) return denied;
+
   try {
     const { messages, faith } = await req.json();
 

@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import { goToCheckout } from "@/lib/checkout";
+import { memberFetch } from "@/lib/memberFetch";
 
 
 const navItems = [
@@ -48,7 +49,7 @@ export default function DreamInterpreter() {
     setError("");
 
     try {
-      const response = await fetch("/api/dream", {
+      const response = await memberFetch("/api/dream", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ dream }),
