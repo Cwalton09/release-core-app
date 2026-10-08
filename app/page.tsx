@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import AppShell from "@/components/AppShell";
+import FreeGuideSignup from "@/components/FreeGuideSignup";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -73,6 +74,8 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        <FreeGuideSignup />
 
         {/* Testimonials */}
         <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">

@@ -23,6 +23,7 @@ const publicNavItems = [
   { href: "/signup", label: "Signup" },
   { href: "/about", label: "About" },
   { href: "/articles", label: "Articles" },
+  { href: "/free", label: "Free Guide" },
   { href: "/faq", label: "FAQ" },
 ];
 

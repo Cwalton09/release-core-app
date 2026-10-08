@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import AppShell from "@/components/AppShell";
+import FreeGuideSignup from "@/components/FreeGuideSignup";
 import { getPublishedArticle, getPublishedArticles } from "@/lib/articles";
 
 type Props = { params: { slug: string } };
@@ -91,7 +92,11 @@ export default function ArticlePage({ params }: Props) {
         for medical or mental health care. If you&apos;re in crisis, call or text 988 (U.S.).
       </p>
 
-      <div className="mt-10 rounded-2xl border border-emerald-200 bg-emerald-50 p-6">
+      <div className="mt-10">
+        <FreeGuideSignup compact />
+      </div>
+
+      <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-6">
         <p className="text-lg font-semibold text-slate-900">
           Want to find out what your nervous system is responding to?
         </p>
