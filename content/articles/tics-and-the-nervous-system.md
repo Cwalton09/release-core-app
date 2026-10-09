@@ -67,7 +67,7 @@ That's why you do a session. In a Release Core session, you gently activate the 
 
 ## How Release Core helps
 
-You don't have to figure it out on your own. You find what's actually driving the stress your body is carrying, like feeling watched, judged, or under pressure to hold it together.
+First, you ask your nervous system whether there is an emotional connection to your tics. If there is, you ask your body to lead you directly to it, so you can start the rewire. You don't have to dig through years of your life on your own.
 
 You find the age the pattern started, what was happening in your life back then, and what your nervous system learned from it, whether it came from one moment or several.
 

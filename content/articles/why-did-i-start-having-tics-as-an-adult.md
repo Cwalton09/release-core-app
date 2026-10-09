@@ -46,6 +46,8 @@ That's why you do a session. In a Release Core session, you gently activate the 
 
 Release Core doesn't diagnose or treat tics, and it works alongside your doctor, never instead of them. What it can do is help you find the nervous system pattern that may be activating alongside them.
 
+First, you ask your nervous system whether there is an emotional connection to your tics. If there is, you ask your body to lead you directly to it, so you can start the rewire. You don't have to dig through years of your life on your own.
+
 You find the age the pattern started, what was happening in your life back then, and what your nervous system learned from it. Often, a recent stressful season woke up something much older.
 
 Then you rewire it, with questions like "Can you show me what my body softening 10% feels like?" A question gives your nervous system something to go looking for instead of something to argue with. In my experience, that's where the shift happens, and your body can finally start to settle.

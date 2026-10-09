@@ -56,7 +56,7 @@ That's why you do a session. In a Release Core session, you gently activate the 
 
 ## How Release Core helps
 
-As a parent, you don't have to carry the worry on your own. In a Release Core session, you find what your body is actually reacting to when you watch your child struggle, which is often connected to something much older in your own life.
+As a parent, you don't have to carry the worry on your own. First, you ask your nervous system whether there is an emotional connection to what you feel when you watch your child struggle. If there is, you ask your body to lead you directly to it, so you can start the rewire. Often it's connected to something much older in your own life.
 
 You find the age the pattern started, what was happening back then, and what your nervous system learned from it.
 
