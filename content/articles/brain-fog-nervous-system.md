@@ -54,3 +54,8 @@ You find the age the pattern started, what was happening in your life back then,
 Then you rewire it, with questions like "Can you show me what it feels like for my mind to feel clear, calm, and present?" A question gives your nervous system something to go looking for instead of something to argue with. In my experience, that's where the shift happens, and the fog can start to lift.
 
 [See what happens in a session](/how-it-works) or [start your first Release Core session](/signup).
+
+## Sources
+
+- [Brain Fog. Psychology Today.](https://www.psychologytoday.com/us/basics/brain-fog)
+- [What Is Brain Fog? Brain & Life (American Academy of Neurology).](https://www.brainandlife.org/articles/what-is-brain-fog)

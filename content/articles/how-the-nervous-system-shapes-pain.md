@@ -65,3 +65,8 @@ You find the age the pattern started, what was happening in your life back then,
 Then you rewire it, with questions like "Can you show me what my body softening 10% feels like?" A question gives your nervous system something to go looking for instead of something to argue with. In my experience, that's where the shift happens, and your body can finally turn the volume back down.
 
 [See what happens in a session](/how-it-works) or [start your first Release Core session](/signup).
+
+## Sources
+
+- [Central Sensitization and Pain: Pathophysiologic and Clinical Insights. Current Neuropharmacology (PubMed Central).](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10716881/)
+- [What is central sensitization and how does it relate to pain? Mayo Clinic Press.](https://mcpress.mayoclinic.org/living-well/what-is-central-sensitization-and-how-does-it-relate-to-pain)

@@ -58,3 +58,7 @@ You find the age the pattern started, what was happening in your life back then,
 Then you rewire it, with questions like "Can you show me what it feels like for my stomach to feel safe, even on a hard day?" A question gives your nervous system something to go looking for instead of something to argue with. In my experience, that's where the shift happens, and your body can finally stop treating your gut like a fire alarm.
 
 [See what happens in a session](/how-it-works) or [start your first Release Core session](/signup).
+
+## Sources
+
+- [Bonaz B, et al. The Vagus Nerve at the Interface of the Microbiota-Gut-Brain Axis. Frontiers in Neuroscience, 2018.](https://www.frontiersin.org/articles/10.3389/fnins.2018.00049/full)

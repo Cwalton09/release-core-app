@@ -60,3 +60,7 @@ You find the age the pattern started, what was happening in your life back then,
 Then you rewire it, with questions like "Can you show me what it feels like to be fully myself and still be enough?" A question gives your nervous system something to go looking for instead of something to argue with. In my experience, that's where the shift happens, and your body can stop bracing against who you are.
 
 [See what happens in a session](/how-it-works) or [start your first Release Core session](/signup).
+
+## Sources
+
+- [Emotional and sensory dysregulation as a possible missing link in attention deficit hyperactivity disorder: A review. Frontiers in Behavioral Neuroscience, 2023 (PubMed Central).](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10017514/)

@@ -47,3 +47,8 @@ You find the age the pattern started, what was happening in your life back then,
 Then you rewire it, with questions like "Can you show me what it feels like for my body to settle on its own?" A question gives your nervous system something to go looking for instead of something to argue with. In my experience, that's where the shift happens, and your body can stop needing a reset.
 
 [See what happens in a session](/how-it-works) or [start your first Release Core session](/signup).
+
+## Sources
+
+- [Trend: The Rise of NeuroWellness. Global Wellness Summit, 2026.](https://www.globalwellnesssummit.com/trendium/the-trend-in-the-news-april-2026/)
+- [Nervous system regulation. NewBeauty, 2026.](https://www.newbeauty.com/view/nervous-system-regulation)

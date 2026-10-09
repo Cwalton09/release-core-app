@@ -26,6 +26,20 @@ function renderInline(text: string) {
   return text.split(/(\[[^\]]+\]\([^)\s]+\))/g).map((part, i) => {
     const match = part.match(/^\[([^\]]+)\]\(([^)\s]+)\)$/);
     if (!match) return part;
+    // Outside sources (studies) open in a new tab so readers stay on the article.
+    if (/^https?:\/\//.test(match[2])) {
+      return (
+        <a
+          key={i}
+          href={match[2]}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-emerald-700 underline underline-offset-4 hover:text-emerald-800"
+        >
+          {match[1]}
+        </a>
+      );
+    }
     return (
       <Link key={i} href={match[2]} className="font-medium text-emerald-700 underline underline-offset-4 hover:text-emerald-800">
         {match[1]}
