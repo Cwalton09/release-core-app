@@ -25,6 +25,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteUrl}/how-it-works`, lastModified, changeFrequency: "monthly", priority: 0.9 },
     { url: `${siteUrl}/free`, lastModified, changeFrequency: "monthly", priority: 0.8 },
     { url: `${siteUrl}/faq`, lastModified, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${siteUrl}/tic-tracker`, lastModified, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${siteUrl}/podcast`, lastModified, changeFrequency: "monthly", priority: 0.5 },
     ...articleEntries,
     { url: `${siteUrl}/signup`, lastModified, changeFrequency: "monthly", priority: 0.6 },
     { url: `${siteUrl}/privacy-policy`, lastModified, changeFrequency: "yearly", priority: 0.2 },

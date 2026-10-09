@@ -46,7 +46,7 @@ const navItems = publicNavItems;
 
   return (
     <div className="min-h-screen">
-      <header className="sticky top-0 z-10 border-b border-calm-200 bg-calm-50/90 backdrop-blur">
+      <header className="print:hidden sticky top-0 z-10 border-b border-calm-200 bg-calm-50/90 backdrop-blur">
         <nav className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
           <Link href="/" className="text-sm font-semibold text-calm-700">
             Release Core
@@ -104,7 +104,7 @@ const navItems = publicNavItems;
         </section>
       </main>
 
-      <footer className="mx-auto max-w-3xl px-4 pb-10 text-center">
+      <footer className="print:hidden mx-auto max-w-3xl px-4 pb-10 text-center">
         <p className="text-xs text-slate-500">Follow Release Core</p>
         <div className="mt-2 flex flex-wrap justify-center gap-2">
           {socialLinks.map((item) => (
@@ -119,6 +119,15 @@ const navItems = publicNavItems;
             </a>
           ))}
         </div>
+        <p className="mt-3 text-xs text-slate-500">
+          <Link href="/podcast" className="hover:text-calm-700">
+            Podcast hosts: invite Chelsea
+          </Link>
+          {" · "}
+          <Link href="/tic-tracker" className="hover:text-calm-700">
+            Free tic tracker
+          </Link>
+        </p>
       </footer>
     </div>
   );

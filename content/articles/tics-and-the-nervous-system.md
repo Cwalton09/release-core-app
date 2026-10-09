@@ -53,6 +53,7 @@ Release Core doesn't diagnose or treat tic disorders. What it can do is explore 
 
 ## More about tics
 
+- [Free printable tic tracker](/tic-tracker): see what your tics follow over a week
 - [Why do my tics get worse at night?](/articles/why-do-my-tics-get-worse-at-night)
 - [Tics and anxiety: what's the connection?](/articles/tics-and-anxiety)
 - [Why are my child's tics worse after school?](/articles/child-tics-worse-after-school)
