@@ -45,24 +45,15 @@ Underneath the restlessness, there's usually a belief your body is still running
 
 You might not consciously believe any of these. But your body might. And your body is the one deciding whether you get to relax.
 
-## How to start relaxing for real
-
-- Start small. Five minutes of doing nothing is a win. You don't have to jump straight to a whole day.
-- Rest somewhere that feels safe, with your back against something supportive.
-- Notice where you're holding tension, and let one spot soften at a time.
-- Breathe out slowly, longer than you breathe in.
-- When the guilt shows up, name it: "That's an old belief. I'm allowed to rest."
-- Let rest be imperfect. Restless rest still counts.
-
 ## Why it keeps coming back
 
-Small steps like these can take the edge off in the moment. But if the belief underneath is still there, your body will keep resisting rest.
+Most of the time, we don't know the real reason behind what's driving the trigger. We can guess, but the actual trigger is usually something we would never think of on our own. And until it's found, your body will keep resisting rest.
 
-And here's the hard part: you usually can't find that belief by thinking about it. It isn't stored as a thought. It's stored in your body, which is why it can feel so obvious once you find it, and so impossible to see on your own.
+That's why you do a session. In a Release Core session, you gently activate the original trigger so it can be rewired, and your body communicates what the actual trigger is and where it started. You don't have to guess.
 
 ## How Release Core helps
 
-In a Release Core session, you don't have to figure it out on your own. You find what's actually driving the pattern, and if a symptom has a nervous system piece to it, what's behind that too.
+You don't have to figure it out on your own. You find what's actually driving the pattern, and if a symptom has a nervous system piece to it, what's behind that too.
 
 You find the age the pattern started, what was happening in your life back then, and everything your nervous system learned from it, whether it came from one moment or several.
 

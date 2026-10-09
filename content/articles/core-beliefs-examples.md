@@ -64,13 +64,13 @@ When you notice a reaction that feels bigger than the situation, there's often a
 
 ## Why it keeps coming back
 
-Understanding your beliefs can take the edge off in the moment. But if the belief underneath is still there, your body will keep running the same old rules.
+Most of the time, we don't know the real reason behind what's driving the trigger. We can guess, but the actual trigger is usually something we would never think of on our own. And until it's found, your body will keep running the same old rules.
 
-And here's the hard part: you usually can't find that belief by thinking about it. It isn't stored as a thought. It's stored in your body, which is why it can feel so obvious once you find it, and so impossible to see on your own.
+That's why you do a session. In a Release Core session, you gently activate the original trigger so it can be rewired, and your body communicates what the actual trigger is and where it started. You don't have to guess.
 
 ## How Release Core helps
 
-In a Release Core session, you don't have to figure it out on your own. You find what's actually driving the pattern, and if a symptom has a nervous system piece to it, what's behind that too.
+You don't have to figure it out on your own. You find what's actually driving the pattern, and if a symptom has a nervous system piece to it, what's behind that too.
 
 You find the age the pattern started, what was happening in your life back then, and everything your nervous system learned from it, whether it came from one moment or several.
 

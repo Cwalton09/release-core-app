@@ -49,25 +49,15 @@ Other people are stuck in freeze. They feel foggy, numb, heavy, or unmotivated, 
 
 And many people bounce between the two. Wired all day, crashing at night. Pushing hard, then shutting down completely.
 
-## What helps in the moment
-
-- Slow your exhale so it's longer than your inhale
-- Feel your feet on the floor and let your weight drop into the chair or bed
-- Look around and name a few things you can see, hear, and touch
-- Move gently: walk, stretch, shake out your hands
-- Put a hand on your chest and remind yourself, "Right now, in this moment, I'm okay"
-
-These won't undo years of survival mode, but they can bring your system down a notch when you need it.
-
 ## Why it keeps coming back
 
-These tools can take the edge off in the moment. But if the belief underneath is still there, your body will keep staying in protection mode.
+Most of the time, we don't know the real reason behind what's driving the trigger. We can guess, but the actual trigger is usually something we would never think of on our own. And until it's found, your body will keep staying in protection mode.
 
-And here's the hard part: you usually can't find that belief by thinking about it. It isn't stored as a thought. It's stored in your body, which is why it can feel so obvious once you find it, and so impossible to see on your own.
+That's why you do a session. In a Release Core session, you gently activate the original trigger so it can be rewired, and your body communicates what the actual trigger is and where it started. You don't have to guess.
 
 ## How Release Core helps
 
-In a Release Core session, you don't have to figure it out on your own. You find what's actually driving the pattern, and if a symptom has a nervous system piece to it, what's behind that too.
+You don't have to figure it out on your own. You find what's actually driving the pattern, and if a symptom has a nervous system piece to it, what's behind that too.
 
 You find the age the pattern started, what was happening in your life back then, and everything your nervous system learned from it, whether it came from one moment or several.
 

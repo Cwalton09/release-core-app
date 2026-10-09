@@ -42,24 +42,15 @@ Sometimes it's older than that. If you grew up waking up into chaos, unpredictab
 
 If you also find yourself anxious at night or out of nowhere, read [Why Do I Feel Anxious for No Reason?](/articles/why-do-i-feel-anxious-for-no-reason)
 
-## What helps in the first few minutes
-
-- Don't reach for your phone right away. Give your body a few minutes before you add more input.
-- Put a hand on your chest or stomach, wherever you feel it most, and breathe into that spot.
-- Breathe out slowly, longer than you breathe in.
-- Feel the bed underneath you. Notice that, right now, nothing needs you yet.
-- Tell your body something simple and true: "Right now, in this moment, I'm okay."
-- Get some daylight and gentle movement early, even just a few minutes.
-
 ## Why it keeps coming back
 
-A calmer first few minutes can take the edge off in the moment. But if the belief underneath is still there, your body will keep waking up braced for the day.
+Most of the time, we don't know the real reason behind what's driving the trigger. We can guess, but the actual trigger is usually something we would never think of on our own. And until it's found, your body will keep waking up braced for the day.
 
-And here's the hard part: you usually can't find that belief by thinking about it. It isn't stored as a thought. It's stored in your body, which is why it can feel so obvious once you find it, and so impossible to see on your own.
+That's why you do a session. In a Release Core session, you gently activate the original trigger so it can be rewired, and your body communicates what the actual trigger is and where it started. You don't have to guess.
 
 ## How Release Core helps
 
-In a Release Core session, you don't have to figure it out on your own. You find what's actually driving the pattern, and if a symptom has a nervous system piece to it, what's behind that too.
+You don't have to figure it out on your own. You find what's actually driving the pattern, and if a symptom has a nervous system piece to it, what's behind that too.
 
 You find the age the pattern started, what was happening in your life back then, and everything your nervous system learned from it, whether it came from one moment or several.
 

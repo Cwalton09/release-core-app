@@ -54,26 +54,15 @@ Dysregulation usually develops when your body has had to protect you for a long 
 
 That might come from a hard childhood, a stressful relationship, a long season of pressure, illness, loss, or simply carrying too much for too long. Your nervous system adapts to what it's been through. If it learned that the world isn't safe, it stays ready.
 
-## How to start regulating your nervous system
-
-- Slow your exhale so it's longer than your inhale
-- Spend a few minutes each day doing something that feels safe and calming
-- Move your body gently and regularly
-- Get daylight in the morning and dim lights at night
-- Spend time with people who feel safe
-- Notice what you feel in your body without trying to fix it right away
-
-These help your body practice coming back down. Small and consistent works better than big and occasional.
-
 ## Why it keeps coming back
 
-Regulation tools can take the edge off in the moment. But if the belief underneath is still there, your body will keep pulling you back into protection mode.
+Most of the time, we don't know the real reason behind what's driving the trigger. We can guess, but the actual trigger is usually something we would never think of on our own. And until it's found, your body will keep pulling you back into protection mode.
 
-And here's the hard part: you usually can't find that belief by thinking about it. It isn't stored as a thought. It's stored in your body, which is why it can feel so obvious once you find it, and so impossible to see on your own.
+That's why you do a session. In a Release Core session, you gently activate the original trigger so it can be rewired, and your body communicates what the actual trigger is and where it started. You don't have to guess.
 
 ## How Release Core helps
 
-In a Release Core session, you don't have to figure it out on your own. You find what's actually driving the pattern, and if a symptom has a nervous system piece to it, what's behind that too.
+You don't have to figure it out on your own. You find what's actually driving the pattern, and if a symptom has a nervous system piece to it, what's behind that too.
 
 You find the age the pattern started, what was happening in your life back then, and everything your nervous system learned from it, whether it came from one moment or several.
 

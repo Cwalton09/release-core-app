@@ -39,23 +39,15 @@ Your mind became really good at scanning and predicting. It was protecting you. 
 
 When everything gets quiet, there's nothing to distract your mind. And if your body is still holding tension from the day, your mind goes looking for a reason. That's why so many overthinkers lie awake replaying and planning. I share a simple routine for this in [How to Calm Your Nervous System Before Bed](/articles/how-to-calm-your-nervous-system-before-bed).
 
-## What helps in the moment
-
-- Notice it without judging it: "My mind is trying to protect me right now."
-- Bring your attention into your body. Where do you feel the tension?
-- Breathe out slowly, longer than you breathe in.
-- Write the thoughts down so your mind doesn't have to hold them.
-- Ask, "Is there anything I actually need to do about this right now?" If not, you're allowed to set it down.
-
 ## Why it keeps coming back
 
-These tools can take the edge off in the moment. But if the belief underneath is still there, your body will keep putting your mind on guard duty.
+Most of the time, we don't know the real reason behind what's driving the trigger. We can guess, but the actual trigger is usually something we would never think of on our own. And until it's found, your body will keep putting your mind on guard duty.
 
-And here's the hard part: you usually can't find that belief by thinking about it. It isn't stored as a thought. It's stored in your body, which is why it can feel so obvious once you find it, and so impossible to see on your own.
+That's why you do a session. In a Release Core session, you gently activate the original trigger so it can be rewired, and your body communicates what the actual trigger is and where it started. You don't have to guess.
 
 ## How Release Core helps
 
-In a Release Core session, you don't have to figure it out on your own. You find what's actually driving the pattern, and if a symptom has a nervous system piece to it, what's behind that too.
+You don't have to figure it out on your own. You find what's actually driving the pattern, and if a symptom has a nervous system piece to it, what's behind that too.
 
 You find the age the pattern started, what was happening in your life back then, and everything your nervous system learned from it, whether it came from one moment or several.
 

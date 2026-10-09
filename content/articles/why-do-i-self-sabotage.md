@@ -50,23 +50,15 @@ Self-sabotage is almost always driven by a core belief, like:
 
 These beliefs rarely announce themselves. They just quietly steer your choices. If you want to understand how they work, read [Core Beliefs: The Hidden Rules Running Your Reactions](/articles/core-beliefs-examples).
 
-## What helps in the moment
-
-- Notice the urge without acting on it right away
-- Ask yourself, "What am I afraid will happen if this keeps going well?"
-- Feel where the fear lives in your body, and breathe into that spot
-- Remind yourself that this moment is different from the past
-- Tell someone safe what you're noticing
-
 ## Why it keeps coming back
 
-Pausing like this can take the edge off in the moment. But if the belief underneath is still there, your body will keep pulling you away from good things.
+Most of the time, we don't know the real reason behind what's driving the trigger. We can guess, but the actual trigger is usually something we would never think of on our own. And until it's found, your body will keep pulling you away from good things.
 
-And here's the hard part: you usually can't find that belief by thinking about it. It isn't stored as a thought. It's stored in your body, which is why it can feel so obvious once you find it, and so impossible to see on your own.
+That's why you do a session. In a Release Core session, you gently activate the original trigger so it can be rewired, and your body communicates what the actual trigger is and where it started. You don't have to guess.
 
 ## How Release Core helps
 
-In a Release Core session, you don't have to figure it out on your own. You find what's actually driving the pattern, and if a symptom has a nervous system piece to it, what's behind that too.
+You don't have to figure it out on your own. You find what's actually driving the pattern, and if a symptom has a nervous system piece to it, what's behind that too.
 
 You find the age the pattern started, what was happening in your life back then, and everything your nervous system learned from it, whether it came from one moment or several.
 

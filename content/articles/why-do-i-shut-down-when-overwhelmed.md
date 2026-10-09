@@ -44,23 +44,15 @@ When you shut down, the instinct is to force yourself out of it. Get up. Get it 
 
 But pushing hard against a protective response usually makes your body hold on tighter. It's already convinced that something is too much. Adding pressure confirms it.
 
-## What helps in the moment
-
-- Start very small: one sip of water, one stretch, one thing you can see
-- Let yourself move a little, even just wiggling your fingers or toes
-- Name what's happening: "I'm shutting down right now, and that's okay"
-- Reach out to someone safe, even just with a text
-- Give yourself a little time instead of demanding instant recovery
-
 ## Why it keeps coming back
 
-Small steps like these can take the edge off in the moment. But if the belief underneath is still there, your body will keep reaching for shutdown when things feel like too much.
+Most of the time, we don't know the real reason behind what's driving the trigger. We can guess, but the actual trigger is usually something we would never think of on our own. And until it's found, your body will keep reaching for shutdown when things feel like too much.
 
-And here's the hard part: you usually can't find that belief by thinking about it. It isn't stored as a thought. It's stored in your body, which is why it can feel so obvious once you find it, and so impossible to see on your own.
+That's why you do a session. In a Release Core session, you gently activate the original trigger so it can be rewired, and your body communicates what the actual trigger is and where it started. You don't have to guess.
 
 ## How Release Core helps
 
-In a Release Core session, you don't have to figure it out on your own. You find what's actually driving the pattern, and if a symptom has a nervous system piece to it, what's behind that too.
+You don't have to figure it out on your own. You find what's actually driving the pattern, and if a symptom has a nervous system piece to it, what's behind that too.
 
 You find the age the pattern started, what was happening in your life back then, and everything your nervous system learned from it, whether it came from one moment or several.
 
