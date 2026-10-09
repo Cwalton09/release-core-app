@@ -113,15 +113,24 @@ export default function PodcastPage() {
         <section className="rounded-2xl border border-emerald-200 bg-emerald-50 p-6 sm:p-8">
           <h2 className="text-xl font-semibold text-slate-900">Book Chelsea</h2>
           <p className="mt-2 text-sm leading-7 text-slate-700">
-            Send a message on Instagram with your show name and a date that works, and Chelsea will
-            get back to you.
+            Email Chelsea with your show name and a few dates that work, and she&apos;ll get back to
+            you. You can also reach her on Instagram.
           </p>
-          <a
-            href="https://ig.me/m/releasecoremethod"
-            className="mt-5 inline-block rounded-xl bg-emerald-700 px-6 py-3 font-medium text-white transition hover:bg-emerald-800"
-          >
-            Message Chelsea on Instagram
-          </a>
+          <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+            <a
+              href="mailto:releasecoremethod@gmail.com?subject=Podcast%20guest%20invitation"
+              className="rounded-xl bg-emerald-700 px-6 py-3 text-center font-medium text-white transition hover:bg-emerald-800"
+            >
+              Email Chelsea
+            </a>
+            <a
+              href="https://ig.me/m/releasecoremethod"
+              className="rounded-xl border border-slate-300 bg-white px-6 py-3 text-center font-medium text-slate-800 transition hover:bg-slate-50"
+            >
+              Message on Instagram
+            </a>
+          </div>
+          <p className="mt-3 text-sm text-slate-600">releasecoremethod@gmail.com</p>
           <p className="mt-4 text-sm text-slate-600">
             Learn more: <Link href="/about" className="text-emerald-700 underline underline-offset-4">Chelsea&apos;s story</Link>
             {" · "}
