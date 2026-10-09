@@ -51,6 +51,14 @@ Tics have a neurological side, and they deserve medical care. Talk to your docto
 
 Release Core doesn't diagnose or treat tic disorders. What it can do is explore the nervous system patterns that may be activating alongside them.
 
+## More about tics
+
+- [Why do my tics get worse at night?](/articles/why-do-my-tics-get-worse-at-night)
+- [Tics and anxiety: what's the connection?](/articles/tics-and-anxiety)
+- [Why are my child's tics worse after school?](/articles/child-tics-worse-after-school)
+- [Why did I start having tics as an adult?](/articles/why-did-i-start-having-tics-as-an-adult)
+- [Is it bad to hold in a tic?](/articles/is-it-bad-to-hold-in-tics)
+
 ## Why it keeps coming back
 
 Most of the time, we don't know the real reason behind what's driving the trigger. We can guess, but the actual trigger is usually something we would never think of on our own. And until it's found, your body will keep bracing in the moments that set the tics off.
