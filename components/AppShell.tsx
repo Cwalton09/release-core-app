@@ -127,6 +127,10 @@ const navItems = publicNavItems;
           <Link href="/tic-tracker" className="hover:text-calm-700">
             Free tic tracker
           </Link>
+          {" · "}
+          <Link href="/partners" className="hover:text-calm-700">
+            Brand partners
+          </Link>
         </p>
       </footer>
     </div>

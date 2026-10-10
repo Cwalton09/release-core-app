@@ -12,7 +12,7 @@ if (process.env.VERCEL && process.env.VERCEL_ENV !== "production") {
   process.exit(0);
 }
 
-const pages = ["/", "/about", "/how-it-works", "/free", "/faq", "/articles", "/signup", "/tic-tracker", "/podcast"];
+const pages = ["/", "/about", "/how-it-works", "/free", "/faq", "/articles", "/signup", "/tic-tracker", "/podcast", "/partners"];
 
 const dir = path.join(process.cwd(), "content", "articles");
 const articles = fs
