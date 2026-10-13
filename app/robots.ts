@@ -3,7 +3,6 @@ import type { MetadataRoute } from "next";
 // Member-only and session pages stay out of search results.
 const privatePaths = [
   "/api/",
-  "/admin",
   "/dashboard",
   "/start-session",
   "/session-entry",
