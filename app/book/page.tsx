@@ -19,7 +19,7 @@ export default function BookPage() {
       <div className="space-y-10 text-base leading-8 text-slate-700">
         <section className="mx-auto max-w-xl rounded-2xl border border-emerald-200 bg-emerald-50 p-6 text-center">
           <p className="text-xl font-semibold text-slate-900">1:1 Release Core Session</p>
-          <p className="mt-1 text-lg font-semibold text-emerald-700">$60 · 60 minutes</p>
+          <p className="mt-1 text-lg font-semibold text-emerald-700">$100 · 60 minutes</p>
           <p className="mt-3 text-sm leading-7 text-slate-600">
             Choose an available time and pay when you book. Once payment goes through, your session
             is reserved.

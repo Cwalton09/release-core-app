@@ -230,7 +230,7 @@ export default function Home() {
                 I guide the questions while you focus completely on listening to your body.
               </p>
               <p className="mt-5 flex-1 text-3xl font-semibold text-slate-900">
-                $60 <span className="text-base font-normal text-slate-500">· 60 minutes</span>
+                $100 <span className="text-base font-normal text-slate-500">· 60 minutes</span>
               </p>
               <Link
                 href="/book"
