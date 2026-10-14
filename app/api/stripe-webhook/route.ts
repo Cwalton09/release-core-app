@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
+import { customerIdsForEmail } from "@/lib/stripeCustomers";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 
 // Paid status is only ever set here, from events Stripe has signed. The browser
@@ -48,8 +49,7 @@ async function otherActiveSubscription(
   const customerIds = new Set([customerId]);
   const customer = await stripe.customers.retrieve(customerId);
   if (!customer.deleted && customer.email) {
-    const sameEmail = await stripe.customers.list({ email: customer.email, limit: 20 });
-    for (const c of sameEmail.data) customerIds.add(c.id);
+    for (const id of await customerIdsForEmail(stripe, customer.email)) customerIds.add(id);
   }
   for (const id of customerIds) {
     const subs = await stripe.subscriptions.list({ customer: id, status: "all", limit: 100 });

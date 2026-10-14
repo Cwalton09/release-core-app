@@ -2,6 +2,7 @@ import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { ADMIN_EMAILS, requireAdmin } from "@/lib/requireAdmin";
+import { customerIdsForEmail } from "@/lib/stripeCustomers";
 
 export const maxDuration = 300;
 
@@ -10,6 +11,9 @@ const ACTIVE_STATUSES = new Set(["active", "trialing", "past_due"]);
 
 // Release Core Pro ($50/month) shares this Stripe account but is a separate product.
 const PRO_PRICE_ID = "price_1TRhd8GcdSdj0ADuCKI9UTOU";
+
+// Anyone with a successful payment this recently counts as still paying.
+const RECENT_PAYMENT_DAYS = 35;
 
 type Change = {
   userId: string;
@@ -53,24 +57,47 @@ async function findCancelled(supabase: SupabaseClient, stripe: Stripe) {
     const customerIds = new Set<string>();
     if (profile.stripe_customer_id) customerIds.add(profile.stripe_customer_id);
     if (email) {
-      const customers = await stripe.customers.list({ email, limit: 20 });
-      for (const c of customers.data) customerIds.add(c.id);
+      for (const id of await customerIdsForEmail(stripe, email)) customerIds.add(id);
     }
 
     let active = false;
+    let hasProOnly = false;
     let latestStatus = "no_subscription";
     let latestCreated = 0;
+    const recentCutoff = Math.floor(Date.now() / 1000) - RECENT_PAYMENT_DAYS * 86400;
+
     for (const customer of customerIds) {
       const subs = await stripe.subscriptions.list({ customer, status: "all", limit: 100 });
       for (const sub of subs.data) {
         // A Release Core Pro subscription doesn't count toward the individual app.
-        if (sub.items.data.some((item) => item.price?.id === PRO_PRICE_ID)) continue;
+        if (sub.items.data.some((item) => item.price?.id === PRO_PRICE_ID)) {
+          if (ACTIVE_STATUSES.has(sub.status)) hasProOnly = true;
+          continue;
+        }
         if (ACTIVE_STATUSES.has(sub.status)) active = true;
         if (sub.created > latestCreated) {
           latestCreated = sub.created;
           latestStatus = sub.status;
         }
       }
+
+      // Safety net: a successful individual-app payment in the last month means
+      // they're paying, whatever the subscription record says.
+      if (!active) {
+        const invoices = await stripe.invoices.list({
+          customer,
+          status: "paid",
+          created: { gte: recentCutoff },
+          limit: 20,
+        });
+        const paidRecently = invoices.data.some((invoice) =>
+          invoice.lines.data.some(
+            (line: any) => (line.pricing?.price_details?.price ?? line.price?.id) !== PRO_PRICE_ID
+          )
+        );
+        if (paidRecently) active = true;
+      }
+      if (active) break;
     }
 
     if (active) {
@@ -83,8 +110,10 @@ async function findCancelled(supabase: SupabaseClient, stripe: Stripe) {
       email,
       reason:
         customerIds.size === 0
-          ? "No Stripe customer with this email"
-          : `Latest subscription: ${latestStatus}`,
+          ? "No Stripe customer found with this email"
+          : hasProOnly
+            ? "Only has an active Release Core Pro subscription, not the individual app"
+            : `No payment in the last ${RECENT_PAYMENT_DAYS} days. Latest subscription: ${latestStatus}`,
       subscriptionStatus: latestStatus === "no_subscription" ? "no_subscription" : latestStatus,
       stripeCustomerId: [...customerIds][0] ?? null,
     });
