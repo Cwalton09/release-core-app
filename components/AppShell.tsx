@@ -21,6 +21,7 @@ const socialLinks = [
 
 const publicNavItems = [
   { href: "/how-it-works", label: "How It Works" },
+  { href: "/quiz", label: "Quiz" },
   { href: "/what-it-helps", label: "What It Helps" },
   { href: "/stories", label: "Stories" },
   { href: "/articles", label: "Articles" },

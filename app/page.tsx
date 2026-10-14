@@ -95,10 +95,10 @@ export default function Home() {
               Start your first session
             </Link>
             <Link
-              href="/free"
+              href="/quiz"
               className="rounded-full border border-slate-300 bg-white px-8 py-4 text-base font-medium text-slate-800 transition hover:bg-slate-50"
             >
-              Get the free guide
+              Take the 2-minute quiz
             </Link>
           </div>
           <p className="mx-auto mt-8 max-w-md text-sm italic leading-6 text-slate-500">
@@ -131,6 +131,11 @@ export default function Home() {
           </div>
           <p className="text-center text-lg font-medium text-slate-900">
             It isn&apos;t a flaw in you. It&apos;s protection.
+          </p>
+          <p className="text-center">
+            <Link href="/quiz" className="inline-block rounded-full bg-calm-100 px-6 py-3 font-medium text-calm-700 transition hover:bg-calm-200">
+              Not sure? Find your pattern in 2 minutes →
+            </Link>
           </p>
         </section>
 
