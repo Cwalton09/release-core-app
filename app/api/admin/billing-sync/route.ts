@@ -8,6 +8,9 @@ export const maxDuration = 300;
 // Same statuses the Stripe webhook treats as an active membership.
 const ACTIVE_STATUSES = new Set(["active", "trialing", "past_due"]);
 
+// Release Core Pro ($50/month) shares this Stripe account but is a separate product.
+const PRO_PRICE_ID = "price_1TRhd8GcdSdj0ADuCKI9UTOU";
+
 type Change = {
   userId: string;
   email: string;
@@ -45,12 +48,13 @@ async function findCancelled(supabase: SupabaseClient, stripe: Stripe) {
     if (ADMIN_EMAILS.has(email) || profile.subscription_status === "owner") continue;
     checked++;
 
-    const customerIds: string[] = [];
-    if (profile.stripe_customer_id) {
-      customerIds.push(profile.stripe_customer_id);
-    } else if (email) {
-      const customers = await stripe.customers.list({ email, limit: 10 });
-      customerIds.push(...customers.data.map((c) => c.id));
+    // People who paid more than once can have several Stripe customers, so check
+    // the saved one and every customer with their email.
+    const customerIds = new Set<string>();
+    if (profile.stripe_customer_id) customerIds.add(profile.stripe_customer_id);
+    if (email) {
+      const customers = await stripe.customers.list({ email, limit: 20 });
+      for (const c of customers.data) customerIds.add(c.id);
     }
 
     let active = false;
@@ -59,6 +63,8 @@ async function findCancelled(supabase: SupabaseClient, stripe: Stripe) {
     for (const customer of customerIds) {
       const subs = await stripe.subscriptions.list({ customer, status: "all", limit: 100 });
       for (const sub of subs.data) {
+        // A Release Core Pro subscription doesn't count toward the individual app.
+        if (sub.items.data.some((item) => item.price?.id === PRO_PRICE_ID)) continue;
         if (ACTIVE_STATUSES.has(sub.status)) active = true;
         if (sub.created > latestCreated) {
           latestCreated = sub.created;
@@ -76,11 +82,11 @@ async function findCancelled(supabase: SupabaseClient, stripe: Stripe) {
       userId: profile.user_id,
       email,
       reason:
-        customerIds.length === 0
+        customerIds.size === 0
           ? "No Stripe customer with this email"
           : `Latest subscription: ${latestStatus}`,
       subscriptionStatus: latestStatus === "no_subscription" ? "no_subscription" : latestStatus,
-      stripeCustomerId: customerIds[0] ?? null,
+      stripeCustomerId: [...customerIds][0] ?? null,
     });
   }
 
