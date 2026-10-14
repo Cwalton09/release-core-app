@@ -106,6 +106,11 @@ export default function BillingSync() {
           </button>
         )}
       </div>
+      {result && !applied && result.changes.length > 0 && selected.size === 0 && (
+        <p className="mt-2 text-sm text-slate-500">
+          Tap a person below to tick them. The red button turns on once someone is ticked.
+        </p>
+      )}
 
       {error && <p className="mt-6 rounded-xl bg-red-50 p-4 text-red-700">{error}</p>}
 
@@ -120,12 +125,17 @@ export default function BillingSync() {
           {!applied && result.changes.length > 0 && (
             <ul className="divide-y divide-slate-200 rounded-xl border border-slate-200">
               {result.changes.map((c) => (
-                <li key={c.userId} className="flex items-start gap-3 p-3 text-sm">
+                <li key={c.userId} className="text-sm">
+                  <label
+                    className={`flex cursor-pointer items-start gap-3 p-4 ${
+                      selected.has(c.userId) ? "bg-red-50" : "hover:bg-slate-50"
+                    }`}
+                  >
                   <input
                     type="checkbox"
                     checked={selected.has(c.userId)}
                     onChange={() => toggle(c.userId)}
-                    className="mt-1 h-4 w-4"
+                    className="mt-0.5 h-6 w-6 shrink-0 accent-red-600"
                     aria-label={`Turn off access for ${c.email || c.userId}`}
                   />
                   <div className="min-w-0 flex-1">
@@ -142,6 +152,7 @@ export default function BillingSync() {
                       </a>
                     )}
                   </div>
+                  </label>
                 </li>
               ))}
             </ul>
