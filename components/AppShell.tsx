@@ -131,6 +131,10 @@ const navItems = publicNavItems;
           <Link href="/partners" className="hover:text-calm-700">
             Brand partners
           </Link>
+          {" · "}
+          <Link href="/practitioners" className="hover:text-calm-700">
+            For practitioners
+          </Link>
         </p>
       </footer>
     </div>
