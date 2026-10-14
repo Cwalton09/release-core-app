@@ -155,7 +155,11 @@ export async function POST(req: NextRequest) {
 
   const { supabase, stripe } = clients();
   try {
-    const { checked, stillActive, changes } = await findCancelled(supabase, stripe);
+    // Only people the admin ticked, and only if Stripe still shows no active payment.
+    const { userIds } = await req.json().catch(() => ({ userIds: [] }));
+    const selected = new Set<string>(Array.isArray(userIds) ? userIds : []);
+    const { checked, stillActive, changes: found } = await findCancelled(supabase, stripe);
+    const changes = found.filter((change) => selected.has(change.userId));
     let updated = 0;
     for (const change of changes) {
       const { error } = await supabase
