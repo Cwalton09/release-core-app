@@ -24,7 +24,6 @@ const publicNavItems = [
   { href: "/what-it-helps", label: "What It Helps" },
   { href: "/stories", label: "Stories" },
   { href: "/articles", label: "Articles" },
-  { href: "/book", label: "Book 1:1" },
   { href: "/about", label: "About" },
   { href: "/faq", label: "FAQ" },
   { href: "/free", label: "Free Guide" },

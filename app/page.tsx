@@ -3,6 +3,7 @@ import Image from "next/image";
 import AppShell from "@/components/AppShell";
 import FreeGuideSignup from "@/components/FreeGuideSignup";
 import type { Metadata } from "next";
+import { FACEBOOK_GROUP_URL } from "@/lib/links";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
@@ -196,50 +197,43 @@ export default function Home() {
           </p>
         </section>
 
-        {/* Two ways to start */}
-        <section className="space-y-8">
-          <h2 className="text-center text-3xl font-semibold tracking-tight text-slate-900">
-            Two ways to start
-          </h2>
-          <div className="grid gap-5 md:grid-cols-2">
-            <div className="flex flex-col rounded-3xl border-2 border-emerald-600 bg-white p-8 shadow-sm">
-              <p className="text-sm font-medium uppercase tracking-wider text-emerald-700">On your own</p>
-              <h3 className="mt-2 text-2xl font-semibold text-slate-900">The Release Core app</h3>
-              <p className="mt-2 text-slate-600">Guided sessions that walk you through it the same way I do one-on-one.</p>
-              <ul className="mt-5 flex-1 space-y-2 text-slate-700">
-                {appIncludes.map((item) => (
-                  <li key={item} className="flex gap-2">
-                    <span className="text-emerald-600" aria-hidden>✓</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href="/signup"
-                className="mt-7 rounded-full bg-emerald-700 px-6 py-3.5 text-center font-medium text-white transition hover:bg-emerald-800"
-              >
-                Start your membership
-              </Link>
-              <p className="mt-2 text-center text-xs text-slate-500">Cancel anytime.</p>
-            </div>
-
-            <div className="flex flex-col rounded-3xl border border-calm-200 bg-white p-8 shadow-sm">
-              <p className="text-sm font-medium uppercase tracking-wider text-calm-600">With me</p>
-              <h3 className="mt-2 text-2xl font-semibold text-slate-900">A 1:1 session with Chelsea</h3>
-              <p className="mt-2 text-slate-600">
-                I guide the questions while you focus completely on listening to your body.
-              </p>
-              <p className="mt-5 flex-1 text-3xl font-semibold text-slate-900">
-                $100 <span className="text-base font-normal text-slate-500">· 60 minutes</span>
-              </p>
-              <Link
-                href="/book"
-                className="mt-7 rounded-full border border-slate-300 px-6 py-3.5 text-center font-medium text-slate-800 transition hover:bg-slate-50"
-              >
-                Book a session
-              </Link>
-            </div>
+        {/* Start */}
+        <section className="mx-auto max-w-xl">
+          <div className="flex flex-col rounded-3xl border-2 border-emerald-600 bg-white p-8 shadow-sm sm:p-10">
+            <p className="text-sm font-medium uppercase tracking-wider text-emerald-700">Start today</p>
+            <h2 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900">The Release Core app</h2>
+            <p className="mt-3 text-slate-600">
+              Guided sessions that walk you through it the same way I do one-on-one, whenever you
+              need them.
+            </p>
+            <ul className="mt-6 space-y-2 text-slate-700">
+              {appIncludes.map((item) => (
+                <li key={item} className="flex gap-2">
+                  <span className="text-emerald-600" aria-hidden>✓</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <Link
+              href="/signup"
+              className="mt-8 rounded-full bg-emerald-700 px-6 py-4 text-center text-base font-medium text-white transition hover:bg-emerald-800"
+            >
+              Start your membership
+            </Link>
+            <p className="mt-2 text-center text-xs text-slate-500">Cancel anytime.</p>
           </div>
+          <p className="mt-5 text-center text-sm text-slate-500">
+            Want to work with me 1:1?{" "}
+            <a
+              href={FACEBOOK_GROUP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-emerald-700 underline underline-offset-4"
+            >
+              Join the Release Core Method group on Facebook
+            </a>{" "}
+            and message me.
+          </p>
         </section>
 
         {/* Chelsea */}

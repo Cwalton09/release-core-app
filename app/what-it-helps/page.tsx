@@ -135,10 +135,10 @@ export default function WhatItHelpsPage() {
               Start your first session
             </Link>
             <Link
-              href="/book"
+              href="/free"
               className="rounded-xl border border-slate-300 bg-white px-6 py-3 text-center font-medium text-slate-800 transition hover:bg-slate-50"
             >
-              Book a 1:1 with Chelsea
+              Get the free guide
             </Link>
           </div>
         </section>
