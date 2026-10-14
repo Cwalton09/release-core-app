@@ -87,9 +87,12 @@ export default function ArticlePage({ params }: Props) {
     mainEntityOfPage: `https://release-core.com/articles/${article.slug}`,
   };
 
-  // A short session invite sits just before the article's third section.
+  // The free-guide signup sits before the second section, while readers are most
+  // engaged; a short session invite sits two sections later. Short articles with
+  // few sections fall back so the two never land in the same spot.
   const headingIndexes = article.blocks.flatMap((b, i) => (b.type === "h2" ? [i] : []));
-  const midInviteAt = headingIndexes[2] ?? -1;
+  const signupAt = headingIndexes[1] ?? -1;
+  const midInviteAt = headingIndexes[3] ?? headingIndexes[2] ?? -1;
 
   return (
     <AppShell title={article.title}>
@@ -102,6 +105,11 @@ export default function ArticlePage({ params }: Props) {
           if (block.type === "h2") {
             return (
               <Fragment key={i}>
+                {i === signupAt && (
+                  <div className="py-2">
+                    <FreeGuideSignup compact />
+                  </div>
+                )}
                 {i === midInviteAt && <SessionInvite />}
                 <h2 className="pt-4 text-xl font-semibold text-slate-900">{block.text}</h2>
               </Fragment>
