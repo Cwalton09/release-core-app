@@ -5,6 +5,14 @@ import { NextResponse } from "next/server";
 // get the welcome series once the form is connected to it in Kit.
 const KIT_FORM_ID = "10020749";
 
+// Kit tags for each quiz result. Each tag starts that pattern's follow-up emails.
+const QUIZ_TAG_IDS: Record<string, string> = {
+  guard: "24664573",
+  peacekeeper: "24664574",
+  holder: "24664575",
+  shutdown: "24664576",
+};
+
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function POST(req: Request) {
@@ -26,6 +34,8 @@ export async function POST(req: Request) {
 
   const form = new URLSearchParams({ email_address: email });
   if (firstName) form.set("fields[first_name]", firstName);
+  const quizTag = body.source?.startsWith("quiz:") ? QUIZ_TAG_IDS[body.source.slice(5)] : undefined;
+  if (quizTag) form.append("tags[]", quizTag);
 
   try {
     const res = await fetch(`https://app.kit.com/forms/${KIT_FORM_ID}/subscriptions`, {
