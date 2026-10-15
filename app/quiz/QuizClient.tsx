@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { FREE_GUIDE_URL } from "@/components/FreeGuideSignup";
+import { kitSubscribe } from "@/lib/kitSubscribe";
 import { PATTERNS, QUESTIONS, scoreQuiz, type PatternKey } from "./quizData";
 
 type Status = "idle" | "sending" | "done" | "error";
@@ -16,6 +17,7 @@ export default function QuizClient() {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
   const [copied, setCopied] = useState(false);
+  const [verifyUrl, setVerifyUrl] = useState("");
 
   const total = QUESTIONS.length;
   const finished = step >= total;
@@ -41,25 +43,21 @@ export default function QuizClient() {
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     if (!result) return;
+    // Hidden field only bots fill in: pretend it worked.
+    if (website) {
+      setStatus("done");
+      return;
+    }
     setStatus("sending");
     setError("");
-    try {
-      const res = await fetch("/api/subscribe", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ firstName, email, website, source: `quiz:${scoreQuiz(answers)}` }),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        setError(data.error ?? "Something went wrong. Please try again.");
-        setStatus("error");
-        return;
-      }
-      setStatus("done");
-    } catch {
-      setError("Something went wrong. Please try again.");
+    const signup = await kitSubscribe({ email, firstName, quizPattern: scoreQuiz(answers) });
+    if (signup.status === "error") {
+      setError(signup.error);
       setStatus("error");
+      return;
     }
+    setVerifyUrl(signup.status === "verify" ? signup.url : "");
+    setStatus("done");
   }
 
   async function share() {
@@ -176,8 +174,25 @@ export default function QuizClient() {
             </p>
           ))}
           <div className="rounded-2xl bg-white p-5 text-sm leading-7 text-slate-700">
-            <p className="font-semibold text-slate-900">Your free guide is on its way to your inbox.</p>
-            <p>If you see an email asking you to confirm, click it so the guide and my emails reach you.</p>
+            {verifyUrl ? (
+              <p>
+                <span className="font-semibold text-slate-900">One quick step:</span>{" "}
+                <a
+                  href={verifyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-emerald-700 underline underline-offset-4"
+                >
+                  confirm you&apos;re not a robot
+                </a>{" "}
+                so the guide and my emails can reach you.
+              </p>
+            ) : (
+              <>
+                <p className="font-semibold text-slate-900">Your free guide is on its way to your inbox.</p>
+                <p>If you see an email asking you to confirm, click it so the guide and my emails reach you.</p>
+              </>
+            )}
             <a
               href={FREE_GUIDE_URL}
               target="_blank"

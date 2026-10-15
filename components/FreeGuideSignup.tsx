@@ -1,41 +1,37 @@
 "use client";
 
 import { useState } from "react";
-import { usePathname } from "next/navigation";
+import { kitSubscribe } from "@/lib/kitSubscribe";
 
 export const FREE_GUIDE_URL = "/free/find-the-belief-underneath.pdf";
 
 type Status = "idle" | "sending" | "done" | "error";
 
 export default function FreeGuideSignup({ compact = false }: { compact?: boolean }) {
-  const pathname = usePathname();
   const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
   const [website, setWebsite] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
+  const [verifyUrl, setVerifyUrl] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    // Hidden field only bots fill in: pretend it worked.
+    if (website) {
+      setStatus("done");
+      return;
+    }
     setStatus("sending");
     setError("");
-    try {
-      const res = await fetch("/api/subscribe", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ firstName, email, website, source: pathname }),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        setError(data.error ?? "Something went wrong. Please try again.");
-        setStatus("error");
-        return;
-      }
-      setStatus("done");
-    } catch {
-      setError("Something went wrong. Please try again.");
+    const result = await kitSubscribe({ email, firstName });
+    if (result.status === "error") {
+      setError(result.error);
       setStatus("error");
+      return;
     }
+    setVerifyUrl(result.status === "verify" ? result.url : "");
+    setStatus("done");
   };
 
   return (
@@ -51,8 +47,25 @@ export default function FreeGuideSignup({ compact = false }: { compact?: boolean
 
       {status === "done" ? (
         <div className="mt-5 space-y-3 text-sm leading-7 text-slate-700">
-          <p className="font-semibold text-slate-900">You&apos;re in. Check your inbox 🤍</p>
-          <p>If you see an email asking you to confirm, click it so the guide and my emails reach you.</p>
+          {verifyUrl ? (
+            <p>
+              <span className="font-semibold text-slate-900">One quick step:</span>{" "}
+              <a
+                href={verifyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-emerald-700 underline underline-offset-4"
+              >
+                confirm you&apos;re not a robot
+              </a>{" "}
+              so my emails can reach you.
+            </p>
+          ) : (
+            <>
+              <p className="font-semibold text-slate-900">You&apos;re in. Check your inbox 🤍</p>
+              <p>If you see an email asking you to confirm, click it so the guide and my emails reach you.</p>
+            </>
+          )}
           <a
             href={FREE_GUIDE_URL}
             target="_blank"
