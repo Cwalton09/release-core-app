@@ -211,6 +211,10 @@ export default function Home() {
               Guided sessions that walk you through it the same way I do one-on-one, whenever you
               need them.
             </p>
+            <p className="mt-5">
+              <span className="text-3xl font-semibold tracking-tight text-slate-900">$25</span>
+              <span className="text-slate-600"> / month</span>
+            </p>
             <ul className="mt-6 space-y-2 text-slate-700">
               {appIncludes.map((item) => (
                 <li key={item} className="flex gap-2">
