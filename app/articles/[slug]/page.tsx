@@ -21,9 +21,16 @@ function SessionInvite() {
   );
 }
 
-// Turns [text](/path) in article text into links; everything else stays plain text.
+// Turns [text](/path) into links and **text** into bold; everything else stays plain text.
 function renderInline(text: string) {
-  return text.split(/(\[[^\]]+\]\([^)\s]+\))/g).map((part, i) => {
+  return text.split(/(\[[^\]]+\]\([^)\s]+\)|\*\*[^*]+\*\*)/g).map((part, i) => {
+    if (/^\*\*[^*]+\*\*$/.test(part)) {
+      return (
+        <strong key={i} className="font-semibold text-slate-900">
+          {part.slice(2, -2)}
+        </strong>
+      );
+    }
     const match = part.match(/^\[([^\]]+)\]\(([^)\s]+)\)$/);
     if (!match) return part;
     // Outside sources (studies) open in a new tab so readers stay on the article.
