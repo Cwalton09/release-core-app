@@ -49,6 +49,8 @@ If you have fainting, chest pain, or a racing heart that won't settle, get medic
 
 ## More about the nervous system and the body
 
+- [POTS and MCAS: what's the connection?](/articles/pots-and-mcas)
+- [MCAS and the nervous system](/articles/mcas-and-the-nervous-system)
 - [What does the nervous system control?](/articles/what-does-the-nervous-system-control)
 - [Heart palpitations and anxiety](/articles/heart-palpitations-anxiety-nervous-system)
 - [Why do I feel dizzy when I'm anxious?](/articles/dizzy-when-anxious)
