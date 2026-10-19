@@ -47,6 +47,9 @@ What the gut-brain connection shows is that your nervous system can be part of t
 - [Why does stress upset my stomach?](/articles/why-does-stress-upset-my-stomach)
 - [How your nervous system shapes pain](/articles/how-the-nervous-system-shapes-pain)
 - [Why pain lasts after an injury heals](/articles/why-does-pain-last-after-healing)
+- [IBS and the nervous system](/articles/ibs-and-the-nervous-system)
+- [Crohn's disease and stress](/articles/crohns-disease-stress-nervous-system)
+- [Leaky gut and stress](/articles/leaky-gut-stress-nervous-system)
 
 ## Why it keeps coming back
 
