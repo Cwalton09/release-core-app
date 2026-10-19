@@ -41,7 +41,8 @@ function parseFrontmatter(raw: string) {
   for (const line of match[1].split(/\r?\n/)) {
     const i = line.indexOf(":");
     if (i === -1) continue;
-    data[line.slice(0, i).trim()] = line.slice(i + 1).trim();
+    // Strip YAML-style wrapping quotes, e.g. title: "Crohn's Disease: ..."
+    data[line.slice(0, i).trim()] = line.slice(i + 1).trim().replace(/^(["'])(.*)\1$/, "$2");
   }
   return { data, body: match[2] };
 }
