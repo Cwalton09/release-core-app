@@ -1,9 +1,11 @@
 ---
-title: Tics and Anxiety: What's the Connection?
-description: Anxiety and tics often show up together, and each can make the other worse. Here's how they're connected through your nervous system, and what may be driving the loop.
+title: "Anxiety Tics: How Anxiety and Tics Feed Each Other"
+description: Can anxiety cause tics? Anxiety doesn't cause tic disorders, but it's one of the biggest things that makes tics worse, and tics can make anxiety worse too. Here's how anxiety tics work and what drives the loop.
 date: 2026-10-09
 published: true
 ---
+Can anxiety cause tics? Anxiety doesn't cause tic disorders on its own, but it's one of the strongest things that turns tics up. And tics can create anxiety of their own, which is why the two so often show up together.
+
 If you have tics, you've probably noticed they get louder when you're anxious. And if you're anxious, you may have noticed your tics give you one more thing to worry about.
 
 You're not imagining that connection. Anxiety and tics often travel together, and they can feed each other.
@@ -42,6 +44,24 @@ That's good news in a way. It means calming the nervous system can matter, even 
 - You avoid places or people because of how you might react
 
 If anxiety or tics are getting in the way of daily life, talk with your doctor. There are treatments that help with both.
+
+## Common questions
+
+**What are anxiety tics?** "Anxiety tics" usually means tics that show up or get worse when someone is anxious, like blinking, throat clearing, sniffing, or small movements. The tics are real, and anxiety is turning up the urge behind them.
+
+**Can anxiety cause tics in adults?** Anxiety can make existing tics much worse, and some adults notice tics for the first time during a very anxious or stressful period. New tics in adults should always be checked by a doctor.
+
+**Are anxiety tics the same as Tourette's?** Not necessarily. Tourette syndrome is one specific tic disorder, with both motor and vocal tics lasting more than a year. Many people have tics that don't meet that definition, and anxiety can turn up tics either way.
+
+**Why do my tics get worse when I'm anxious?** Anxiety puts your nervous system on alert. Your muscles tense and your body feels more pressure, and for many people that makes the urge before a tic stronger and harder to hold back.
+
+## More about tics and the nervous system
+
+- [What are nervous tics?](/articles/what-are-nervous-tics)
+- [Why do my tics get worse at night?](/articles/why-do-my-tics-get-worse-at-night)
+- [Tics and ADHD](/articles/tics-and-adhd)
+- [Is it bad to hold in tics?](/articles/is-it-bad-to-hold-in-tics)
+- [Free tic tracker](/tic-tracker)
 
 ## Why it keeps coming back
 

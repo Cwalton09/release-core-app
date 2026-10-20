@@ -1,9 +1,11 @@
 ---
-title: What Are Nervous Tics? Why Stress and Anxiety Turn Them Up
-description: Nervous tics are sudden, repeated movements or sounds that often get worse with stress. A 2024 study of adults found stress and anxiety were the most consistent tic triggers across life. Here's why.
+title: "Nervous Tics: What They Are and Why Stress Makes Them Worse"
+description: What are nervous tics? Sudden, repeated movements or sounds like blinking, throat clearing, or shrugging that get worse with stress. A 2024 study found stress and anxiety were the most consistent tic triggers across life. Here's why.
 date: 2026-10-16
 published: true
 ---
+What are nervous tics? They're sudden, repeated movements or sounds, like blinking, sniffing, throat clearing, or shrugging, that are hard to stop and often get worse when you're stressed. (They're sometimes spelled "nervous ticks.")
+
 A blink you can't stop. A throat clear that keeps coming back. A shoulder shrug, a sniff, a small sound. And it always seems worse when you're stressed.
 
 People often call these "nervous tics." Here's what they are, and why your nervous system plays such a big part.
@@ -40,6 +42,16 @@ For a lot of people, that pressure isn't just this week's stress. It's a body th
 - You spend a lot of energy holding them in around others
 
 New tics, especially in adults, should be checked by a doctor. Tic disorders are best supported with professional care, and approaches like CBIT have strong research behind them.
+
+## Common questions
+
+**Can stress cause tics?** Stress doesn't cause tic disorders on its own, but it's one of the biggest things that turns tics up. Many people first notice tics, or notice them coming back, during a stressful season.
+
+**What is the difference between a nervous tic and a twitch?** A tic usually comes with an urge you can feel building and a sense of relief after it happens, and you can sometimes hold it in for a while. A twitch, like an eyelid twitch, is a small muscle spasm you don't feel coming and can't hold back.
+
+**Can adults get nervous tics?** Yes. Tics are most common in childhood, but adults can have them too, either continuing from childhood or starting later. New tics in adults should be checked by a doctor.
+
+**Do nervous tics go away?** Many childhood tics fade by the late teens. For others, tics come and go with stress, sleep, and what's going on in life. Lowering the pressure on your nervous system often makes them quieter.
 
 ## More about tics and the nervous system
 
