@@ -58,6 +58,15 @@ Tightness and pain can also have physical causes, so if something hurts or isn't
 
 **Does fascia release work?** Fascia release can help loosen tissue and feel very relieving. If the results don't last, it's worth looking at whether your nervous system feels safe enough to let the body stay soft.
 
+## More about fascia
+
+- [Does fascia store emotions?](/articles/does-fascia-store-emotions)
+- [Why do I cry during fascia release?](/articles/why-do-i-cry-during-fascia-release)
+- [Tight fascia symptoms](/articles/tight-fascia-symptoms)
+- [Fascia and the nervous system](/articles/fascia-and-the-nervous-system)
+- [Fascia and trauma](/articles/fascia-and-trauma)
+- [Tight fascia and anxiety](/articles/tight-fascia-and-anxiety)
+
 ## Why it keeps coming back
 
 Most of the time, we don't know the real reason our body is holding on. We can guess, but the actual fear is usually something we would never think of on our own. And until it's found, your body will keep tightening back up to protect you.
