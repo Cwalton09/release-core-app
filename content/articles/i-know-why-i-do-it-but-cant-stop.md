@@ -58,6 +58,6 @@ That's why you do a session. In a Release Core session, you don't have to guess.
 
 ## How Release Core helps
 
-You ask your body directly and it answers through a simple sway test: forward for yes, backward for no. Once you find the real rule, you rewire it with questions like "Can you show me what it feels like to be safe without fixing everyone?" Then the pattern doesn't just make sense. It stops.
+You ask your body directly and it answers through a simple sway test, after you find which way your body sways for yes and which way for no. Once you find the real rule, you rewire it with questions like "Can you show me what it feels like to be safe without fixing everyone?" Then the pattern doesn't just make sense. It stops.
 
 [See what happens in a session](/how-it-works) or [start your first Release Core session](/signup).

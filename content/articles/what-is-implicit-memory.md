@@ -53,7 +53,7 @@ So your mind fills the gap with a reasonable-sounding story. That story might ev
 
 You can't change a pattern you can't see. And with implicit memory, the pattern is invisible by definition. Your mind doesn't have the file. Your body does.
 
-That's why you do a session. In a Release Core session, you ask your body directly and it answers through a simple sway test: forward for yes, backward for no. Often the answers surprise people, because the rule their body is following isn't the one they would have guessed.
+That's why you do a session. In a Release Core session, you ask your body directly and it answers through a simple sway test, after you find which way your body sways for yes and which way for no. Often the answers surprise people, because the rule their body is following isn't the one they would have guessed.
 
 ## How Release Core helps
 
