@@ -90,13 +90,15 @@ export function buildEmail(email: SeriesEmail, firstName: string | null, to: str
   return { html, text, unsub };
 }
 
-export async function sendSeriesEmail(email: SeriesEmail, to: string, firstName: string | null) {
+// idempotencyKey makes Resend drop a repeat of the same send (one-time campaigns).
+export async function sendSeriesEmail(email: SeriesEmail, to: string, firstName: string | null, idempotencyKey?: string) {
   const { html, text, unsub } = buildEmail(email, firstName, to);
   const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
       Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
       "Content-Type": "application/json",
+      ...(idempotencyKey ? { "Idempotency-Key": idempotencyKey } : {}),
     },
     body: JSON.stringify({
       from: FROM,
