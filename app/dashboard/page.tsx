@@ -1,6 +1,7 @@
 "use client";
 
 import { SessionPicker } from "@/components/SessionPicker";
+import SessionSchedule from "@/components/SessionSchedule";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -241,6 +242,7 @@ export default function Dashboard() {
   const [standardOpen, setStandardOpen] = useState(false);
   const [biblicalOpen, setBiblicalOpen] = useState(false);
   const [portalLoading, setPortalLoading] = useState(false);
+  const [userId, setUserId] = useState<string | null>(null);
 
   useEffect(() => {
     let mounted = true;
@@ -256,6 +258,7 @@ export default function Dashboard() {
         const { data: profile, error } = await supabase.from("profiles").select("paid").eq("user_id", user.id).maybeSingle();
         if (error) { if (mounted) setCheckingAccess(false); return; }
         if (!profile?.paid) { goToCheckout(user); return; }
+        if (mounted) setUserId(user.id);
         const { data: pastSessions } = await supabase
           .from("sessions")
           .select("id, created_at, emotions, core_beliefs, ages, symptoms, who_involved, what_happened, patterns, unmet_need, own_words, body_location, feeling, shape, color, size, texture, activation_age")
@@ -517,6 +520,7 @@ export default function Dashboard() {
             <SessionPicker />
             <button onClick={() => router.push("/session-entry")} className="w-full bg-white border border-gray-300 py-3 rounded-xl text-lg font-medium text-gray-800 hover:bg-gray-100 transition">Session Entry</button>
           </div>
+          {userId && <SessionSchedule userId={userId} />}
           <div className="space-y-3">
             <h2 className="text-lg font-semibold text-gray-800">Past Sessions</h2>
             {loadingSessions ? (
