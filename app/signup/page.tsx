@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import AppShell from "@/components/AppShell";
 import { supabase } from "@/lib/supabase";
 import { goToCheckout } from "@/lib/checkout";
+import { FACEBOOK_GROUP_URL } from "@/lib/links";
 
 // Same four things as the membership card on the homepage.
 const includes = [
@@ -12,6 +13,19 @@ const includes = [
   { title: "Your nighttime script and session summary", body: "Yours to keep, so you can go back to what came up." },
   { title: "Faith-based or non-faith sessions", body: "Whichever fits you." },
   { title: "Grounding scripts, quick relief, and the dream interpreter", body: "For the moments in between." },
+];
+
+// What happens after "Continue to checkout", so nobody pays without knowing what comes next.
+const nextSteps = [
+  "Create your account and check out securely with Stripe.",
+  "Start your first session right away. Your body answers yes or no, and leads you to where the pattern started.",
+  "Get your session summary and a nighttime script to keep rewiring while you sleep.",
+];
+
+const quotes = [
+  "Within 10 minutes of the session, I was feeling way better and could actually function again.",
+  "My nervous system is calm, and it was out of control.",
+  "Release Core is incredible for getting to the very root for me in ways journaling or anything else could never reveal.",
 ];
 
 export default function SignupPage() {
@@ -32,7 +46,14 @@ export default function SignupPage() {
         password,
       });
       if (error) {
-        setErrorMessage(error.message);
+        // Someone who made an account before but never finished checkout lands here.
+        if (/already registered/i.test(error.message)) {
+          setErrorMessage("You already have an account with this email. Log in below and you'll go straight to checkout.");
+        } else if (/password/i.test(error.message)) {
+          setErrorMessage("Please use a password with at least 6 characters.");
+        } else {
+          setErrorMessage(error.message);
+        }
         return;
       }
       const user = data.user;
@@ -85,12 +106,30 @@ export default function SignupPage() {
               </li>
             ))}
           </ul>
+          <div className="mt-7 border-t border-calm-200 pt-6">
+            <p className="text-sm font-medium uppercase tracking-wider text-emerald-700">
+              What happens next
+            </p>
+            <ol className="mt-4 space-y-3 text-slate-700">
+              {nextSteps.map((step, i) => (
+                <li key={step} className="flex gap-3">
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-700 text-xs font-semibold text-white">
+                    {i + 1}
+                  </span>
+                  <span>{step}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
           <figure className="mt-7 border-t border-calm-200 pt-6">
-            <blockquote className="leading-7 text-slate-800">
-              “Within 10 minutes of the session, I was feeling way better and could actually
-              function again.”
-            </blockquote>
-            <figcaption className="mt-2 text-sm text-slate-500">
+            <div className="space-y-4">
+              {quotes.map((quote) => (
+                <blockquote key={quote} className="leading-7 text-slate-800">
+                  “{quote}”
+                </blockquote>
+              ))}
+            </div>
+            <figcaption className="mt-3 text-sm text-slate-500">
               <Link href="/stories" className="underline underline-offset-4">
                 Read more stories
               </Link>
@@ -122,7 +161,7 @@ export default function SignupPage() {
           />
           <input
             type="password"
-            placeholder="Password"
+            placeholder="Password (at least 6 characters)"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none"
@@ -142,6 +181,17 @@ export default function SignupPage() {
           $25/month. Cancel anytime from your dashboard.
         </p>
         <p className="mt-5 text-sm text-slate-600">
+          Questions first?{" "}
+          <a
+            href={FACEBOOK_GROUP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-slate-900 underline"
+          >
+            Message Chelsea in the Facebook group
+          </a>
+        </p>
+        <p className="mt-3 text-sm text-slate-600">
           Already have an account?{" "}
           <Link href="/login" className="font-medium text-slate-900 underline">
             Log in
