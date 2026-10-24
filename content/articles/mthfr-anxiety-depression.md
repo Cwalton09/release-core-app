@@ -50,6 +50,14 @@ That's why someone can fix their vitamins and still feel anxious. The supplement
 
 Never stop or start medication or supplements without talking to your doctor. Anxiety and depression deserve real care, and if you're thinking about harming yourself, call or text 988.
 
+## More about MTHFR
+
+- [Had MTHFR your whole life? Why symptoms can show up years later](/articles/mthfr-symptoms-started-later-in-life)
+- [MTHFR or nervous system dysregulation?](/articles/mthfr-or-nervous-system-dysregulation)
+- [Can stress raise homocysteine?](/articles/can-stress-raise-homocysteine)
+- [Why didn't methylated vitamins fix my anxiety?](/articles/why-methylated-vitamins-didnt-fix-my-anxiety)
+- [MTHFR fatigue and brain fog](/articles/mthfr-fatigue-brain-fog)
+
 ## More about anxiety and the nervous system
 
 - [Can stress affect how your body absorbs nutrients?](/articles/stress-and-nutrient-absorption)
