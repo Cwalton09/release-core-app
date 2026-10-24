@@ -45,7 +45,12 @@ async function recipients(campaign: CampaignId): Promise<Recipient[]> {
     list = new Map([...active].filter(([email]) => !scheduled.has(email)));
   }
 
-  return [...list].map(([email, name]) => ({ email, firstName: name.trim().split(/\s+/)[0] || "" }));
+  // Stripe names are typed by customers, so "laura" becomes "Laura".
+  const first = (name: string) => {
+    const word = name.trim().split(/\s+/)[0] || "";
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  };
+  return [...list].map(([email, name]) => ({ email, firstName: first(name) }));
 }
 
 // GET ?campaign=members|canceled previews the list. Nothing is sent.
