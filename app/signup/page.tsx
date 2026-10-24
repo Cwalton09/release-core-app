@@ -137,12 +137,14 @@ export default function SignupPage() {
           </figure>
         </section>
 
-      <div className="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm sm:p-8">
+      {/* On phones the form comes first, so nobody has to scroll past the details to sign up. */}
+      <div className="order-first rounded-3xl border border-slate-200 bg-white p-7 shadow-sm sm:p-8 md:order-none">
         <h1 className="mb-3 text-3xl font-semibold tracking-tight text-slate-900">
           Get started
         </h1>
         <p className="mb-6 text-sm leading-7 text-slate-600">
           Create your account, then you&apos;ll go to secure checkout to start your membership.
+          $25/month, cancel anytime.
         </p>
         <form className="space-y-4" onSubmit={handleSignup}>
           <input
