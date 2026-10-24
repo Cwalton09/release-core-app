@@ -59,7 +59,9 @@ export default function MemberActivityPage() {
       <h1 className="text-2xl font-semibold text-slate-900">Member activity</h1>
       <p className="mt-2 text-slate-600">
         Every membership from Stripe, with how many sessions that person saved. A session counts
-        when it reaches the session summary page. Nothing here changes anyone&apos;s account.
+        when it reaches the session summary page. Guided deep sessions aren&apos;t saved there, so
+        they show in &ldquo;Last deep session&rdquo; instead, tracked from Oct 24, 2026 on. Nothing
+        here changes anyone&apos;s account.
       </p>
 
       <button
@@ -96,6 +98,7 @@ export default function MemberActivityPage() {
                   <th className="p-3 font-medium">Canceled</th>
                   <th className="p-3 font-medium">Sessions</th>
                   <th className="p-3 font-medium">Last session</th>
+                  <th className="p-3 font-medium">Last deep session</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-200">
@@ -110,6 +113,7 @@ export default function MemberActivityPage() {
                     <td className="p-3 whitespace-nowrap">{date(m.canceled)}</td>
                     <td className="p-3 tabular-nums">{m.sessions}</td>
                     <td className="p-3 whitespace-nowrap">{date(m.lastSession)}</td>
+                    <td className="p-3 whitespace-nowrap">{date(m.lastActive)}</td>
                   </tr>
                 ))}
               </tbody>

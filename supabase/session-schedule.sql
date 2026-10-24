@@ -7,3 +7,4 @@ alter table public.profiles add column if not exists session_time text;         
 alter table public.profiles add column if not exists session_tz text;            -- e.g. 'America/Chicago'
 alter table public.profiles add column if not exists session_reminders boolean default true;
 alter table public.profiles add column if not exists session_reminder_sent_on date;
+alter table public.profiles add column if not exists last_active_at timestamptz;  -- last guided deep session or dream

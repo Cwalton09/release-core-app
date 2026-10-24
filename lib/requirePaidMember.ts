@@ -51,5 +51,14 @@ export async function requirePaidMember(
     );
   }
 
+  // Marks the member as active today (guided deep sessions, dreams), so the
+  // admin member-activity page sees use that never reaches the sessions table.
+  // Best effort: a failure here never blocks the session.
+  const { error: activityError } = await supabase
+    .from("profiles")
+    .update({ last_active_at: new Date().toISOString() })
+    .eq("user_id", user.id);
+  if (activityError) console.error("Recording member activity failed:", activityError.message);
+
   return null;
 }

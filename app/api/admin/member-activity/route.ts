@@ -14,6 +14,8 @@ export type MemberActivity = {
   reason: string | null;
   sessions: number;
   lastSession: string | null;
+  // Last guided deep session or dream (tracked from Oct 24, 2026 on).
+  lastActive: string | null;
 };
 
 // Every Stripe subscription with how many sessions that member saved, so we can
@@ -49,6 +51,10 @@ export async function GET(req: NextRequest) {
     sessionsByUser.set(s.user_id, list);
   }
 
+  // Missing until supabase/session-schedule.sql adds last_active_at; then it just stays empty.
+  const { data: activity } = await supabase.from("profiles").select("user_id, last_active_at");
+  const lastActiveByUser = new Map((activity ?? []).map((p) => [p.user_id, p.last_active_at as string | null]));
+
   const members: MemberActivity[] = [];
   for await (const sub of stripe.subscriptions.list({ status: "all", limit: 100, expand: ["data.customer"] })) {
     const customer = sub.customer as Stripe.Customer | Stripe.DeletedCustomer;
@@ -66,6 +72,7 @@ export async function GET(req: NextRequest) {
       reason: sub.cancellation_details?.feedback ?? null,
       sessions: dates.length,
       lastSession: dates.length ? dates.sort().at(-1)! : null,
+      lastActive: (userId && lastActiveByUser.get(userId)) || null,
     });
   }
 
