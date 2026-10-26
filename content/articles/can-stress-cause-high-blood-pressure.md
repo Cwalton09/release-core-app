@@ -48,6 +48,8 @@ These studies show a strong link, though researchers are still working out exact
 
 ## Why it keeps coming back
 
+The real root is often very different from what you think. It usually isn't the job, the bills, or the obvious stress in front of you. It's an old rule your body learned long before, like *I have to hold everything together* or *I'm not safe unless I'm in control*, and today's stress is just turning up its volume.
+
 If your nervous system keeps sounding the alarm, your body keeps working harder than it needs to. And most of us don't know what our nervous system is still on alert about.
 
 That's why you do a session. In a Release Core session, your body shows you what it's still guarding against and where that started.

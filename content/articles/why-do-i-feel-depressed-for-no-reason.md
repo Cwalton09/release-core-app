@@ -52,6 +52,8 @@ That's why the low mood can show up after the hard season is over. Your body fin
 
 ## Why it keeps coming back
 
+The real root is often very different from what you think. It usually isn't the job, the bills, or the obvious stress in front of you. It's an old rule your body learned long before, like *I have to hold everything together* or *I'm not safe unless I'm in control*, and today's stress is just turning up its volume.
+
 When low mood keeps returning, there's often a rule underneath your nervous system is still following, like *I have to hold it all together* or *it's not safe to feel*. Most people don't know which rule is running.
 
 That's why you do a session. In a Release Core session, your body shows you what it's still protecting you from and where it started. A session isn't a replacement for medical or mental health care. It works alongside it.

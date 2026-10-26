@@ -61,6 +61,8 @@ Without that, the rule just keeps running in the background, sometimes for years
 
 ## Why it keeps coming back
 
+The real root is often very different from what you think. For some people it really is a rule learned in 2020. For others, 2020 just turned up the volume on a much older rule, like *I have to hold everything together* or *I'm not safe unless I'm in control*, that started long before.
+
 Your nervous system is still following rules it learned during a very hard time. And most of us don't know exactly which rules those are. We just know we haven't felt like ourselves since then.
 
 That's why you do a session. In a Release Core session, your body shows you the exact rule it's still following and when it started, even if it started in 2020.

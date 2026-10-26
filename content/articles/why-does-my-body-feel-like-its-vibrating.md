@@ -54,6 +54,8 @@ You can read more in [signs your nervous system is stuck in fight or flight](/ar
 
 ## Why it keeps coming back
 
+The real root is often very different from what you think. It usually isn't the job, the bills, or the obvious stress in front of you. It's an old rule your body learned long before, like *I have to hold everything together* or *I'm not safe unless I'm in control*, and today's stress is just turning up its volume.
+
 If your body keeps humming, your nervous system is still getting the signal that it has to be ready. And most of us don't know what it's getting ready for.
 
 That's why you do a session. In a Release Core session, your body shows you the exact rule it's following and where it started.

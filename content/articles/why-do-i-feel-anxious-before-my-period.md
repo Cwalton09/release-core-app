@@ -54,6 +54,8 @@ You can also read [why am I always tired?](/articles/why-am-i-always-tired-nervo
 
 ## Why it keeps coming back
 
+The real root is often very different from what you think. It usually isn't the job, the bills, or the obvious stress in front of you. It's an old rule your body learned long before, like *I have to hold everything together* or *I'm not safe unless I'm in control*, and today's stress is just turning up its volume.
+
 Hormones rise and fall every month. But how hard that hits you often depends on how much your nervous system is already carrying. And most of us don't know what it's carrying.
 
 That's why you do a session. In a Release Core session, your body shows you what it's still holding on to and where it started.

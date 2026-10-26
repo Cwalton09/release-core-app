@@ -45,6 +45,8 @@ Ongoing or severe pain should always be checked by a doctor first.
 
 ## Why it keeps coming back
 
+The real root is often very different from what you think. It usually isn't the job, the bills, or the obvious stress in front of you. It's an old rule your body learned long before, like *I have to hold everything together* or *I'm not safe unless I'm in control*, and today's stress is just turning up its volume.
+
 The tightness keeps returning because the signal to brace hasn't changed. And most of us don't know what our body is still bracing against. We just feel the tight hips, the clenched jaw, the shoulders up by our ears.
 
 That's why you do a session. In a Release Core session, your body shows you what it's still protecting you from and where that started.
