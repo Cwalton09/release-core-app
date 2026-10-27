@@ -91,3 +91,33 @@ export function getPublishedArticles(): Article[] {
 export function getPublishedArticle(slug: string): Article | undefined {
   return getPublishedArticles().find((a) => a.slug === slug);
 }
+
+const stripInline = (text: string) =>
+  text.replace(/\[([^\]]+)\]\([^)\s]+\)/g, "$1").replace(/\*\*([^*]+)\*\*/g, "$1");
+
+// Pulls "**Question?** Answer" paragraphs out of a "Common questions" section,
+// for FAQ structured data that Google and AI answer tools can quote.
+export function getArticleFaqs(article: Article): { question: string; answer: string }[] {
+  const faqs: { question: string; answer: string }[] = [];
+  let inFaq = false;
+  for (const block of article.blocks) {
+    if (block.type === "h2") {
+      inFaq = /common questions|frequently asked|faq/i.test(block.text);
+      continue;
+    }
+    if (!inFaq || block.type !== "p") continue;
+    const match = block.text.match(/^\*\*([^*]+\?)\*\*\s+(.+)$/);
+    if (match) faqs.push({ question: match[1].trim(), answer: stripInline(match[2]).trim() });
+  }
+  return faqs;
+}
+
+// The article's own rewiring question, e.g. "Can you show me what it feels like to be completely calm?"
+export function getRewireQuestion(article: Article): string | undefined {
+  for (const block of article.blocks) {
+    const text = block.type === "ul" ? block.items.join(" ") : block.text;
+    const match = text.match(/Can you show me what it feels like [^"?]+\?/);
+    if (match) return match[0];
+  }
+  return undefined;
+}

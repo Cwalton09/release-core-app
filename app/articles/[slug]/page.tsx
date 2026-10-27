@@ -4,17 +4,23 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import AppShell from "@/components/AppShell";
 import FreeGuideSignup from "@/components/FreeGuideSignup";
-import { getPublishedArticle, getPublishedArticles } from "@/lib/articles";
+import { getArticleFaqs, getPublishedArticle, getPublishedArticles, getRewireQuestion } from "@/lib/articles";
 
 type Props = { params: { slug: string } };
 
-function SessionInvite() {
+// signupHref carries the article slug so each new account records which article sent it.
+function SessionInvite({ signupHref, rewireQuestion }: { signupHref: string; rewireQuestion?: string }) {
   return (
     <aside className="rounded-xl border-l-4 border-emerald-600 bg-slate-50 px-5 py-4 text-sm leading-7 text-slate-700">
       <span className="font-semibold text-slate-900">Want to know what your body is protecting you from? </span>
       A Release Core session helps you find when the pattern started and what your body learned
       back then.{" "}
-      <Link href="/signup" className="font-medium text-emerald-700 underline underline-offset-4">
+      {rewireQuestion && (
+        <>
+          Then you rewire it by asking your body questions like &ldquo;{rewireQuestion}&rdquo;{" "}
+        </>
+      )}
+      <Link href={signupHref} className="font-medium text-emerald-700 underline underline-offset-4">
         Start your first session
       </Link>
     </aside>
@@ -22,7 +28,7 @@ function SessionInvite() {
 }
 
 // Turns [text](/path) into links and **text** into bold; everything else stays plain text.
-function renderInline(text: string) {
+function renderInline(text: string, signupHref = "/signup") {
   return text.split(/(\[[^\]]+\]\([^)\s]+\)|\*\*[^*]+\*\*)/g).map((part, i) => {
     if (/^\*\*[^*]+\*\*$/.test(part)) {
       return (
@@ -48,7 +54,7 @@ function renderInline(text: string) {
       );
     }
     return (
-      <Link key={i} href={match[2]} className="font-medium text-emerald-700 underline underline-offset-4 hover:text-emerald-800">
+      <Link key={i} href={match[2] === "/signup" ? signupHref : match[2]} className="font-medium text-emerald-700 underline underline-offset-4 hover:text-emerald-800">
         {match[1]}
       </Link>
     );
@@ -94,6 +100,22 @@ export default function ArticlePage({ params }: Props) {
     mainEntityOfPage: `https://release-core.com/articles/${article.slug}`,
   };
 
+  const faqs = getArticleFaqs(article);
+  const faqJsonLd = faqs.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqs.map((f) => ({
+          "@type": "Question",
+          name: f.question,
+          acceptedAnswer: { "@type": "Answer", text: f.answer },
+        })),
+      }
+    : null;
+
+  const signupHref = `/signup?from=${article.slug}`;
+  const rewireQuestion = getRewireQuestion(article);
+
   // The free-guide signup sits before the second section, while readers are most
   // engaged; a short session invite sits two sections later. Short articles with
   // few sections fall back so the two never land in the same spot.
@@ -107,6 +129,12 @@ export default function ArticlePage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
       />
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+      )}
       <article className="space-y-5 text-base leading-8 text-slate-700">
         {article.blocks.map((block, i) => {
           if (block.type === "h2") {
@@ -117,7 +145,7 @@ export default function ArticlePage({ params }: Props) {
                     <FreeGuideSignup compact />
                   </div>
                 )}
-                {i === midInviteAt && <SessionInvite />}
+                {i === midInviteAt && <SessionInvite signupHref={signupHref} rewireQuestion={rewireQuestion} />}
                 <h2 className="pt-4 text-xl font-semibold text-slate-900">{block.text}</h2>
               </Fragment>
             );
@@ -126,12 +154,12 @@ export default function ArticlePage({ params }: Props) {
             return (
               <ul key={i} className="list-disc space-y-2 pl-6">
                 {block.items.map((item, j) => (
-                  <li key={j}>{renderInline(item)}</li>
+                  <li key={j}>{renderInline(item, signupHref)}</li>
                 ))}
               </ul>
             );
           }
-          return <p key={i}>{renderInline(block.text)}</p>;
+          return <p key={i}>{renderInline(block.text, signupHref)}</p>;
         })}
       </article>
 
@@ -155,7 +183,7 @@ export default function ArticlePage({ params }: Props) {
         </p>
         <div className="mt-5 flex flex-col gap-3 sm:flex-row">
           <Link
-            href="/signup"
+            href={signupHref}
             className="rounded-xl bg-emerald-700 px-6 py-3 text-center font-medium text-white transition hover:bg-emerald-800"
           >
             Start your first session

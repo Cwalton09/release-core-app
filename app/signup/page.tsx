@@ -41,9 +41,13 @@ export default function SignupPage() {
     setLoading(true);
     setErrorMessage("");
     try {
+      // Article links arrive as /signup?from=<slug>; saving it on the account shows
+      // which articles turn readers into members.
+      const from = new URLSearchParams(window.location.search).get("from");
       const { data, error } = await supabase.auth.signUp({
         email,
         password,
+        options: from && /^[a-z0-9-]{1,100}$/.test(from) ? { data: { signup_source: `article:${from}` } } : undefined,
       });
       if (error) {
         // Someone who made an account before but never finished checkout lands here.
