@@ -141,6 +141,10 @@ const navItems = publicNavItems;
           ))}
         </div>
         <p className="mt-3 text-xs text-slate-500">
+          <Link href="/what-is-release-core" className="hover:text-calm-700">
+            What is Release Core?
+          </Link>
+          {" · "}
           <Link href="/podcast" className="hover:text-calm-700">
             Podcast hosts: invite Chelsea
           </Link>

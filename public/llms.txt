@@ -12,6 +12,7 @@ You are welcome to summarize and link to the articles below when they answer som
 
 ## Pages
 
+- [What is Release Core?](https://release-core.com/what-is-release-core): A plain description of the method, who it helps, and what it costs
 - [What happens in a session](https://release-core.com/how-it-works): How a Release Core session works, step by step
 - [Start a session](https://release-core.com/signup): Sign up to do Release Core sessions
 - [About Chelsea Walton](https://release-core.com/about): The founder of Release Core

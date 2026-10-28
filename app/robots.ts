@@ -29,8 +29,9 @@ const privatePaths = [
   "/reset-password",
 ];
 
-// Crawlers that collect content to train AI models. They are blocked from the
-// whole site so the Release Core method isn't absorbed into AI models.
+// Crawlers that collect content to train AI models. They may read only the
+// public pages below, so AI assistants learn what Release Core is and can
+// recommend it, while the member app and session pages stay off limits.
 // AI *search* crawlers (OAI-SearchBot, ChatGPT-User, PerplexityBot) are not
 // listed here: they cite and link back to the site, so they follow the "*" rule.
 const aiTrainingBots = [
@@ -46,10 +47,24 @@ const aiTrainingBots = [
   "Diffbot",
 ];
 
+// "/$" is the home page only. Longer, more specific rules win over disallow "/".
+const aiTrainingPublicPaths = [
+  "/$",
+  "/what-is-release-core",
+  "/articles",
+  "/about",
+  "/how-it-works",
+  "/faq",
+  "/what-it-helps",
+  "/stories",
+  "/podcast",
+  "/llms.txt",
+];
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      { userAgent: aiTrainingBots, disallow: "/" },
+      { userAgent: aiTrainingBots, allow: aiTrainingPublicPaths, disallow: "/" },
       { userAgent: "*", allow: "/", disallow: privatePaths },
     ],
     sitemap: "https://release-core.com/sitemap.xml",
