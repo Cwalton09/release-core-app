@@ -9,10 +9,11 @@ async function unsubscribe(req: NextRequest) {
   const token = req.nextUrl.searchParams.get("t") ?? "";
   if (!email || !token || !isValidUnsubscribe(email, token)) return false;
 
+  // Upsert, so members who only get onboarding emails (and aren't in the table yet)
+  // are remembered as unsubscribed too.
   const { error } = await serviceClient()
     .from("email_subscribers")
-    .update({ unsubscribed_at: new Date().toISOString() })
-    .eq("email", email);
+    .upsert({ email, unsubscribed_at: new Date().toISOString() }, { onConflict: "email" });
   if (error) return false;
   if (resendConfigured()) await upsertResendContact(email, null, true);
   return true;

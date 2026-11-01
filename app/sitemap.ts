@@ -32,6 +32,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteUrl}/practitioners`, lastModified, changeFrequency: "monthly", priority: 0.6 },
     { url: `${siteUrl}/what-it-helps`, lastModified, changeFrequency: "monthly", priority: 0.7 },
     { url: `${siteUrl}/quiz`, lastModified, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${siteUrl}/sway-test`, lastModified, changeFrequency: "monthly", priority: 0.8 },
     { url: `${siteUrl}/stories`, lastModified, changeFrequency: "monthly", priority: 0.6 },
     { url: `${siteUrl}/book`, lastModified, changeFrequency: "monthly", priority: 0.7 },
     ...articleEntries,

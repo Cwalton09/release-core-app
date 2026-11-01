@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { serviceClient, type Subscriber } from "@/lib/emailSeries/db";
+import { sendOnboardingEmails } from "@/lib/emailSeries/onboarding";
 import { QUIZ_SERIES } from "@/lib/emailSeries/quiz";
 import { resendConfigured, sendSeriesEmail } from "@/lib/emailSeries/send";
 import type { SeriesEmail } from "@/lib/emailSeries/types";
@@ -77,5 +78,14 @@ export async function GET(req: NextRequest) {
     await new Promise((r) => setTimeout(r, 600));
   }
 
-  return NextResponse.json({ checked: subscribers.length, sent, failed });
+  // First-week emails for new members (lib/emailSeries/onboarding.ts).
+  let onboarding: { sent: number; failed: number } | { error: string };
+  try {
+    onboarding = await sendOnboardingEmails(supabase);
+  } catch (err) {
+    console.error("Onboarding emails failed:", err);
+    onboarding = { error: String(err).slice(0, 300) };
+  }
+
+  return NextResponse.json({ checked: subscribers.length, sent, failed, onboarding });
 }

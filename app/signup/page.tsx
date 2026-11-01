@@ -204,6 +204,13 @@ export default function SignupPage() {
           $25/month. Cancel anytime from your dashboard.
         </p>
         <p className="mt-5 text-sm text-slate-600">
+          Not sure yet?{" "}
+          <Link href="/sway-test" className="font-medium text-slate-900 underline">
+            Try the free 3-minute sway test
+          </Link>{" "}
+          and see what your body says.
+        </p>
+        <p className="mt-3 text-sm text-slate-600">
           Questions first?{" "}
           <a
             href={FACEBOOK_GROUP_URL}

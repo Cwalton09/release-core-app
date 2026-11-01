@@ -107,6 +107,38 @@ export default function Home() {
           </p>
         </section>
 
+        {/* Proof first: a real session, then a free way to feel the sway test yourself. */}
+        <section className="grid items-center gap-8 rounded-3xl bg-calm-50 p-7 sm:grid-cols-[260px_1fr] sm:p-10">
+          <figure className="min-w-0">
+            <video
+              className="mx-auto w-full max-w-[260px] rounded-2xl bg-slate-900"
+              src="/social/videos/bb1-session.mp4"
+              poster="/social/videos/bb1-session-poster.jpg"
+              controls
+              playsInline
+              preload="none"
+            />
+            <figcaption className="mt-2 text-center text-xs text-slate-500">
+              Clip from Boots &amp; Baddies with Laura Haynes
+            </figcaption>
+          </figure>
+          <div className="min-w-0 text-center sm:text-left">
+            <h2 className="text-3xl font-semibold tracking-tight text-slate-900 [text-wrap:balance]">
+              Watch a real session
+            </h2>
+            <p className="mt-3 text-lg leading-8 text-slate-600">
+              Chelsea guiding a live Release Core session. Your body answers yes or no with a gentle
+              sway, and leads you to where the pattern started.
+            </p>
+            <Link
+              href="/sway-test"
+              className="mt-6 inline-block rounded-full bg-emerald-700 px-7 py-3 font-medium text-white transition hover:bg-emerald-800"
+            >
+              Try the sway test free →
+            </Link>
+          </div>
+        </section>
+
         {/* Does this sound like you? */}
         <section className="space-y-8">
           <div className="text-center">
