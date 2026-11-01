@@ -330,9 +330,9 @@ function BodyQuestionList({
   return (
     <div className="space-y-2">
       <p className="mb-3 text-xs leading-5 text-slate-500">
-        Ask your body each question.
-        Check the box for YES.
-        Leave it unchecked for NO,
+        Say each statement out loud and let your body sway.
+        Check the box if it sways toward your YES.
+        Leave it unchecked if it sways toward your NO,
         then submit all of your answers together.
       </p>
 
@@ -1319,6 +1319,38 @@ export default function GuidedDeepSession() {
             Follow your body's answers until we uncover the pattern underneath what you're experiencing.
           </p>
         </div>
+
+        {/* Sway test instructions */}
+        <details
+          open={messages.length === 0}
+          className="mb-4 rounded-2xl border border-emerald-200 bg-emerald-50 p-5"
+        >
+          <summary className="cursor-pointer text-base font-semibold text-slate-900">
+            How to answer with your body: the sway test
+          </summary>
+          <div className="mt-3 space-y-4 text-sm leading-7 text-slate-700">
+            <p>
+              You don't answer these questions with your mind. You ask your body, and it answers yes or no with a gentle sway. Your body already knows the answers. This is how we listen to it.
+            </p>
+            <div className="space-y-1">
+              <p className="font-semibold text-slate-800">First, find your yes and no:</p>
+              <p>• Stand with your feet flat on the ground, near a wall or chair so you feel steady</p>
+              <p>• Close your eyes, take a slow deep breath, and let your body soften. Don't try to control the movement.</p>
+              <p>• Say out loud: <span className="font-medium italic">"My name is [your real name]."</span> Notice which way your body sways, forward or backward. That is your <span className="font-semibold">yes</span>.</p>
+              <p>• Say out loud: <span className="font-medium italic">"My name is [a name that is not yours]."</span> Notice it sway the other way. That is your <span className="font-semibold">no</span>.</p>
+            </div>
+            <div className="space-y-1">
+              <p className="font-semibold text-slate-800">Then, for each question in the session:</p>
+              <p>• Read the statement out loud, slowly</p>
+              <p>• Pause and let your body sway</p>
+              <p>• Swayed toward your yes? Check the box. Toward your no? Leave it unchecked.</p>
+              <p>• Trust the first response. Don't stop to think it through.</p>
+            </div>
+            <p>
+              Not swaying, or not sure? Drink some water, take a few slow breaths, and find your yes and no again before you keep going.
+            </p>
+          </div>
+        </details>
 
         <div className="mb-4 flex-1 space-y-4">
           <div className="flex gap-3">

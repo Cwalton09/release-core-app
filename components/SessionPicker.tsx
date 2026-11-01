@@ -48,7 +48,7 @@ export function SessionPicker() {
                   <span className="text-2xl mt-0.5">🔍</span>
                   <div>
                     <p className="font-semibold text-slate-800 mb-1">Phase 2 — Guided Deep Session</p>
-                    <p className="text-sm text-slate-500 leading-5">A conversational session that asks adaptive questions based on your body's responses to find the root pattern underneath what you are experiencing. Best when you want to go deeper on something specific.</p>
+                    <p className="text-sm text-slate-500 leading-5">A conversational session where you use the sway test to answer each question with your body, and the next questions follow your body's answers to find the root pattern underneath what you are experiencing. Best when you want to go deeper on something specific.</p>
                   </div>
                 </div>
               </button>
