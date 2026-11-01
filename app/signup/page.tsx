@@ -90,6 +90,23 @@ export default function SignupPage() {
     <AppShell title="Get started" bare>
       <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-2 md:items-start">
         <section className="rounded-3xl bg-calm-50 p-7 sm:p-8">
+          {/* A real session clip, so people can see what happens before they pay. */}
+          <figure className="mb-7 border-b border-calm-200 pb-7">
+            <p className="text-sm font-medium uppercase tracking-wider text-emerald-700">
+              Watch a real session
+            </p>
+            <video
+              className="mx-auto mt-4 w-full max-w-[260px] rounded-2xl bg-slate-900"
+              src="/social/videos/bb1-session.mp4"
+              poster="/social/videos/bb1-session-poster.jpg"
+              controls
+              playsInline
+              preload="none"
+            />
+            <figcaption className="mt-3 text-center text-sm text-slate-500">
+              Chelsea guiding a live session. Clip from Boots &amp; Baddies with Laura Haynes.
+            </figcaption>
+          </figure>
           <p className="text-sm font-medium uppercase tracking-wider text-emerald-700">
             Release Core membership
           </p>
