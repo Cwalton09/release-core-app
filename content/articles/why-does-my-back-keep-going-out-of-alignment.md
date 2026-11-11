@@ -26,7 +26,7 @@ When your nervous system is in fight or flight, your body gets ready for action.
 
 That's helpful for a few minutes in a real emergency. But a lot of people live there for years. And a body that's braced all the time keeps pulling on the same places, day after day.
 
-That's why an adjustment can feel amazing and still not last. It puts things back where they belong. Then your nervous system goes right back to bracing, and the tension pulls them out again. You can read more about [the signs your nervous system is stuck in fight or flight](/articles/signs-nervous-system-stuck-in-fight-or-flight).
+That's why an adjustment can feel amazing and still not last. It puts things back where they belong. Then your nervous system goes right back to bracing, and the tension pulls them out again. You can read more about [the signs your nervous system is stuck in fight or flight](/articles/signs-nervous-system-stuck-in-fight-or-flight). If your hips feel crooked too, see [can a tight psoas pull your hips out of place](/articles/can-a-tight-psoas-pull-your-hips-out-of-place).
 
 ## Ribs that keep slipping
 

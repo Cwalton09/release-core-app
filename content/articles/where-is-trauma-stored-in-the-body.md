@@ -18,7 +18,7 @@ Psychiatrist Bessel van der Kolk helped popularize this idea in *The Body Keeps 
 
 ## Where people feel it most
 
-- **Hips and psoas:** The psoas connects your spine to your legs and helps you curl up, run, and brace. It's one of the main muscles of fight or flight.
+- **Hips and psoas:** The psoas connects your spine to your legs and helps you curl up, run, and brace. It's one of the main muscles of fight or flight. See [can a tight psoas pull your hips out of place](/articles/can-a-tight-psoas-pull-your-hips-out-of-place).
 - **Lower back:** Often braces along with the hips and belly.
 - **Shoulders and neck:** Shoulders rise toward your ears when you feel threatened, the classic protective posture. See [stress and neck pain](/articles/stress-neck-pain).
 - **Jaw:** Clenching is one of the most common ways the body holds tension. See [why do I clench my jaw?](/articles/why-do-i-clench-my-jaw)
