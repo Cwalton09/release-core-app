@@ -1,53 +1,64 @@
 ---
 title: "Can a Tight Psoas Pull Your Hips and Lower Back Out of Place? The Psoas and Your Nervous System"
-description: Hips that feel crooked, a lower back that keeps going out, or a deep ache in the front of your hip? Here's what the psoas muscle really does, what research shows about it and back pain, and why stress keeps it tight.
+description: Hips that feel crooked, a lower back that keeps going out, or a deep ache in the front of your hip? Here's how the psoas tightens in fight, flight, or freeze, and how that pull can cause lower back and hip pain.
 date: 2026-11-11
 published: true
 ---
-Can a tight psoas pull your hips and lower back out of place? It can add to the problem. The psoas connects your lower spine to the top of your thigh, so when it stays tight it pulls on your lower back and the front of your hip, and many people feel their hips or back are "out" because of it. But research shows it's rarely one muscle alone. The bigger pattern is usually a body that stays braced, and stress is one of the main things that keeps it braced.
+Can a tight psoas pull your hips and lower back out of place? Yes, it can. The psoas attaches to your lower spine and the top of your thigh bone, so when it tightens it pulls your lower back forward and down toward your hip. When your nervous system is stuck in fight, flight, or freeze, the muscles that protect your core, including the psoas, can stay braced. That constant pull and pressure can lead to lower back pain, hip pain, and a back or hip that keeps "going out."
 
-You might notice a deep ache in the front of your hip, one hip that feels higher or more twisted than the other, a lower back that "goes out" during hard weeks, or adjustments and stretches that never seem to hold.
+You might notice a deep ache in the front of your hip or groin, one hip that feels higher or twisted, a lower back that goes out during hard weeks, or adjustments and stretches that never seem to hold.
 
 ## Get checked if…
 
 Hip and low back pain can have many physical causes, like disc problems, arthritis, or nerve irritation. See a doctor or physical therapist if pain shoots down your leg, you have numbness or weakness, or it doesn't improve after a few weeks. Get help right away if you lose bladder or bowel control, have numbness in your groin or inner thighs, or have back pain with fever or after a fall.
 
-## What the psoas does
+## What the psoas is
 
-The psoas (pronounced "SO-as") is a long, deep muscle. It starts on the sides of your lower spine, runs down through your pelvis, and attaches to the top of your thigh bone. It's the only muscle that connects your spine directly to your legs.
+The psoas (pronounced "SO-as") is a long, deep muscle. It attaches to the front and sides of each vertebra in your lower back, runs down through your pelvis, and attaches to the top of your thigh bone. It's the only muscle that connects your spine directly to your legs.
 
-It helps you lift your knee, walk, run, sit up, and curl into a protective ball. That last one matters. When your body senses danger, it gets ready to move or protect your belly, and the psoas is part of that response.
+It lifts your knee when you walk or run, helps you sit up, and pulls you into a curled, protective position. That's why it plays a big part in how your body responds to danger.
 
-## What research shows
+## How fight, flight, and freeze tighten the psoas
 
-**The psoas mostly squeezes the spine, not bends it.** A biomechanics study in *Clinical Biomechanics* found the psoas has only a small effect on the curve of your lower back. But when it contracts hard, it puts strong compression and shear force on the lower spine. So a psoas that never lets go can load your back, even when it isn't changing its shape much.
+**Fight or flight.** When your body senses danger, it gets ready to run or protect your belly. The psoas is one of the muscles that does both, so it tightens along with the rest of your core.
 
-**It changes in people with back pain.** A study in *Spine* looked at 50 people with long-lasting back pain on one side. On the painful side, the psoas was smaller, and the bigger the difference, the worse the pain and the longer it had lasted. The psoas isn't just tight or loose. It adapts to how your body is protecting itself.
+**Freeze.** Freeze is your body going still and stiff. A study in *Psychological Science* found that when people simply looked at angry faces, their bodies swayed less and their heart rate slowed, a freeze response like the one animals show. The more anxious they felt, the more they froze. A frozen body holds itself rigid, including deep muscles like the psoas.
 
-**Tight hip flexors don't always mean a tilted pelvis.** One study of healthy adults found no link between how far the hip could stretch back and how tilted the pelvis was or how curved the lower back was. That's why stretching your psoas alone often doesn't fix the problem.
+**Bracing.** An Ohio State lab study had people lift boxes under stress and without stress. Under stress, many of them tightened their trunk muscles against each other at the same time, which raised the pressure on their lower spine. Another study in *Spine* found people with chronic low back pain also brace this way, tensing opposing muscles together to keep their spine stiff.
 
-**Stress raises the load on your back.** In an Ohio State lab study, people lifted boxes with and without psychological stress. Under stress, many of them tensed their trunk muscles against each other, which raised the pressure on their spine.
+These responses are meant to last minutes. When your nervous system stays in them for months or years, the bracing doesn't switch off.
 
-## Why it keeps pulling
+## How a tight psoas pulls your back and hips
 
-- **Bracing.** Muscles on both sides of your trunk tighten at once, like a body getting ready for impact.
-- **One side guards more.** Protecting one side can leave your hips feeling uneven.
-- **Sitting and curling.** Long hours sitting, or curling up when you're upset, keep the hip folded and the psoas short.
-- **No signal to let go.** If your nervous system still senses danger, stretching and adjustments help for a bit, then the bracing comes right back.
+- **It pulls your lower spine forward and down.** Because it attaches to your lower vertebrae and your thigh, a tight psoas tugs your lower back toward the front of your hips.
+- **It squeezes your spine.** A biomechanics study in *Clinical Biomechanics* found that when the psoas contracts hard, it puts strong compression and shear force on the lower spine. That pressure can feel like a stiff, aching lower back.
+- **One side can pull harder.** If one side braces more, it can tug your pelvis unevenly, so one hip feels higher or your back feels twisted or "out."
+- **It crosses the front of your hip.** A psoas that's always tight can cause a deep ache in the front of the hip or groin, and make it hard to stand up straight after sitting.
+- **It changes in people with back pain.** A study in *Spine* of 50 people with long-lasting back pain on one side found the psoas was smaller on the painful side. The bigger the difference, the worse the pain and the longer it had lasted.
+
+That's why a stretch or an adjustment can feel great and still not last. It eases the pull for a while. Then your nervous system goes back to bracing, and the psoas tightens again.
 
 See [why your back keeps going out after the chiropractor](/articles/why-does-my-back-keep-going-out-of-alignment) and [can stress cause back pain](/articles/can-stress-cause-back-pain).
 
-You may also find [where is trauma stored in the body](/articles/where-is-trauma-stored-in-the-body) helpful.
+You may also find [where is trauma stored in the body](/articles/where-is-trauma-stored-in-the-body) and [signs your nervous system is stuck in fight or flight](/articles/signs-nervous-system-stuck-in-fight-or-flight) helpful.
+
+## Signs your psoas may be bracing
+
+- A deep ache in the front of your hip or groin
+- Lower back pain that's worse after sitting or standing up
+- One hip that feels higher, tighter, or twisted
+- Your back goes out during stressful weeks
+- Stretches and adjustments help, but don't hold
 
 ## Common questions
 
-**Is the psoas really the "fight or flight muscle"?** That's a popular phrase, not a scientific term. The psoas helps you run, curl up, and protect your core, so it's one of many muscles that tighten when you're under stress.
+**Is the psoas really the "fight or flight muscle"?** That's a popular nickname. The psoas helps you run, curl up, and protect your core, so it's one of the main muscles that tighten when your body senses danger.
 
-**Can a tight psoas make one leg feel shorter?** Uneven tension in the hips and lower back can make one side feel shorter or higher. Have it checked, since there are other causes too.
+**Can a tight psoas cause lower back pain?** It can contribute. It pulls on and compresses your lower spine, and it changes in people with long-lasting back pain.
+
+**Can a tight psoas cause hip pain?** Yes. It crosses the front of your hip, so a tight psoas can cause a deep ache in the front of the hip or groin.
 
 **Why doesn't stretching my psoas fix it?** Stretching lengthens the muscle for a while. If your nervous system keeps telling your body to brace, it tightens again.
-
-**Can emotions affect my hips?** Stress and fear increase muscle tension, and the hips and lower back are common places people feel it.
 
 ## Why it keeps coming back
 
@@ -67,5 +78,6 @@ You find the rule your nervous system is following, then rewire it with question
 
 - [Anatomy and biomechanics of psoas major. Clinical Biomechanics.](https://pubmed.ncbi.nlm.nih.gov/23915688/)
 - [Changes in the cross-sectional area of multifidus and psoas in patients with unilateral back pain. Spine.](https://pubmed.ncbi.nlm.nih.gov/15543053/)
-- [Relationship between hip extension range of motion and postural alignment. Journal of Orthopaedic & Sports Physical Therapy.](https://pubmed.ncbi.nlm.nih.gov/18796868/)
+- [Facing freeze: social threat induces bodily freeze in humans. Psychological Science.](https://pubmed.ncbi.nlm.nih.gov/20876881/)
 - [The influence of psychosocial stress, gender, and personality on mechanical loading of the lumbar spine. Spine.](https://pubmed.ncbi.nlm.nih.gov/11145816/)
+- [Trunk muscle recruitment patterns in patients with low back pain enhance the stability of the lumbar spine. Spine.](https://pubmed.ncbi.nlm.nih.gov/12698129/)
