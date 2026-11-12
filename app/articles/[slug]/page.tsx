@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -95,7 +96,8 @@ export default function ArticlePage({ params }: Props) {
     headline: article.title,
     description: article.description,
     datePublished: article.date,
-    author: { "@type": "Person", name: "Chelsea Walton" },
+    author: { "@type": "Person", name: "Chelsea Walton", url: "https://release-core.com/about", jobTitle: "Creator of the Release Core Method" },
+    image: "https://release-core.com/chelsea.jpeg",
     publisher: { "@type": "Organization", name: "Release Core", url: "https://release-core.com" },
     mainEntityOfPage: `https://release-core.com/articles/${article.slug}`,
   };
@@ -162,6 +164,33 @@ export default function ArticlePage({ params }: Props) {
           return <p key={i}>{renderInline(block.text, signupHref)}</p>;
         })}
       </article>
+
+      <aside className="mt-10 flex gap-4 rounded-2xl border border-slate-200 bg-white p-5">
+        <Image
+          src="/chelsea.jpeg"
+          alt="Chelsea Walton, creator of the Release Core Method"
+          width={64}
+          height={64}
+          className="h-16 w-16 shrink-0 rounded-full object-cover"
+        />
+        <div className="text-sm leading-6 text-slate-700">
+          <p className="font-semibold text-slate-900">
+            Written by{" "}
+            <Link href="/about" className="text-emerald-700 underline underline-offset-4">
+              Chelsea Walton
+            </Link>
+            , creator of the Release Core Method
+          </p>
+          <p className="mt-1">
+            After years of ADHD medication, a severe mold illness, and 65+ supplements that never
+            fixed the root, Chelsea spent years studying the nervous system and built Release Core
+            from what finally worked. Every article links to the research behind it and points you
+            to medical care where it matters. Release Core works alongside your doctor, never
+            instead of them.
+          </p>
+          <p className="mt-1 text-xs text-slate-500">Published {article.date}</p>
+        </div>
+      </aside>
 
       <p className="mt-8 text-xs leading-6 text-slate-500">
         Release Core is for self-awareness and nervous system support. It isn&apos;t a substitute
