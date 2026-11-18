@@ -50,6 +50,8 @@ Dizziness can have many medical causes, including inner ear, heart, and neurolog
 - [Why can't I take a deep breath?](/articles/why-cant-i-take-a-deep-breath)
 - [Hypervigilance: always scanning for danger](/articles/hypervigilance-always-scanning-for-danger)
 
+You may also want to read [can anxiety cause dizziness and vertigo?](/articles/can-anxiety-cause-vertigo)
+
 ## Why it keeps coming back
 
 Most of the time, we don't know the real reason our body stays braced. We can guess, but the actual trigger is usually something we would never think of on our own. Until it's found, your body keeps holding on tight.

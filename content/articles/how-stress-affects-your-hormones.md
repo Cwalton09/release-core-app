@@ -1,6 +1,6 @@
 ---
-title: "How Stress Affects Your Hormones: Cortisol, Periods, Thyroid, and More"
-description: Irregular periods, low libido, weight changes, poor sleep, and feeling "off" hormonally during stress? Here's how your stress system talks to your other hormone systems, what research shows, and why calming your nervous system matters for hormone health.
+title: "Stress Hormones: How Stress Affects Your Hormones (Cortisol, Adrenaline, and More)"
+description: What are the stress hormones? Cortisol, adrenaline, noradrenaline, CRH, and ACTH. Here's a simple list of stress hormones, what each one does, and how stress affects your periods, thyroid, sleep, and appetite.
 date: 2026-11-05
 published: true
 ---
@@ -11,6 +11,16 @@ You might notice irregular or missed periods, low sex drive, weight changes, poo
 ## See a doctor if…
 
 Hormone symptoms deserve testing, because thyroid disease, PCOS, perimenopause, pituitary problems, diabetes, and other conditions need specific treatment. See a doctor for missed periods (and take a pregnancy test), unexplained weight changes, extreme fatigue, hair loss, new acne or hair growth, or feeling cold or hot all the time.
+
+## The main stress hormones
+
+Here's a simple list of the main stress hormones and what each one does:
+
+- **CRH (corticotropin-releasing hormone):** released by the brain's hypothalamus. It starts the stress chain and can turn down appetite.
+- **ACTH (adrenocorticotropic hormone):** released by the pituitary gland. It tells your adrenal glands to make cortisol.
+- **Cortisol:** the main long-acting stress hormone. It raises blood sugar, shifts energy toward getting through the threat, and affects sleep, immunity, and other hormones.
+- **Adrenaline (epinephrine):** the fast surge. It speeds up your heart and breathing and gets you ready for fight or flight.
+- **Noradrenaline (norepinephrine):** sharpens alertness and tightens blood vessels.
 
 ## How the stress system connects to everything
 
@@ -37,6 +47,10 @@ A 2009 review in *Nature Reviews Endocrinology* by stress researcher George Chro
 You may also find [high cortisol symptoms](/articles/high-cortisol-symptoms), [can stress make your period late](/articles/can-stress-make-your-period-late), [can stress raise your blood sugar](/articles/can-stress-cause-high-blood-sugar), and [Hashimoto's and the nervous system](/articles/hashimotos-stress-nervous-system) helpful.
 
 ## Common questions
+
+**What are the main stress hormones?** Cortisol and adrenaline are the main ones, along with noradrenaline, CRH, and ACTH, which start and control the cortisol response.
+
+**Which hormones help calm stress?** Oxytocin, released with warm touch and close connection, is linked in research to a softer stress response, and endorphins released during exercise can ease tension. Feeling safe with others is one of the strongest calming signals your body gets.
 
 **Can stress cause a hormone imbalance?** Long-term stress can change many hormone systems, and those changes often improve as stress comes down. Other causes should still be checked.
 

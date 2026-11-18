@@ -32,6 +32,8 @@ Many people cry most when someone is gentle with them. If your body learned it h
 
 Crying easily is often just sensitivity or stress. But if you're crying most days, feel hopeless, or can't enjoy things anymore, it could be depression. Please talk with a doctor or therapist. If you ever think about hurting yourself, call or text 988 in the U.S. See also [why do I feel depressed for no reason?](/articles/why-do-i-feel-depressed-for-no-reason)
 
+You may also want to read [what is emotional debt?](/articles/what-is-emotional-debt)
+
 ## Common questions
 
 **Why do I cry when I'm angry?** Anger and crying often come together when you feel powerless or unheard. Your body releases the charge it can't express another way.

@@ -32,6 +32,10 @@ Many people try strict rules, and it works for a while. Then a stressful week hi
 
 Stress eating is very common. But if you feel out of control around food, eat large amounts in secret, or feel intense shame afterward, it could be binge eating disorder. Please talk with a doctor or eating disorder specialist.
 
+You may also want to read [can anxiety cause loss of appetite?](/articles/can-stress-cause-loss-of-appetite)
+
+You may also want to read [why weight comes back after stopping a GLP-1 like Ozempic or Wegovy](/articles/why-do-you-regain-weight-after-stopping-ozempic).
+
 ## Common questions
 
 **Why do I crave sugar when I'm stressed?** Stress hormones can increase cravings for sweet foods, which briefly calm the stress response.

@@ -60,6 +60,8 @@ Release Core doesn't diagnose or treat tic disorders. What it can do is explore 
 - [Why did I start having tics as an adult?](/articles/why-did-i-start-having-tics-as-an-adult)
 - [Is it bad to hold in a tic?](/articles/is-it-bad-to-hold-in-tics)
 
+You may also want to read [what are nervous tics (anxiety tics)?](/articles/what-are-nervous-tics)
+
 ## Why it keeps coming back
 
 Most of the time, we don't know the real reason behind what's driving the trigger. We can guess, but the actual trigger is usually something we would never think of on our own. And until it's found, your body will keep bracing in the moments that set the tics off.

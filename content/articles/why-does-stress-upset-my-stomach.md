@@ -43,6 +43,10 @@ Please talk to your doctor about ongoing stomach symptoms so other causes can be
 - [How your nervous system shapes pain](/articles/how-the-nervous-system-shapes-pain)
 - [Why pain lasts after an injury heals](/articles/why-does-pain-last-after-healing)
 
+You may also want to read [can anxiety cause nausea and vomiting?](/articles/can-anxiety-make-you-throw-up)
+
+You may also want to read [can anxiety cause loss of appetite?](/articles/can-stress-cause-loss-of-appetite)
+
 ## Why it keeps coming back
 
 Most of the time, we don't know the real reason behind what's driving the trigger. We can guess, but the actual trigger is usually something we would never think of on our own. And until it's found, your body will keep sending stress straight to your stomach.

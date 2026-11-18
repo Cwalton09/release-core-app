@@ -1,10 +1,10 @@
 ---
-title: What Is Emotional Debt? Why Unfelt Feelings Keep Adding Up
-description: Emotional debt is the idea that feelings we never processed keep building, like interest on a loan. Here's what it means, how it shows up in your body and life, and how it gets paid down.
+title: "What Is Emotional Debt? The Chase Hughes Idea, Explained"
+description: Emotional debt, a term used by behavior expert Chase Hughes, is the idea that feelings we never processed keep building, like interest on a loan. Here's what it means, how it shows up in your body and life, and how it gets paid down.
 date: 2026-10-10
 published: true
 ---
-You've probably heard of financial debt. But what about emotional debt?
+What is emotional debt? It's the idea that feelings you never got to fully feel don't just disappear. They keep building up in your body. You've probably heard of financial debt. Emotional debt works in a similar way.
 
 Behavior expert Chase Hughes describes emotional debt as what happens when feelings we never fully felt or processed keep building up in the nervous system, a lot like interest on a loan. The longer it goes unpaid, the more it costs.
 
@@ -48,6 +48,14 @@ Emotional debt starts to clear when your body finally gets to complete what it c
 - [What is emotional debt?](/articles/what-is-emotional-debt)
 - [Does talking about your problems keep you stuck?](/articles/does-talking-about-your-problems-keep-you-stuck)
 - [Signs your nervous system is asking for help](/articles/signs-your-nervous-system-is-asking-for-help)
+
+## Common questions
+
+**Who came up with emotional debt?** Behavior expert Chase Hughes uses the term to describe feelings that build up when they're never processed. It isn't a medical diagnosis. It's a helpful way to picture how unfinished feelings affect the body.
+
+**What are the signs of emotional debt?** Overreacting to small things, feeling tired for no clear reason, tension or stomach trouble that won't let go, feeling numb, and repeating the same patterns in relationships.
+
+**How do you pay off emotional debt?** Not by thinking harder. It gets paid down when your body finally gets to finish what it couldn't back then, in a setting that feels safe.
 
 ## Why it keeps coming back
 

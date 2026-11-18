@@ -47,6 +47,8 @@ You might feel heavy, unmotivated, or like even small things take a huge amount 
 - You've stopped looking forward to things
 - You sometimes feel a flash of emotion, then it disappears quickly
 
+You may also want to read [what is emotional debt?](/articles/what-is-emotional-debt)
+
 ## Common questions
 
 **What does feeling numb mean?** It means your emotions feel muted, flat, or far away. You might know you should feel something, but it doesn't really land. It's one of the ways your nervous system protects you when life has been too much.

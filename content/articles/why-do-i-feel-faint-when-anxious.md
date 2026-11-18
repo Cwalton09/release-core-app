@@ -31,6 +31,8 @@ During anxiety, fast breathing can blow off carbon dioxide and make you lighthea
 
 You may also find [what is the vagus nerve](/articles/what-is-the-vagus-nerve), [POTS and the nervous system](/articles/pots-and-the-nervous-system), and [why my heart races when I lay down](/articles/why-does-my-heart-race-when-i-lay-down) helpful.
 
+You may also want to read [can anxiety cause dizziness and vertigo?](/articles/can-anxiety-cause-vertigo)
+
 ## Common questions
 
 **Can you pass out from a panic attack?** It's rare. Panic usually raises blood pressure. Feeling faint during panic is often from fast breathing.

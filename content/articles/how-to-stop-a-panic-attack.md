@@ -30,6 +30,8 @@ See [panic attacks at night](/articles/panic-attacks-at-night) and [how to calm 
 
 You may also find [can anxiety cause numbness](/articles/can-anxiety-cause-numbness) and [why does my chest feel tight with anxiety](/articles/why-does-my-chest-feel-tight-anxiety) helpful.
 
+You may also want to read [can anxiety cause dizziness and vertigo?](/articles/can-anxiety-cause-vertigo)
+
 ## Common questions
 
 **How long does a panic attack last?** Most peak within about 10 minutes and fade after that.

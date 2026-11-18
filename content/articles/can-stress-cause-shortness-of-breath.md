@@ -1,5 +1,5 @@
 ---
-title: "Can Stress Cause Shortness of Breath? Why You Can't Catch Your Breath"
+title: "Can Stress Cause Shortness of Breath? Why You Feel Like You Can't Breathe"
 description: Feeling like you can't get enough air, sighing all day, or breathing fast when you're stressed? Here's how stress and anxiety change your breathing, what research shows, and when to get emergency help.
 date: 2026-11-04
 published: true
@@ -34,7 +34,13 @@ When you notice it, it's natural to worry, and worry makes the breathing pattern
 
 You may also find [why I can't take a deep breath](/articles/why-cant-i-take-a-deep-breath), [why my chest feels tight with anxiety](/articles/why-does-my-chest-feel-tight-anxiety), and [why I keep yawning](/articles/why-do-i-keep-yawning) helpful.
 
+You may also want to read [can anxiety cause dizziness and vertigo?](/articles/can-anxiety-cause-vertigo)
+
 ## Common questions
+
+**Why do I feel like I can't breathe even though I can?** That feeling is often called air hunger, and it's common with anxiety. Tight chest muscles and fast, shallow breathing can make each breath feel unsatisfying, so you keep reaching for a deeper one, even though your oxygen is fine. If it's new or comes with chest pain, get checked.
+
+**Can anxiety cause low oxygen levels?** Anxiety usually doesn't lower your oxygen. People breathing fast from anxiety typically have normal oxygen readings. A low reading on a pulse oximeter is a reason to get medical care right away.
 
 **How do I know if it's anxiety or something serious?** You can't always tell on your own. If it's new, severe, or comes with chest pain, get checked right away. Once your doctor rules out other causes, stress becomes more likely.
 

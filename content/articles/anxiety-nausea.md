@@ -43,6 +43,10 @@ Nausea can also come from pregnancy, medications, migraines, reflux, gallbladder
 - [Can stress affect how your body absorbs nutrients?](/articles/stress-and-nutrient-absorption)
 - [What is the vagus nerve?](/articles/what-is-the-vagus-nerve)
 
+You may also want to read [can anxiety cause nausea and vomiting?](/articles/can-anxiety-make-you-throw-up)
+
+You may also want to read [can anxiety cause loss of appetite?](/articles/can-stress-cause-loss-of-appetite)
+
 ## Why it keeps coming back
 
 Most of the time, we don't know what our nervous system is reacting to. We can guess, but the real trigger is usually something we would never think of on our own. Until it's found, your stomach keeps reacting first.

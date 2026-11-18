@@ -34,6 +34,8 @@ Animal studies have shown that acute stress slows how fast the stomach empties, 
 
 You may also find [anxiety nausea](/articles/anxiety-nausea), [why stress upsets my stomach](/articles/why-does-stress-upset-my-stomach), and [why my stomach hurts when I wake up](/articles/stomach-hurts-when-i-wake-up) helpful.
 
+You may also want to read [can anxiety cause nausea and vomiting?](/articles/can-anxiety-make-you-throw-up)
+
 ## Common questions
 
 **Can nerves make you feel sick?** Yes. "Nervous stomach" is real. Your gut responds to the same stress signals that make your heart race.

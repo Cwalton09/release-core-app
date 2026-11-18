@@ -51,6 +51,8 @@ What the gut-brain connection shows is that your nervous system can be part of t
 - [Crohn's disease and stress](/articles/crohns-disease-stress-nervous-system)
 - [Leaky gut and stress](/articles/leaky-gut-stress-nervous-system)
 
+You may also want to read [can anxiety cause nausea and vomiting?](/articles/can-anxiety-make-you-throw-up)
+
 ## Why it keeps coming back
 
 Most of the time, we don't know the real reason behind what's driving the trigger. We can guess, but the actual trigger is usually something we would never think of on our own. And until it's found, your body will keep bracing in the one place it was taught to hold everything.

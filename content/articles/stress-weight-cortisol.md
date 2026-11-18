@@ -49,6 +49,8 @@ Weight changes can also come from thyroid problems, PCOS, insulin resistance, pe
 - [Why do I wake up at 3 AM?](/articles/why-do-i-wake-up-at-3am)
 - [Nervous system stuck in survival mode](/articles/nervous-system-stuck-in-survival-mode)
 
+You may also want to read [why weight comes back after stopping a GLP-1 like Ozempic or Wegovy](/articles/why-do-you-regain-weight-after-stopping-ozempic).
+
 ## Why it keeps coming back
 
 Most of the time, we don't know why our body stays in survival mode. We can guess, but the real trigger is usually something we would never think of on our own. Until it's found, your body keeps holding on, no matter how hard you work.

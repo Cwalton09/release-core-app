@@ -43,6 +43,8 @@ For many people, the fear of their heartbeat becomes just as hard as the palpita
 - [Stress and skin flare-ups](/articles/stress-skin-flare-ups-eczema-psoriasis)
 - [Stress headaches and migraines](/articles/stress-headaches-migraines-nervous-system)
 
+You may also want to read [why you feel like you can't breathe when you're stressed](/articles/can-stress-cause-shortness-of-breath).
+
 ## Why it keeps coming back
 
 Most of the time, we don't know the real reason behind what's driving the trigger. We can guess, but the actual trigger is usually something we would never think of on our own. And until it's found, your body will keep sounding the alarm through your heart.

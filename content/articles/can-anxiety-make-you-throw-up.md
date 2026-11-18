@@ -1,10 +1,10 @@
 ---
-title: "Can Anxiety Make You Throw Up? Why Nerves Hit Your Stomach So Hard"
-description: Throwing up before a big event, gagging when you're nervous, or vomiting from stress? Here's why anxiety can make you throw up, what's happening in your gut, and when to see a doctor.
+title: "Can Anxiety Cause Nausea and Make You Throw Up?"
+description: Yes, anxiety can cause nausea, gagging, and vomiting. Here's why anxiety makes you feel sick to your stomach, what's happening in your gut, what helps in the moment, and when to see a doctor.
 date: 2026-11-09
 published: true
 ---
-Can anxiety make you throw up? Yes. Anxiety can cause nausea, gagging, dry heaving, and sometimes vomiting. Your gut and brain are wired together, and when your nervous system goes into fight-or-flight, it changes how your stomach moves and how sensitive it feels. For some people, that's enough to bring food back up.
+Can anxiety cause nausea and make you throw up? Yes. Anxiety can make you feel sick to your stomach, and it can cause gagging, dry heaving, and sometimes vomiting. Your gut and brain are wired together, and when your nervous system goes into fight-or-flight, it changes how your stomach moves and how sensitive it feels. For some people, that's enough to bring food back up.
 
 You might throw up before a test, an interview, or a hard conversation, gag when you brush your teeth on stressful mornings, or feel sick every time you're anxious.
 
@@ -38,6 +38,12 @@ See [anxiety nausea](/articles/anxiety-nausea) and [why does stress upset my sto
 You may also find [can stress cause nausea](/articles/can-stress-cause-nausea) and [the gut-brain connection](/articles/gut-brain-connection-nervous-system) helpful.
 
 ## Common questions
+
+**Why does anxiety make me feel sick?** When your body goes into fight-or-flight, it pulls energy away from digestion, slows how fast your stomach empties, and makes your gut more sensitive. That mix often feels like nausea or a sick, knotted stomach.
+
+**Can anxiety cause nausea every day?** It can, especially during long stressful stretches when your nervous system rarely gets to settle. Daily nausea still deserves a doctor's visit, since reflux, medications, pregnancy, and gut conditions can cause it too.
+
+**Can anxiety cause nausea and headaches together?** Yes. Muscle tension, shallow breathing, poor sleep, and skipped meals during anxious times can bring on both. If a headache is sudden and severe, get emergency care.
 
 **Is it normal to throw up from anxiety?** It's common, especially before big events. If it happens often, see a doctor.
 

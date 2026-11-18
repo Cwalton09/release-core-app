@@ -1,10 +1,10 @@
 ---
-title: "Nervous Tics: What They Are and Why Stress Makes Them Worse"
-description: What are nervous tics? Sudden, repeated movements or sounds like blinking, throat clearing, or shrugging that get worse with stress. A 2024 study found stress and anxiety were the most consistent tic triggers across life. Here's why.
+title: "What Are Nervous Tics? Anxiety Tics, Examples, and Why Stress Makes Them Worse"
+description: Nervous tics (often called anxiety tics) are sudden, repeated movements or sounds like blinking, throat clearing, or shrugging. Here are common examples, whether anxiety can cause tics, and why stress makes them worse.
 date: 2026-10-16
 published: true
 ---
-What are nervous tics? They're sudden, repeated movements or sounds, like blinking, sniffing, throat clearing, or shrugging, that are hard to stop and often get worse when you're stressed. (They're sometimes spelled "nervous ticks.")
+What are nervous tics? They're sudden, repeated movements or sounds, like blinking, sniffing, throat clearing, or shrugging, that are hard to stop and often get worse when you're stressed. Many people call them anxiety tics, because they so often flare up when you're anxious. (They're sometimes spelled "nervous ticks.")
 
 A blink you can't stop. A throat clear that keeps coming back. A shoulder shrug, a sniff, a small sound. And it always seems worse when you're stressed.
 
@@ -44,6 +44,10 @@ For a lot of people, that pressure isn't just this week's stress. It's a body th
 New tics, especially in adults, should be checked by a doctor. Tic disorders are best supported with professional care, and approaches like CBIT have strong research behind them.
 
 ## Common questions
+
+**Can anxiety cause tics?** Anxiety is one of the most common things that makes tics worse, and many people first notice tics during an anxious time. A 2024 study found stress and anxiety were the most consistent tic triggers across life. Anxiety on its own isn't thought to cause a tic disorder, so new tics are worth checking with a doctor.
+
+**What are examples of anxiety tics?** Common ones are eye blinking, eye rolling, nose scrunching, sniffing, throat clearing, coughing, shoulder shrugging, head jerks, and humming or grunting sounds.
 
 **Can stress cause tics?** Stress doesn't cause tic disorders on its own, but it's one of the biggest things that turns tics up. Many people first notice tics, or notice them coming back, during a stressful season.
 

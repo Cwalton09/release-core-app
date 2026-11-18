@@ -1,10 +1,10 @@
 ---
-title: "Can Anxiety Cause Vertigo? Why You Feel Off Balance"
-description: Feeling unsteady, like the floor is moving, or dizzy in busy places for months? Here's how anxiety and your nervous system affect balance, what persistent postural-perceptual dizziness (PPPD) is, and when to see a doctor.
+title: "Can Anxiety Cause Vertigo, Dizziness, or Lightheadedness?"
+description: Yes, anxiety can make you dizzy, lightheaded, or feel off balance, even during an anxiety attack. Here's why it happens, what PPPD is, what helps, and when dizziness needs a doctor.
 date: 2026-11-10
 published: true
 ---
-Can anxiety cause vertigo? Anxiety can cause dizziness, unsteadiness, and a feeling of being off balance. It can also keep dizziness going long after an inner ear problem has healed. Doctors now recognize a condition called persistent postural-perceptual dizziness (PPPD), where daily unsteadiness lasts for months. It's often triggered by a vestibular problem, an illness, or psychological distress, and it's linked to how the brain processes balance and threat.
+Can anxiety cause vertigo or dizziness? Yes. Anxiety can make you feel dizzy, lightheaded, unsteady, or off balance, and an anxiety attack can bring on dizziness quickly. It can also keep dizziness going long after an inner ear problem has healed. Doctors now recognize a condition called persistent postural-perceptual dizziness (PPPD), where daily unsteadiness lasts for months. It's often triggered by a vestibular problem, an illness, or psychological distress, and it's linked to how the brain processes balance and threat.
 
 You might feel like you're rocking or swaying, feel worse in grocery stores or busy places, feel unsteady when standing or walking, or feel dizzy watching moving things.
 
@@ -30,6 +30,12 @@ See [dizzy when anxious](/articles/dizzy-when-anxious).
 You may also find [can stress cause blurry vision](/articles/can-stress-cause-blurry-vision) and [nervous system stuck in survival mode](/articles/nervous-system-stuck-in-survival-mode) helpful.
 
 ## Common questions
+
+**Can an anxiety attack make you dizzy?** Yes. During an anxiety or panic attack, many people breathe faster without noticing. Breathing off too much carbon dioxide narrows the blood vessels to the brain for a while, which can cause lightheadedness, tingling, and a floaty feeling. Slowing your exhale often helps it pass.
+
+**Why do I feel lightheaded with anxiety?** Fast or shallow breathing, tight neck and shoulder muscles, and a body braced for danger can all leave you lightheaded or feeling "not quite here." If lightheadedness comes with fainting, chest pain, or a racing heart at rest, see a doctor.
+
+**What's the difference between dizziness and vertigo?** Vertigo is a false feeling that you or the room is spinning or moving. Dizziness is a broader word for feeling lightheaded, woozy, or unsteady. Anxiety more often causes lightheadedness and unsteadiness, while spinning vertigo usually needs an inner ear check.
 
 **Can anxiety cause dizziness every day?** Yes, it can. If it lasts, see a doctor to check for PPPD and other causes.
 

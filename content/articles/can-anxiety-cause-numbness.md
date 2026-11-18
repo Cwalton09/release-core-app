@@ -29,6 +29,8 @@ See [tingling hands and feet from anxiety](/articles/tingling-hands-and-feet-anx
 
 You may also find [how to calm anxiety fast](/articles/how-to-calm-anxiety-fast) helpful.
 
+You may also want to read [why you feel like you can't breathe when you're stressed](/articles/can-stress-cause-shortness-of-breath).
+
 ## Common questions
 
 **Can anxiety cause numbness on one side?** Anxiety usually affects both sides. One-sided numbness needs emergency care to rule out a stroke.

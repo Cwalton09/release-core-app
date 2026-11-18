@@ -38,6 +38,8 @@ In Release Core sessions, this happens again and again. Someone comes in sure th
 
 You can't talk yourself out of a pattern you can't see.
 
+You may also want to read [what is emotional debt?](/articles/what-is-emotional-debt)
+
 ## Common questions
 
 **Why does my anxiety ignore logic?** Because anxiety is driven by your nervous system's learned threat responses, which happen automatically and outside conscious reasoning. Logic doesn't change what your nervous system learned.

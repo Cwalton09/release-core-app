@@ -28,6 +28,8 @@ This is your body protecting you, not failing you.
 - An irregular cycle that settles when life calms down
 - Stronger PMS when stress is high (see [why am I so tired, anxious, or depressed before my period?](/articles/why-do-i-feel-anxious-before-my-period))
 
+You may also want to read [what the main stress hormones do](/articles/how-stress-affects-your-hormones).
+
 ## Common questions
 
 **How late can stress make your period?** It varies. Stress can delay it by days or weeks, and long-term stress can stop periods for months.

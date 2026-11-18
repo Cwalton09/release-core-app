@@ -1,10 +1,10 @@
 ---
-title: "Can Stress Cause Loss of Appetite and Weight Loss?"
-description: Not hungry, can't eat, losing weight without trying during a stressful time? Here's how stress shuts down appetite, why some people eat less and others eat more, what research shows, and when weight loss needs a doctor.
+title: "Can Stress or Anxiety Cause Loss of Appetite and Weight Loss?"
+description: Not hungry, can't eat, or losing weight from stress or anxiety? Here's why anxiety shuts down appetite, why some people eat less and others eat more, what helps, and when weight loss needs a doctor.
 date: 2026-11-05
 published: true
 ---
-Can stress cause loss of appetite? Yes. When your nervous system shifts into fight-or-flight, your body moves energy away from digestion, and stress hormones can switch off hunger for a while. Some people can't eat at all during hard times and lose weight without trying. Others eat more under stress. Both are common, and research shows stress can push appetite in either direction.
+Can stress or anxiety cause loss of appetite? Yes. When your nervous system shifts into fight-or-flight, your body moves energy away from digestion, and stress hormones can switch off hunger for a while. Some people can't eat at all during hard times and lose weight without trying. Others eat more under stress. Both are common, and research shows stress can push appetite in either direction.
 
 You might feel a knot in your stomach, feel full after a few bites, forget to eat, or feel sick at the thought of food.
 
@@ -32,6 +32,10 @@ A 2013 review in *Minerva Endocrinologica* looked at stress and eating. It found
 You may also find [anxiety nausea](/articles/anxiety-nausea), [why stress upsets my stomach](/articles/why-does-stress-upset-my-stomach), and [why I eat when stressed](/articles/why-do-i-eat-when-stressed) helpful.
 
 ## Common questions
+
+**Why can't I eat when I'm anxious?** In fight-or-flight, your body treats digestion as something that can wait. Stress hormones like CRH can switch off hunger, and a knotted or nauseous stomach makes food unappealing.
+
+**Is it bad not to eat because of anxiety?** A day or two of low appetite usually isn't dangerous, but long stretches without food can make anxiety, shakiness, and dizziness worse. If you've barely eaten for several days or you're losing weight, talk to a doctor.
 
 **Can anxiety make you lose weight?** It can, by lowering appetite and speeding up your body. Talk with a doctor about unexplained weight loss.
 

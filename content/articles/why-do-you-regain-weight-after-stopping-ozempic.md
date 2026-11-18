@@ -1,10 +1,10 @@
 ---
-title: "Why Do People Regain Weight After Stopping Ozempic and Other Weight-Loss Drugs?"
-description: Lost weight on semaglutide (Ozempic, Wegovy) or tirzepatide (Mounjaro, Zepbound), then watched it come back after stopping? Here's what the clinical trials show about weight regain, why the body pulls weight back, and what a weight-loss drug doesn't change in your nervous system.
+title: "Why Do You Regain Weight After Stopping Ozempic, Wegovy, or Other GLP-1 Drugs?"
+description: Weight regain after stopping a GLP-1 drug like Ozempic, Wegovy, Mounjaro, or Zepbound is common. Here's what the clinical trials show, why the body pulls weight back, and what a weight-loss drug doesn't change in your nervous system.
 date: 2026-11-06
 published: true
 ---
-Why do people regain weight after stopping Ozempic? In the clinical trials, most people regained a large share of their lost weight within a year of stopping. In the STEP 1 trial extension, people who stopped semaglutide regained about two-thirds of the weight they had lost. That's not a personal failure. These drugs quiet hunger signals while you take them, but they don't change the reasons your body was holding onto weight in the first place, and the body actively works to win lost weight back.
+Why do people regain weight after stopping Ozempic, Wegovy, or another GLP-1 drug? In the clinical trials, most people regained a large share of their lost weight within a year of stopping. In the STEP 1 trial extension, people who stopped semaglutide regained about two-thirds of the weight they had lost. That's not a personal failure. These drugs quiet hunger signals while you take them, but they don't change the reasons your body was holding onto weight in the first place, and the body actively works to win lost weight back.
 
 Many people describe the same thing: the "food noise" goes quiet on the medication, the weight comes off, and then after stopping, the hunger, cravings, and old patterns come roaring back.
 
@@ -47,6 +47,10 @@ A medication can turn down hunger. It doesn't teach your nervous system that it'
 - You had a hard childhood or a frightening experience before weight gain started
 
 ## Common questions
+
+**Will I regain weight after stopping Wegovy?** Many people do. Wegovy and Ozempic are the same medicine (semaglutide), and in the STEP 1 trial extension, people regained about two-thirds of the weight they had lost within a year of stopping. How much comes back varies from person to person.
+
+**Why did my Ozempic weight loss stop?** Weight loss on these drugs usually slows and levels off after many months as your body adapts. A plateau is expected. Talk with your doctor before changing your dose.
 
 **Is it normal to gain weight after stopping Ozempic?** Yes. Weight regain is common in the research and is not a sign you did something wrong.
 

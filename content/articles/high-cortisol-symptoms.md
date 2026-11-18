@@ -47,6 +47,8 @@ These signs can come from many things. If you're worried about your hormones, ta
 - [Why do I crash or get sick after stress is over?](/articles/why-do-i-crash-after-stress)
 - [Can you reset your nervous system?](/articles/can-you-reset-your-nervous-system)
 
+You may also want to read [what the main stress hormones do](/articles/how-stress-affects-your-hormones).
+
 ## Why it keeps coming back
 
 You can try to lower cortisol from the outside, but if your nervous system still believes it needs to be on guard, it will keep making more. Most of the time, we don't know the real reason behind what's keeping it on alert. The actual trigger is usually something we would never think of on our own.

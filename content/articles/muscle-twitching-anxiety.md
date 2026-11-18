@@ -35,6 +35,8 @@ This is how a nervous system on alert works: it pays more attention to body sens
 - Dehydration or low magnesium
 - Some medications
 
+You may also want to read [what are nervous tics (anxiety tics)?](/articles/what-are-nervous-tics)
+
 ## Common questions
 
 **Can anxiety cause muscle twitching all over?** Yes. Anxiety is one of the most common causes of harmless twitching.
