@@ -52,6 +52,8 @@ Never stop or change your MS treatment without your neurologist. New or worsenin
 - [High cortisol symptoms](/articles/high-cortisol-symptoms)
 - [MCAS and the nervous system](/articles/mcas-and-the-nervous-system)
 
+You may also want to read [can stress cause an MS flare-up?](/articles/can-stress-cause-an-ms-relapse)
+
 ## Why it keeps coming back
 
 In the MS trial, the benefit faded once the sessions stopped. That fits what so many people experience: managing stress helps for a while, but the body keeps returning to the same alert state.

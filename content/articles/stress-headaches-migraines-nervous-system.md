@@ -43,6 +43,8 @@ Get emergency care for a sudden, severe "worst headache of your life," or a head
 - [Stress and skin flare-ups](/articles/stress-skin-flare-ups-eczema-psoriasis)
 - [Stress headaches and migraines](/articles/stress-headaches-migraines-nervous-system)
 
+You may also want to read [why do I feel pressure in my head?](/articles/why-do-i-feel-pressure-in-my-head)
+
 ## Why it keeps coming back
 
 Most of the time, we don't know the real reason behind what's driving the trigger. We can guess, but the actual trigger is usually something we would never think of on our own. And until it's found, your body will keep holding tension until it turns into pain.

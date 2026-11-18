@@ -46,6 +46,8 @@ Keep tracking flares with your doctor and stay on your treatment plan. Stress su
 - [Can stress cause skin flare-ups?](/articles/stress-skin-flare-ups-eczema-psoriasis)
 - [The gut-brain connection](/articles/gut-brain-connection-nervous-system)
 
+You may also want to read [can stress cause an MS flare-up?](/articles/can-stress-cause-an-ms-relapse)
+
 ## Why it keeps coming back
 
 Most of the time, we don't know the real reason our body is still on alert. We can guess, but the actual trigger is usually something we would never think of on our own. Until it's found, every new stress lands on a body that was already braced.

@@ -36,6 +36,8 @@ And a sudden emotional shock can cause [broken heart syndrome](/articles/can-you
 
 Stress is one piece of your heart health, not the whole story. Please keep up with your doctor, know your blood pressure, cholesterol, and blood sugar numbers, and take any medication as prescribed. Calming your nervous system is something you can add to that care.
 
+You may also want to read [can stress or anxiety cause chest pain?](/articles/can-stress-cause-chest-pain)
+
 ## Common questions
 
 **Can anxiety cause a heart attack?** Anxiety on its own doesn't usually cause a heart attack, but long-term stress and anxiety are linked to higher heart risk. Anxiety symptoms can also feel like a heart attack, so get checked if you're unsure.

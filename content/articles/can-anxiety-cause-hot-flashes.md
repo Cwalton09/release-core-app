@@ -31,6 +31,8 @@ In a 2005 study in the journal *Menopause*, researchers followed women through t
 
 You may also find [why I sweat in my sleep](/articles/why-do-i-sweat-in-my-sleep), [can stress cause a fever](/articles/can-stress-cause-a-fever), and [why I feel anxious before my period](/articles/why-do-i-feel-anxious-before-my-period) helpful.
 
+You may also want to read [why do I sweat so much when I'm nervous?](/articles/why-do-i-sweat-so-much-when-nervous)
+
 ## Common questions
 
 **Can anxiety make you feel hot and cold?** Yes. Adrenaline can cause flushing and sweating, then chills as your body cools down.

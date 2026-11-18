@@ -35,6 +35,8 @@ Talk to your dentist or doctor about jaw pain, clicking, or grinding, since it c
 
 You can unclench on purpose, but a few minutes later, it's back. That's because the clenching isn't a decision. It's your nervous system bracing for something it still believes is coming. You can read more about [being stuck in fight or flight](/articles/signs-nervous-system-stuck-in-fight-or-flight).
 
+You may also want to read [why do I feel pressure in my head?](/articles/why-do-i-feel-pressure-in-my-head)
+
 ## Why it keeps coming back
 
 Most of the time, we don't know the real reason behind what's driving the trigger. We can guess, but the actual trigger is usually something we would never think of on our own. And until it's found, your body will keep clenching to hold everything in.

@@ -36,6 +36,8 @@ Sensory overload is a real nervous system response, not a character flaw. Many p
 
 That message can become its own belief, like "I'm too much" or "my needs are a burden," which can keep your body even more on guard. You can read more about [hypervigilance](/articles/hypervigilance-always-scanning-for-danger) and [ADHD and the nervous system](/articles/adhd-and-the-nervous-system).
 
+You may also want to read [can anxiety affect your vision?](/articles/can-anxiety-affect-your-vision)
+
 ## Why it keeps coming back
 
 Most of the time, we don't know the real reason behind what's driving the trigger. We can guess, but the actual trigger is usually something we would never think of on our own. And until it's found, your body will keep treating everyday noise like a threat.

@@ -33,6 +33,8 @@ Treatments that help include shifting attention outward, exposure, therapy, and 
 
 You may also find [why I feel like everyone hates me](/articles/why-do-i-feel-like-everyone-hates-me), [why I feel like a fraud](/articles/why-do-i-feel-like-a-fraud), and [why my voice shakes when I'm nervous](/articles/why-does-my-voice-shake-when-im-nervous) helpful.
 
+You may also want to read [why do I sweat so much when I'm nervous?](/articles/why-do-i-sweat-so-much-when-nervous)
+
 ## Common questions
 
 **Can anxiety make you blush?** Yes. Anxiety, especially social anxiety, makes blushing more likely.

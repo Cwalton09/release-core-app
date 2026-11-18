@@ -32,6 +32,8 @@ You may also find [can anxiety cause numbness](/articles/can-anxiety-cause-numbn
 
 You may also want to read [can anxiety cause dizziness and vertigo?](/articles/can-anxiety-cause-vertigo)
 
+You may also want to read [can anxiety cause tingling in your hands and feet?](/articles/tingling-hands-and-feet-anxiety)
+
 ## Common questions
 
 **How long does a panic attack last?** Most peak within about 10 minutes and fade after that.

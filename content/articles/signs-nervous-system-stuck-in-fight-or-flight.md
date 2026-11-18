@@ -43,6 +43,8 @@ You can't relax your way out of something your body believes is necessary. If it
 
 That's also why some people feel worse when they finally slow down. Taking a break, going on vacation, or lying down to rest can make your system feel exposed, because it's being asked to stop doing the thing it thinks is protecting you.
 
+You may also want to read [can stress or anxiety cause high blood pressure?](/articles/can-stress-cause-high-blood-pressure)
+
 ## Why it keeps coming back
 
 Most of the time, we don't know the real reason behind what's driving the trigger. We can guess, but the actual trigger is usually something we would never think of on our own. And until it's found, your body will keep pulling you back into fight or flight.

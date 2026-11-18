@@ -41,6 +41,8 @@ Talk to your doctor if you get sick often or the crashes are severe, so other ca
 - [Why am I so tired all the time?](/articles/why-am-i-always-tired-nervous-system)
 - [Brain fog and the nervous system](/articles/brain-fog-nervous-system)
 
+You may also want to read [can stress or anxiety cause a fever?](/articles/can-stress-cause-a-fever)
+
 ## Why it keeps coming back
 
 Most of the time, we don't know the real reason behind what's driving the trigger. We can guess, but the actual trigger is usually something we would never think of on our own. And until it's found, your body will keep holding everything together until it can't.

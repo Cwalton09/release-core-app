@@ -35,6 +35,8 @@ Please talk with a doctor or mental health professional if the feeling is freque
 
 If you're thinking about harming yourself, call or text 988.
 
+You may also want to read [can anxiety affect your vision?](/articles/can-anxiety-affect-your-vision)
+
 ## Common questions
 
 **Is derealization dangerous?** It feels frightening, but it isn't dangerous in itself. It's a protective response of the nervous system.

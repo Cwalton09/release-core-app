@@ -39,6 +39,8 @@ For some people, brain fog is part of a shutdown response. When something feels 
 - [Why am I so tired all the time?](/articles/why-am-i-always-tired-nervous-system)
 - [Brain fog and the nervous system](/articles/brain-fog-nervous-system)
 
+You may also want to read [why do I feel pressure in my head?](/articles/why-do-i-feel-pressure-in-my-head)
+
 ## Why it keeps coming back
 
 Most of the time, we don't know the real reason behind what's driving the trigger. We can guess, but the actual trigger is usually something we would never think of on our own. And until it's found, your body will keep turning down your clarity to get you through.

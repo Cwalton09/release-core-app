@@ -1,6 +1,6 @@
 ---
-title: "Why Do I Feel Pressure in My Head? Stress, Tension, and Your Nervous System"
-description: A tight band around your head, pressure behind your eyes, or a heavy, full feeling? Here's how stress and tension-type headaches cause head pressure, what research shows, and which head symptoms need emergency care.
+title: "Why Do I Feel Pressure in My Head? Stress Headaches, Head Pressure, and Anxiety"
+description: A tight band around your head, pressure at the back or top of your head, or a heavy, full feeling? Here's how stress and tension-type headaches cause head pressure, what a stress headache feels like, and which head symptoms need emergency care.
 date: 2026-11-05
 published: true
 ---
@@ -33,6 +33,12 @@ Stress also affects sleep and breathing, and shallow breathing and poor sleep ca
 You may also find [stress headaches and migraines](/articles/stress-headaches-migraines-nervous-system), [why I clench my jaw](/articles/why-do-i-clench-my-jaw), and [stress neck pain](/articles/stress-neck-pain) helpful.
 
 ## Common questions
+
+**Why do I feel pressure in the back of my head?** Tight muscles at the base of your skull and in your neck are a common cause, and stress and long hours at a screen make them tighten. Tension-type headaches often feel like pressure at the back of the head and neck.
+
+**What does a stress headache feel like?** Usually a dull, pressing, or squeezing ache on both sides of the head, like a tight band. It's often mild to moderate, and unlike a migraine, it usually doesn't get worse when you walk or climb stairs.
+
+**Why does my head feel heavy with anxiety?** Tight neck and scalp muscles, shallow breathing, poor sleep, and the mental load of worry can all make your head feel heavy, foggy, or full.
 
 **Can anxiety cause head pressure?** Yes. Anxiety keeps your head and neck muscles tense and makes you more sensitive to pain.
 

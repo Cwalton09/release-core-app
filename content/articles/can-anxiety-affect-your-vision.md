@@ -1,10 +1,10 @@
 ---
-title: "Can Anxiety Affect Your Vision? Light Sensitivity, Floaters, Visual Snow, and More"
-description: Light sensitivity, tunnel vision, seeing static, noticing floaters, or things looking unreal when you're anxious? Here's how anxiety can change how you see, what research shows, and which vision changes need a doctor right away.
+title: "Can Anxiety Affect Your Vision? Blurry Vision, Light Sensitivity, Floaters, and More"
+description: Blurry vision, light sensitivity, tunnel vision, floaters, or things looking unreal when you're anxious? Here's how anxiety and stress can affect your eyes and vision, what research shows, and which vision changes need a doctor right away.
 date: 2026-11-05
 published: true
 ---
-Can anxiety affect your vision? Yes, anxiety can change how your vision feels. Common changes are light sensitivity, blurry or strained vision, tunnel vision during panic, and things looking unreal or far away. Anxiety can also make you notice things that were already there, like floaters or visual static. Your nervous system controls your pupils and focus, and when it's on high alert, your eyes and brain work differently.
+Can anxiety affect your vision or cause blurry vision? Yes, anxiety can change how your vision feels. Common changes are light sensitivity, blurry or strained vision, tunnel vision during panic, and things looking unreal or far away. Anxiety can also make you notice things that were already there, like floaters or visual static. Your nervous system controls your pupils and focus, and when it's on high alert, your eyes and brain work differently.
 
 These changes can be scary, and fear makes them easier to notice, which can make the anxiety worse.
 
@@ -42,6 +42,12 @@ Research on the eye also shows that the fight-or-flight side of the nervous syst
 You may also find [how your nervous system controls your eyes](/articles/eyes-and-the-nervous-system), [can stress cause blurry vision](/articles/can-stress-cause-blurry-vision), and [health anxiety](/articles/health-anxiety) helpful.
 
 ## Common questions
+
+**Can anxiety cause blurred vision?** It can. When you're anxious, your pupils widen, you may blink less so your eyes dry out, and you may strain to focus, so things can look blurry for a while. Blurry vision that is sudden, in one eye, or doesn't clear up needs an eye exam.
+
+**Can stress cause eye floaters?** Stress doesn't create floaters, which come from tiny clumps in the gel inside your eye. But anxiety can make you notice floaters you already had. A sudden shower of new floaters, flashes of light, or a shadow or curtain over your vision is an emergency, because it can mean a retinal tear.
+
+**Can anxiety cause tunnel vision?** Yes. During panic, some people feel their vision narrow or close in. It usually passes as the panic settles. If it happens without anxiety, or doesn't go away, see a doctor.
 
 **Can anxiety cause seeing spots?** Anxiety can make you notice floaters and spots more. New or sudden spots, especially with flashes, need an eye exam.
 

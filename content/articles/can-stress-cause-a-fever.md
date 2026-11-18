@@ -1,10 +1,10 @@
 ---
-title: "Can Stress Cause a Fever? What Psychogenic Fever Is"
-description: Running warm or feverish during stressful times, with no infection? Here's what research says about stress-induced fever, how your nervous system raises your temperature, and when to see a doctor.
+title: "Can Stress or Anxiety Cause a Fever? Psychogenic Fever and Body Temperature"
+description: Does anxiety raise your body temperature? For some people, yes. Here's what research says about psychogenic (stress-induced) fever, how your nervous system raises your temperature, and when to see a doctor.
 date: 2026-10-26
 published: true
 ---
-Can stress cause a fever? Yes, for some people. Doctors call it psychogenic fever, or stress-induced hyperthermia. Research by Japanese physician Takakazu Oka and others shows that psychological stress can raise body temperature through your nervous system, in a different way than an infection does. Some people run a low-grade temperature for long stretches during stress. Others spike during intense stress.
+Can stress or anxiety cause a fever or raise your body temperature? Yes, for some people. Doctors call it psychogenic fever, or stress-induced hyperthermia. Research by Japanese physician Takakazu Oka and others shows that psychological stress can raise body temperature through your nervous system, in a different way than an infection does. Some people run a low-grade temperature for long stretches during stress. Others spike during intense stress.
 
 You feel warm and flushed. You take your temperature, and it's up. But you don't feel sick, and tests don't find an infection.
 
@@ -35,6 +35,10 @@ That last one is a strong example of how the nervous system learns: the body can
 - You also feel wired, flushed, or exhausted
 
 ## Common questions
+
+**Does anxiety raise your body temperature?** It can. Research shows stressful moments can raise core body temperature through the sympathetic nervous system, and in people with psychogenic fever it can climb into the fever range. Most people just feel warm or flushed.
+
+**Can depression cause a fever?** Depression isn't a known direct cause of fever. A 2024 study of more than 20,000 people found that those with more depression symptoms tended to have slightly higher body temperatures, but a real fever still needs a check for infection or other causes.
 
 **Can anxiety cause a fever?** Anxiety and stress can raise body temperature in some people. Other causes should be ruled out first.
 

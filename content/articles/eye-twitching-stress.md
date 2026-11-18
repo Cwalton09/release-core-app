@@ -52,6 +52,8 @@ See a doctor if the twitch lasts more than a few weeks, spreads to other parts o
 - [High cortisol symptoms](/articles/high-cortisol-symptoms)
 - [Why do I wake up tired?](/articles/why-do-i-wake-up-tired)
 
+You may also want to read [can anxiety affect your vision?](/articles/can-anxiety-affect-your-vision)
+
 ## Why it keeps coming back
 
 Most of the time, we don't know the real reason our body is running in overdrive. We can guess, but the actual trigger is usually something we would never think of on our own. Until it's found, the same tension keeps building.

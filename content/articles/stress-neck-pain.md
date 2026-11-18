@@ -42,6 +42,8 @@ Neck pain can also come from injuries, arthritis, nerve problems, and other medi
 - [Why does pain last after an injury heals?](/articles/why-does-pain-last-after-healing)
 - [Signs your nervous system is stuck in fight or flight](/articles/signs-nervous-system-stuck-in-fight-or-flight)
 
+You may also want to read [why do I feel pressure in my head?](/articles/why-do-i-feel-pressure-in-my-head)
+
 ## Why it keeps coming back
 
 Most of the time, we don't know what our body is bracing against. We can guess, but the real trigger is usually something we would never think of on our own. Until it's found, your neck keeps doing the holding.

@@ -57,6 +57,8 @@ Night sweats can also come from:
 - [Heart palpitations and anxiety](/articles/heart-palpitations-anxiety-nervous-system)
 - [High cortisol symptoms](/articles/high-cortisol-symptoms)
 
+You may also want to read [why do I sweat so much when I'm nervous?](/articles/why-do-i-sweat-so-much-when-nervous)
+
 ## Why it keeps coming back
 
 Most of the time, we don't know why our body stays on alert at night. We can guess, but the real trigger is usually something we would never think of on our own. Until it's found, your body keeps sounding the alarm while you sleep.

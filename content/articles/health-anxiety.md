@@ -42,6 +42,10 @@ Reassurance calms the thought, but not the nervous system's rule underneath. You
 
 If health anxiety is taking over your life, a mental health professional can help. It's very treatable.
 
+You may also want to read [can stress or anxiety cause chest pain?](/articles/can-stress-cause-chest-pain)
+
+You may also want to read [can stress or anxiety cause high blood pressure?](/articles/can-stress-cause-high-blood-pressure)
+
 ## Common questions
 
 **What causes health anxiety?** It often starts after a health scare, an illness in someone close to you, a stressful season, or a nervous system that learned to stay on guard.

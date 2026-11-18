@@ -42,6 +42,8 @@ For many people, chest tightness is part of an old bracing pattern. The body lea
 
 You may also want to read [why you feel like you can't breathe when you're stressed](/articles/can-stress-cause-shortness-of-breath).
 
+You may also want to read [can stress or anxiety cause chest pain?](/articles/can-stress-cause-chest-pain)
+
 ## Common questions
 
 **What does anxiety chest tightness feel like?** Most people describe pressure, heaviness, a squeezing band around the chest, or a feeling that they can't get a deep enough breath. It often comes with a racing heart, shallow breathing, or a lump in the throat.

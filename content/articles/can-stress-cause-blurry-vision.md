@@ -33,6 +33,8 @@ A 2020 review of CSC biomarkers describes the stress and cortisol link as likely
 
 You may also find [eye twitching and stress](/articles/eye-twitching-stress), [dizzy when anxious](/articles/dizzy-when-anxious), and [stress headaches and migraines](/articles/stress-headaches-migraines-nervous-system) helpful.
 
+You may also want to read [can anxiety affect your vision?](/articles/can-anxiety-affect-your-vision)
+
 ## Common questions
 
 **Can anxiety make your vision blurry?** Yes, especially during a panic attack, when adrenaline peaks. It usually clears as you calm down.

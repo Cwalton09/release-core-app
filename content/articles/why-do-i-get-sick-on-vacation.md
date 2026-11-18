@@ -43,6 +43,8 @@ For some people, there's another layer. If your body learned that it's only safe
 - [Why can't I relax?](/articles/why-cant-i-relax)
 - [Why do the holidays make me so anxious?](/articles/why-do-holidays-make-me-anxious)
 
+You may also want to read [can stress or anxiety cause a fever?](/articles/can-stress-cause-a-fever)
+
 ## Why it keeps coming back
 
 Most of the time, we don't know why our body can only let go when everything else stops. We can guess, but the real trigger is usually something we would never think of on our own. Until it's found, your time off keeps turning into sick days.

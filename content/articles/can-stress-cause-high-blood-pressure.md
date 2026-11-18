@@ -1,10 +1,10 @@
 ---
-title: "Can Stress Cause High Blood Pressure? What Your Nervous System Has to Do With It"
-description: Stress raises blood pressure in the moment, and long-term stress is linked to developing high blood pressure. Here's how your nervous system drives it, what research shows, and why medical care still comes first.
+title: "Can Stress or Anxiety Cause High Blood Pressure?"
+description: Does blood pressure go up with anxiety? Yes, in the moment, and long-term stress is linked to developing high blood pressure. Here's how your nervous system drives it, what research shows, and why medical care still comes first.
 date: 2026-10-26
 published: true
 ---
-Can stress cause high blood pressure? Stress raises your blood pressure in the moment, every time. Your nervous system's fight-or-flight response speeds up your heart and narrows your blood vessels. And long-term stress is linked to a higher risk of developing high blood pressure over time. Stress isn't the only cause, but a nervous system that never stands down keeps your blood pressure working harder.
+Can stress or anxiety cause high blood pressure? Stress and anxiety raise your blood pressure in the moment, every time. Your nervous system's fight-or-flight response speeds up your heart and narrows your blood vessels. And long-term stress is linked to a higher risk of developing high blood pressure over time. Stress isn't the only cause, but a nervous system that never stands down keeps your blood pressure working harder.
 
 Maybe your reading is always higher at the doctor's office. Or it started creeping up during a stressful year.
 
@@ -39,6 +39,10 @@ These studies show a strong link, though researchers are still working out exact
 - You have other stress signs like poor sleep, jaw clenching, or a racing heart
 
 ## Common questions
+
+**How high can stress raise your blood pressure?** It varies from person to person. A stressful moment can push your reading up for a short time, and it usually comes back down as you settle. If your readings stay high when you're resting, see a doctor.
+
+**Can high blood pressure cause anxiety?** High blood pressure usually has no symptoms, but worrying about your readings can feed anxiety, and research shows the two often show up together. If you feel anxious every time you check, tell your doctor. Home or 24-hour monitoring can give a truer picture.
 
 **Can anxiety cause high blood pressure?** Anxiety can raise blood pressure in the moment. Long-term anxiety and stress are linked to a higher risk of developing high blood pressure.
 

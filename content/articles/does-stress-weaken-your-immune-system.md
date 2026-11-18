@@ -45,6 +45,8 @@ Getting sick often can have many causes, so talk to your doctor if it keeps happ
 - [Stress and skin flare-ups](/articles/stress-skin-flare-ups-eczema-psoriasis)
 - [Stress headaches and migraines](/articles/stress-headaches-migraines-nervous-system)
 
+You may also want to read [can stress or anxiety cause a fever?](/articles/can-stress-cause-a-fever)
+
 ## Why it keeps coming back
 
 Most of the time, we don't know the real reason behind what's driving the trigger. We can guess, but the actual trigger is usually something we would never think of on our own. And until it's found, your body will keep staying on alert long after the stress should be over.

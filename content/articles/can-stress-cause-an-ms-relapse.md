@@ -1,10 +1,10 @@
 ---
-title: "Can Stress Cause an MS Relapse? What the Research Shows"
-description: Many people with multiple sclerosis notice flares after hard times. Here's what research shows about stressful life events and MS relapses, why it may happen, and what you can do alongside your treatment.
+title: "Can Stress Cause an MS Relapse or Flare-Up? What the Research Shows"
+description: Does MS flare up with stress? Many people with multiple sclerosis notice flare-ups after hard times. Here's what research shows about stress and MS relapses (exacerbations), why it may happen, and what you can do alongside your treatment.
 date: 2026-11-04
 published: true
 ---
-Can stress cause an MS relapse? Research shows that stressful life events are linked to a higher risk of MS relapses. Stress doesn't cause MS, and it isn't your fault if you flare. But a large review found a consistent link between stressful events and the relapses that followed them. That's why calming your nervous system can be one part of caring for MS.
+Can stress cause an MS relapse or flare-up? Research shows that stressful life events are linked to a higher risk of MS relapses. Stress doesn't cause MS, and it isn't your fault if you flare. But a large review found a consistent link between stressful events and the relapses that followed them. That's why calming your nervous system can be one part of caring for MS.
 
 Many people with MS describe the same pattern. There's a move, a divorce, a loss, or months of pressure, and then a flare.
 
@@ -36,6 +36,10 @@ Many people with MS also live with constant worry about the next relapse. That f
 You may also find [MS, stress, and the nervous system](/articles/ms-stress-nervous-system) and [why autoimmune conditions flare with stress](/articles/why-autoimmune-flares-with-stress) helpful.
 
 ## Common questions
+
+**Can stress cause MS flare-ups?** Research links stressful life events to a higher chance of MS relapses, also called flare-ups or exacerbations, in the weeks and months that follow. Stress can also make old symptoms feel worse for a while without a true relapse.
+
+**Can fatigue be a sign of an MS relapse?** Fatigue is very common in MS and can come with a relapse, but fatigue alone usually isn't counted as one. New or worsening symptoms that last more than 24 hours, without a fever or infection, are worth a call to your neurologist.
 
 **Can stress trigger MS for the first time?** Research on this is limited. Most studies looked at relapses in people who already had MS, and stress isn't considered a cause of MS.
 

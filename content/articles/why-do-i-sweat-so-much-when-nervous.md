@@ -1,10 +1,10 @@
 ---
-title: "Why Do I Sweat So Much When I'm Nervous?"
-description: Sweaty palms, damp underarms, or sweat dripping down your back when you're anxious? Here's how your nervous system controls emotional sweating, what hyperhidrosis is, and when sweating needs a doctor.
+title: "Why Do I Sweat So Much When I'm Nervous? Anxiety Sweating and Stress Sweat"
+description: Can anxiety cause sweating? Yes. Sweaty palms, damp underarms, or stress sweat that smells different? Here's how your nervous system controls emotional sweating, how to stop nervous sweating, and when sweating needs a doctor.
 date: 2026-11-05
 published: true
 ---
-Why do I sweat so much when I'm nervous? Sweating is controlled by your sympathetic nervous system, the fight-or-flight side. Besides cooling you down, your body has a second kind of sweating, sometimes called emotional sweating, that's set off by stress, fear, and embarrassment. It shows up mostly on your palms, soles, underarms, and face. Some people have an overactive version called hyperhidrosis, where sweating is much heavier than the body needs.
+Why do I sweat so much when I'm nervous, and can anxiety cause sweating? Yes, it can. Sweating is controlled by your sympathetic nervous system, the fight-or-flight side. Besides cooling you down, your body has a second kind of sweating, sometimes called emotional sweating, that's set off by stress, fear, and embarrassment. It shows up mostly on your palms, soles, underarms, and face. Some people have an overactive version called hyperhidrosis, where sweating is much heavier than the body needs.
 
 You might get clammy hands before shaking someone's hand, sweat through your shirt in a meeting, or feel sweat on your face when you're put on the spot.
 
@@ -32,6 +32,12 @@ A review on hyperhidrosis in *Thoracic Surgery Clinics* describes it as an overa
 You may also find [why I sweat in my sleep](/articles/why-do-i-sweat-in-my-sleep), [can anxiety cause hot flashes](/articles/can-anxiety-cause-hot-flashes), and [why I blush so easily](/articles/why-do-i-blush-so-easily) helpful.
 
 ## Common questions
+
+**What is stress sweat?** Stress sweat is sweat set off by emotions instead of heat. On your palms and soles it comes from the same glands that cool you. In your underarms, stress also activates apocrine glands, which release a thicker sweat that skin bacteria break down into odor. That's why stress sweat can smell stronger.
+
+**How do I stop sweating when I'm nervous?** In the moment, slow your exhale, cool your wrists and the back of your neck, and wear breathable layers. Antiperspirant put on at night works better for many people. If sweating gets in the way of your life, a doctor can talk with you about treatments for hyperhidrosis.
+
+**Can anxiety cause sweating at night?** It can. Anxiety, nightmares, and a body that stays on alert during sleep can bring on night sweats. Night sweats that come with fever or weight loss, or that soak your sheets, need a doctor's visit.
 
 **Why do my hands sweat when I'm anxious?** Your palms have many sweat glands that respond to stress signals from your nervous system.
 

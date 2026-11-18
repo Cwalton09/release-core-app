@@ -34,6 +34,8 @@ A 2025 review and meta-analysis in *Stress and Health* looked at ten studies on 
 
 You may also find [why my hands are shaking](/articles/why-are-my-hands-shaking-anxiety), [lump in throat anxiety](/articles/lump-in-throat-anxiety), and [why I blush so easily](/articles/why-do-i-blush-so-easily) helpful.
 
+You may also want to read [why do I sweat so much when I'm nervous?](/articles/why-do-i-sweat-so-much-when-nervous)
+
 ## Common questions
 
 **How do I stop my voice from shaking?** Slow down, breathe low into your belly before you speak, let your exhale be long, and speak a little lower and slower.

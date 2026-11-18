@@ -32,6 +32,8 @@ That last one is common. See [why do I get sick on vacation](/articles/why-do-i-
 
 You may also find [nervous system stuck in survival mode](/articles/nervous-system-stuck-in-survival-mode) and [can stress cause autoimmune disease](/articles/can-stress-cause-autoimmune-disease) helpful.
 
+You may also want to read [can stress or anxiety cause a fever?](/articles/can-stress-cause-a-fever)
+
 ## Common questions
 
 **Can stress make you physically sick?** Yes. It can make you more likely to catch infections and can cause physical symptoms like headaches, stomach upset, and fatigue.

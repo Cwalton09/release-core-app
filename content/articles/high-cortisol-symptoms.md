@@ -49,6 +49,8 @@ These signs can come from many things. If you're worried about your hormones, ta
 
 You may also want to read [what the main stress hormones do](/articles/how-stress-affects-your-hormones).
 
+You may also want to read [can stress or anxiety cause high blood pressure?](/articles/can-stress-cause-high-blood-pressure)
+
 ## Why it keeps coming back
 
 You can try to lower cortisol from the outside, but if your nervous system still believes it needs to be on guard, it will keep making more. Most of the time, we don't know the real reason behind what's keeping it on alert. The actual trigger is usually something we would never think of on our own.

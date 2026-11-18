@@ -1,10 +1,10 @@
 ---
-title: "Can Stress Cause Chest Pain? Anxiety Chest Pain vs. Heart Trouble"
-description: Sharp, tight, or aching chest pain during stress is common, and it's scary. Here's how anxiety and a braced nervous system cause chest pain, the warning signs to never ignore, and why getting checked matters.
+title: "Can Stress or Anxiety Cause Chest Pain? Anxiety Chest Pain vs. Heart Trouble"
+description: Can anxiety cause chest pain or chest pressure? Yes. Here's how stress and a braced nervous system cause sharp, tight, or aching chest pain, the warning signs to never ignore, and why getting checked matters.
 date: 2026-10-26
 published: true
 ---
-Can stress cause chest pain? Yes. Stress and anxiety can tighten the muscles in your chest, speed up your heart, change your breathing, and make you more aware of every sensation, all of which can cause real chest pain or pressure. But chest pain can also be a heart problem, so it should always be taken seriously and checked, especially if it's new.
+Can stress or anxiety cause chest pain? Yes. Stress and anxiety can tighten the muscles in your chest, speed up your heart, change your breathing, and make you more aware of every sensation, all of which can cause real chest pain or pressure. But chest pain can also be a heart problem, so it should always be taken seriously and checked, especially if it's new.
 
 It's one of the most frightening symptoms there is. Your chest hurts, your mind goes straight to your heart, and the fear makes everything worse.
 
@@ -36,6 +36,10 @@ Even if your chest pain fits this pattern, please get it checked at least once, 
 You may also find [why does my chest feel tight with anxiety?](/articles/why-does-my-chest-feel-tight-anxiety) and [heart palpitations and anxiety](/articles/heart-palpitations-anxiety-nervous-system) helpful.
 
 ## Common questions
+
+**Can anxiety cause chest pressure?** Yes. Tight chest muscles and fast breathing during anxiety can feel like pressure or heaviness. Because chest pressure is also a classic heart attack sign, new or unexplained chest pressure needs emergency care first.
+
+**Why does my heart hurt when I'm stressed?** Often it's the muscles and nerves of the chest wall, not the heart itself, but only a doctor can tell for sure. Rarely, intense emotional stress can bring on a real heart condition called broken heart syndrome (takotsubo), which is another reason chest pain under stress should be checked.
 
 **How do I know if chest pain is anxiety or my heart?** You can't always tell on your own. That's why new or severe chest pain needs medical care.
 

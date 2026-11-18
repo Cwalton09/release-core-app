@@ -48,6 +48,8 @@ Never stop or change your RA medication without your rheumatologist. Sudden join
 - [How the nervous system shapes pain](/articles/how-the-nervous-system-shapes-pain)
 - [MS and stress](/articles/ms-stress-nervous-system)
 
+You may also want to read [can stress cause an MS flare-up?](/articles/can-stress-cause-an-ms-relapse)
+
 ## Why it keeps coming back
 
 Most of the time, we don't know why our nervous system stays on alert. We can guess, but the real trigger is usually something we would never think of on our own. Until it's found, your body keeps its foot on the gas, and your joints feel it.

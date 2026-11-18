@@ -33,6 +33,8 @@ In autoimmune diseases like lupus, the immune system is already overactive. Extr
 
 See also [can stress cause autoimmune disease?](/articles/can-stress-cause-autoimmune-disease)
 
+You may also want to read [can stress cause an MS flare-up?](/articles/can-stress-cause-an-ms-relapse)
+
 ## Common questions
 
 **Can emotional stress cause a lupus flare?** Many people with lupus report it, and research links stress and trauma to lupus and inflammation.

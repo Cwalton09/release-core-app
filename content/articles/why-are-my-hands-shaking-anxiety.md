@@ -31,6 +31,10 @@ Some people shake after the stressful moment has passed. That can be your body r
 
 Please see a doctor if your shaking is new, getting worse, happens even when you're calm, affects one side of the body, or comes with other symptoms like weakness, trouble walking, weight loss, or a racing heart at rest. Conditions like essential tremor, thyroid problems, and Parkinson's disease can also cause tremor and need medical care.
 
+You may also want to read [can anxiety cause tingling in your hands and feet?](/articles/tingling-hands-and-feet-anxiety)
+
+You may also want to read [why do I sweat so much when I'm nervous?](/articles/why-do-i-sweat-so-much-when-nervous)
+
 ## Common questions
 
 **Can anxiety cause shaking all day?** If your nervous system is on alert all day, you may notice shakiness on and off.

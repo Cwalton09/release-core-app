@@ -49,6 +49,8 @@ Many people learned to hold their breath when they were scared or bracing, espec
 
 You may also want to read [why you feel like you can't breathe when you're stressed](/articles/can-stress-cause-shortness-of-breath).
 
+You may also want to read [can anxiety cause tingling in your hands and feet?](/articles/tingling-hands-and-feet-anxiety)
+
 ## Why it keeps coming back
 
 Most of the time, we don't know the real reason behind what's driving the trigger. We can guess, but the actual trigger is usually something we would never think of on our own. And until it's found, your body will keep breathing like it's bracing for danger.

@@ -1,10 +1,10 @@
 ---
-title: "Tingling or Numbness in Your Hands and Feet: Can Anxiety Cause It?"
-description: Pins and needles in your hands, feet, or face during stress or panic. Here's how anxiety and fast breathing cause tingling, the medical causes to rule out, and the emergency signs to never ignore.
+title: "Can Anxiety Cause Tingling or Numbness in Your Hands, Feet, or Face?"
+description: Pins and needles (paresthesia), numbness, or cold hands and feet during stress or panic? Here's how anxiety and fast breathing cause tingling, the medical causes to rule out, and the emergency signs to never ignore.
 date: 2026-10-26
 published: true
 ---
-Can anxiety cause tingling in your hands and feet? Yes. During anxiety or panic, many people breathe faster without realizing it. That lowers carbon dioxide in the blood, which can make nerves more excitable and cause tingling or numbness in the hands, feet, and around the mouth. Stress also tightens blood vessels and muscles. But tingling and numbness can have medical causes too, so it's important to get checked.
+Can anxiety cause tingling or numbness in your hands and feet? Yes. Doctors call this pins-and-needles feeling paresthesia. During anxiety or panic, many people breathe faster without realizing it. That lowers carbon dioxide in the blood, which can make nerves more excitable and cause tingling or numbness in the hands, feet, and around the mouth. Stress also tightens blood vessels and muscles. But tingling and numbness can have medical causes too, so it's important to get checked.
 
 It can be scary to feel your hands go numb or your fingers buzz, especially in the middle of a stressful moment.
 
@@ -42,6 +42,12 @@ Please see a doctor if tingling or numbness is ongoing, keeps coming back, or ha
 - Your doctor hasn't found another cause
 
 ## Common questions
+
+**Can anxiety make your hands cold?** Yes. In fight-or-flight, your body narrows the blood vessels in your hands and feet to send more blood to your core and big muscles, so they can feel cold, clammy, or pale. They usually warm up again as you calm down.
+
+**Can anxiety cause tingling in your head or face?** Yes. Fast breathing during anxiety commonly causes tingling around the mouth and in the face, and some people feel it on the scalp. Sudden numbness or drooping on one side of the face is different. Call 911.
+
+**What is paresthesia from anxiety?** Paresthesia is the medical word for tingling, prickling, or pins and needles. With anxiety, it's most often linked to over-breathing, and it usually fades as your breathing slows.
 
 **Can anxiety make your hands go numb?** Yes, especially during panic or fast breathing. Ongoing numbness should be checked.
 

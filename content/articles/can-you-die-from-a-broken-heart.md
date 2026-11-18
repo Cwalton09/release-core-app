@@ -56,6 +56,8 @@ Most people recover their heart function within weeks. But the condition shows s
 - [Is trauma stored in the body?](/articles/is-trauma-stored-in-the-body)
 - [Why do I feel emotionally numb?](/articles/why-do-i-feel-emotionally-numb)
 
+You may also want to read [can stress or anxiety cause chest pain?](/articles/can-stress-cause-chest-pain)
+
 ## Why it keeps coming back
 
 Most people will never have broken heart syndrome. But many people live with a smaller version of the same thing every day: a nervous system that reacts to emotional pain as if it's physical danger.

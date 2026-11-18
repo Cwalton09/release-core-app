@@ -56,6 +56,8 @@ These signs aren't a diagnosis. Autoimmune disease needs care from a doctor, and
 - [Signs your nervous system is stuck in fight or flight](/articles/signs-nervous-system-stuck-in-fight-or-flight)
 - [Is trauma stored in the body?](/articles/is-trauma-stored-in-the-body)
 
+You may also want to read [can stress cause an MS flare-up?](/articles/can-stress-cause-an-ms-relapse)
+
 ## Why it keeps coming back
 
 Most of the time, we don't know the real reason our body is still on alert. We can guess, but the actual trigger is usually something we would never think of on our own. And until it's found, your nervous system keeps running the same protective pattern, year after year.

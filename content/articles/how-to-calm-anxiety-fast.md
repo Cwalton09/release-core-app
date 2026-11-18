@@ -35,6 +35,8 @@ See [how to stop a panic attack](/articles/how-to-stop-a-panic-attack) and [what
 
 You may also find [why you feel anxious for no reason](/articles/why-do-i-feel-anxious-for-no-reason) helpful.
 
+You may also want to read [can stress or anxiety cause high blood pressure?](/articles/can-stress-cause-high-blood-pressure)
+
 ## Common questions
 
 **What is the fastest way to calm anxiety?** Slow, exhale-focused breathing is one of the fastest, research-backed options.

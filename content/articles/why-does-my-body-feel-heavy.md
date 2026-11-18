@@ -32,6 +32,8 @@ When you're sick, your immune system releases chemicals called cytokines. A 2008
 
 You may also find [why I shut down when overwhelmed](/articles/why-do-i-shut-down-when-overwhelmed), [why I'm always tired](/articles/why-am-i-always-tired-nervous-system), and [why I wake up tired](/articles/why-do-i-wake-up-tired) helpful.
 
+You may also want to read [why do I feel pressure in my head?](/articles/why-do-i-feel-pressure-in-my-head)
+
 ## Common questions
 
 **Why does my body feel heavy and tired?** Common causes include poor sleep, low iron, thyroid problems, depression, and long-term stress. A doctor can help rule out medical causes.
